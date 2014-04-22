@@ -20,6 +20,3 @@ wp-content/plugins/*
 # SASS
 
 *.sass-cache/
-
-sftp-config.json
-wp-config-sample.php
