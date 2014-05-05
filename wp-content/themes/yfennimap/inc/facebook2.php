@@ -9,6 +9,7 @@ require_once(get_template_directory() . '/src/Facebook/FacebookRequestException.
 require_once(get_template_directory() . '/src/Facebook/FacebookAuthorizationException.php' );
 require_once(get_template_directory() . '/src/Facebook/GraphObject.php' );
 require_once(get_template_directory() . '/src/Facebook/FacebookPermissionException.php' );
+require_once(get_template_directory() . '/src/Facebook/FacebookClientException.php' );
 
 use Facebook\FacebookSession;
 use Facebook\FacebookRedirectLoginHelper;
