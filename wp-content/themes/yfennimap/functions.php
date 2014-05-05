@@ -127,13 +127,6 @@ require get_template_directory() . '/inc/jetpack.php';
 /**
  * Load Facebook PHP SDK
  */
-require_once( get_template_directory() .'/src/Facebook/FacebookSession.php' );
-require_once( get_template_directory() .'/src/Facebook/FacebookRedirectLoginHelper.php' );
-require_once( get_template_directory() .'/src/Facebook/FacebookRequest.php' );
-require_once( get_template_directory() .'/src/Facebook/FacebookResponse.php' );
-require_once( get_template_directory() .'/src/Facebook/FacebookSDKException.php' );
-require_once( get_template_directory() .'/src/Facebook/FacebookRequestException.php' );
-require_once( get_template_directory() .'/src/Facebook/FacebookAuthorizationException.php' );
-require_once( get_template_directory() .'/src/Facebook/GraphObject.php' );
-
+require_once(get_template_directory() . '/inc/facebook2.php');
+require_once(get_template_directory() . '/inc/facebook1.php');
 

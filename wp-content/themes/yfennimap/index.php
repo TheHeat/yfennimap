@@ -13,18 +13,12 @@
 
 get_header();
 
-use Facebook\FacebookSession;
-use Facebook\FacebookRedirectLoginHelper;
-use Facebook\FacebookRequest;
-use Facebook\FacebookResponse;
-use Facebook\FacebookSDKException;
-use Facebook\FacebookRequestException;
-use Facebook\FacebookAuthorizationException;
-use Facebook\GraphObject;
+$token = 'CAADWmmqwixABADlOjnJnuQlvWDwdFfFvwRBgGKR0lHN6OWAThIRtzZBD8WONQsf1SVxfHiNZAP0ai9FK2iD3LMqVXzSLytfDmxXcVf1SVrXrZAFhzJTDf15pZCted6pDJtIk0mo6xF0PpBM6NRkFfET4eXV4KA6ZCPlw27Y1dizHXFTDEQDyBocRhlUAhAHsZD';
+$edge = 'feed';
+$content = 'wowee';
 
-// init app with app id and secret
-FacebookSession::setDefaultApplication( '1403610066585894','0b01db2166e0f144d5758d04f9c33e46' );
+$fb = fb_post_on_page($token, $edge, $content);
 
-
+echo $fb;
 
 get_footer(); ?>
