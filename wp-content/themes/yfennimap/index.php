@@ -13,9 +13,9 @@
 
 get_header();
 
-$token = 'CAADWmmqwixABADlOjnJnuQlvWDwdFfFvwRBgGKR0lHN6OWAThIRtzZBD8WONQsf1SVxfHiNZAP0ai9FK2iD3LMqVXzSLytfDmxXcVf1SVrXrZAFhzJTDf15pZCted6pDJtIk0mo6xF0PpBM6NRkFfET4eXV4KA6ZCPlw27Y1dizHXFTDEQDyBocRhlUAhAHsZD';
+$token = 'CAADWmmqwixABAB9ZC1SQHdX8AkGknsY3OxB2zY2ljiZByslb064vVg9j2YRgZA3ME8MEauTUWxW49pYZAgoDDA3DZAPaOPDS31ZCZAV0bDlpAlkotKUBNkzKVXzZAZAy2DUdQw9O8WwFB8NhWSAZCp5pzu1o7KNG6XmXxQbGu2vh0vJtRJ4lT42mbxQJeZAhDuqnnUZD';
 $edge = 'feed';
-$content = 'wowee';
+$content = 'something else';
 
 $fb = fb_post_on_page($token, $edge, $content);
 

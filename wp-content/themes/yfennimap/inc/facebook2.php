@@ -19,7 +19,7 @@ use Facebook\FacebookAuthorizationException;
 use Facebook\GraphObject;
 
 //app ip, app secret, page token, page id
-define(get_template_directory() . '/page_id', '276813939159864');
+define('page_id', '276813939159864');
 
 
 function fb_login(){
@@ -33,6 +33,7 @@ function fb_post_on_page($token, $edge, $content){
 	//photo, video, feed
 	//content is associative array containing source (optional), message, location
 	//get page token from constant into FacebookSessions
+	
 
 	$url = '/' . page_id . '/' . $edge;
 
@@ -41,10 +42,13 @@ function fb_post_on_page($token, $edge, $content){
 		);
 
 	$request = new FacebookRequest( $session, 'POST', $url, $params);
+	echo '<pre>';
+		print_r($request);
+	echo '</pre>';
 	try{
 		$response = $request->execute()->getGraphObject();
 	
-		return $response->getProperty(get_template_directory() . '/id'); //string with object id
+		return $response->getProperty('id'); //string with object id
 	}
 	catch( FacebookRequestException $ex ) {
 	  // When Facebook returns an error
