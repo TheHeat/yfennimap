@@ -13,9 +13,9 @@
 
 get_header();
 
-$token = 'CAADWmmqwixABAB9ZC1SQHdX8AkGknsY3OxB2zY2ljiZByslb064vVg9j2YRgZA3ME8MEauTUWxW49pYZAgoDDA3DZAPaOPDS31ZCZAV0bDlpAlkotKUBNkzKVXzZAZAy2DUdQw9O8WwFB8NhWSAZCp5pzu1o7KNG6XmXxQbGu2vh0vJtRJ4lT42mbxQJeZAhDuqnnUZD';
+$token = 'CAADWmmqwixABADZA2PPguDt75DAufmTHAA12fLFlBVlJhKYXb23AwHQkUQaiklUTdRHF2sxS5qQZAqApPhxOLr2nxbb0GHM0ICokbgPfzFRCaDNdMALMkClClFZCLGNvsMPvoEx2gU3q6ifZB34ZCQgRiqHPAMPLClkdpRie0rkr3tYCVFMUIhnoIKFLs049rHEYevhynZAgZDZD';
 $edge = 'feed';
-$content = 'something else';
+$content = 'some random shitasdfagainasdf4';
 
 $fb = fb_post_on_page($token, $edge, $content);
 

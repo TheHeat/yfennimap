@@ -8,6 +8,7 @@ require_once(get_template_directory() . '/src/Facebook/FacebookSDKException.php'
 require_once(get_template_directory() . '/src/Facebook/FacebookRequestException.php' );
 require_once(get_template_directory() . '/src/Facebook/FacebookAuthorizationException.php' );
 require_once(get_template_directory() . '/src/Facebook/GraphObject.php' );
+require_once(get_template_directory() . '/src/Facebook/FacebookPermissionException.php' );
 
 use Facebook\FacebookSession;
 use Facebook\FacebookRedirectLoginHelper;
@@ -42,9 +43,7 @@ function fb_post_on_page($token, $edge, $content){
 		);
 
 	$request = new FacebookRequest( $session, 'POST', $url, $params);
-	echo '<pre>';
-		print_r($request);
-	echo '</pre>';
+
 	try{
 		$response = $request->execute()->getGraphObject();
 	
@@ -52,8 +51,8 @@ function fb_post_on_page($token, $edge, $content){
 	}
 	catch( FacebookRequestException $ex ) {
 	  // When Facebook returns an error
-		$error = "Exception occured, code: " . $e->getCode()
-    		. " with message: " . $e->getMessage();
+		$error = "Exception occured, code: " . $ex->getCode()
+    		. " with message: " . $ex->getMessage();
 
     	return $error;
 	} 
