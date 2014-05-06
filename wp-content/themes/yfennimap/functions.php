@@ -96,12 +96,15 @@ add_action( 'widgets_init', 'yfenni_widgets_init' );
 function yfenni_scripts() {
 	wp_enqueue_style( 'yfenni-style', get_stylesheet_uri() );
 
-	wp_enqueue_script( 'yfenni-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20120206', true );
-
 	wp_enqueue_script( 'yfenni-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20130115', true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
+	}
+
+	if (is_page_template('map.php')){
+		wp_enqueue_script( 'google_map_api', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyC1ssxs7SdqghQui-UadBDVF3bHCarfsng&sensor=false');
+		wp_enqueue_script( 'yfennimap', get_stylesheet_directory_uri() . '/js/map.js' );
 	}
 }
 add_action( 'wp_enqueue_scripts', 'yfenni_scripts' );

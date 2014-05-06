@@ -8,7 +8,6 @@
  */
 ?>
 
-	</div><!-- #content -->
 
 	<footer id="colophon" class="site-footer" role="contentinfo">
 		<div class="site-info">
@@ -17,7 +16,6 @@
 			<?php printf( __( 'Theme: %1$s by %2$s.', 'yfenni' ), 'yfennimap', '<a href="http://marcheatleydesign.com" rel="designer">Marc Heatley Design</a>' ); ?>
 		</div><!-- .site-info -->
 	</footer><!-- #colophon -->
-</div><!-- #page -->
 
 <?php wp_footer(); ?>
 
