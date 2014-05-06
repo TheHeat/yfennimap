@@ -31,7 +31,7 @@ if(null!=($_GET["message"])):
 
   $fb = fb_post_on_page($token, $edge, $content);
 
-  if($fb) echo 'Message Posted'!;
+  if($fb) echo 'Message Posted!';
 
 endif;
 
