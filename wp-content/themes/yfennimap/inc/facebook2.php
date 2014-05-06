@@ -10,6 +10,8 @@ require_once(get_template_directory() . '/src/Facebook/FacebookAuthorizationExce
 require_once(get_template_directory() . '/src/Facebook/GraphObject.php' );
 require_once(get_template_directory() . '/src/Facebook/FacebookPermissionException.php' );
 require_once(get_template_directory() . '/src/Facebook/FacebookClientException.php' );
+require_once(get_template_directory() . '/src/Facebook/FacebookOtherException.php' );
+
 
 use Facebook\FacebookSession;
 use Facebook\FacebookRedirectLoginHelper;
@@ -19,9 +21,14 @@ use Facebook\FacebookSDKException;
 use Facebook\FacebookRequestException;
 use Facebook\FacebookAuthorizationException;
 use Facebook\GraphObject;
+use Facebook\FacebookPermissionException;
+use Facebook\FacebookClientException;
+use Facebook\FacebookOtherException;
 
 //app ip, app secret, page token, page id
 define('page_id', '276813939159864');
+define('app_id', '235958703262480');
+define('app_secret', 'f608ec2687f60c051396c4d0fabaae06');
 
 
 function fb_login(){
@@ -60,5 +67,82 @@ function fb_post_on_page($token, $edge, $content){
 	catch( Exception $ex ) {
 	  // When validation fails or other local issues
 		return 'YFenni error';
+	}
+}
+
+function fb_get_edge($token, $node, $edge){
+	//Would like this to be able to take either a FacebookSession object or a strong
+	//and act appropriately
+	$session = new FacebookSession($token);
+	//photo, video, feed
+	//content is associative array containing source (optional), message, location
+	//get page token from constant into FacebookSessions
+	
+
+	$url = '/' . $node . '/' . $edge;
+
+	$request = new FacebookRequest( $session, 'GET', $url);
+
+	try{
+		$response = $request->execute()->getGraphObject();
+	
+		// return $response->getProperty('id'); //string with object i
+		echo '<pre>';
+			print_r($response);
+		echo '</pre>';
+	}
+	catch( FacebookRequestException $ex ) {
+	  // When Facebook returns an error
+		$error = "Exception occured, code: " . $ex->getCode()
+    		. " with message: " . $ex->getMessage();
+
+    	return $error;
+	} 
+	catch( Exception $ex ) {
+	  // When validation fails or other local issues
+		return 'YFenni error';
+	}
+}
+
+function fb_get_token(){
+
+	// init app with app id and secret
+	FacebookSession::setDefaultApplication( app_id, app_secret );
+	 
+	// login helper with redirect_uri
+
+	$helper = new FacebookRedirectLoginHelper('http://localhost/yfennimap');
+
+	try {
+	  $session = $helper->getSessionFromRedirect();
+	} catch( FacebookRequestException $ex ) {
+	  // When Facebook returns an error
+	} catch( Exception $ex ) {
+	  // When validation fails or other local issues
+	}
+	 
+	// see if we have a session
+	if ( isset( $session ) ) {
+	  // graph api request for user data
+	  $request = new FacebookRequest( $session, 'GET', '/me' );
+	  $response = $request->execute();
+	  // get response
+	  $graphObject = $response->getGraphObject();
+	  
+	  // print data
+	  // echo '<pre>' . print_r( $graphObject, 1 ) . '</pre>';
+
+	  echo '<pre>';
+	  	print_r($session);
+	  echo '</pre>';
+
+	} else {
+
+	  $params = array(
+	    'scope' => 'publish_actions',
+	  );
+
+	  // show login url
+	  echo '<a href="' . $helper->getLoginUrl($params) . '">Login</a>';
 	}
 }

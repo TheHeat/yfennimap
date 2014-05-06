@@ -65,6 +65,13 @@ function yfenni_setup() {
 endif; // yfenni_setup
 add_action( 'after_setup_theme', 'yfenni_setup' );
 
+//start the session
+add_action('init', 'start_the_session');
+
+function start_the_session(){
+	session_start();
+}
+
 /**
  * Register widget area.
  *
