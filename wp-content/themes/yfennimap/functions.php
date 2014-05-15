@@ -140,3 +140,80 @@ require get_template_directory() . '/inc/jetpack.php';
 require_once(get_template_directory() . '/inc/facebook2.php');
 require_once(get_template_directory() . '/inc/facebook1.php');
 
+add_action( 'init', 'register_cpt_pin' );
+
+function register_cpt_pin() {
+
+    $labels = array( 
+        'name' => _x( 'Pins', 'pin' ),
+        'singular_name' => _x( 'Pin', 'pin' ),
+        'add_new' => _x( 'Add New', 'pin' ),
+        'add_new_item' => _x( 'Add New Pin', 'pin' ),
+        'edit_item' => _x( 'Edit Pin', 'pin' ),
+        'new_item' => _x( 'New Pin', 'pin' ),
+        'view_item' => _x( 'View Pin', 'pin' ),
+        'search_items' => _x( 'Search Pins', 'pin' ),
+        'not_found' => _x( 'No pins found', 'pin' ),
+        'not_found_in_trash' => _x( 'No pins found in Trash', 'pin' ),
+        'parent_item_colon' => _x( 'Parent Pin:', 'pin' ),
+        'menu_name' => _x( 'Pins', 'pin' ),
+    );
+
+    $args = array( 
+        'labels' => $labels,
+        'hierarchical' => false,
+        
+        'supports' => array( 'title' ),
+        
+        'public' => true,
+        'show_ui' => true,
+        'show_in_menu' => true,
+        'menu_position' => 5,
+        
+        'show_in_nav_menus' => true,
+        'publicly_queryable' => true,
+        'exclude_from_search' => false,
+        'has_archive' => true,
+        'query_var' => true,
+        'can_export' => true,
+        'rewrite' => true,
+        'capability_type' => 'post'
+    );
+
+    register_post_type( 'pin', $args );
+}
+function my_pre_save_post( $post_id ){
+
+		// check if this is to be a new post. Modified to look at the left-3 characters of the post ID
+		if( substr($post_id,0,3) != 'new' ){
+			return $post_id;
+		}
+
+		//Get the type of post that we'd like to create, e.g. if we pass new_route, we want to create a new 'route'
+		$the_post_type = substr($post_id, 4);
+
+		//Create a post title
+		$post_title = 'Route ';
+		$post_title .= wp_count_posts('route')->publish +1;
+
+		// Create a new post
+		$post = array(
+				'post_status' 	  	=> 'publish' ,
+				'post_title'  	  	=> $post_title, //get the title field
+				'submit_value'	  	=> 'Add',
+				'post_type'			=> $the_post_type,
+				'return' 			=> add_query_arg( 'updated', 'true', get_permalink() ),
+				'updated_message' 	=> 'Route added.'
+		);
+
+		// insert the post
+		$post_id = wp_insert_post( $post );
+
+		// update $_POST['return']
+		$_POST['return'] = add_query_arg( array('post_id' => $post_id), $_POST['return'] );
+
+		// return the new ID
+		return $post_id;
+}
+
+
