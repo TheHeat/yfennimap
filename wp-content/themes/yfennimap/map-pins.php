@@ -91,6 +91,7 @@ function initialize() {
 }
 
 // Function for searching the map by text string
+// TODO limit results to Abergavenny bounds https://developers.google.com/maps/documentation/javascript/reference#Geocoder
 function showAddress(addressString) {
 
 	var address = addressString;
@@ -101,11 +102,11 @@ function showAddress(addressString) {
       	
       		console.log(results[0]);
       		map.setCenter(results[0].geometry.location);
+      		
+      		if(results[0].geometry.bounds){
+      			map.fitBounds(results[0].geometry.bounds);
+      		}
 
-      		// var marker = new google.maps.Marker({
-      		// 	map: map,
-      		// 	position: results[0].geometry.location
-      		// });
       	} else {
       		console.log("Geocode was not successful for the following reason: " + status);
       	}
