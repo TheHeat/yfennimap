@@ -163,7 +163,7 @@ function register_cpt_pin() {
         'labels' => $labels,
         'hierarchical' => false,
         
-        'supports' => array( 'title' ),
+        'supports' => array( 'title', 'custom-fields' ),
         
         'public' => true,
         'show_ui' => true,
@@ -216,4 +216,26 @@ function my_pre_save_post( $post_id ){
 		return $post_id;
 }
 
+function publish_pin( $post ) {
+
+	global $wpdb;
+	$post_id = $post->ID;
+
+	// WP Variables
+	$media = get_post_meta($post_id, 'media_type', true);
+	$content = get_post_meta($post_id, 'description', true);
+
+	//FB variables
+	$token = 'CAADWmmqwixABAMCTlPK1FrjU1u4ZBZAZB96QVy11bZBCYx7JDU91RwEVPZAQZCwJx9VBIEj9sm1mGePcZAWeilZBNUzRk5bDjZBkbd9EHAUDrd2VHKpwcc3nq1fgFjzykEKnMbzjFjfpUPAHSSKaVf39RMJHGibEvsXnEtnzR6BzDa78Io2MutZA7VaMBmpgPE3F4ZD';
+	
+	if ($media = 'message'): 
+		$edge = 'photos';
+	else: $edge = $media;
+	endif;
+
+	$fb_object = fb_post_on_page($token, $edge, $content);
+
+	add_post_meta( $post_id, 'new_fb_object', $fb_object);
+}
+add_action( 'pending_to_publish', 'publish_pin', 9);
 

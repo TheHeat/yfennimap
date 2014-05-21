@@ -42,8 +42,14 @@ function fb_login(){
 	try {
 		$session = $helper->getSessionFromRedirect();
 	} catch( FacebookRequestException $ex ) {
+	
+		echo "Exception occured, code: " . $ex->getCode();
+	    echo " with message: " . $ex->getMessage();
+
 		// When Facebook returns an error
 	} catch( Exception $ex ) {
+		echo "Exception occured, code: " . $ex->getCode();
+	    echo " with message: " . $ex->getMessage();	
 		// When validation fails or other local issues
 	}
  
@@ -92,6 +98,44 @@ if ( isset( $session ) ) {
 }
 
 }
+function fb_get_user_id(){
+
+	if ( isset( $session ) ) {
+
+		// graph api request for user data
+		$request = new FacebookRequest( $session, 'GET', '/me' );
+		$response = $request->execute();
+		// get response
+		$graphObject = $response->getGraphObject();
+
+		// print data
+		echo '<pre>' . print_r( $graphObject, 1 ) . '</pre>';
+
+
+		echo '<pre>'.print_r($session). '</pre>';
+
+		try {
+
+			$user_id =  $graphObject->getProperty('id');
+
+			$permissions = (new FacebookRequest( $session, 'GET' , page_id .'/permissions' ))->execute();
+			//$permissionObject = $permissions->getGraphObject
+
+			echo '<pre>'. print_r($permissions->getGraphObject(), 1). '</pre>';
+
+			} catch(FacebookRequestException $e) {
+
+			echo "Exception occured, code: " . $e->getCode();
+			echo " with message: " . $e->getMessage();
+
+			}
+	} else {
+			echo 'no session';
+	}
+
+}
+
+
 
 function fb_post_on_page($token, $edge, $content){
 	//Would like this to be able to take either a FacebookSession object or a strong
@@ -105,7 +149,8 @@ function fb_post_on_page($token, $edge, $content){
 	$url = '/' . page_id . '/' . $edge;
 
 	$params = array(
-		'message' => $content
+		'message' => $content ,
+		'url' => 'http://www.maxim.com.au/wordpress/wp-content/oqey_gallery/galleries/lindsay-lohan/galimg/maxim-australia-lindsay-lohan-3.jpg'
 		);
 
 	$request = new FacebookRequest( $session, 'POST', $url, $params);
