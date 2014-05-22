@@ -19,10 +19,11 @@ if($pin_query->have_posts()):
 		$pin_query->the_post();
 
 		// Location from ACF Google Maps field
-		$location = get_field('location');
-		$pin['lat']	= $location['lat'];
-		$pin['lng'] = $location['lng'];
+		$location 		= get_field('location');
+		$pin['lat']		= $location['lat'];
+		$pin['lng'] 	= $location['lng'];
 		$pin['title'] 	= get_the_title();
+		$pin['wpid']	= get_the_id();
 
 		// Push to the $pins object
 		$pins[ get_the_ID() ] = $pin;
@@ -39,6 +40,7 @@ endif;
 	var map;
 	var geocoder;
 	var bounds;	
+	var singlePin;
 
 	// convert $pins from PHP to JSON object
 	var pinsMap =  <?php echo json_encode( $pins ); ?>;
@@ -54,7 +56,7 @@ function initialize() {
 	var mapOptions = {
 		center: latlng,
 		zoom: 6,
-		// disableDefaultUI: true,
+		disableDefaultUI: true,
 	};
 
 	map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
@@ -64,31 +66,52 @@ function initialize() {
 
 	for (var i in pinsMap) {
 
-		var lat = pinsMap[i].lat;
-		var lng = pinsMap[i].lng;
-		var center = new google.maps.LatLng(lat, lng);
-		var title = pinsMap[i].title;
+		if(!singlePin || singlePin === pinsMap[i].wpid){
 
-		createMarker(center, title);
+			var lat 	= pinsMap[i].lat;
+			var lng 	= pinsMap[i].lng;
+			var center 	= new google.maps.LatLng(lat, lng);
+			var title 	= pinsMap[i].title;
+			var wpid	= pinsMap[i].wpid;
 
-		function createMarker(center, title) {
+			createMarker(center, title, wpid);
 
-			var marker = new google.maps.Marker({
-				position: center,
-				title: title,
-				map: map,
-			});
-			
+			// extend the bounds to include this marker's position
+			bounds.extend(center);  
+
+			// resize the map
+			map.fitBounds(bounds);
+
 		}
-
-	   // extend the bounds to include this marker's position
-	   bounds.extend(center);
-	   
-	   // resize the map
-	   map.fitBounds(bounds);
 
 	}
 }
+
+function createMarker(center, title, wpid) {
+
+    var marker = new google.maps.Marker({
+      position: center,
+      title: title,
+      map: map
+      // animation: google.maps.Animation.DROP
+    });
+
+    google.maps.event.addListener(marker, 'click', function () {
+    	map.setCenter(marker.getPosition());
+    	singlePin = wpid;
+    	console.log(singlePin);
+    	jQuery('#media-modal').slideDown(function(){
+    		jQuery('.media-content').text(singlePin);
+    		jQuery('.modal-close').click(function(){
+    			jQuery('#media-modal').slideUp();
+    		});
+    	});
+
+    });
+
+  }
+
+
 
 // Function for searching the map by text string
 // TODO limit results to Abergavenny bounds https://developers.google.com/maps/documentation/javascript/reference#Geocoder
@@ -113,7 +136,14 @@ function showAddress(addressString) {
     });
 }
 
+jQuery(document).ready(function($){
 
+	var modalCloser = '<span class="modal-close">&times;</span>';
+	var modalContent = '<div class="modal-content"></div>';
+
+	$('#media-modal').prepend(modalCloser, modalContent);
+
+});
 
 google.maps.event.addDomListener(window, 'load', initialize);
 
