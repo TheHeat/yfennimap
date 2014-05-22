@@ -101,7 +101,7 @@ function createMarker(center, title, wpid) {
     	singlePin = wpid;
     	console.log(singlePin);
     	jQuery('#media-modal').slideDown(function(){
-    		jQuery('.media-content').text(singlePin);
+    		jQuery('.modal-content').text(singlePin);
     		jQuery('.modal-close').click(function(){
     			jQuery('#media-modal').slideUp();
     		});
