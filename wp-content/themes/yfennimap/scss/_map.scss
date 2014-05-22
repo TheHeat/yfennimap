@@ -1,0 +1,32 @@
+/*--------------------------------------------------------------
+Map elements
+--------------------------------------------------------------*/
+html {
+	height: 100%;
+}
+.site-wrapper{
+	position:absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+}
+#map-canvas {
+	position:absolute;
+	top:2.5em;
+	right: 0;
+	bottom: 0;
+	left: 0;
+}
+
+#media-modal{
+	background:black;
+	color:white;
+	position:absolute;
+	z-index:10;
+	top:6em;
+	right:2em;
+	bottom:2em;
+	left:2em;
+	display:none;
+}
