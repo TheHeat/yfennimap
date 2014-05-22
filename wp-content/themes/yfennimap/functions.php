@@ -103,6 +103,7 @@ function yfenni_scripts() {
 	}
 
 	if (is_page_template('map.php')){
+		wp_enqueue_script( 'jquery' );
 		wp_enqueue_script( 'google_map_api', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyC1ssxs7SdqghQui-UadBDVF3bHCarfsng&sensor=false');
 		wp_enqueue_script( 'yfennimap', get_stylesheet_directory_uri() . '/js/map.js' );
 	}
