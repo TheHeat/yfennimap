@@ -516,3 +516,52 @@ html {
   font-size: 200%;
   line-height: 0.5;
   cursor: pointer; }
+
+/* line 42, scss/_map.scss */
+.toolbox {
+  position: absolute;
+  bottom: 2em;
+  right: 0;
+  height: 3em;
+  background-clip: padding-box;
+  overflow: hidden;
+  background: black;
+  color: white;
+  z-index: 10; }
+
+/* line 56, scss/_map.scss */
+.handle,
+.box,
+.tool {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap; }
+
+/* line 61, scss/_map.scss */
+.handle {
+  box-shadow: -0.25em 0 0.5em 0 rgba(0, 0, 0, 0.2); }
+
+/* line 66, scss/_map.scss */
+.handle,
+.tool {
+  cursor: pointer;
+  padding: 1em;
+  float: right;
+  color: white; }
+
+/* line 75, scss/_map.scss */
+a.tool:hover {
+  background-color: rgba(210, 210, 210, 0.5); }
+
+/* line 80, scss/_map.scss */
+.handle + .box {
+  opacity: 0;
+  transition: all 1s;
+  max-width: 0; }
+
+/* line 86, scss/_map.scss */
+.handle:focus + .box {
+  opacity: 1;
+  margin: 0;
+  max-width: 40em;
+  transition: 0.5s; }

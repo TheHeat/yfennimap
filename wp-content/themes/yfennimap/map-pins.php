@@ -102,13 +102,8 @@ function createMarker(center, title, wpid) {
     	console.log(singlePin);
 
     	jQuery(function($){
-    		// Pass WordPress post ID to the modal
-    		$('.modal-content').text(singlePin);
-
-    		// Open the modal and make .modal-close click ready
     		$('#media-modal').slideDown(function(){
-
-    			// When .modal-close is clicked: slideUp the modal and trash the content
+    			$('.modal-content').text(singlePin);
     			$('.modal-close').click(function(){
 	    			$('#media-modal').slideUp(function(){
     					$('.modal-content').empty();
