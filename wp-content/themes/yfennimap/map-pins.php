@@ -41,6 +41,7 @@ endif;
 	var geocoder;
 	var bounds;	
 	var singlePin;
+	var newMedia;
 
 	// convert $pins from PHP to JSON object
 	var pinsMap =  <?php echo json_encode( $pins ); ?>;
@@ -102,14 +103,19 @@ function createMarker(center, title, wpid) {
     	console.log(singlePin);
 
     	jQuery(function($){
-    		$('#media-modal').slideDown(function(){
-    			$('.modal-content').text(singlePin);
-    			$('.modal-close').click(function(){
-	    			$('#media-modal').slideUp(function(){
-    					$('.modal-content').empty();
+
+    		$('.toolbox').hide('slide', {direction: 'right'}, function(){
+    			$('#media-modal').slideDown(function(){
+    				$('.modal-content').text(singlePin);
+    				$('.modal-close').click(function(){
+		    			$('#media-modal').slideUp(function(){
+    						$('.modal-content').empty();
+    						$('.toolbox').show('slide', {direction: 'right'});
+    					});
     				});
     			});
     		});
+    		
     	});
     	
 
@@ -144,11 +150,17 @@ function showAddress(addressString) {
 
 jQuery(document).ready(function($){
 
+	// Create the .modal-close and .modal-content
 	var modalCloser = '<span class="modal-close">&times;</span>';
 	var modalContent = '<div class="modal-content"></div>';
 
 	$('#media-modal').prepend(modalCloser, modalContent);
 
+	// Pass media type from the add toolbox link to the newMedia var
+	$('.toolbox .tool').click(function(){
+		newMedia = $(this).data('media');
+		console.log(newMedia);
+	});
 });
 
 google.maps.event.addDomListener(window, 'load', initialize);
