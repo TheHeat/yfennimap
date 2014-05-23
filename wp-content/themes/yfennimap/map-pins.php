@@ -100,12 +100,23 @@ function createMarker(center, title, wpid) {
     	map.setCenter(marker.getPosition());
     	singlePin = wpid;
     	console.log(singlePin);
-    	jQuery('#media-modal').slideDown(function(){
-    		jQuery('.modal-content').text(singlePin);
-    		jQuery('.modal-close').click(function(){
-    			jQuery('#media-modal').slideUp();
+
+    	jQuery(function($){
+    		// Pass WordPress post ID to the modal
+    		$('.modal-content').text(singlePin);
+
+    		// Open the modal and make .modal-close click ready
+    		$('#media-modal').slideDown(function(){
+
+    			// When .modal-close is clicked: slideUp the modal and trash the content
+    			$('.modal-close').click(function(){
+	    			$('#media-modal').slideUp(function(){
+    					$('.modal-content').empty();
+    				});
+    			});
     		});
     	});
+    	
 
     });
 
