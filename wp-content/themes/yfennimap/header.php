@@ -27,7 +27,15 @@
 			</div>
 			<form action="" id="site-search"></form>
 			<nav id="site-navigation" class="main-navigation" role="navigation">
-				<?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
+
+				<?php wp_nav_menu( array( 'theme_location' => 'primary' ) );
+
+				//get the current URL
+				global $wp;
+				$current_url = add_query_arg( $wp->query_string, '', home_url( $wp->request ) );
+
+				fb_login($current_url);
+				?>
 			</nav>
 		</header>
 

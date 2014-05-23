@@ -5,6 +5,10 @@
 
 $pins = array();
 
+echo '<pre>';
+	print_r($session);
+echo '</pre>';
+
 // The pins
 $pin_args = array('post_type' => 'pin','posts_per_page'=>-1, 'orderby' => 'title', 'order' => 'ASC');
 $pin_query = new WP_query($pin_args);

@@ -29,113 +29,93 @@ use Facebook\FacebookOtherException;
 define('page_id', '276813939159864');
 define('app_id', '235958703262480');
 define('app_secret', 'f608ec2687f60c051396c4d0fabaae06');
+define('page_token', 'CAADWmmqwixABAMCTlPK1FrjU1u4ZBZAZB96QVy11bZBCYx7JDU91RwEVPZAQZCwJx9VBIEj9sm1mGePcZAWeilZBNUzRk5bDjZBkbd9EHAUDrd2VHKpwcc3nq1fgFjzykEKnMbzjFjfpUPAHSSKaVf39RMJHGibEvsXnEtnzR6BzDa78Io2MutZA7VaMBmpgPE3F4ZD');
 
 
-function fb_login(){
+function fb_login($redirect_uri){
 
+	// init app with app id and secret
 	FacebookSession::setDefaultApplication( app_id, app_secret );
 
-	$media = $_GET['media'];
+	// login helper with redirect_uri
 
-	$helper = new FacebookRedirectLoginHelper( 'http://localhost/yfennimap/upload-form/?media='.$media );
+	$helper = new FacebookRedirectLoginHelper($redirect_uri);
 
-	try {
-		$session = $helper->getSessionFromRedirect();
-	} catch( FacebookRequestException $ex ) {
-	
-		echo "Exception occured, code: " . $ex->getCode();
-	    echo " with message: " . $ex->getMessage();
-
-		// When Facebook returns an error
-	} catch( Exception $ex ) {
-		echo "Exception occured, code: " . $ex->getCode();
-	    echo " with message: " . $ex->getMessage();	
-		// When validation fails or other local issues
+	//If logout = true, then destroy the FB session
+	if($_GET['logout'] == true){
+		unset($_SESSION['fb_session']);
 	}
- 
-// see if we have a session
-if ( isset( $session ) ) {
 
-	// graph api request for user data
-	$request = new FacebookRequest( $session, 'GET', '/me' );
-	$response = $request->execute();
-	// get response
-	$graphObject = $response->getGraphObject();
+	//get the fb session out of the PHP session, otherwise get a new FB session
+	if($_SESSION['fb_session']){
+		$session = $_SESSION['fb_session'];
+	}
 
-	// print data
-	echo '<pre>' . print_r( $graphObject, 1 ) . '</pre>';
-
-
-	echo '<pre>'.print_r($session). '</pre>';
-
-  try {
-
-    $user_id =  $graphObject->getProperty('id');
-
-    $permissions = (new FacebookRequest( $session, 'GET' , page_id .'/permissions' ))->execute();
-    //$permissionObject = $permissions->getGraphObject
-
-    echo '<pre>'. print_r($permissions->getGraphObject(), 1). '</pre>';
-
-  } catch(FacebookRequestException $e) {
-
-    echo "Exception occured, code: " . $e->getCode();
-    echo " with message: " . $e->getMessage();
-
-  }   
-
-
-} else {
-
-	//permissions required.. Will need to be as few as possible
-
-	$params = array(
-		'scope' => 'read_stream, user_friends, friends_likes, publish_actions, manage_pages',
-	);
-
-	// show login url
-	echo '<a href="' . $helper->getLoginUrl($params) . '">Login</a>';
-}
-
-}
-function fb_get_user_id(){
-
-	if ( isset( $session ) ) {
-
-		// graph api request for user data
-		$request = new FacebookRequest( $session, 'GET', '/me' );
-		$response = $request->execute();
-		// get response
-		$graphObject = $response->getGraphObject();
-
-		// print data
-		echo '<pre>' . print_r( $graphObject, 1 ) . '</pre>';
-
-
-		echo '<pre>'.print_r($session). '</pre>';
+	else{
+		//create a new FB session
 
 		try {
-
-			$user_id =  $graphObject->getProperty('id');
-
-			$permissions = (new FacebookRequest( $session, 'GET' , page_id .'/permissions' ))->execute();
-			//$permissionObject = $permissions->getGraphObject
-
-			echo '<pre>'. print_r($permissions->getGraphObject(), 1). '</pre>';
-
-			} catch(FacebookRequestException $e) {
-
-			echo "Exception occured, code: " . $e->getCode();
-			echo " with message: " . $e->getMessage();
-
-			}
-	} else {
-			echo 'no session';
+		  $session = $helper->getSessionFromRedirect();
+		} catch( FacebookRequestException $ex ) {
+		  // When Facebook returns an error
+		} catch( Exception $ex ) {
+		  // When validation fails or other local issues
+		}
 	}
 
+
+	 
+	// see if we have a session
+	if ( isset( $session ) ) {
+
+	  	// graph api request for user data
+	  	$request = new FacebookRequest( $session, 'GET', '/me' );
+	  	$response = $request->execute();
+	  	// get response
+	  	$graphObject = $response->getGraphObject();
+	  
+	  	// print data
+	  	// echo '<pre>' . print_r( $graphObject, 1 ) . '</pre>';
+
+	  	//set the FB session into a PHP session so that the user can stay logged in
+	  	$_SESSION['fb_session'] = $session;
+
+	  	//display the FB login/logout
+	  	?>
+		<div class="avatar-wrapper facebook">
+			<div class="avatar facebook">
+				
+				<?php $avatar_url = 'http://graph.facebook.com/' . $graphObject->getProperty('id') . '/picture'; ?>
+
+				<img src="<?php echo $avatar_url; ?>"
+			</div>
+			<div class="avatar-menu facebook">
+				<?php
+				//add a parameter
+				$logout_uri = add_query_arg('logout', 'true', $redirect_uri);
+
+				//get logout URL from FB
+
+				echo '<a href="' . $helper->getLogoutUrl($session, $logout_uri) . '">Log out</a>';
+				?>
+			</div>
+		</div>
+
+	  	<?php
+
+	} 
+
+	else {
+
+
+	  	$params = array(
+	    'scope' => 'publish_actions',
+	  	);
+
+	  // show login url
+	  echo '<a href="' . $helper->getLoginUrl($params) . '">Login</a>';
+	}
 }
-
-
 
 function fb_post_on_page($token, $edge, $content){
 	//Would like this to be able to take either a FacebookSession object or a strong
@@ -149,8 +129,7 @@ function fb_post_on_page($token, $edge, $content){
 	$url = '/' . page_id . '/' . $edge;
 
 	$params = array(
-		'message' => $content ,
-		'url' => 'http://www.maxim.com.au/wordpress/wp-content/oqey_gallery/galleries/lindsay-lohan/galimg/maxim-australia-lindsay-lohan-3.jpg'
+		'message' => $content
 		);
 
 	$request = new FacebookRequest( $session, 'POST', $url, $params);
@@ -173,15 +152,16 @@ function fb_post_on_page($token, $edge, $content){
 	}
 }
 
-function fb_get_node($token, $node, $edge=null){
+function fb_get_edge($token, $node, $edge){
 	//Would like this to be able to take either a FacebookSession object or a strong
 	//and act appropriately
 	$session = new FacebookSession($token);
 	//photo, video, feed
 	//content is associative array containing source (optional), message, location
 	//get page token from constant into FacebookSessions
+	
 
-	$url = '/' . $node . '/' .$edge;
+	$url = '/' . $node . '/' . $edge;
 
 	$request = new FacebookRequest( $session, 'GET', $url);
 
@@ -207,44 +187,15 @@ function fb_get_node($token, $node, $edge=null){
 }
 
 function fb_get_token(){
+	//if the user is logged in, get their token. If not, return the page's token
 
-	// init app with app id and secret
-	FacebookSession::setDefaultApplication( app_id, app_secret );
-	 
-	// login helper with redirect_uri
-
-	$helper = new FacebookRedirectLoginHelper('http://localhost/yfennimap');
-
-	try {
-	  $session = $helper->getSessionFromRedirect();
-	} catch( FacebookRequestException $ex ) {
-	  // When Facebook returns an error
-	} catch( Exception $ex ) {
-	  // When validation fails or other local issues
+	if($_SESSION['fb_session']){
+		$token = $_SESSION['fb_session']->getToken();
 	}
-	 
-	// see if we have a session
-	if ( isset( $session ) ) {
-	  // graph api request for user data
-	  $request = new FacebookRequest( $session, 'GET', '/me' );
-	  $response = $request->execute();
-	  // get response
-	  $graphObject = $response->getGraphObject();
-	  
-	  // print data
-	  // echo '<pre>' . print_r( $graphObject, 1 ) . '</pre>';
-
-	  echo '<pre>';
-	  	print_r($session);
-	  echo '</pre>';
-
-	} else {
-
-	  $params = array(
-	    'scope' => 'publish_actions',
-	  );
-
-	  // show login url
-	  echo '<a href="' . $helper->getLoginUrl($params) . '">Login</a>';
+	else{
+		$token = page_token;
 	}
+
+	return $token;
+
 }
