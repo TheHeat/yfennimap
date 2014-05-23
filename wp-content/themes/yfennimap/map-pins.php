@@ -100,12 +100,18 @@ function createMarker(center, title, wpid) {
     	map.setCenter(marker.getPosition());
     	singlePin = wpid;
     	console.log(singlePin);
-    	jQuery('#media-modal').slideDown(function(){
-    		jQuery('.modal-content').text(singlePin);
-    		jQuery('.modal-close').click(function(){
-    			jQuery('#media-modal').slideUp();
+
+    	jQuery(function($){
+    		$('#media-modal').slideDown(function(){
+    			$('.modal-content').text(singlePin);
+    			$('.modal-close').click(function(){
+	    			$('#media-modal').slideUp(function(){
+    					$('.modal-content').empty();
+    				});
+    			});
     		});
     	});
+    	
 
     });
 
