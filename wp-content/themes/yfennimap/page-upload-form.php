@@ -72,7 +72,7 @@ get_header(); ?>
 
 		<?php //if ( $media == 'test' || $media == 'link'): ?>
 			<fieldset>
-				<label for="postTitle"><?php _e('Post\'s Title:') ?></label>
+				<label for="postTitle"><?php _e('Pin\'s Title:') ?></label>
 				<input type="text" name="postTitle" id="postTitle" value="<?php if(isset($_POST['postTitle'])) echo $_POST['postTitle'];?>" />
 			</fieldset>
 		<?php //endif ?>
@@ -91,8 +91,9 @@ get_header(); ?>
 			<input type="hidden" name="post_id" id="post_id" value="55" />
 		<?php endif ?>
 
-		<?php if ( $media == 'Video' || $media == 'Link' ): ?>
-			<input type="file" name="my_image_upload" id="my_image_upload"  multiple="false" />
+		<?php if ( $media == 'video' || $media == 'link' ): ?>
+			<label for="link"><?php _e('Link to media:') ?></label>
+			<input type="text" name="link" id="link"  multiple="false" />
 		<?php endif ?>
 
 		<fieldset>			
