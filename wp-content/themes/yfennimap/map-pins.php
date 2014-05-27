@@ -45,6 +45,7 @@ endif;
 	var geocoder;
 	var bounds;	
 	var singlePin;
+	// what media type are we adding to the map
 	var newMedia;
 
 	// convert $pins from PHP to JSON object
