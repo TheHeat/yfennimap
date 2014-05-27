@@ -1,4 +1,4 @@
-<?php
+-<?php
 /**
  * The Header for our theme.
  *
@@ -25,17 +25,13 @@
 			<div id="site-branding">
 				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
 			</div>
-			<form action="" id="site-search"></form>
-			<nav id="site-navigation" class="main-navigation" role="navigation">
-
-				<?php wp_nav_menu( array( 'theme_location' => 'primary' ) );
-
-				//get the current URL
+			<?php //get the current URL
 				global $wp;
 				$current_url = add_query_arg( $wp->query_string, '', home_url( $wp->request ) );
 
-				fb_login($current_url);
-				?>
+				fb_login($current_url); ?>
+			<nav id="site-navigation" class="main-navigation" role="navigation">
+				<?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
 			</nav>
 		</header>
 
