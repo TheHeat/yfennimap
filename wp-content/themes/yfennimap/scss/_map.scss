@@ -1,0 +1,91 @@
+/*--------------------------------------------------------------
+Map elements
+--------------------------------------------------------------*/
+html {
+	height: 100%;
+}
+.site-wrapper{
+	position:absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+}
+#map-canvas {
+	position:absolute;
+	top:2.5em;
+	right: 0;
+	bottom: 0;
+	left: 0;
+}
+
+#media-modal{
+	background:black;
+	color:white;
+	position:absolute;
+	z-index:10;
+	top:6em;
+	right:2em;
+	bottom:2em;
+	left:2em;
+	display:none;
+}
+.modal-close{
+	position:absolute;
+	top:1rem;
+	right:1rem;
+	font-size:200%;
+	line-height:0.5;
+	cursor:pointer;
+}
+
+.toolbox{
+  position:absolute;
+  bottom:2em;
+  right:0;
+  height:3em;
+  background-clip:padding-box;
+  overflow:hidden;
+  background:black;
+  color:white;
+  z-index:10;
+}
+
+.handle,
+.box,
+.tool{
+  display:inline-block;
+  overflow:hidden;
+  white-space: nowrap;
+}
+.handle{
+  box-shadow:-0.25em 0 0.5em 0 rgba(0,0,0,0.2);
+}
+
+.handle,
+.tool{
+  cursor:pointer;
+  padding:1em;
+  float:right;
+  color:white;
+}
+
+
+a.tool{
+  &:hover{
+    background-color:rgba(210,210,210, 0.5);
+  }
+}
+
+.handle + .box{
+  opacity:0;
+  transition:all 1s;
+  max-width:0;
+}
+
+.handle:focus + .box{
+  opacity:1;
+  margin:0;
+  max-width:40em;
+  transition:0.5s;
+}
