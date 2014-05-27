@@ -149,8 +149,9 @@ function fb_post_on_page($token, $edge, $content){
 	$url = '/' . page_id . '/' . $edge;
 
 	$params = array(
-		'message' => $content ,
-		'url' => 'http://www.maxim.com.au/wordpress/wp-content/oqey_gallery/galleries/lindsay-lohan/galimg/maxim-australia-lindsay-lohan-3.jpg'
+		'name' => $content['title'],
+		'message' => $content['description'] ,
+		'url' => $content['url']
 		);
 
 	$request = new FacebookRequest( $session, 'POST', $url, $params);

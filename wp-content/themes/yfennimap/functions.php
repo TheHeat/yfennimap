@@ -223,15 +223,26 @@ function publish_pin( $post ) {
 
 	// WP Variables
 	$media = get_post_meta($post_id, 'media_type', true);
-	$content = get_post_meta($post_id, 'description', true);
+	$content = array();
+	
+	$content['title'] = get_the_title();;
+	$content['description'] = get_post_meta($post_id, 'description', true);
 
 	//FB variables
 	$token = 'CAADWmmqwixABAMCTlPK1FrjU1u4ZBZAZB96QVy11bZBCYx7JDU91RwEVPZAQZCwJx9VBIEj9sm1mGePcZAWeilZBNUzRk5bDjZBkbd9EHAUDrd2VHKpwcc3nq1fgFjzykEKnMbzjFjfpUPAHSSKaVf39RMJHGibEvsXnEtnzR6BzDa78Io2MutZA7VaMBmpgPE3F4ZD';
 	
-	if ($media = 'message'): 
-		$edge = 'photos';
-	else: $edge = $media;
-	endif;
+	switch ($media){
+		case ('Image'): 
+			$edge = 'photos';
+			$attachment_url = wp_get_attachment_url( get_post_meta($post_id, 'media', true) );
+			$content['url'] = $attachment_url; 
+		break;
+
+		default: 
+			$edge = 'videos'; 
+			$content['url'] = get_post_meta($post_id, 'link', true);
+		break;
+	}
 
 	$fb_object = fb_post_on_page($token, $edge, $content);
 

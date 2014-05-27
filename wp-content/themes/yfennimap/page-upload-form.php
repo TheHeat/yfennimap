@@ -38,7 +38,7 @@ if(isset($_POST['submitted']) && isset($_POST['post_nonce_field']) && wp_verify_
 	update_post_meta( $post_id, "media_type", $media );
 	update_post_meta( $post_id, "fb_user_id", '235958703262480' );
 
-	if ( $media == 'Video' || $media == 'Image' || $media == 'Audio'):
+	if ( $media == 'Image'):
 
 		// files for frontend media upload
 		require_once( ABSPATH . 'wp-admin/includes/image.php' );
@@ -54,6 +54,9 @@ if(isset($_POST['submitted']) && isset($_POST['post_nonce_field']) && wp_verify_
 		update_post_meta( $post_id, "media", $attachment_id );
 
 	endif;
+
+	if ( $media == 'Video'|| $media == 'link'):
+
 
 	//Message if succesful
 	if($post_id) _e('<p> Your Post has been submitted for moderation </p>' ); 
@@ -85,8 +88,12 @@ get_header(); ?>
 		</fieldset>
 
 		<?php if ( $media == 'Video' || $media == 'Image' || $media == 'Audio'): ?>
-				<input type="file" name="my_image_upload" id="my_image_upload"  multiple="false" />
-				<input type="hidden" name="post_id" id="post_id" value="55" />
+			<input type="file" name="my_image_upload" id="my_image_upload"  multiple="false" />
+			<input type="hidden" name="post_id" id="post_id" value="55" />
+		<?php endif ?>
+
+		<?php if ( $media == 'Video' || $media == 'Link' ): ?>
+			<input type="file" name="my_image_upload" id="my_image_upload"  multiple="false" />
 		<?php endif ?>
 
 		<fieldset>			
