@@ -149,6 +149,7 @@ dfn {
 /* line 142, scss/_normalize.scss */
 hr {
   -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
   box-sizing: content-box;
   height: 0; }
 
@@ -330,6 +331,8 @@ html input[disabled] {
 /* line 337, scss/_normalize.scss */
 input[type="checkbox"],
 input[type="radio"] {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
   box-sizing: border-box;
   /* 1 */
   padding: 0;
@@ -404,6 +407,7 @@ Accessibility
 .screen-reader-text:focus {
   background-color: #f1f1f1;
   border-radius: 3px;
+  -webkit-box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
   box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
   clip: auto !important;
   color: #21759b;
@@ -470,6 +474,11 @@ Accessibility
     #site-navigation .menu ul a {
       margin-left: 1em; }
 
+/* line 35, scss/_header.scss */
+.avatar-wrapper {
+  float: right;
+  margin-left: 1em; }
+
 /*--------------------------------------------------------------
 Navigation
 --------------------------------------------------------------*/
@@ -523,6 +532,7 @@ html {
   bottom: 2em;
   right: 0;
   height: 3em;
+  -webkit-background-clip: padding-box;
   background-clip: padding-box;
   overflow: hidden;
   background: black;
@@ -539,6 +549,7 @@ html {
 
 /* line 61, scss/_map.scss */
 .handle {
+  -webkit-box-shadow: -0.25em 0 0.5em 0 rgba(0, 0, 0, 0.2);
   box-shadow: -0.25em 0 0.5em 0 rgba(0, 0, 0, 0.2); }
 
 /* line 66, scss/_map.scss */
@@ -556,6 +567,7 @@ a.tool:hover {
 /* line 80, scss/_map.scss */
 .handle + .box {
   opacity: 0;
+  -webkit-transition: all 1s;
   transition: all 1s;
   max-width: 0; }
 
@@ -564,4 +576,5 @@ a.tool:hover {
   opacity: 1;
   margin: 0;
   max-width: 40em;
+  -webkit-transition: 0.5s;
   transition: 0.5s; }

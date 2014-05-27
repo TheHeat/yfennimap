@@ -87,7 +87,7 @@ function fb_login($redirect_uri){
 				
 				<?php $avatar_url = 'http://graph.facebook.com/' . $graphObject->getProperty('id') . '/picture'; ?>
 
-				<img src="<?php echo $avatar_url; ?>"
+				<img src="<?php echo $avatar_url; ?>"/>
 			</div>
 			<div class="avatar-menu facebook">
 				<?php
