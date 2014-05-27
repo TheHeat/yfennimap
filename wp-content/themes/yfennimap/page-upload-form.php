@@ -66,6 +66,8 @@ if(isset($_POST['submitted']) && isset($_POST['post_nonce_field']) && wp_verify_
 
 get_header(); ?>
 
+<div class="page-wrapper">
+
 	<form action="" id="pinForm" method="POST" enctype="multipart/form-data">
 
 		<?php //if ( $media == 'test' || $media == 'link'): ?>
@@ -99,5 +101,6 @@ get_header(); ?>
 			<button type="submit"><?php _e('Add Post') ?></button>
 		</fieldset>
 	</form>
+</div>
 
-<? get_footer() ?>
+<?php get_footer() ?>
