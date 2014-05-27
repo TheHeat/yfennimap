@@ -242,7 +242,7 @@ function publish_pin( $post ) {
 		break;
 
 		default: 
-			$edge = 'videos'; 
+			$edge = 'feed'; 
 			$content['url'] = get_post_meta($post_id, 'link', true);
 		break;
 	}

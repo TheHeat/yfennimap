@@ -19,10 +19,8 @@ if(isset($_POST['submitted']) && isset($_POST['post_nonce_field']) && wp_verify_
 	} else {
 		$postContent = trim($_POST['postContent']);
 	}
-
-
-
-//Insert Post
+	
+	//Insert Post
 	//standard WP info
 	$post_information = array(
 		'post_title' => esc_attr(strip_tags($_POST['postTitle'])),
@@ -55,7 +53,7 @@ if(isset($_POST['submitted']) && isset($_POST['post_nonce_field']) && wp_verify_
 
 	endif;
 
-	if ( $media == 'Video'|| $media == 'link'):
+//if ( $media == 'Video'|| $media == 'link'):
 
 
 	//Message if succesful
@@ -63,7 +61,6 @@ if(isset($_POST['submitted']) && isset($_POST['post_nonce_field']) && wp_verify_
 
 
 	exit;
-
 
 }
 
