@@ -194,8 +194,11 @@ function fb_get_token(){
 	if($_SESSION['fb_session']){
 		$token = $_SESSION['fb_session']->getToken();
 	}
-	else{
+	elseif(is_admin()){
 		$token = page_token;
+	}
+	else{
+		$token = null;
 	}
 
 	return $token;
