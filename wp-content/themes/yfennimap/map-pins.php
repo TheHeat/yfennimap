@@ -5,9 +5,9 @@
 
 $pins = array();
 
-echo '<pre>';
-	print_r($session);
-echo '</pre>';
+// echo '<pre>';
+// 	print_r($session);
+// echo '</pre>';
 
 // The pins
 $pin_args = array('post_type' => 'pin','posts_per_page'=>-1, 'orderby' => 'title', 'order' => 'ASC');
@@ -40,8 +40,9 @@ endif;
 
 <script>
 
-	// Create map, geocodera and marker in the global scope
+	// Create map, geocoder and marker in the global scope
 	var map;
+	var markers = [];
 	var geocoder;
 	var bounds;	
 	var singlePin;
@@ -80,6 +81,7 @@ function initialize() {
 			var title 	= pinsMap[i].title;
 			var wpid	= pinsMap[i].wpid;
 
+
 			createMarker(center, title, wpid);
 
 			// extend the bounds to include this marker's position
@@ -98,7 +100,7 @@ function createMarker(center, title, wpid) {
     var marker = new google.maps.Marker({
       position: center,
       title: title,
-      map: map
+      map: map,
       // animation: google.maps.Animation.DROP
     });
 
@@ -122,11 +124,36 @@ function createMarker(center, title, wpid) {
     		});
     		
     	});
-    	
-
+  
     });
 
+    markers.push(marker);
+
   }
+
+
+// Sets the map on all markers in the array.
+function setAllMap(map) {
+  for (var i = 0; i < markers.length; i++) {
+    markers[i].setMap(map);
+  }
+}
+
+// Removes the markers from the map, but keeps them in the array.
+function clearMarkers() {
+  setAllMap(null);
+}
+
+// Shows any markers currently in the array.
+function showMarkers() {
+  setAllMap(map);
+}
+
+// Deletes all markers in the array by removing references to them.
+function deleteMarkers() {
+  clearMarkers();
+  markers = [];
+}
 
 
 
@@ -164,6 +191,7 @@ jQuery(document).ready(function($){
 	// Pass media type from the add toolbox link to the newMedia var
 	$('.toolbox .tool').click(function(){
 		newMedia = $(this).data('media');
+		clearMarkers();
 		console.log(newMedia);
 	});
 });
