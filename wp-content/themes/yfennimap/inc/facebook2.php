@@ -96,7 +96,7 @@ function fb_login($redirect_uri){
 
 				//get logout URL from FB
 
-				echo '<a href="' . $helper->getLogoutUrl($session, $logout_uri) . '">Log out</a>';
+				echo '<a href="' . $logout_uri . '">Log out</a>';
 				?>
 			</div>
 		</div>
@@ -193,11 +193,14 @@ function fb_get_token(){
 
 	if($_SESSION['fb_session']){
 		$token = $_SESSION['fb_session']->getToken();
+		return $token;
+	}
+	elseif (is_admin()) {
+		$token = page_token;
+		return $token;
 	}
 	else{
-		$token = page_token;
+		return null;
 	}
-
-	return $token;
 
 }
