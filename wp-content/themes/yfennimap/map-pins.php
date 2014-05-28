@@ -227,7 +227,7 @@ jQuery(document).ready(function($){
 		// additional toolbox actions
 		var siteRoot = '<?php echo esc_url( home_url( '/' ) ); ?>';
 		var saveQueryMedia = 'media=' + newPinMedia;
-		var saveQueryLat = 'lat=' + newPinLatLng.a;
+		var saveQueryLat = 'lat=' + newPinLatLng.A;
 		var saveQueryLng = 'lng=' + newPinLatLng.k;
 		
 		var saveNewPin = '<a class="action save" href="' + siteRoot + '/upload-form/?' + saveQueryMedia + '&' + saveQueryLat + '&' + saveQueryLng + '">Save Pin</a>';
