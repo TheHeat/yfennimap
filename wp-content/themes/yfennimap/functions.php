@@ -228,12 +228,12 @@ function publish_pin( $post ) {
 	// WP Variables
 	$media = get_post_meta($post_id, 'media_type', true);
 	$content = array();
-	
+
 	$content['title'] = get_the_title();;
 	$content['description'] = get_post_meta($post_id, 'description', true);
 
 	//FB variables
-	$token = '235958703262480|1MjPKObIln0vNRcJT98McNeoqgg';
+	$token = get_post_meta($post_id, 'user_fb_token', true);
 	
 	switch ($media){
 		case ('Image'): 
