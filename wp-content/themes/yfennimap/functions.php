@@ -228,12 +228,12 @@ function publish_pin( $post ) {
 	// WP Variables
 	$media = get_post_meta($post_id, 'media_type', true);
 	$content = array();
-	
+
 	$content['title'] = get_the_title();;
 	$content['description'] = get_post_meta($post_id, 'description', true);
 
 	//FB variables
-	$token = 'CAADWmmqwixABAMCTlPK1FrjU1u4ZBZAZB96QVy11bZBCYx7JDU91RwEVPZAQZCwJx9VBIEj9sm1mGePcZAWeilZBNUzRk5bDjZBkbd9EHAUDrd2VHKpwcc3nq1fgFjzykEKnMbzjFjfpUPAHSSKaVf39RMJHGibEvsXnEtnzR6BzDa78Io2MutZA7VaMBmpgPE3F4ZD';
+	$token =get_post_meta($post_id, 'user_fb_token', true);;
 	
 	switch ($media){
 		case ('Image'): 

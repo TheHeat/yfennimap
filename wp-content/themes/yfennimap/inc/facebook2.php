@@ -41,13 +41,14 @@ function fb_post_on_page($token, $edge, $content){
 	//content is associative array containing source (optional), message, location
 	//get page token from constant into FacebookSessions
 	
+	print_r($session);
 
 	$url = '/' . page_id . '/' . $edge;
 
 	$params = array(
 		'name' => $content['title'],
 		'message' => $content['description'] ,
-		'url' => $content['url']
+		'link' => $content['url']
 		);
 
 	$request = new FacebookRequest( $session, 'POST', $url, $params);

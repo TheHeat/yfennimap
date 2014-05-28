@@ -34,7 +34,9 @@ if(isset($_POST['submitted']) && isset($_POST['post_nonce_field']) && wp_verify_
 	//Custom Fields
 	update_post_meta( $post_id, "description", esc_attr(strip_tags($_POST['postContent'])) );
 	update_post_meta( $post_id, "media_type", $media );
-	update_post_meta( $post_id, "fb_user_id", '235958703262480' );
+	update_post_meta( $post_id, "link", esc_attr(strip_tags($_POST['link'])) );
+
+	add_post_meta( $post_id, 'user_fb_token', fb_get_token() );
 
 	if ( $media == 'Image'):
 
@@ -70,12 +72,19 @@ get_header(); ?>
 
 	<form action="" id="pinForm" method="POST" enctype="multipart/form-data">
 
-		<?php //if ( $media == 'test' || $media == 'link'): ?>
+		<?php if ( $media == 'Message'): ?>
 			<fieldset>
 				<label for="postTitle"><?php _e('Pin\'s Title:') ?></label>
 				<input type="text" name="postTitle" id="postTitle" value="<?php if(isset($_POST['postTitle'])) echo $_POST['postTitle'];?>" />
 			</fieldset>
-		<?php //endif ?>
+		<?php endif ?>
+
+		<?php if ( $media == 'Video' || $media == 'Link' ): ?>
+		<fieldset>
+			<label for="link"><?php _e('Link:') ?></label>
+			<input type="text" name="link" id="link"  multiple="false" />
+		</fieldset>
+		<?php endif ?>
 
 		<?php if($post_description_error != '') { ?>
 			<span class="error"><?php echo $post_description_error; ?></span>
@@ -87,13 +96,10 @@ get_header(); ?>
 		</fieldset>
 
 		<?php if ( $media == 'Video' || $media == 'Image' || $media == 'Audio'): ?>
+		<fieldset>
 			<input type="file" name="my_image_upload" id="my_image_upload"  multiple="false" />
 			<input type="hidden" name="post_id" id="post_id" value="55" />
-		<?php endif ?>
-
-		<?php if ( $media == 'video' || $media == 'link' ): ?>
-			<label for="link"><?php _e('Link to media:') ?></label>
-			<input type="text" name="link" id="link"  multiple="false" />
+		</fieldset>
 		<?php endif ?>
 
 		<fieldset>			
