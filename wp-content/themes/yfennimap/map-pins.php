@@ -222,6 +222,26 @@ jQuery(document).ready(function($){
 
 		newPinMedia = $(this).data('media');
 		console.log(newPinMedia);
+
+
+		// additional toolbox actions
+		var siteRoot = '<?php echo esc_url( home_url( '/' ) ); ?>';
+		var saveQueryMedia = 'media=' + newPinMedia;
+		var saveQueryLat = 'lat=' + newPinLatLng.a;
+		var saveQueryLng = 'lng=' + newPinLatLng.k;
+		
+		var saveNewPin = '<a class="action save" href="' + siteRoot + '/upload-form/?' + saveQueryMedia + '&' + saveQueryLat + '&' + saveQueryLng + '">Save Pin</a>';
+		var cancelNewPin = '<span class="action cancel">Cancel</span>';
+
+		$('.toolbox .handle').empty();
+		$('.toolbox .handle').prepend('Media Type');
+		$('.toolbox .actions').html(cancelNewPin + saveNewPin);
+		$('.toolbox .actions').show('slide', {direction: 'left'});
+		$('.toolbox .actions .cancel').click(function(){
+			$('.toolbox .actions').hide('slide', {direction: 'left'});
+			initialize();
+		});
+
 	});
 });
 

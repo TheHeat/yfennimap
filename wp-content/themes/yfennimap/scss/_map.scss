@@ -53,8 +53,11 @@ html {
 
 .handle,
 .box,
-.tool{
+.tool,
+.actions,
+.action{
   display:inline-block;
+  float:right;
   overflow:hidden;
   white-space: nowrap;
 }
@@ -63,13 +66,14 @@ html {
 }
 
 .handle,
-.tool{
+.tool,
+.action{
   cursor:pointer;
   padding:1em;
   float:right;
   color:white;
+  text-decoration:none;
 }
-
 
 a.tool{
   &:hover{
