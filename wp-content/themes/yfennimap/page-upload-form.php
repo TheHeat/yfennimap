@@ -40,30 +40,41 @@ if(isset($_POST['submitted']) && isset($_POST['post_nonce_field']) && wp_verify_
 
 	if ( $media == 'Image'):
 
-		// files for frontend media upload
-		require_once( ABSPATH . 'wp-admin/includes/image.php' );
-		require_once( ABSPATH . 'wp-admin/includes/file.php' );
-		require_once( ABSPATH . 'wp-admin/includes/media.php' );
-		
-		// Let WordPress handle the upload.
-		// Remember, 'my_image_upload' is the name of our file input in our form above.
-		$attachment_id = media_handle_upload( 'my_image_upload', $_POST['post_id'] );
-		$attachment_object = get_attached_file( $attachment_id );	
-		
-		//insert media in to post 
-		update_post_meta( $post_id, "media", $attachment_id );
+		if (count($_FILES[image_upload][name]) > 1) $media = 'gallery'; 
+		update_post_meta( $post_id, "media_type", $media );
 
+		$media_field = get_field('field_5362addb9bf86', $post_id);
+
+		if ( $_FILES ) {
+			$files = $_FILES['image_upload'];
+			foreach ($files['name'] as $key => $value) {
+				if ($files['name'][$key]) {
+					$file = array(
+						'name'     => $files['name'][$key],
+						'type'     => $files['type'][$key],
+						'tmp_name' => $files['tmp_name'][$key],
+						'error'    => $files['error'][$key],
+						'size'     => $files['size'][$key]
+					);
+		 
+					$_FILES = array("upload_attachment" => $file);
+		 
+					foreach ($_FILES as $file => $array) {
+						$new_upload[] = array('file' => insert_attachment($file,$post_id));						
+					}
+				}
+			}
+		}	
 	endif;
 
-//if ( $media == 'Video'|| $media == 'link'):
-
+	update_field( 'field_5362addb9bf86',  $new_upload, $post_id);
+	
+	//if ( $media == 'Video'|| $media == 'link'):
 
 	//Message if succesful
 	if($post_id) _e('<p> Your Post has been submitted for moderation </p>' ); 
 
-
 	exit;
-
 }
 
 get_header(); ?>
@@ -97,7 +108,7 @@ get_header(); ?>
 
 		<?php if ( $media == 'Video' || $media == 'Image' || $media == 'Audio'): ?>
 		<fieldset>
-			<input type="file" name="my_image_upload" id="my_image_upload"  multiple="false" />
+			<input type="file" name="image_upload[]" id="image_upload"  multiple="multiple" />
 			<input type="hidden" name="post_id" id="post_id" value="55" />
 		</fieldset>
 		<?php endif ?>
