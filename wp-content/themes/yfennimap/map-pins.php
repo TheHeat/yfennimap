@@ -239,6 +239,7 @@ jQuery(document).ready(function($){
 		$('.toolbox .actions').show('slide', {direction: 'left'});
 		$('.toolbox .actions .cancel').click(function(){
 			$('.toolbox .actions').hide('slide', {direction: 'left'});
+			newPinMedia = null;
 			initialize();
 		});
 
