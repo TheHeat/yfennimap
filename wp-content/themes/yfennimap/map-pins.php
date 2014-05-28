@@ -47,7 +47,8 @@ endif;
 	var bounds;	
 	var singlePin;
 	// what media type are we adding to the map
-	var newMedia;
+	var newPinMedia;
+	var newPinLatLng = [];
 
 	// convert $pins from PHP to JSON object
 	var pinsMap =  <?php echo json_encode( $pins ); ?>;
@@ -131,7 +132,6 @@ function createMarker(center, title, wpid) {
 
   }
 
-
 // Sets the map on all markers in the array.
 function setAllMap(map) {
   for (var i = 0; i < markers.length; i++) {
@@ -180,6 +180,30 @@ function showAddress(addressString) {
     });
 }
 
+// Create a draggable marker in the centre of the current view and pass its LatLng to a var
+
+function addNewPin(){
+
+	var newMarker = new google.maps.Marker({
+	 	position: map.getCenter(),
+    	map: map,
+    	draggable: true,
+    });
+
+	// Define var newPinLatLng as this starting position in case the user doesn't sweat the small stuff!
+    newPinLatLng = newMarker.position;
+    console.log(newPinLatLng);
+
+    // Pass position of draggable marker to newPinLatLng
+    google.maps.event.addListener(newMarker, 'dragend', function () {
+
+    	newPinLatLng = newMarker.getPosition();
+    	console.log(newPinLatLng);
+    });
+}
+
+
+
 jQuery(document).ready(function($){
 
 	// Create the .modal-close and .modal-content
@@ -190,9 +214,34 @@ jQuery(document).ready(function($){
 
 	// Pass media type from the add toolbox link to the newMedia var
 	$('.toolbox .tool').click(function(){
-		newMedia = $(this).data('media');
 		clearMarkers();
-		console.log(newMedia);
+
+		if(!newPinMedia){
+			addNewPin();
+		}
+
+		newPinMedia = $(this).data('media');
+		console.log(newPinMedia);
+
+
+		// additional toolbox actions
+		var siteRoot = '<?php echo esc_url( home_url( '/' ) ); ?>';
+		var saveQueryMedia = 'media=' + newPinMedia;
+		var saveQueryLat = 'lat=' + newPinLatLng.a;
+		var saveQueryLng = 'lng=' + newPinLatLng.k;
+		
+		var saveNewPin = '<a class="action save" href="' + siteRoot + '/upload-form/?' + saveQueryMedia + '&' + saveQueryLat + '&' + saveQueryLng + '">Save Pin</a>';
+		var cancelNewPin = '<span class="action cancel">Cancel</span>';
+
+		$('.toolbox .handle').empty();
+		$('.toolbox .handle').prepend('Media Type');
+		$('.toolbox .actions').html(cancelNewPin + saveNewPin);
+		$('.toolbox .actions').show('slide', {direction: 'left'});
+		$('.toolbox .actions .cancel').click(function(){
+			$('.toolbox .actions').hide('slide', {direction: 'left'});
+			initialize();
+		});
+
 	});
 });
 

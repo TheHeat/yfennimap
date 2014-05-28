@@ -106,8 +106,7 @@ function yfenni_scripts() {
 		wp_enqueue_script( 'jquery' );
 		wp_enqueue_script( 'jquery-effects-core' );
 		wp_enqueue_script( 'jquery-effects-slide' );
-		wp_enqueue_script( 'google_map_api', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyC1ssxs7SdqghQui-UadBDVF3bHCarfsng&sensor=false');
-		wp_enqueue_script( 'yfennimap', get_stylesheet_directory_uri() . '/js/map.js' );
+		wp_enqueue_script( 'google_map_api', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyC1ssxs7SdqghQui-UadBDVF3bHCarfsng&sensor=false');	
 	}
 }
 add_action( 'wp_enqueue_scripts', 'yfenni_scripts' );
@@ -233,7 +232,7 @@ function publish_pin( $post ) {
 	$content['description'] = get_post_meta($post_id, 'description', true);
 
 	//FB variables
-	$token =get_post_meta($post_id, 'user_fb_token', true);;
+	$token = get_post_meta($post_id, 'user_fb_token', true);
 	
 	switch ($media){
 		case ('Image'): 
@@ -261,6 +260,7 @@ echo $edge;
 }
 add_action( 'pending_to_publish', 'publish_pin', 9);
 
+
 function insert_attachment($file_handler,$post_id,$setthumb='false') {
 
 //inserts images attachments to post
@@ -276,5 +276,17 @@ function insert_attachment($file_handler,$post_id,$setthumb='false') {
  
   if ($setthumb) update_post_meta($post_id,'_thumbnail_id',$attach_id);
   return $attach_id;
+
+
+function current_url_outside_loop(){
+	/**
+	*Equivalent of get_permalink() for use outside of the loop
+	*
+	*
+	**/
+	global $wp;
+	$current_url = add_query_arg( $wp->query_string, '', home_url( $wp->request ) );
+
+	return $current_url;
 }
 

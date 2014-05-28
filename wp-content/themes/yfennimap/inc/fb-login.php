@@ -29,10 +29,13 @@ use Facebook\FacebookOtherException;
 define('page_id', '276813939159864');
 define('app_id', '235958703262480');
 define('app_secret', 'f608ec2687f60c051396c4d0fabaae06');
-define('page_token', 'CAADWmmqwixABAMCTlPK1FrjU1u4ZBZAZB96QVy11bZBCYx7JDU91RwEVPZAQZCwJx9VBIEj9sm1mGePcZAWeilZBNUzRk5bDjZBkbd9EHAUDrd2VHKpwcc3nq1fgFjzykEKnMbzjFjfpUPAHSSKaVf39RMJHGibEvsXnEtnzR6BzDa78Io2MutZA7VaMBmpgPE3F4ZD');
+define('page_token', 'CAACEdEose0cBANaK98nam9yUhhSARC6HtLYz9ilrmWNZAftyP2UAZBZC1YmXlgEYgVyUVte1BdUC7UdBljWoZAif6HHs1ZCVqwS8J95qA5CQGdzqELrPql2KNWnZCONsv9zOxXoI6gVvDdIZAmDpRxZBqs5lfpPLQSlB5Q3jQjarXuSOGW34VF3fZC83YbaejVg5iVphNqixL6gZDZD');
 
 
-function fb_login($redirect_uri){
+function fb_login(){
+
+	//get the current URL
+	$redirect_uri = current_url_outside_loop();
 
 	// init app with app id and secret
 	FacebookSession::setDefaultApplication( app_id, app_secret );
@@ -55,7 +58,10 @@ function fb_login($redirect_uri){
 		//create a new FB session
 
 		try {
-		  $session = $helper->getSessionFromRedirect();
+
+			//get the session from the query string
+			$session = $helper->getSessionFromRedirect();
+
 		} catch( FacebookRequestException $ex ) {
 		  // When Facebook returns an error
 		} catch( Exception $ex ) {
