@@ -1,6 +1,7 @@
 /*
 !.gitignore
 !wp-content/
+*.ds
 
 # Ignore everything in the "wp-content" directory, except the "plugins"
 # and "themes" directories.
@@ -18,6 +19,7 @@ wp-content/plugins/*
 wp-content/themes/*
 !wp-content/themes/yfennimap
 !wp-content/themes/yfennimap/*
+
 
 # SASS
 

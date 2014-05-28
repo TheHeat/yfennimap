@@ -20,7 +20,7 @@ get_header();
 	    <a href="#" data-media="pictures" class="tool add pictures">Pictures</a>
 	    <a href="#" data-media="text" class="tool add words">Words</a>
 	<?php else: ?>
-		<a href="#" class="tool login">Login via Facebook to add to the map</a>
+		<?php fb_login() ;?>
 	<?php endif; ?>
   </div>
 </div>

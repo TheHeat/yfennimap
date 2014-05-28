@@ -233,7 +233,7 @@ function publish_pin( $post ) {
 	$content['description'] = get_post_meta($post_id, 'description', true);
 
 	//FB variables
-	$token = 'CAADWmmqwixABAMCTlPK1FrjU1u4ZBZAZB96QVy11bZBCYx7JDU91RwEVPZAQZCwJx9VBIEj9sm1mGePcZAWeilZBNUzRk5bDjZBkbd9EHAUDrd2VHKpwcc3nq1fgFjzykEKnMbzjFjfpUPAHSSKaVf39RMJHGibEvsXnEtnzR6BzDa78Io2MutZA7VaMBmpgPE3F4ZD';
+	$token = '235958703262480|1MjPKObIln0vNRcJT98McNeoqgg';
 	
 	switch ($media){
 		case ('Image'): 
@@ -253,4 +253,17 @@ function publish_pin( $post ) {
 	add_post_meta( $post_id, 'new_fb_object', $fb_object);
 }
 add_action( 'pending_to_publish', 'publish_pin', 9);
+
+
+function current_url_outside_loop(){
+	/**
+	*Equivalent of get_permalink() for use outside of the loop
+	*
+	*
+	**/
+	global $wp;
+	$current_url = add_query_arg( $wp->query_string, '', home_url( $wp->request ) );
+
+	return $current_url;
+}
 

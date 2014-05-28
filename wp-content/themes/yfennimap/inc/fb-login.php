@@ -32,7 +32,10 @@ define('app_secret', 'f608ec2687f60c051396c4d0fabaae06');
 define('page_token', 'CAADWmmqwixABAMCTlPK1FrjU1u4ZBZAZB96QVy11bZBCYx7JDU91RwEVPZAQZCwJx9VBIEj9sm1mGePcZAWeilZBNUzRk5bDjZBkbd9EHAUDrd2VHKpwcc3nq1fgFjzykEKnMbzjFjfpUPAHSSKaVf39RMJHGibEvsXnEtnzR6BzDa78Io2MutZA7VaMBmpgPE3F4ZD');
 
 
-function fb_login($redirect_uri){
+function fb_login(){
+
+	//get the current URL
+	$redirect_uri = current_url_outside_loop();
 
 	// init app with app id and secret
 	FacebookSession::setDefaultApplication( app_id, app_secret );
@@ -120,7 +123,7 @@ function fb_login($redirect_uri){
 				<?php 
 
 				// show login url
-    			echo '<a href="' . $helper->getLoginUrl($params) . '">Login</a>';
+    			echo '<a class="tool" href="' . $helper->getLoginUrl($params) . '">Login</a>';
 
     			?>
 

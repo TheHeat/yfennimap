@@ -26,10 +26,8 @@
 				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
 			</div>
 			<?php //get the current URL
-				global $wp;
-				$current_url = add_query_arg( $wp->query_string, '', home_url( $wp->request ) );
-
-				fb_login($current_url); ?>
+				
+				fb_login(); ?>
 			<nav id="site-navigation" class="main-navigation" role="navigation">
 				<?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
 			</nav>
