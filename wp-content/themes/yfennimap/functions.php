@@ -140,7 +140,6 @@ require get_template_directory() . '/inc/jetpack.php';
  * Load our Facebook PHP SDK
  */
 require_once(get_template_directory() . '/inc/facebook2.php');
-require_once(get_template_directory() . '/inc/facebook1.php');
 require_once(get_template_directory() . '/inc/fb-login.php');
 
 add_action( 'init', 'register_cpt_pin' );
