@@ -245,8 +245,6 @@ function publish_pin( $post ) {
 			$content['privacy'] = 'public';
 		break;
 
-		
-
 		default: 
 			$edge = 'feed'; 
 			$content['url'] = get_post_meta($post_id, 'link', true);
@@ -275,7 +273,7 @@ function insert_attachment($file_handler,$post_id,$setthumb='false') {
  
   if ($setthumb) update_post_meta($post_id,'_thumbnail_id',$attach_id);
   return $attach_id;
-
+ }
 
 function current_url_outside_loop(){
 	/**
