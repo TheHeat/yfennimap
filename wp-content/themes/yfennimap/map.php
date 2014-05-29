@@ -27,5 +27,7 @@ get_header();
 </div>
 <div id="map-canvas"></div>
 <div id="media-modal"></div>
+
+
 <?php get_footer(); ?>
 	
