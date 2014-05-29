@@ -203,14 +203,21 @@ function addNewPin(){
 }
 
 
-
 jQuery(document).ready(function($){
+
+
+	function resetContent(element, newContent){
+		$(element).empty();
+		$(element).prepend(newContent);
+	}
 
 	// Create the .modal-close and .modal-content
 	var modalCloser = '<span class="modal-close">&times;</span>';
 	var modalContent = '<div class="modal-content"></div>';
 
 	$('#media-modal').prepend(modalCloser, modalContent);
+
+	var addLabel = 'Add a pin';
 
 	// Pass media type from the add toolbox link to the newMedia var
 	$('.toolbox .tool').click(function(){
@@ -223,6 +230,9 @@ jQuery(document).ready(function($){
 		newPinMedia = $(this).data('media');
 		console.log(newPinMedia);
 
+		newPinMediaLabel = $(this).text();
+		console.log(newPinMediaLabel);
+
 
 		// additional toolbox actions
 		var siteRoot = '<?php echo esc_url( home_url( '/' ) ); ?>';
@@ -230,17 +240,21 @@ jQuery(document).ready(function($){
 		var saveQueryLat = 'lat=' + newPinLatLng.A;
 		var saveQueryLng = 'lng=' + newPinLatLng.k;
 		
-		var saveNewPin = '<a class="action save" href="' + siteRoot + '/upload-form/?' + saveQueryMedia + '&' + saveQueryLat + '&' + saveQueryLng + '">Save Pin</a>';
+		var saveNewPin = '<a class="action save" href="' + siteRoot + '/upload-form/?' + saveQueryMedia + '&' + saveQueryLat + '&' + saveQueryLng + '">Add ' + newPinMediaLabel + '</a>';
 		var cancelNewPin = '<span class="action cancel">Cancel</span>';
 
-		$('.toolbox .handle').empty();
-		$('.toolbox .handle').prepend('Media Type');
+		
+		resetContent('.toolbox .handle', 'Change Pin Type');
+
+		// $('.toolbox .handle').empty();
+		// $('.toolbox .handle').prepend(newPinMediaLabel);
 		$('.toolbox .actions').html(cancelNewPin + saveNewPin);
 		$('.toolbox .actions').show('slide', {direction: 'left'});
 		$('.toolbox .actions .cancel').click(function(){
 			$('.toolbox .actions').hide('slide', {direction: 'left'});
 			newPinMedia = null;
 			initialize();
+			resetContent('.toolbox .handle', addLabel);
 		});
 
 	});

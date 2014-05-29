@@ -13,7 +13,7 @@ get_header();
 ?>
 <div class="toolbox">
 	<div class="actions" style="display:none;"></div>
-	<div class="handle" tabindex="1">Add</div>
+	<div class="handle" tabindex="1">Add a pin</div>
 	<div class="box">
 	  	<?php if(fb_get_token()): ?>
 		    <a href="#" data-media="link" class="tool add link">Web Link</a>
