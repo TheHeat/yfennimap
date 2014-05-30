@@ -29,7 +29,7 @@ use Facebook\FacebookOtherException;
 define('page_id', '276813939159864');
 define('app_id', '235958703262480');
 define('app_secret', 'f608ec2687f60c051396c4d0fabaae06');
-define('page_token', 'CAACEdEose0cBANaK98nam9yUhhSARC6HtLYz9ilrmWNZAftyP2UAZBZC1YmXlgEYgVyUVte1BdUC7UdBljWoZAif6HHs1ZCVqwS8J95qA5CQGdzqELrPql2KNWnZCONsv9zOxXoI6gVvDdIZAmDpRxZBqs5lfpPLQSlB5Q3jQjarXuSOGW34VF3fZC83YbaejVg5iVphNqixL6gZDZD');
+//define('page_token', 'CAACEdEose0cBANaK98nam9yUhhSARC6HtLYz9ilrmWNZAftyP2UAZBZC1YmXlgEYgVyUVte1BdUC7UdBljWoZAif6HHs1ZCVqwS8J95qA5CQGdzqELrPql2KNWnZCONsv9zOxXoI6gVvDdIZAmDpRxZBqs5lfpPLQSlB5Q3jQjarXuSOGW34VF3fZC83YbaejVg5iVphNqixL6gZDZD');
 
 
 require_once(get_template_directory() . '/inc/fb-login.php');
@@ -54,7 +54,8 @@ function fb_get_user_id(){
 
 			$user_id =  $graphObject->getProperty('id');
 
-			$permissions = (new FacebookRequest( $session, 'GET' , page_id .'/permissions' ))->execute();
+			$permissions = (new FacebookRequest( $session, 'GET' , page_id .'/permissions' ));
+			$permissions->execute();
 			//$permissionObject = $permissions->getGraphObject
 
 			echo '<pre>'. print_r($permissions->getGraphObject(), 1). '</pre>';
@@ -145,12 +146,19 @@ function fb_get_node($token, $node, $edge=null){
 
 function fb_get_token(){
 
+	if( isset($_SESSION['fb_session'])){
+		$session = $_SESSION['fb_session'];
+	}
+
 	// init app with app id and secret
 	FacebookSession::setDefaultApplication( app_id, app_secret );
 	 
 	// login helper with redirect_uri
 
-	$helper = new FacebookRedirectLoginHelper('http://localhost/yfennimap');
+	global $wp;
+	$current_url = add_query_arg( $wp->query_string, '', home_url( $wp->request ) );
+
+	$helper = new FacebookRedirectLoginHelper( $current_url );
 
 	try {
 	  $session = $helper->getSessionFromRedirect();
@@ -171,17 +179,21 @@ function fb_get_token(){
 	  // print data
 	  // echo '<pre>' . print_r( $graphObject, 1 ) . '</pre>';
 
-	  echo '<pre>';
-	  	print_r($session);
-	  echo '</pre>';
+	  // echo '<pre>';
+	  // 	print_r($session);
+	  // echo '</pre>';
 
-	} else {
+	  return $response;
 
-	  $params = array(
-	    'scope' => 'publish_actions',
-	  );
+	} 
 
-	  // show login url
-	  echo '<a href="' . $helper->getLoginUrl($params) . '">Login</a>';
-	}
+	  //else {
+
+	//   $params = array(
+	//     'scope' => 'publish_actions',
+	//   );
+
+	//   // show login url
+	//   echo '<a href="' . $helper->getLoginUrl($params) . '">Login</a>';
+	// }
 }
