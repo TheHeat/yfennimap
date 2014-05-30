@@ -34,7 +34,7 @@
 	update_field( 'field_5362ae02910ff',  $location, $post_id);
 
 	// if user has uploaded an image file
-	if ( $media == 'Image'):
+	if ( $media == 'pictures'):
 
 		//change media type if multiple images uploaded 
 		if (count($_FILES[image_upload][name]) > 1) $media = 'gallery'; 

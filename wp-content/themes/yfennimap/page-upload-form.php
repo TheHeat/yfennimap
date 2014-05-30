@@ -28,7 +28,7 @@ get_header(); ?>
 			</fieldset>
 		<?php endif ?>
 
-		<?php if ( $media == 'Video' || $media == 'Link' ): ?>
+		<?php if ( $media == 'video' || $media == 'link' ): ?>
 		<fieldset>
 			<label for="link"><?php _e('Link:') ?></label>
 			<input type="text" name="link" id="link"  multiple="false" />
@@ -46,7 +46,7 @@ get_header(); ?>
 			<textarea name="postContent" id="postContent" rows="8" cols="30"><?php if(isset($_POST['postContent'])) { if(function_exists('stripslashes')) { echo stripslashes($_POST['postContent']); } else { echo $_POST['postContent']; } } ?></textarea>
 		</fieldset>
 
-		<?php if ( $media == 'Video' || $media == 'Image' || $media == 'Audio'): ?>
+		<?php if ( $media == 'video' || $media == 'pictures' || $media == 'Audio'): ?>
 		<fieldset>
 			<input type="file" name="image_upload[]" id="image_upload"  multiple="multiple" />
 			<input type="hidden" name="post_id" id="post_id" value="55" />
