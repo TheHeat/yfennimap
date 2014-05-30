@@ -139,8 +139,8 @@ require get_template_directory() . '/inc/jetpack.php';
 /**
  * Load our Facebook PHP SDK
  */
-require_once(get_template_directory() . '/inc/facebook2.php');
-require_once(get_template_directory() . '/inc/fb-login.php');
+require_once(get_template_directory() . '/inc/facebook-functions.php');
+
 
 add_action( 'init', 'register_cpt_pin' );
 
@@ -255,4 +255,5 @@ function current_url_outside_loop(){
 
 	return $current_url;
 }
+add_filter('show_admin_bar', '__return_false');
 
