@@ -88,7 +88,7 @@ function fb_login(){
 
 	  	//display the FB login/logout
 	  	?>
-		<div class="avatar-wrapper facebook">
+		<div class="avatar-wrapper facebook" tabindex="2">
 			<div class="avatar facebook">
 				
 				<?php $avatar_url = 'http://graph.facebook.com/' . $graphObject->getProperty('id') . '/picture'; ?>
@@ -120,17 +120,11 @@ function fb_login(){
 
   	?>
 
-  	<div class="avatar-wrapper facebook">
-		<div class="avatar facebook">
-				
-				<?php 
-
-				// show login url
-    			echo '<a href="' . $helper->getLoginUrl($params) . '">Login</a>';
-
-    			?>
-
-		</div>
+  	<div class="avatar-wrapper facebook">	
+		<?php 
+			// show login url
+   			echo '<a href="' . $helper->getLoginUrl($params) . '">Login</a>';
+		?>
 	</div>
     <?php
 	}

@@ -149,6 +149,7 @@ dfn {
 /* line 142, scss/_normalize.scss */
 hr {
   -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
   box-sizing: content-box;
   height: 0; }
 
@@ -330,6 +331,8 @@ html input[disabled] {
 /* line 337, scss/_normalize.scss */
 input[type="checkbox"],
 input[type="radio"] {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
   box-sizing: border-box;
   /* 1 */
   padding: 0;
@@ -404,6 +407,7 @@ Accessibility
 .screen-reader-text:focus {
   background-color: #f1f1f1;
   border-radius: 3px;
+  -webkit-box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
   box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
   clip: auto !important;
   color: #21759b;
@@ -420,35 +424,40 @@ Accessibility
   z-index: 100000;
   /* Above WP toolbar */ }
 
-/* line 1, scss/_header.scss */
+/* line 10, scss/_header.scss */
 .site-header {
+  background: black;
   position: absolute;
   top: 0;
   right: 0;
   left: 0;
-  z-index: 10;
-  background-color: black;
-  padding: 1rem;
-  height: 3rem; }
-  /* line 10, scss/_header.scss */
+  height: 3.1em;
+  z-index: 10; }
+  /* line 18, scss/_header.scss */
   .site-header a {
     color: white;
     text-decoration: none; }
 
-/* line 16, scss/_header.scss */
+/* line 24, scss/_header.scss */
 #site-branding {
+  padding: 1em 0;
   float: left; }
-  /* line 18, scss/_header.scss */
+  /* line 27, scss/_header.scss */
   #site-branding h1 {
     display: inline;
     font-size: 1rem;
+    line-height: 1;
     font-weight: normal;
-    margin: 0; }
+    background-color: black;
+    padding: 1em;
+    margin: 0;
+    background: transparent; }
 
-/* line 26, scss/_header.scss */
+/* line 34, scss/_header.scss */
 #site-navigation {
-  float: right; }
-  /* line 28, scss/_header.scss */
+  float: right;
+  padding: 1em 0; }
+  /* line 37, scss/_header.scss */
   #site-navigation .menu ul {
     margin: 0;
     padding: 0;
@@ -467,32 +476,60 @@ Accessibility
       zoom: 1;
       *display: inline;
       white-space: nowrap; }
-    /* line 30, scss/_header.scss */
+    /* line 39, scss/_header.scss */
     #site-navigation .menu ul a {
-      margin-left: 1em; }
+      font-size: 1rem;
+      line-height: 1;
+      font-weight: normal;
+      background-color: black;
+      padding: 1em;
+      margin: 0; }
 
-/* line 36, scss/_header.scss */
+/* line 45, scss/_header.scss */
 .avatar-wrapper {
   float: right;
-  margin: -1em -1em -1em 1em;
-  overflow: hidden;
-  *zoom: 1; }
-  /* line 40, scss/_header.scss */
+  padding: 1em 0;
+  margin: 0; }
+  /* line 49, scss/_header.scss */
+  .avatar-wrapper a {
+    font-size: 1rem;
+    line-height: 1;
+    font-weight: normal;
+    background-color: black;
+    padding: 1em;
+    margin: 0; }
+  /* line 52, scss/_header.scss */
   .avatar-wrapper .avatar {
     height: 3em;
-    width: auto;
+    width: 3em;
+    margin: -1em 0;
     cursor: pointer; }
-    /* line 44, scss/_header.scss */
+    /* line 57, scss/_header.scss */
     .avatar-wrapper .avatar img {
-      display: inline-block;
+      display: block;
       margin: 0; }
-  /* line 49, scss/_header.scss */
+  /* line 62, scss/_header.scss */
   .avatar-wrapper .avatar-menu {
     position: absolute;
     top: 3em;
     display: none; }
 
-/* line 56, scss/_header.scss */
+/* line 69, scss/_header.scss */
+.avatar-wrapper .avatar-menu {
+  font-size: 1rem;
+  line-height: 1;
+  font-weight: normal;
+  background-color: black;
+  padding: 1em;
+  margin: 0;
+  position: absolute;
+  right: 3em;
+  top: 0;
+  display: none;
+  -webkit-transition: 0.2s;
+  transition: 0.2s; }
+
+/* line 78, scss/_header.scss */
 .avatar-wrapper:focus > .avatar-menu {
   display: block; }
 
@@ -501,6 +538,8 @@ Navigation
 --------------------------------------------------------------*/
 /* line 1, scss/_layout.scss */
 * {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
   box-sizing: border-box; }
 
 /* line 5, scss/_layout.scss */
@@ -559,6 +598,7 @@ html {
   bottom: 2em;
   right: 0;
   height: 3em;
+  -webkit-background-clip: padding-box;
   background-clip: padding-box;
   overflow: hidden;
   background: black;
@@ -578,6 +618,7 @@ html {
 
 /* line 64, scss/_map.scss */
 .handle {
+  -webkit-box-shadow: -0.25em 0 0.5em 0 rgba(0, 0, 0, 0.2);
   box-shadow: -0.25em 0 0.5em 0 rgba(0, 0, 0, 0.2); }
 
 /* line 70, scss/_map.scss */
@@ -597,6 +638,7 @@ a.tool:hover {
 /* line 84, scss/_map.scss */
 .handle + .box {
   opacity: 0;
+  -webkit-transition: all 1s;
   transition: all 1s;
   max-width: 0; }
 
@@ -605,4 +647,7 @@ a.tool:hover {
   opacity: 1;
   margin: 0;
   max-width: 40em;
+  -webkit-transition: 0.5s;
   transition: 0.5s; }
+
+/*# sourceMappingURL=style.css.map */

@@ -25,9 +25,8 @@
 			<div id="site-branding">
 				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
 			</div>
-			<?php //get the current URL
-				
-				fb_login(); ?>
+			<?php				
+			fb_login(); ?>
 			<nav id="site-navigation" class="main-navigation" role="navigation">
 				<?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
 			</nav>
