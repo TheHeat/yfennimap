@@ -33,6 +33,25 @@ if (
 } else {
 
 	// The security check failed, maybe show the user an error.
-}
+};
 
-fb_get_user_id();
+$location = get_field('field_5362ae02910ff', '277');
+
+echo'bum';
+
+print_r($location);
+
+echo '<br>'.$location['lat'];
+echo '<br>'.$location['lng'];
+
+$location['lat'] = '1234567890';
+$location['lng'] = '1234567890';
+
+
+update_field( 'field_5362ae02910ff',  $location, '277');
+
+$location = get_field('field_5362ae02910ff', '277');
+
+print_r($location);
+
+

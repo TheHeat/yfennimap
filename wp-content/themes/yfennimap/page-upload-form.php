@@ -1,6 +1,7 @@
 <?php 
- 
-$media = $_GET['media'];
+
+// get the media type for use in the rest of the form
+$media = esc_attr(strip_tags($_GET['media']));
 
 // change description field title dependant on media type
 switch ($media) {
@@ -8,73 +9,10 @@ switch ($media) {
 	default: $description_field = 'Description'; break;
 }
 
-//Check if the post has a description - NOT WORKING
-$post_description_error = '';
-
+//check if the post has been submitted
 if(isset($_POST['submitted']) && isset($_POST['post_nonce_field']) && wp_verify_nonce($_POST['post_nonce_field'], 'post_nonce')) {
 
-	if(trim($_POST['postContent']) === '') {
-		$post_description_error = 'Please enter some information about your upload.';
-		$hasError = true;
-	} else {
-		$postContent = trim($_POST['postContent']);
-	}
-	
-	//Insert Post
-	//standard WP info
-	$post_information = array(
-		'post_title' => esc_attr(strip_tags($_POST['postTitle'])),
-		'post_type' => 'pin',
-		'post_status' => 'pending'
-	);
-
-	//Create Post
-	$post_id = wp_insert_post($post_information);
-
-	//Custom Fields
-	update_post_meta( $post_id, "description", esc_attr(strip_tags($_POST['postContent'])) );
-	update_post_meta( $post_id, "media_type", $media );
-	update_post_meta( $post_id, "link", esc_attr(strip_tags($_POST['link'])) );
-
-	add_post_meta( $post_id, 'user_fb_token', fb_get_token() );
-
-	if ( $media == 'Image'):
-
-		if (count($_FILES[image_upload][name]) > 1) $media = 'gallery'; 
-		update_post_meta( $post_id, "media_type", $media );
-
-		$media_field = get_field('field_5362addb9bf86', $post_id);
-
-		if ( $_FILES ) {
-			$files = $_FILES['image_upload'];
-			foreach ($files['name'] as $key => $value) {
-				if ($files['name'][$key]) {
-					$file = array(
-						'name'     => $files['name'][$key],
-						'type'     => $files['type'][$key],
-						'tmp_name' => $files['tmp_name'][$key],
-						'error'    => $files['error'][$key],
-						'size'     => $files['size'][$key]
-					);
-		 
-					$_FILES = array("upload_attachment" => $file);
-		 
-					foreach ($_FILES as $file => $array) {
-						$new_upload[] = array('file' => insert_attachment($file,$post_id));						
-					}
-				}
-			}
-		}	
-	endif;
-
-	update_field( 'field_5362addb9bf86',  $new_upload, $post_id);
-	
-	//if ( $media == 'Video'|| $media == 'link'):
-
-	//Message if succesful
-	if($post_id) _e('<p> Your Post has been submitted for moderation </p>' ); 
-
-	exit;
+	require get_template_directory() . '/inc/upload-submit.php';
 }
 
 get_header(); ?>
@@ -83,7 +21,7 @@ get_header(); ?>
 
 	<form action="" id="pinForm" method="POST" enctype="multipart/form-data">
 
-		<?php if ( $media == 'Message'): ?>
+		<?php if ( $media == 'text'): ?>
 			<fieldset>
 				<label for="postTitle"><?php _e('Pin\'s Title:') ?></label>
 				<input type="text" name="postTitle" id="postTitle" value="<?php if(isset($_POST['postTitle'])) echo $_POST['postTitle'];?>" />
@@ -97,9 +35,11 @@ get_header(); ?>
 		</fieldset>
 		<?php endif ?>
 
-		<?php if($post_description_error != '') { ?>
-			<span class="error"><?php echo $post_description_error; ?></span>
-		<?php } ?>
+		<?php
+		// validation
+		// if($post_description_error != '') { 
+		// 	echo '<span class="error">. $post_description_error; </span>';
+		// } ?>
 
 		<fieldset>					
 			<label for="postContent"><?php _e($description_field) ?></label>

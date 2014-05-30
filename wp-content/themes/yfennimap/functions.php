@@ -220,42 +220,11 @@ function my_pre_save_post( $post_id ){
 
 function publish_pin( $post ) {
 
-	global $wpdb;
-	$post_id = $post->ID;
+	require get_template_directory() . '/inc/publish-to-facebook.php';
 
-	// WP Variables
-	$media = get_post_meta($post_id, 'media_type', true);
-	$content = array();
-
-	$content['title'] = get_the_title();;
-	$content['description'] = get_post_meta($post_id, 'description', true);
-
-	//FB variables
-	$token = get_post_meta($post_id, 'user_fb_token', true);
-	
-	switch ($media){
-		case ('Image'): 
-			$edge = 'photos';
-			$attachment_url = wp_get_attachment_url( get_post_meta($post_id, 'media', true) );
-			$content['url'] = $attachment_url; 
-		break;
-
-		case ('gallery'): 
-			$edge = 'albums';
-			$content['privacy'] = 'public';
-		break;
-
-		default: 
-			$edge = 'feed'; 
-			$content['url'] = get_post_meta($post_id, 'link', true);
-		break;
-	}
-echo $edge;
-	$fb_object = fb_post_on_page($token, $edge, $content);
-
-	add_post_meta( $post_id, 'new_fb_object', $fb_object);
 }
 add_action( 'pending_to_publish', 'publish_pin', 9);
+add_action( 'draft_to_publish', 'publish_pin', 9);
 
 
 function insert_attachment($file_handler,$post_id,$setthumb='false') {

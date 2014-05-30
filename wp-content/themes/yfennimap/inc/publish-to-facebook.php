@@ -1,27 +1,38 @@
 <?php
 	
-	global $post;
 	global $wpdb;
 	$post_id = $post->ID;
 
-	//echo '<pre>'; print_r(get_post($post_id)); echo'</pre>';
-	//echo '<pre>'; print_r(get_post_meta($post_id)); echo'</pre>';
-
-
 	// WP Variables
 	$media = get_post_meta($post_id, 'media_type', true);
-	$content = get_post_meta($post_id, 'description', true);
+	$content = array();
+
+	$content['title'] = get_the_title();;
+	$content['description'] = get_post_meta($post_id, 'description', true);
 
 	//FB variables
-	$token = 'CAADWmmqwixABAMCTlPK1FrjU1u4ZBZAZB96QVy11bZBCYx7JDU91RwEVPZAQZCwJx9VBIEj9sm1mGePcZAWeilZBNUzRk5bDjZBkbd9EHAUDrd2VHKpwcc3nq1fgFjzykEKnMbzjFjfpUPAHSSKaVf39RMJHGibEvsXnEtnzR6BzDa78Io2MutZA7VaMBmpgPE3F4ZD';
-	$edge = 'feed';
+	$token = get_post_meta($post_id, 'user_fb_token', true);
+	
+	switch ($media){
+		case ('Image'): 
+			$edge = 'photos';
+			$attachment_url = wp_get_attachment_url( get_post_meta($post_id, 'media', true) );
+			$content['url'] = $attachment_url; 
+		break;
+
+		case ('gallery'): 
+			$edge = 'albums';
+			$content['privacy'] = 'public';
+		break;
+
+		default: 
+			$edge = 'feed'; 
+			$content['url'] = get_post_meta($post_id, 'link', true);
+		break;
+	}
 
 	$fb_object = fb_post_on_page($token, $edge, $content);
 
-	return $fb_object;
+	add_post_meta( $post_id, 'new_fb_object', $fb_object);
 
-	if($fb_object) update_post_meta( $post_id, 'description', 'bummed', true );
-
-
-	//echo '<pre>'; print_r(get_post_custom($post_id)); echo'</pre>';
 ?>
