@@ -25,12 +25,6 @@ use Facebook\FacebookPermissionException;
 use Facebook\FacebookClientException;
 use Facebook\FacebookOtherException;
 
-//app ip, app secret, page token, page id
-define('page_id', '276813939159864');
-define('app_id', '235958703262480');
-define('app_secret', 'f608ec2687f60c051396c4d0fabaae06');
-define('page_token', 'CAACEdEose0cBANaK98nam9yUhhSARC6HtLYz9ilrmWNZAftyP2UAZBZC1YmXlgEYgVyUVte1BdUC7UdBljWoZAif6HHs1ZCVqwS8J95qA5CQGdzqELrPql2KNWnZCONsv9zOxXoI6gVvDdIZAmDpRxZBqs5lfpPLQSlB5Q3jQjarXuSOGW34VF3fZC83YbaejVg5iVphNqixL6gZDZD');
-
 
 function fb_login(){
 
@@ -45,12 +39,13 @@ function fb_login(){
 	$helper = new FacebookRedirectLoginHelper($redirect_uri);
 
 	//If logout = true, then destroy the FB session
-	if($_GET['logout'] == true){
+
+	if(isset($_GET['logout'])){
 		unset($_SESSION['fb_session']);
 	}
 
 	//get the fb session out of the PHP session, otherwise get a new FB session
-	if($_SESSION['fb_session']){
+	if( isset($_SESSION['fb_session'])){
 		$session = $_SESSION['fb_session'];
 	}
 
@@ -58,10 +53,8 @@ function fb_login(){
 		//create a new FB session
 
 		try {
-
 			//get the session from the query string
 			$session = $helper->getSessionFromRedirect();
-
 		} catch( FacebookRequestException $ex ) {
 		  // When Facebook returns an error
 		} catch( Exception $ex ) {
