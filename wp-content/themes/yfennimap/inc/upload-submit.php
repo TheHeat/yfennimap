@@ -12,8 +12,9 @@
 	
 	//Insert Post
 	//standard WP info
+	$post_title = (isset($_POST['postTitle']) ? $_POST['postTitle'] : null );
 	$post_information = array(
-		'post_title' => esc_attr(strip_tags($_POST['postTitle'])),
+		'post_title' => $post_title,
 		'post_type' => 'pin',
 		'post_status' => 'pending'
 	);
@@ -22,9 +23,9 @@
 	$post_id = wp_insert_post($post_information);
 
 	//Custom Fields
-	update_post_meta( $post_id, "description", esc_attr(strip_tags($_POST['postContent'])) );
+	update_post_meta( $post_id, "description", esc_attr(strip_tags(isset($_POST['postContent']) ? $_POST['postContent'] : null )) );
 	update_post_meta( $post_id, "media_type", $_GET['media'] );
-	update_post_meta( $post_id, "link", esc_attr(strip_tags($_POST['link'])) );
+	update_post_meta( $post_id, "link",esc_attr(strip_tags(isset($_POST['link']) ? $_POST['link'] : null )) );
 	//get users fb token and save against post
 	add_post_meta( $post_id, 'user_fb_token', fb_get_token() );
 	
@@ -37,7 +38,7 @@
 	if ( $media == 'pictures'):
 
 		//change media type if multiple images uploaded 
-		if (count($_FILES[image_upload][name]) > 1) $media = 'gallery'; 
+		if (count($_FILES['image_upload']['name']) > 1) $media = 'gallery'; 
 		update_post_meta( $post_id, "media_type", $media );
 
 		//get the media field to input files to
@@ -64,11 +65,11 @@
 				}
 			}
 		}	
+
+		//add media to media upload array to acf repeater field
+		update_field( 'field_5362addb9bf86',  $new_upload, $post_id);
+
 	endif;
-
-	//add media to media upload array to acf repeater field
-	update_field( 'field_5362addb9bf86',  $new_upload, $post_id);
-
 	//Message if succesful
 	if($post_id) _e('<p> Your Post has been submitted for moderation </p>' ); 
 

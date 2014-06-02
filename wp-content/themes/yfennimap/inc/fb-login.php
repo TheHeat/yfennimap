@@ -1,18 +1,5 @@
 <?php
 
-require_once(get_template_directory() . '/src/Facebook/FacebookSession.php' );
-require_once(get_template_directory() . '/src/Facebook/FacebookRedirectLoginHelper.php' );
-require_once(get_template_directory() . '/src/Facebook/FacebookRequest.php' );
-require_once(get_template_directory() . '/src/Facebook/FacebookResponse.php' );
-require_once(get_template_directory() . '/src/Facebook/FacebookSDKException.php' );
-require_once(get_template_directory() . '/src/Facebook/FacebookRequestException.php' );
-require_once(get_template_directory() . '/src/Facebook/FacebookAuthorizationException.php' );
-require_once(get_template_directory() . '/src/Facebook/GraphObject.php' );
-require_once(get_template_directory() . '/src/Facebook/FacebookPermissionException.php' );
-require_once(get_template_directory() . '/src/Facebook/FacebookClientException.php' );
-require_once(get_template_directory() . '/src/Facebook/FacebookOtherException.php' );
-
-
 use Facebook\FacebookSession;
 use Facebook\FacebookRedirectLoginHelper;
 use Facebook\FacebookRequest;
@@ -28,58 +15,36 @@ use Facebook\FacebookOtherException;
 
 function fb_login(){
 
-	//get the current URL
-	$redirect_uri = current_url_outside_loop();
-
 	// init app with app id and secret
 	FacebookSession::setDefaultApplication( app_id, app_secret );
 
-	// login helper with redirect_uri
+	global $wp;
+	$current_url = add_query_arg( $wp->query_string, '', home_url( $wp->request ) );
 
-	$helper = new FacebookRedirectLoginHelper($redirect_uri);
+	$helper = new FacebookRedirectLoginHelper( 'http://localhost/yfennimap/map/' );
 
-	//If logout = true, then destroy the FB session
+	//print_r($helper);
 
-	if(isset($_GET['logout'])){
-		unset($_SESSION['fb_session']);
-	}
+	//check if the user is trying to logout
+	fb_logout();
 
 	//get the fb session out of the PHP session, otherwise get a new FB session
-	if( isset($_SESSION['fb_session'])){
-		$session = $_SESSION['fb_session'];
+	if( fb_get_session( $helper )){
+		$session = fb_get_session();
 	}
-
-	else{
-		//create a new FB session
-
-		try {
-			//get the session from the query string
-			$session = $helper->getSessionFromRedirect();
-		} catch( FacebookRequestException $ex ) {
-		  // When Facebook returns an error
-		} catch( Exception $ex ) {
-		  // When validation fails or other local issues
-		}
-	}
-
-
 	 
 	// see if we have a session
-	if ( isset( $session ) ) {
+	if ( isset($session) ) {
 
 	  	// graph api request for user data
 	  	$request = new FacebookRequest( $session, 'GET', '/me' );
 	  	$response = $request->execute();
 	  	// get response
 	  	$graphObject = $response->getGraphObject();
-	  
-	  	// print data
-	  	// echo '<pre>' . print_r( $graphObject, 1 ) . '</pre>';
 
-	  	//set the FB session into a PHP session so that the user can stay logged in
-	  	$_SESSION['fb_session'] = $session;
+	  	//print_r($graphObject);
 
-	  	//display the FB login/logout
+	  	//display the FB Avatar/logout
 	  	?>
 		<div class="avatar-wrapper facebook" tabindex="2">
 			<div class="avatar facebook">
@@ -89,33 +54,26 @@ function fb_login(){
 				<img src="<?php echo $avatar_url; ?>"/>
 			</div>
 			<div class="avatar-menu facebook">
-				<?php
-				//add a parameter
-				$logout_uri = add_query_arg('logout', 'true', $redirect_uri);
+				<?php //add a parameter
+				$logout_uri = add_query_arg('logout', 'true', $current_url);
 
 				//display logout
-
 				echo '<a href="' . $logout_uri . '">Log out</a>';
 				?>
 			</div>
 		</div>
-		
-	  	<?php
-
+	<?php
 	} 
 
-	else {
-	//show login link
+	else {	//if not logged in show login link
 
+	// get permissions required
   	$params = array(
-    'scope' => 'publish_actions',
-  	);
-
-  	?>
+    	'scope' => 'publish_actions',
+  		); ?>
 
   	<div class="avatar-wrapper facebook">	
-		<?php 
-			// show login url
+		<?php // show login url
    			echo '<a href="' . $helper->getLoginUrl($params) . '">Login</a>';
 		?>
 	</div>

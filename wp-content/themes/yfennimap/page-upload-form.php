@@ -5,7 +5,7 @@ $media = esc_attr(strip_tags($_GET['media']));
 
 // change description field title dependant on media type
 switch ($media) {
-	case 'link': $description_field = 'Message'; break;
+	case 'Link': $description_field = 'Message'; break;
 	default: $description_field = 'Description'; break;
 }
 
@@ -46,7 +46,7 @@ get_header(); ?>
 			<textarea name="postContent" id="postContent" rows="8" cols="30"><?php if(isset($_POST['postContent'])) { if(function_exists('stripslashes')) { echo stripslashes($_POST['postContent']); } else { echo $_POST['postContent']; } } ?></textarea>
 		</fieldset>
 
-		<?php if ( $media == 'video' || $media == 'pictures' || $media == 'Audio'): ?>
+		<?php if ( $media == 'pictures' || $media == 'Audio'): ?>
 		<fieldset>
 			<input type="file" name="image_upload[]" id="image_upload"  multiple="multiple" />
 			<input type="hidden" name="post_id" id="post_id" value="55" />

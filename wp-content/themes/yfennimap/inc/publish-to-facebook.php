@@ -1,4 +1,16 @@
 <?php
+
+use Facebook\FacebookSession;
+use Facebook\FacebookRedirectLoginHelper;
+use Facebook\FacebookRequest;
+use Facebook\FacebookResponse;
+use Facebook\FacebookSDKException;
+use Facebook\FacebookRequestException;
+use Facebook\FacebookAuthorizationException;
+use Facebook\GraphObject;
+use Facebook\FacebookPermissionException;
+use Facebook\FacebookClientException;
+use Facebook\FacebookOtherException;
 	
 	global $wpdb;
 	$post_id = $post->ID;
@@ -12,11 +24,14 @@
 
 	//FB variables
 	$token = get_post_meta($post_id, 'user_fb_token', true);
+
+	if ( $token == null) $token = page_token;
 	
 	switch ($media){
-		case ('Image'): 
+		case ('pictures'): 
 			$edge = 'photos';
-			$attachment_url = wp_get_attachment_url( get_post_meta($post_id, 'media', true) );
+			$attachment = get_field('field_5362addb9bf86', $post_id, true)[0];
+			$attachment_url = $attachment['file']['url'];
 			$content['url'] = $attachment_url; 
 		break;
 

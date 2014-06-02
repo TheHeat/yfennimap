@@ -1,3 +1,7 @@
+<?php get_header( );?>
+
+<div class="page-wrapper">
+
 <form id="featured_upload" method="post" action="#" enctype="multipart/form-data">
 	<input type="file" name="my_image_upload" id="my_image_upload"  multiple="false" />
 	<input type="hidden" name="post_id" id="post_id" value="55" />
@@ -35,23 +39,28 @@ if (
 	// The security check failed, maybe show the user an error.
 };
 
-$location = get_field('field_5362ae02910ff', '277');
+// $location = get_field('field_5362ae02910ff', '277');
 
-echo'bum';
+// echo'bum';
 
-print_r($location);
+// print_r($location);
 
-echo '<br>'.$location['lat'];
-echo '<br>'.$location['lng'];
+// echo '<br>'.$location['lat'];
+// echo '<br>'.$location['lng'];
 
-$location['lat'] = '1234567890';
-$location['lng'] = '1234567890';
+// $location['lat'] = '1234567890';
+// $location['lng'] = '1234567890';
 
 
-update_field( 'field_5362ae02910ff',  $location, '277');
+// update_field( 'field_5362ae02910ff',  $location, '277');
 
-$location = get_field('field_5362ae02910ff', '277');
+// $location = get_field('field_5362ae02910ff', '277');
 
-print_r($location);
+// print_r($location);
 
+echo fb_login();
+
+
+echo '</div>';
+get_footer( );
 

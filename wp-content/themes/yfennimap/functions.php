@@ -65,11 +65,18 @@ function yfenni_setup() {
 endif; // yfenni_setup
 add_action( 'after_setup_theme', 'yfenni_setup' );
 
-//start the session
-add_action('init', 'start_the_session');
+add_action('init', 'myStartSession', 1);
+add_action('wp_logout', 'myEndSession');
+add_action('wp_login', 'myEndSession');
 
-function start_the_session(){
-	session_start();
+function myStartSession() {
+    if(!session_id()) {
+        session_start();
+    }
+}
+
+function myEndSession() {
+    session_destroy ();
 }
 
 /**
@@ -248,39 +255,6 @@ function register_cpt_pin() {
     );
 
     register_post_type( 'pin', $args );
-}
-function my_pre_save_post( $post_id ){
-
-		// check if this is to be a new post. Modified to look at the left-3 characters of the post ID
-		if( substr($post_id,0,3) != 'new' ){
-			return $post_id;
-		}
-
-		//Get the type of post that we'd like to create, e.g. if we pass new_route, we want to create a new 'route'
-		$the_post_type = substr($post_id, 4);
-
-		//Create a post title
-		$post_title = 'Route ';
-		$post_title .= wp_count_posts('route')->publish +1;
-
-		// Create a new post
-		$post = array(
-				'post_status' 	  	=> 'publish' ,
-				'post_title'  	  	=> $post_title, //get the title field
-				'submit_value'	  	=> 'Add',
-				'post_type'			=> $the_post_type,
-				'return' 			=> add_query_arg( 'updated', 'true', get_permalink() ),
-				'updated_message' 	=> 'Route added.'
-		);
-
-		// insert the post
-		$post_id = wp_insert_post( $post );
-
-		// update $_POST['return']
-		$_POST['return'] = add_query_arg( array('post_id' => $post_id), $_POST['return'] );
-
-		// return the new ID
-		return $post_id;
 }
 
 function publish_pin( $post ) {

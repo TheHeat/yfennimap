@@ -29,10 +29,16 @@ use Facebook\FacebookOtherException;
 define('page_id', '276813939159864');
 define('app_id', '235958703262480');
 define('app_secret', 'f608ec2687f60c051396c4d0fabaae06');
-//define('page_token', 'CAACEdEose0cBANaK98nam9yUhhSARC6HtLYz9ilrmWNZAftyP2UAZBZC1YmXlgEYgVyUVte1BdUC7UdBljWoZAif6HHs1ZCVqwS8J95qA5CQGdzqELrPql2KNWnZCONsv9zOxXoI6gVvDdIZAmDpRxZBqs5lfpPLQSlB5Q3jQjarXuSOGW34VF3fZC83YbaejVg5iVphNqixL6gZDZD');
+define('page_token', 'CAACEdEose0cBAO5THb8knhpxsWS2P7rzyPMB9ejZC283TYHmkpbiwlZBbus9S5qb6BLOe7eG44d883jkJueyNDbt5ZC4YnPvzSDRHAThZBMI18CFX5L5A9zWZAiUQfTiJ6k75oxXhUp6hvp3ivi8axZBOlg8MqgKI01jcWhFLxiCs9ZCtZAXASHZC0gaGoAwI6OEZD');
 
+// init app with app id and secret
+FacebookSession::setDefaultApplication( app_id, app_secret );
 
+require_once(get_template_directory() . '/inc/fb-get-session.php');
+require_once(get_template_directory() . '/inc/fb-get-token.php');
 require_once(get_template_directory() . '/inc/fb-login.php');
+require_once(get_template_directory() . '/inc/fb-logout.php');
+require_once(get_template_directory() . '/inc/fb-post-on-page.php');
 
 function fb_get_user_id(){
 
@@ -46,7 +52,6 @@ function fb_get_user_id(){
 
 		// print data
 		echo '<pre>' . print_r( $graphObject, 1 ) . '</pre>';
-
 
 		echo '<pre>'.print_r($session). '</pre>';
 
@@ -70,45 +75,6 @@ function fb_get_user_id(){
 			echo 'no session';
 	}
 
-}
-
-
-
-function fb_post_on_page($token, $edge, $content){
-	//Would like this to be able to take either a FacebookSession object or a strong
-	//and act appropriately
-	$session = new FacebookSession($token);
-	//photo, video, feed
-	//content is associative array containing source (optional), message, location
-	//get page token from constant into FacebookSessions
-	
-
-	$url = '/' . page_id . '/' . $edge;
-
-	$params = array(
-		'name' => $content['title'],
-		'message' => $content['description'] ,
-		'url' => $content['url']
-		);
-
-	$request = new FacebookRequest( $session, 'POST', $url, $params);
-
-	try{
-		$response = $request->execute()->getGraphObject();
-	
-		return $response->getProperty('id'); //string with object id
-	}
-	catch( FacebookRequestException $ex ) {
-	  // When Facebook returns an error
-		$error = "Exception occured, code: " . $ex->getCode()
-    		. " with message: " . $ex->getMessage();
-
-    	return $error;
-	} 
-	catch( Exception $ex ) {
-	  // When validation fails or other local issues
-		return 'YFenni error';
-	}
 }
 
 function fb_get_node($token, $node, $edge=null){
@@ -144,7 +110,7 @@ function fb_get_node($token, $node, $edge=null){
 	}
 }
 
-function fb_get_token(){
+function fb_get_token_old(){
 
 	if( isset($_SESSION['fb_session'])){
 		$session = $_SESSION['fb_session'];
@@ -163,8 +129,12 @@ function fb_get_token(){
 	try {
 	  $session = $helper->getSessionFromRedirect();
 	} catch( FacebookRequestException $ex ) {
+		echo "Exception occured, code: " . $ex->getCode();
+    	echo " with message: " . $ex->getMessage();
 	  // When Facebook returns an error
 	} catch( Exception $ex ) {
+		echo "Exception occured, code: " . $ex->getCode();
+    	echo " with message: " . $ex->getMessage();
 	  // When validation fails or other local issues
 	}
 	 
@@ -176,24 +146,24 @@ function fb_get_token(){
 	  // get response
 	  $graphObject = $response->getGraphObject();
 	  
-	  // print data
-	  // echo '<pre>' . print_r( $graphObject, 1 ) . '</pre>';
+	  //print data
+	  echo '<pre>' . print_r( $graphObject, 1 ) . '</pre>';
 
-	  // echo '<pre>';
-	  // 	print_r($session);
-	  // echo '</pre>';
+	  echo '<pre>';
+	  	print_r($session);
+	  echo '</pre>';
 
 	  return $response;
 
 	} 
 
-	  //else {
+	  else {
 
-	//   $params = array(
-	//     'scope' => 'publish_actions',
-	//   );
+	  $params = array(
+	    'scope' => 'publish_actions',
+	  );
 
-	//   // show login url
-	//   echo '<a href="' . $helper->getLoginUrl($params) . '">Login</a>';
-	// }
+	  // show login url
+	  echo '<a href="' . $helper->getLoginUrl($params) . '">Login</a>';
+	}
 }

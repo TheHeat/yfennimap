@@ -12,7 +12,6 @@ require_once(get_template_directory() . '/src/Facebook/FacebookPermissionExcepti
 require_once(get_template_directory() . '/src/Facebook/FacebookClientException.php' );
 require_once(get_template_directory() . '/src/Facebook/FacebookOtherException.php' );
 
-
 use Facebook\FacebookSession;
 use Facebook\FacebookRedirectLoginHelper;
 use Facebook\FacebookRequest;
@@ -25,8 +24,17 @@ use Facebook\FacebookPermissionException;
 use Facebook\FacebookClientException;
 use Facebook\FacebookOtherException;
 
-//app ip, app secret, page token, page id
+function fb_get_token(){
+	if (fb_get_session()):
 
-fb_login();
+		$session = fb_get_session();
+		$access_token = $session->getToken();
 
-?>
+		return $access_token;
+	elseif(is_admin()):
+
+		//this is where we said we would reurn the page token but you won't get to this point without logging in...
+
+	endif;
+
+}
