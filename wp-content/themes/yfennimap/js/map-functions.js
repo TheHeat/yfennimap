@@ -1,46 +1,4 @@
-<?php
-
-// Query the pin post-type
-// populate the arrays with the *title*, *location*, *media_type* and *facebook-object*
-
-$pins = array();
-
-// echo '<pre>';
-// 	print_r($session);
-// echo '</pre>';
-
-// The pins
-$pin_args = array('post_type' => 'pin','posts_per_page'=>-1, 'orderby' => 'title', 'order' => 'ASC');
-$pin_query = new WP_query($pin_args);
-
-if($pin_query->have_posts()):
-
-	while($pin_query->have_posts()):
-
-		// Create a container array for pin information
-		$pin = array();
-
-		$pin_query->the_post();
-
-		// Location from ACF Google Maps field
-		$location 		= get_field('location');
-		$pin['lat']		= $location['lat'];
-		$pin['lng'] 	= $location['lng'];
-		$pin['title'] 	= get_the_title();
-		$pin['wpid']	= get_the_id();
-
-		// Push to the $pins object
-		$pins[ get_the_ID() ] = $pin;
-
-	endwhile;
-
-endif;
-
-?>
-
-<script>
-
-	// Create map, geocoder and marker in the global scope
+// Create map, geocoder and marker in the global scope
 	var map;
 	var markers = [];
 	var geocoder;
@@ -51,7 +9,6 @@ endif;
 	var newPinLatLng = [];
 
 	// convert $pins from PHP to JSON object
-	var pinsMap =  <?php echo json_encode( $pins ); ?>;
 
 	console.log(pinsMap);
 
@@ -108,13 +65,23 @@ function createMarker(center, title, wpid) {
     google.maps.event.addListener(marker, 'click', function () {
     	map.setCenter(marker.getPosition());
     	singlePin = wpid;
-    	console.log(singlePin);
+    	// console.log(singlePin);
 
     	jQuery(function($){
 
     		$('.toolbox').hide('slide', {direction: 'right'}, function(){
     			$('#media-modal').slideDown(function(){
-    				$('.modal-content').text(singlePin);
+
+    				$.post('wp-admin/admin-ajax.php', {
+    					data: { action: 'modal_content', pin_id: wpid },
+    					post_id: wpid,
+	    				}, 
+	    				function(data){
+	    					console.log($(data))
+	    					$('.modal-content').append($(data));
+	    				}
+    				);
+      				
     				$('.modal-close').click(function(){
 		    			$('#media-modal').slideUp(function(){
     						$('.modal-content').empty();
@@ -258,8 +225,10 @@ jQuery(document).ready(function($){
 		});
 
 	});
+
+
+	
+
 });
 
 google.maps.event.addDomListener(window, 'load', initialize);
-
-</script>

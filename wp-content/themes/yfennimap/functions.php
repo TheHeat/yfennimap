@@ -102,14 +102,60 @@ function yfenni_scripts() {
 		wp_enqueue_script( 'comment-reply' );
 	}
 
-	if (is_page_template('map.php')){
+	if (is_home()){
+		wp_register_script( 'map-functions', get_template_directory_uri() . '/js/map-functions.js', array('jquery'), true );
 		wp_enqueue_script( 'jquery' );
 		wp_enqueue_script( 'jquery-effects-core' );
 		wp_enqueue_script( 'jquery-effects-slide' );
 		wp_enqueue_script( 'google_map_api', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyC1ssxs7SdqghQui-UadBDVF3bHCarfsng&sensor=false');	
+
+		wp_enqueue_script('map-functions');
+		wp_localize_script( 'map-functions', 'pinsMap', get_pins() );
+
 	}
 }
 add_action( 'wp_enqueue_scripts', 'yfenni_scripts' );
+
+
+// Populate the pins array
+
+function get_pins(){
+	
+	// Query the pin post-type
+	// populate the arrays with the *title*, *location*, *media_type* and *facebook-object*
+
+	$pins = array();
+
+	// The pins
+	$pin_args = array('post_type' => 'pin','posts_per_page'=>-1, 'orderby' => 'title', 'order' => 'ASC');
+	$pin_query = new WP_query($pin_args);
+
+	if($pin_query->have_posts()):
+		while($pin_query->have_posts()):
+
+			// Create a container array for pin information
+			$pin = array();
+
+			$pin_query->the_post();
+
+			// Location from ACF Google Maps field
+			$location 		= get_field('location');
+			$pin['lat']		= $location['lat'];
+			$pin['lng'] 	= $location['lng'];
+			$pin['title'] 	= get_the_title();
+			$pin['wpid']	= get_the_id();
+
+			// Push to the $pins object
+			$pins[ get_the_ID() ] = $pin;
+
+		endwhile;
+
+	endif;
+
+	return $pins;
+}
+
+
 
 /**
  * Implement the Custom Header feature.
@@ -141,6 +187,25 @@ require get_template_directory() . '/inc/jetpack.php';
  */
 require_once(get_template_directory() . '/inc/facebook-functions.php');
 
+// Ajax function
+
+function yfenni_modal_content($post_id){
+
+	// if($pin_id > 0){
+
+		$post_id = get_post($pin_id ); 
+		?>
+
+		<div>
+			YOYOYO
+		</div>
+		<?php
+	// }
+	die();
+}
+
+add_action('wp_ajax_nopriv_modal_content', 'yfenni_modal_content' );
+add_action('wp_ajax_modal_content', 'yfenni_modal_content' );
 
 add_action( 'init', 'register_cpt_pin' );
 

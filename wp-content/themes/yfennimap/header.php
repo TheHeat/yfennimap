@@ -16,10 +16,9 @@
 <link rel="profile" href="http://gmpg.org/xfn/11">
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
 <?php wp_head(); ?>
-<?php if(is_page_template('map.php')){ get_template_part('map-pins' ); } ?>
 </head>
 
-<body <?php body_class(); ?> <?php if(is_page_template('map.php' )){ echo 'onload="initialize()"'; }?>>
+<body <?php body_class(); ?> <?php if(is_home()){ echo 'onload="initialize()"'; }?>>
 	<div class="site-wrapper">
 		<header id="masthead" class="site-header" role="banner">
 			<div id="site-branding">
