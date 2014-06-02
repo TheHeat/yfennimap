@@ -21,7 +21,7 @@ function fb_login(){
 	global $wp;
 	$current_url = add_query_arg( $wp->query_string, '', home_url( $wp->request ) );
 
-	$helper = new FacebookRedirectLoginHelper( 'http://localhost/yfennimap/map/' );
+	$helper = new FacebookRedirectLoginHelper( $current_url );
 
 	//print_r($helper);
 
