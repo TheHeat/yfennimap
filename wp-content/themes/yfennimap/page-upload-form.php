@@ -46,9 +46,9 @@ get_header(); ?>
 			<textarea name="postContent" id="postContent" rows="8" cols="30"><?php if(isset($_POST['postContent'])) { if(function_exists('stripslashes')) { echo stripslashes($_POST['postContent']); } else { echo $_POST['postContent']; } } ?></textarea>
 		</fieldset>
 
-		<?php if ( $media == 'pictures' || $media == 'Audio'): ?>
+		<?php if ( $media == 'video' || $media == 'pictures' || $media == 'Audio'): ?>
 		<fieldset>
-			<input type="file" name="image_upload[]" id="image_upload"  multiple="multiple" />
+			<input type="file" name="media_upload[]" id="media_upload"  multiple="multiple" />
 			<input type="hidden" name="post_id" id="post_id" value="55" />
 		</fieldset>
 		<?php endif ?>

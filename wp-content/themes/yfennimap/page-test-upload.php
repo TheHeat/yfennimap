@@ -62,5 +62,7 @@ echo fb_login();
 
 
 echo '</div>';
+
+echo ABSPATH;
 get_footer( );
 

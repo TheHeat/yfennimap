@@ -40,6 +40,17 @@ use Facebook\FacebookOtherException;
 			$content['privacy'] = 'public';
 		break;
 
+		case ('video'):
+			$edge = 'videos';
+			$attachment = get_field('field_5362addb9bf86', $post_id, true)[0];
+
+			$attachment_title = $attachment['file']['title'];
+			$attachment_filepath = get_attached_file( $attachment['file']['id'], true );
+			$attachment_mimetype = $attachment['file']['mime_type'];
+
+			$content['source'] = new CURLFile( $attachment_filepath, $attachment_mimetype, $attachment_title);
+			break;
+
 		default: 
 			$edge = 'feed'; 
 			$content['url'] = get_post_meta($post_id, 'link', true);

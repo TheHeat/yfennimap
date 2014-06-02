@@ -27,7 +27,8 @@ function fb_post_on_page($token, $edge, $content){
 	$params = array(
 		'name' => $content['title'],
 		'message' => $content['description'] ,
-		'link' => $content['url']
+		'link' => $content['url'],
+		'source' => $content['source']
 		);
 
 	$request = new FacebookRequest( $session, 'POST', $url, $params);
@@ -46,7 +47,10 @@ function fb_post_on_page($token, $edge, $content){
 	} 
 	catch( Exception $ex ) {
 	  // When validation fails or other local issues
-		return 'YFenni error';
+		$error = "Exception occured, code: " . $ex->getCode()
+    		. " with message: " . $ex->getMessage();
+
+    	return $error;
 	}
 }
 

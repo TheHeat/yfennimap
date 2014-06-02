@@ -35,10 +35,10 @@
 	update_field( 'field_5362ae02910ff',  $location, $post_id);
 
 	// if user has uploaded an image file
-	if ( $media == 'pictures'):
+	if ( $media == 'pictures' || $media == 'video'):
 
 		//change media type if multiple images uploaded 
-		if (count($_FILES['image_upload']['name']) > 1) $media = 'gallery'; 
+		if (count($_FILES['media_upload']['name']) > 1) $media = 'gallery'; 
 		update_post_meta( $post_id, "media_type", $media );
 
 		//get the media field to input files to
@@ -46,7 +46,7 @@
 
 		//$_FILES is the result of the form submit with input type files
 		if ( $_FILES ) {
-			$files = $_FILES['image_upload'];
+			$files = $_FILES['media_upload'];
 			foreach ($files['name'] as $key => $value) {
 				if ($files['name'][$key]) {
 					$file = array(
