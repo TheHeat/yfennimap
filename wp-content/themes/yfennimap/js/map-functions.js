@@ -69,18 +69,34 @@ function createMarker(center, title, wpid) {
 
     	jQuery(function($){
 
-    		$('.toolbox').hide('slide', {direction: 'right'}, function(){
-    			$('#media-modal').slideDown(function(){
+    		var data = {
+    			action: 'pin_loader',
+    			pin_id: singlePin
+    		};
 
-    				$('.modal-content').append(singlePin);
-      				
-    				$('.modal-close').click(function(){
-		    			$('#media-modal').slideUp(function(){
-    						$('.modal-content').empty();
-    						$('.toolbox').show('slide', {direction: 'right'});
-    					});
-    				});
-    			});
+    		$('.toolbox').hide('slide', {direction: 'right'}, function(){
+
+				// the_ajax_script.ajaxurl is a variable that will contain the url to the ajax processing file
+				$.post(the_ajax_script.ajaxurl, data, 
+
+
+					function(response) {
+	    				console.log(response); 
+		    			$('#media-modal').slideDown(function(){
+
+		    				$('.modal-content').append(response.post_title);
+		    				
+		    				$('.modal-close').click(function(){
+				    			$('#media-modal').slideUp(function(){
+		    						$('.modal-content').empty();
+		    						$('.toolbox').show('slide', {direction: 'right'});
+		    					});
+		    				});
+		    			});
+		    		});
+
+    		
+    			
     		});
     		
     	});

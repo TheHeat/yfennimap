@@ -118,6 +118,8 @@ function yfenni_scripts() {
 
 		wp_enqueue_script('map-functions');
 		wp_localize_script( 'map-functions', 'pinsMap', get_pins() );
+		// make the ajaxurl var available to the map-functions script
+		wp_localize_script( 'map-functions', 'the_ajax_script', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );
 
 	}
 }
@@ -161,6 +163,23 @@ function get_pins(){
 
 	return $pins;
 }
+
+// Ajax Test
+
+function yfenni_pin_template() {
+
+	// first check if data is being sent and that it is the data we want
+  	if ( isset( $_POST["pin_id"] ) ) {
+
+		// now set our response var equal to that of the POST var pin_id
+		$pin_obect = get_post( $_POST["pin_id"] );
+
+		// send the response back to the front end
+		wp_send_json( $pin_obect ); 
+	}
+}
+add_action('wp_ajax_pin_loader', 'yfenni_pin_template');
+add_action('wp_ajax_nopriv_pin_loader', 'yfenni_pin_template');
 
 /**
  * Get the ACF plugin
