@@ -1,6 +1,41 @@
 <?php get_header( );?>
 
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '235958703262480',
+          xfbml      : true,
+          version    : 'v2.0'
+        });
+      };
+
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "//connect.facebook.net/en_US/sdk.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+
+      FB.api(
+    "/284647128376545",
+    function (response) {
+      if (response && !response.error) {
+        /* handle the result */
+      }
+    }
+);
+    </script>
+
+
 <div class="page-wrapper">
+
+    <div
+  class="fb-like"
+  data-send="true"
+  data-width="450"
+  data-show-faces="true">
+</div>
 
 <form id="featured_upload" method="post" action="#" enctype="multipart/form-data">
 	<input type="file" name="my_image_upload" id="my_image_upload"  multiple="false" />
@@ -58,11 +93,8 @@ if (
 
 // print_r($location);
 
-echo fb_login();
-
 
 echo '</div>';
 
-echo ABSPATH;
 get_footer( );
 

@@ -162,7 +162,11 @@ function get_pins(){
 	return $pins;
 }
 
-
+/**
+ * Get the ACF plugin
+ */
+define( 'ACF_LITE' , true );
+include_once('advanced-custom-fields/acf.php' );
 
 /**
  * Implement the Custom Header feature.
@@ -193,6 +197,12 @@ require get_template_directory() . '/inc/jetpack.php';
  * Load our Facebook PHP SDK
  */
 require_once(get_template_directory() . '/inc/facebook-functions.php');
+
+/**
+ * Load our Custom Fields
+ */
+require_once(get_template_directory() . '/inc/acf-custom-fields.php');
+
 
 // Ajax function
 
