@@ -39,6 +39,7 @@ require_once(get_template_directory() . '/inc/fb-get-token.php');
 require_once(get_template_directory() . '/inc/fb-login.php');
 require_once(get_template_directory() . '/inc/fb-logout.php');
 require_once(get_template_directory() . '/inc/fb-post-on-page.php');
+require_once(get_template_directory() . '/inc/fb-media-class.php');
 
 function fb_get_user_id(){
 

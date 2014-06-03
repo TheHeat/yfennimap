@@ -108,10 +108,10 @@ function yfenni_scripts() {
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
-
+		wp_enqueue_script( 'jquery' );
 	if (is_home()){
 		wp_register_script( 'map-functions', get_template_directory_uri() . '/js/map-functions.js', array('jquery'), true );
-		wp_enqueue_script( 'jquery' );
+
 		wp_enqueue_script( 'jquery-effects-core' );
 		wp_enqueue_script( 'jquery-effects-slide' );
 		wp_enqueue_script( 'google_map_api', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyC1ssxs7SdqghQui-UadBDVF3bHCarfsng&sensor=false');	
@@ -186,6 +186,10 @@ add_action('wp_ajax_nopriv_pin_loader', 'yfenni_pin_template');
  */
 define( 'ACF_LITE' , true );
 include_once('advanced-custom-fields/acf.php' );
+/**
+ * Load our Custom Fields
+ */
+require_once(get_template_directory() . '/inc/acf-custom-fields.php');
 
 /**
  * Implement the Custom Header feature.
@@ -216,11 +220,6 @@ require get_template_directory() . '/inc/jetpack.php';
  * Load our Facebook PHP SDK
  */
 require_once(get_template_directory() . '/inc/facebook-functions.php');
-
-/**
- * Load our Custom Fields
- */
-require_once(get_template_directory() . '/inc/acf-custom-fields.php');
 
 
 // Ajax function

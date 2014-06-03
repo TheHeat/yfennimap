@@ -1,41 +1,8 @@
 <?php get_header( );?>
 
-    <script>
-      window.fbAsyncInit = function() {
-        FB.init({
-          appId      : '235958703262480',
-          xfbml      : true,
-          version    : 'v2.0'
-        });
-      };
-
-      (function(d, s, id){
-         var js, fjs = d.getElementsByTagName(s)[0];
-         if (d.getElementById(id)) {return;}
-         js = d.createElement(s); js.id = id;
-         js.src = "//connect.facebook.net/en_US/sdk.js";
-         fjs.parentNode.insertBefore(js, fjs);
-       }(document, 'script', 'facebook-jssdk'));
-
-      FB.api(
-    "/284647128376545",
-    function (response) {
-      if (response && !response.error) {
-        /* handle the result */
-      }
-    }
-);
-    </script>
 
 
-<div class="page-wrapper">
 
-    <div
-  class="fb-like"
-  data-send="true"
-  data-width="450"
-  data-show-faces="true">
-</div>
 
 <form id="featured_upload" method="post" action="#" enctype="multipart/form-data">
 	<input type="file" name="my_image_upload" id="my_image_upload"  multiple="false" />
@@ -92,6 +59,27 @@ if (
 // $location = get_field('field_5362ae02910ff', '277');
 
 // print_r($location);
+?>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&appId=1403610066585894&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<?php
+echo '<div class="page-wrapper">';
+
+$fb_media = new FB_Media('398');
+//echo '<pre>'; print_r($fb_media); echo '</pre>'; 
+
+echo $fb_media-> get_text();
+echo $fb_media-> get_long_text();
+echo $fb_media-> get_images();
+echo $fb_media-> get_video();
+echo $fb_media-> get_comments();
+echo $fb_media-> get_link();
 
 
 echo '</div>';

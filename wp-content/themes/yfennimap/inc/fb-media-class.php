@@ -41,59 +41,64 @@ class FB_Media extends FacebookRequest
    *
    * @return FacebookRequest
    */
-
 {
 
+		
+	//declare a public property in case we need to get something else directly
+	//public $graph_object;
 
 	function __construct($pin_id){
 		//Get the FB object ID from the WP post
-		$fb_object_id = get_post_meta( $pin_id, 'fb_object_id'); //AHS: probably not the right custom field key
+		$fb_object_id = get_post_meta( $pin_id, 'new_fb_object')[0]; //AHS: probably not the right custom field key
 
-		//Get the media type so that we know how to handle our returned object. It's more obvious if we get this from WP rather than FB
-		$media_type = get_field('media_type', $pin_id);
+		$this->media_type = get_field('media_type', $pin_id);
+
+		//print_r($fb_object_id);
 
 		//Construct the query
 		$query = '/' . $fb_object_id;
 
 		//call the parent constructor
-		parent::__construct($_SESSION['fb_session'], 'GET', $query);
+		$request = parent::__construct($_SESSION['fb_session'], 'GET', $query);
 
-		//declare a public property in case we need to get something else directly
-		public $graph_object;
-
-		//Execute the request
-		$graph_object = $this->Execute()->getGraphObject();
+		$response = $request->execute();
+	  	// get response
+	  	$this->graph_object = $response->getGraphObject();
 
 		//Our pin will have a media type = pictures if the FB object is either photo or album. 
 		//Do a little check to see if we're in an album, and if so set media_type = album
-		if($graph_object->album_id) //This probably isn't right, but I'm offline now and don't have access to the actual property. Find a field that exists in the album object but not the photo object and test for it
-		{
-			$media_type = 'album';
-		}
+		// if($graph_object->album_id) //This probably isn't right, but I'm offline now and don't have access to the actual property. Find a field that exists in the album object but not the photo object and test for it
+		// {
+		// 	$media_type = 'album';
+		// }
 
 	}
 
 	public function get_text()
 	{
+		$media_type = $this->media_type;
+		$graph_object = $this->graph_object;
+
+
 		switch ($media_type) {
 			case 'link':
-				return $graph_object->message;
+				return $graph_object->getProperty('message');
 				break;
 			
 			case 'video':
-				return $graph_object->description;
+				return $graph_object->getProperty('description');
 				break;
 			
 			case 'pictures':
-				return $graph_object->name;
+				return $graph_object->getProperty('name');
 				break;
 			
-			case 'words':
-				return $graph_object->message;
+			case 'text':
+				return $graph_object->getProperty('message');
 				break;
 			
 			case 'album':
-				return $graph_object->name;
+				return $graph_object->getProperty('name');
 				break;
 			
 			default:
@@ -104,6 +109,9 @@ class FB_Media extends FacebookRequest
 
 	public function get_long_text()
 	{
+		$media_type = $this->media_type;
+		$graph_object = $this->graph_object;
+
 		switch ($media_type) {
 			case 'link':
 				return null; //no appropriate field
@@ -117,12 +125,12 @@ class FB_Media extends FacebookRequest
 				return null; //no appropriate field
 				break;
 			
-			case 'words':
+			case 'text':
 				return null; //no appropriate field
 				break;
 			
 			case 'album':
-				return $graph_object->description;
+				return $graph_object->getProperty('description');
 				break;
 			
 			default:
@@ -133,6 +141,10 @@ class FB_Media extends FacebookRequest
 
 	public function get_images()
 	{
+
+		$media_type = $this->media_type;
+		$graph_object = $this->graph_object;
+
 		switch ($media_type) {
 			case 'link':
 				return null; //no appropriate field
@@ -143,10 +155,10 @@ class FB_Media extends FacebookRequest
 				break;
 			
 			case 'pictures':
-				return $graph_object->source;
+				return $graph_object->getProperty('source');
 				break;
 			
-			case 'words':
+			case 'text':
 				return null; //no appropriate field
 				break;
 			
@@ -157,15 +169,19 @@ class FB_Media extends FacebookRequest
 				//Modify the request string
 				$query = $query . '/photos';
 
-				$album_object = new FacebookRequest( $_SESSION['fb_session'], 'GET', $query )->execute()->getGraphObject();
+				$album_object = new FacebookRequest( $_SESSION['fb_session'], 'GET', $query );
+				$album_object = $album_object->execute()->getGraphObject();
 
 				//the array that will be returned
 				$images = array();
 
 				//loop through the returned object and return a simple array of image URLS
-				foreach ($album_object['data'] as $image) {
-					array_push($images, $image['images'][1]->source; //960 long edge image
-				}
+
+				//** Ive removed the next section because I couldn't get th esyntax right
+
+				// foreach ($album_object['data'] as $image) {
+				// 	array_push($images, $image['images'][1]->source) //960 long edge image
+				// }
 
 				return $images;
 				break;
@@ -178,20 +194,23 @@ class FB_Media extends FacebookRequest
 
 	public function get_video()
 	{
+		$media_type = $this->media_type;
+		$graph_object = $this->graph_object;
+
 		switch ($media_type) {
 			case 'link':
 				return null; //no appropriate field
 				break;
 			
 			case 'video':
-				return $graph_object->embed_html;
+				return $graph_object->getProperty('embed_html');
 				break;
 			
 			case 'pictures':
 				return null; //no appropriate field
 				break;
 			
-			case 'words':
+			case 'text':
 				return null; //no appropriate field
 				break;
 			
@@ -206,6 +225,11 @@ class FB_Media extends FacebookRequest
 	}
 
 	public function get_comments(){
+
+		$media_type = $this->media_type;
+		$graph_object = $this->graph_object;
+		$object_link = $graph_object->getProperty('actions')->getProperty('0')->getProperty('link');
+
 		switch ($media_type) {
 			
 			case 'album':
@@ -213,15 +237,20 @@ class FB_Media extends FacebookRequest
 				break;
 			
 			default:
-				return $graph_object->comments['data'];
+				//return $object_link;
+				return '<div class="fb-comments" data-href="' . $object_link . '" data-numposts="5" data-colorscheme="light"></div>';
 				break;
 		}
 	}
 
 	public function get_link(){
+
+		$media_type = $this->media_type;
+		$graph_object = $this->graph_object;
+
 		switch ($media_type) {
 			case 'link':
-				return $graph_object->link;
+				return $graph_object->getProperty('link');
 				break;
 			
 			case 'video':
@@ -233,7 +262,7 @@ class FB_Media extends FacebookRequest
 				return null; //no appropriate field
 				break;
 			
-			case 'words':
+			case 'text':
 				return null; //no appropriate field
 				break;
 			
