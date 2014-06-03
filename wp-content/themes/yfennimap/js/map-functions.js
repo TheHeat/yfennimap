@@ -72,15 +72,7 @@ function createMarker(center, title, wpid) {
     		$('.toolbox').hide('slide', {direction: 'right'}, function(){
     			$('#media-modal').slideDown(function(){
 
-    				$.post('wp-admin/admin-ajax.php', {
-    					data: { action: 'modal_content', pin_id: wpid },
-    					post_id: wpid,
-	    				}, 
-	    				function(data){
-	    					console.log($(data))
-	    					$('.modal-content').append($(data));
-	    				}
-    				);
+    				$('.modal-content').append(singlePin);
       				
     				$('.modal-close').click(function(){
 		    			$('#media-modal').slideUp(function(){
