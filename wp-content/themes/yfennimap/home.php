@@ -13,8 +13,6 @@ get_header();
 
 <?php get_template_part('map-pins' ); ?>
 
-<?php if(fb_get_token()): ?>
-
 <div class="toolbox">
 	<div class="actions" style="display:none;"></div>
 	<div class="handle" tabindex="1">Add a pin</div>
@@ -25,7 +23,6 @@ get_header();
 		    <a href="#" data-media="pictures" class="tool add pictures">Pictures</a>
 		    <a href="#" data-media="text" class="tool add words">Words</a>
   	</div>
-<?php endif; ?>
 </div>
 <div id="map-canvas">
 </div>

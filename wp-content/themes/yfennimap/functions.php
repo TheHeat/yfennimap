@@ -2,8 +2,12 @@
 /**
  * yfennimap functions and definitions
  *
- * @package yfennimap
+ * @package yfenni
  */
+
+// Error Reporting for DEV
+ini_set('display_errors',1); 
+error_reporting(E_ALL);
 
 /**
  * Set the content width based on the theme's design and stylesheet.
@@ -219,7 +223,7 @@ require get_template_directory() . '/inc/jetpack.php';
 /**
  * Load our Facebook PHP SDK
  */
-require_once(get_template_directory() . '/inc/facebook-functions.php');
+require get_template_directory() . '/inc/facebook-functions.php';
 
 
 // Ajax function

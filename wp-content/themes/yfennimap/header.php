@@ -1,4 +1,4 @@
--<?php
+<?php
 /**
  * The Header for our theme.
  *
@@ -9,25 +9,28 @@
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
-<head>
-<meta charset="<?php bloginfo( 'charset' ); ?>">
-<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-<title><?php wp_title( '|', true, 'right' ); ?></title>
-<link rel="profile" href="http://gmpg.org/xfn/11">
-<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
-<?php wp_head(); ?>
-</head>
+	<head>
+		<meta charset="<?php bloginfo( 'charset' ); ?>">
+		<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+		<title><?php wp_title( '|', true, 'right' ); ?></title>
+		<link rel="profile" href="http://gmpg.org/xfn/11">
+		<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
 
-<body <?php body_class(); ?> <?php if(is_home()){ echo 'onload="initialize()"'; }?>>
+		<?php wp_head(); ?>
+	</head>
+
+<body <?php body_class(); ?> onload="initialize();">
 	<div class="site-wrapper">
 		<header id="masthead" class="site-header" role="banner">
 			<div id="site-branding">
-				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
+				<h1 class="site-title">
+					<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
+						<?php bloginfo( 'name' ); ?>
+					</a>
+				</h1>
 			</div>
-			<?php				
-			fb_login(); ?>
+			<?php fb_login(); ?>
 			<nav id="site-navigation" class="main-navigation" role="navigation">
 				<?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
 			</nav>
 		</header>
-

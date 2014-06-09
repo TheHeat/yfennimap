@@ -20,7 +20,7 @@ function initialize() {
 
 	var mapOptions = {
 		center: latlng,
-		zoom: 6,
+		zoom: 12,
 		disableDefaultUI: true,
 	};
 
