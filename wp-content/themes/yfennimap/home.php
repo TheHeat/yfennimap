@@ -15,7 +15,6 @@ get_header();
 
 <?php if(fb_get_token()): ?>
 	<div class="toolbox">
-
 		
 		<div class="actions" style="display:none;"></div>
 		<div class="handle" tabindex="1">Add a pin</div>

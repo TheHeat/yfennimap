@@ -65,7 +65,7 @@ class FB_Media extends FacebookRequest
 	  	// get response
 	  	$this->graph_object = $response->getGraphObject();
 
-		//Our pin will have a media type = pictures if the FB object is either photo or album. 
+		//Our pin will have a media type = image if the FB object is either photo or album. 
 		//Do a little check to see if we're in an album, and if so set media_type = album
 		// if($graph_object->album_id) //This probably isn't right, but I'm offline now and don't have access to the actual property. Find a field that exists in the album object but not the photo object and test for it
 		// {
@@ -89,7 +89,7 @@ class FB_Media extends FacebookRequest
 				return $graph_object->getProperty('description');
 				break;
 			
-			case 'pictures':
+			case 'image':
 				return $graph_object->getProperty('name');
 				break;
 			
@@ -121,7 +121,7 @@ class FB_Media extends FacebookRequest
 				return null; //no appropriate field
 				break;
 			
-			case 'pictures':
+			case 'image':
 				return null; //no appropriate field
 				break;
 			
@@ -154,8 +154,9 @@ class FB_Media extends FacebookRequest
 				return null; //no appropriate field
 				break;
 			
-			case 'pictures':
-				return $graph_object->getProperty('source');
+			case 'image':
+				return '<div class="fb-post" data-href="'.$graph_object->getProperty('link').'"></div>';
+				
 				break;
 			
 			case 'text':
@@ -206,7 +207,7 @@ class FB_Media extends FacebookRequest
 				return $graph_object->getProperty('embed_html');
 				break;
 			
-			case 'pictures':
+			case 'image':
 				return null; //no appropriate field
 				break;
 			
@@ -228,18 +229,23 @@ class FB_Media extends FacebookRequest
 
 		$media_type = $this->media_type;
 		$graph_object = $this->graph_object;
-		$object_link = $graph_object->getProperty('actions')->getProperty('0')->getProperty('link');
 
 		switch ($media_type) {
-			
+
 			case 'album':
 				return null; //I can't remember if there are comments on an album. If there are, this whole switch block can be removed. If not, this switch case will cover that contingency
 				break;
-			
+			case 'words':
+			case 'link':
+				$object_link = $graph_object->getProperty('actions')->getProperty('0')->getProperty('link');
+				break;
+			case 'image':
+				$object_link = 'http://localhost/yfennimap/pin/458/';
 			default:
 				//return $object_link;
-				return '<div class="fb-comments" data-href="' . $object_link . '" data-numposts="5" data-colorscheme="light"></div>';
 				break;
+			return '<div class="fb-comments" data-href="' . $object_link . '" data-numposts="5" data-colorscheme="light"></div>';
+
 		}
 	}
 
@@ -258,7 +264,7 @@ class FB_Media extends FacebookRequest
 				return null; //no appropriate field
 				break;
 			
-			case 'pictures':
+			case 'image':
 				return null; //no appropriate field
 				break;
 			
