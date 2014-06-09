@@ -185,12 +185,12 @@ function addNewPin(){
     });
 }
 
-function toolboxLinks(postion){
+function toolboxLinks(position){
 
 	var siteRoot = '<?php echo esc_url( home_url( '/' ) ); ?>';
 	var saveQueryMedia = 'media=' + newPinMedia;
-	var saveQueryLat = 'lat=' + postion.k;
-	var saveQueryLng = 'lng=' + postion.A;
+	var saveQueryLat = 'lat=' + position.k;
+	var saveQueryLng = 'lng=' + position.A;
 		
 	var saveNewPin = '<a class="action save" href="' + siteRoot + '/upload-form/?' + saveQueryMedia + '&' + saveQueryLat + '&' + saveQueryLng + '">Add ' + newPinMediaLabel + '</a>';
 	var cancelNewPin = '<span class="action cancel">Cancel</span>';
