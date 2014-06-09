@@ -72,7 +72,7 @@ if (
 echo '<div class="page-wrapper">';
 
 $fb_media = new FB_Media('421');
-echo '<pre>'; print_r($fb_media); echo '</pre>'; 
+echo '<pre>'; print_r($fb_media->getgraphobject; echo '</pre>'; 
 
 echo $fb_media-> get_text();
 echo $fb_media-> get_long_text();
