@@ -31,12 +31,11 @@
 	
 	//get location info from pin placement from url string nd add to acf google map field
 	$location['address'] = '';
-	$location['lng'] = $_GET['lng'];
-	$location['lat'] = $_GET['lat'];
+	$location['lng'] = $_GET['lat'];
+	$location['lat'] = $_GET['lng'];
 	update_field( 'field_5362ae02910ff',  $location, $post_id);
 
 	$location_field = get_field( 'field_5362ae02910ff', $post_id);
-	print_r( $location_field);
 
 	// if user has uploaded an image file
 	if ( $media == 'pictures' || $media == 'video'):

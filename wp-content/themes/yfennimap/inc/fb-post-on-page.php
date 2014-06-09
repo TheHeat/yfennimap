@@ -30,9 +30,8 @@ function fb_post_on_page($token, $edge, $content){
 	$params['name'] = $content['title'];
 	$params['message'] = $content['description'];
 
-	if($edge == 'photos') 	$params['url'] = $content['url'];
 	if($edge == 'feed') 	$params['link'] = $content['url'];
-	if($edge == 'videos')	$params['source'] = $content['source'];
+	if($edge == 'videos' || $edge == 'photos')	$params['source'] = $content['source'];
 
 	$request = new FacebookRequest( $session, 'POST', $url, $params);
 
