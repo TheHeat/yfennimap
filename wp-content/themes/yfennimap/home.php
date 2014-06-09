@@ -30,7 +30,7 @@ get_header();
 <?php endif; ?>
 <div id="map-canvas">
 </div>
-<div id="media-modal">
+<div id="modal-window">
 
 </div>
 <?php get_footer(); ?>

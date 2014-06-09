@@ -81,20 +81,11 @@ function createMarker(center, title, wpid) {
 				$.post(the_ajax_script.ajaxurl, data, 
 
 
-					function(response) {
-	    				console.log(response); 
-		    			$('#media-modal').slideDown(function(){
-
-		    				$('.modal-content').append(response.post_title);
-		    				
-		    				$('.modal-close').click(function(){
-				    			$('#media-modal').slideUp(function(){
-		    						$('.modal-content').empty();
-		    						$('.toolbox').show('slide', {direction: 'right'});
-		    					});
-		    				});
-		    			});
-		    		});
+				function(response) {
+	    			console.log(response); 
+	    			var content = response.post_title;
+	    			openModal();
+		    	});
 
     		
     			
@@ -107,6 +98,23 @@ function createMarker(center, title, wpid) {
     markers.push(marker);
 
   }
+
+function openModal(content){
+
+	jQuery('#modal-window').slideDown(function(){
+		
+		jQuery('.modal-content').append(content);
+		jQuery('.modal-close').click(function(){
+			jQuery('#modal-window').slideUp(function(){
+		    	jQuery('.modal-content').empty();
+		    	jQuery('.toolbox').show('slide', {direction: 'right'});
+		    });
+		});
+	});
+
+}
+
+
 
 // Sets the map on all markers in the array.
 function setAllMap(map) {
@@ -213,7 +221,7 @@ jQuery(document).ready(function($){
 	var modalCloser = '<span class="modal-close">&times;</span>';
 	var modalContent = '<div class="modal-content"></div>';
 
-	$('#media-modal').prepend(modalCloser, modalContent);
+	$('#modal-window').prepend(modalCloser, modalContent);
 
 	var addLabel = 'Add a pin';
 
