@@ -7,6 +7,7 @@
 	// what media type are we adding to the map
 	var newPinMedia;
 	var newPinLatLng = [];
+	var saveNewPin;
 
 	// convert $pins from PHP to JSON object
 
@@ -155,6 +156,12 @@ function showAddress(addressString) {
     });
 }
 
+
+function resetContent(element, newContent){
+		jQuery(element).empty();
+		jQuery(element).prepend(newContent);
+	}
+
 // Create a draggable marker in the centre of the current view and pass its LatLng to a var
 
 function addNewPin(){
@@ -174,17 +181,33 @@ function addNewPin(){
 
     	newPinLatLng = newMarker.getPosition();
     	console.log(newPinLatLng);
+    	toolboxLinks(newPinLatLng);
     });
+}
+
+function toolboxLinks(postion){
+
+	var siteRoot = '<?php echo esc_url( home_url( '/' ) ); ?>';
+	var saveQueryMedia = 'media=' + newPinMedia;
+	var saveQueryLat = 'lat=' + postion.k;
+	var saveQueryLng = 'lng=' + postion.A;
+		
+	var saveNewPin = '<a class="action save" href="' + siteRoot + '/upload-form/?' + saveQueryMedia + '&' + saveQueryLat + '&' + saveQueryLng + '">Add ' + newPinMediaLabel + '</a>';
+	var cancelNewPin = '<span class="action cancel">Cancel</span>';
+
+		
+	resetContent('.toolbox .handle', 'Change Pin Type');
+
+	// $('.toolbox .handle').empty();
+		// $('.toolbox .handle').prepend(newPinMediaLabel);
+		jQuery('.toolbox .actions').html(cancelNewPin + saveNewPin);
 }
 
 
 jQuery(document).ready(function($){
 
 
-	function resetContent(element, newContent){
-		$(element).empty();
-		$(element).prepend(newContent);
-	}
+
 
 	// Create the .modal-close and .modal-content
 	var modalCloser = '<span class="modal-close">&times;</span>';
@@ -208,22 +231,9 @@ jQuery(document).ready(function($){
 		newPinMediaLabel = $(this).text();
 		console.log(newPinMediaLabel);
 
+		toolboxLinks(newPinLatLng);
 
-		// additional toolbox actions
-		var siteRoot = '<?php echo esc_url( home_url( '/' ) ); ?>';
-		var saveQueryMedia = 'media=' + newPinMedia;
-		var saveQueryLat = 'lat=' + newPinLatLng.A;
-		var saveQueryLng = 'lng=' + newPinLatLng.k;
-		
-		var saveNewPin = '<a class="action save" href="' + siteRoot + '/upload-form/?' + saveQueryMedia + '&' + saveQueryLat + '&' + saveQueryLng + '">Add ' + newPinMediaLabel + '</a>';
-		var cancelNewPin = '<span class="action cancel">Cancel</span>';
 
-		
-		resetContent('.toolbox .handle', 'Change Pin Type');
-
-		// $('.toolbox .handle').empty();
-		// $('.toolbox .handle').prepend(newPinMediaLabel);
-		$('.toolbox .actions').html(cancelNewPin + saveNewPin);
 		$('.toolbox .actions').show('slide', {direction: 'left'});
 		$('.toolbox .actions .cancel').click(function(){
 			$('.toolbox .actions').hide('slide', {direction: 'left'});
