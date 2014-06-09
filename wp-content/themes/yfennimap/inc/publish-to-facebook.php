@@ -40,13 +40,10 @@ use Facebook\FacebookOtherException;
 		case ('pictures'): 
 			if ($media == 'pictures') $edge = 'photos';
 
-			echo $edge;
-
 			$attachment = get_field('field_5362addb9bf86', $post_id, true)[0];
 
 			$attachment_title = $attachment['file']['title'];
 			$attachment_filepath = get_attached_file( $attachment['file']['id'], true );
-			echo $attachment_filepath;
 			$attachment_mimetype = $attachment['file']['mime_type'];
 
 			$content['source'] = new CURLFile( $attachment_filepath, $attachment_mimetype, $attachment_title);
