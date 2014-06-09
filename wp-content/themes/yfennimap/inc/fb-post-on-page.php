@@ -24,12 +24,15 @@ function fb_post_on_page($token, $edge, $content){
 
 	$url = '/' . page_id . '/' . $edge;
 
-	$params = array(
-		'name' => $content['title'],
-		'message' => $content['description'] ,
-		'link' => $content['url'],
-		'source' => $content['source']
-		);
+
+	$params = array();
+
+	$params['name'] = $content['title'];
+	$params['message'] = $content['description'];
+
+	if($edge == 'photos') 	$params['url'] = $content['url'];
+	if($edge == 'feed') 	$params['link'] = $content['url'];
+	if($edge == 'videos')	$params['source'] = $content['source'];
 
 	$request = new FacebookRequest( $session, 'POST', $url, $params);
 
