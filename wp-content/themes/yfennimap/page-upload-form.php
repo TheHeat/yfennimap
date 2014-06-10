@@ -28,12 +28,7 @@ get_header(); ?>
 			</fieldset>
 		<?php endif ?>
 
-		<?php if ( $media == 'video' || $media == 'link' ): ?>
-		<fieldset>
-			<label for="link"><?php _e('Link:') ?></label>
-			<input type="text" name="link" id="link"  multiple="false" />
-		</fieldset>
-		<?php endif ?>
+
 
 		<?php
 		// validation

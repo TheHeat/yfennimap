@@ -51,8 +51,6 @@ class FB_Media extends FacebookRequest
 		//Get the FB object ID from the WP post
 		$fb_object_id = get_post_meta( $pin_id, 'new_fb_object', true); //AHS: probably not the right custom field key
 
-		print_r($fb_object_id);
-
 		$this->media_type = get_field('media_type', $pin_id);
 
 		//print_r($fb_object_id);

@@ -13,6 +13,7 @@ use Facebook\FacebookClientException;
 use Facebook\FacebookOtherException;
 
 	global $wpdb;
+
 	$post_id = $post->ID;
 
 //check if this is existing content

@@ -173,6 +173,79 @@ if(function_exists("register_field_group"))
 		),
 		'menu_order' => 0,
 	));
+
+	register_field_group(array (
+		'id' => 'acf_options',
+		'title' => 'Options',
+		'fields' => array (
+			array (
+				'key' => 'field_53970c9b6e9ff',
+				'label' => 'Page ID',
+				'name' => 'page_id',
+				'type' => 'text',
+				'default_value' => '',
+				'placeholder' => '',
+				'prepend' => '',
+				'append' => '',
+				'formatting' => 'html',
+				'maxlength' => '',
+			),
+			array (
+				'key' => 'field_53970cc16ea00',
+				'label' => 'App ID',
+				'name' => 'app_id',
+				'type' => 'text',
+				'default_value' => '',
+				'placeholder' => '',
+				'prepend' => '',
+				'append' => '',
+				'formatting' => 'html',
+				'maxlength' => '',
+			),
+			array (
+				'key' => 'field_53970cd36ea01',
+				'label' => 'App Secret',
+				'name' => 'app_secret',
+				'type' => 'text',
+				'default_value' => '',
+				'placeholder' => '',
+				'prepend' => '',
+				'append' => '',
+				'formatting' => 'html',
+				'maxlength' => '',
+			),
+			array (
+				'key' => 'field_53970ce56ea02',
+				'label' => 'Page Token',
+				'name' => 'page_token',
+				'type' => 'text',
+				'default_value' => '',
+				'placeholder' => '',
+				'prepend' => '',
+				'append' => '',
+				'formatting' => 'html',
+				'maxlength' => '',
+			),
+		),
+		'location' => array (
+			array (
+				array (
+					'param' => 'options_page',
+					'operator' => '==',
+					'value' => 'acf-options-facebook-settings',
+					'order_no' => 0,
+					'group_no' => 0,
+				),
+			),
+		),
+		'options' => array (
+			'position' => 'normal',
+			'layout' => 'no_box',
+			'hide_on_screen' => array (
+			),
+		),
+		'menu_order' => 0,
+	));
 }
 
 ?>

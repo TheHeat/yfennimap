@@ -189,12 +189,12 @@ add_action('wp_ajax_nopriv_pin_loader', 'yfenni_pin_template');
 /**
  * Get the ACF plugin
  */
-define( 'ACF_LITE' , true );
+//define( 'ACF_LITE' , true );
 include_once('advanced-custom-fields/acf.php' );
 /**
  * Load our Custom Fields
  */
-require_once(get_template_directory() . '/inc/acf-custom-fields.php');
+require get_template_directory() . '/inc/acf-custom-fields.php';
 
 /**
  * Implement the Custom Header feature.
@@ -291,9 +291,11 @@ function register_cpt_pin() {
 }
 
 function post_published( $new_status, $old_status, $post ) {
-    if ( $old_status != 'publish' && $new_status == 'publish' ) {
-		require get_template_directory() . '/inc/publish-to-facebook.php';
-    }
+	if( $post->post_type == 'pin'){
+	    if ( $old_status != 'publish' && $new_status == 'publish' ) {
+			require get_template_directory() . '/inc/publish-to-facebook.php';
+	    }
+	}
 }
 add_action( 'transition_post_status', 'post_published', 10, 3 );
 
@@ -315,16 +317,8 @@ function insert_attachment($file_handler,$post_id,$setthumb='false') {
   return $attach_id;
  }
 
-function current_url_outside_loop(){
-	/**
-	*Equivalent of get_permalink() for use outside of the loop
-	*
-	*
-	**/
-	global $wp;
-	$current_url = add_query_arg( $wp->query_string, '', home_url( $wp->request ) );
-
-	return $current_url;
+if( function_exists('acf_add_options_sub_page') )
+{
+    acf_add_options_sub_page( 'Facebook Settings' );
 }
-add_filter('show_admin_bar', '__return_false');
 

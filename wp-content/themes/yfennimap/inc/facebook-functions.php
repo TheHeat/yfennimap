@@ -26,10 +26,10 @@ use Facebook\FacebookClientException;
 use Facebook\FacebookOtherException;
 
 //app ip, app secret, page token, page id
-define('page_id', '276813939159864');
-define('app_id', '235958703262480');
-define('app_secret', 'f608ec2687f60c051396c4d0fabaae06');
-define('page_token', 'CAADWmmqwixABABZBGCTWxMqlBqIgxWHQeSdvo0WfCyKNxp1NDMwNJ1yZAUTVSIabQ7oV2XgzqcruOow1zoxZBM0EcAj58rLkxHai4XDjdgHaHG9jV1L4NrDNyMwMUqadWA3QoAo9CYfCQ8ke5uAJ5LYhH1UcMc3gReEm4yNfjteAlhMFKCh');
+define('page_id', get_field('field_53970c9b6e9ff', 'option'));
+define('app_id', get_field('field_53970cc16ea00', 'option'));
+define('app_secret', get_field('field_53970cd36ea01', 'option'));
+define('page_token', get_field('field_53970ce56ea02', 'option'));
 
 // init app with app id and secret
 FacebookSession::setDefaultApplication( app_id, app_secret );
