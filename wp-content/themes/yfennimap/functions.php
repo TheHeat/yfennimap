@@ -69,17 +69,17 @@ function yfenni_setup() {
 endif; // yfenni_setup
 add_action( 'after_setup_theme', 'yfenni_setup' );
 
-add_action('init', 'myStartSession', 1);
-add_action('wp_logout', 'myEndSession');
-add_action('wp_login', 'myEndSession');
+add_action('init', 'yfenniStartSession', 1);
+add_action('wp_logout', 'yfenniEndSession');
+add_action('wp_login', 'yfenniEndSession');
 
-function myStartSession() {
+function yfenniStartSession() {
     if(!session_id()) {
         session_start();
     }
 }
 
-function myEndSession() {
+function yfenniEndSession() {
     session_destroy ();
 }
 
@@ -289,13 +289,12 @@ function register_cpt_pin() {
     register_post_type( 'pin', $args );
 }
 
-function publish_pin( $post ) {
-
-	require get_template_directory() . '/inc/publish-to-facebook.php';
-
+function post_published( $new_status, $old_status, $post ) {
+    if ( $old_status != 'publish' && $new_status == 'publish' ) {
+		require get_template_directory() . '/inc/publish-to-facebook.php';
+    }
 }
-add_action( 'pending_to_publish', 'publish_pin', 9);
-add_action( 'draft_to_publish', 'publish_pin', 9);
+add_action( 'transition_post_status', 'post_published', 10, 3 );
 
 
 function insert_attachment($file_handler,$post_id,$setthumb='false') {
