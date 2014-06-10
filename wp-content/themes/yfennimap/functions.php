@@ -157,6 +157,7 @@ function get_pins(){
 			$pin['lng'] 	= $location['lng'];
 			$pin['title'] 	= get_the_title();
 			$pin['wpid']	= get_the_id();
+			$pin['fbURL']	= get_post_meta( get_the_ID(), 'fb_post_url', true);
 
 			// Push to the $pins object
 			$pins[ get_the_ID() ] = $pin;

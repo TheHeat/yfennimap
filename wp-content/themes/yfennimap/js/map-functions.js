@@ -2,8 +2,10 @@
 	var map;
 	var markers = [];
 	var geocoder;
-	var bounds;	
+	var bounds;
+
 	var singlePin;
+	var singlePinFB;
 	// what media type are we adding to the map
 	var newPinMedia;
 	var newPinLatLng = [];
@@ -38,10 +40,11 @@ function initialize() {
 			var lng 	= pinsMap[i].lng;
 			var center 	= new google.maps.LatLng(lat, lng);
 			var title 	= pinsMap[i].title;
-			var wpid	= pinsMap[i].wpid;
+			// var wpid	= pinsMap[i].wpid;
+			var fbURL	= pinsMap[i].fbURL;
 
 
-			createMarker(center, title, wpid);
+			createMarker(center, title, fbURL);
 
 			// extend the bounds to include this marker's position
 			bounds.extend(center);  
@@ -54,7 +57,7 @@ function initialize() {
 	}
 }
 
-function createMarker(center, title, wpid) {
+function createMarker(center, title, fbURL) {
 
     var marker = new google.maps.Marker({
       position: center,
@@ -65,7 +68,8 @@ function createMarker(center, title, wpid) {
 
     google.maps.event.addListener(marker, 'click', function () {
     	map.setCenter(marker.getPosition());
-    	singlePin = wpid;
+    	// singlePin = wpid;
+    	singlePinFB = fbURL;
     	// console.log(singlePin);
 
     	jQuery(function($){
@@ -89,24 +93,17 @@ function createMarker(center, title, wpid) {
   }
 
 function loadPin(){
-	var data = {
-		action: 'pin_loader',
-		pin_id: singlePin
-	};
+
+	var fbURL = singlePinFB;
+	var fbPost = '<div class="fb-post" data-href="' + fbURL + '"></div>';
+	var fbComments = '<div class="fb-comments" data-href="' + fbURL + '"></div>';
+	var content = fbPost + fbComments;
+
+	console.log(fbURL);
+
+	openModal(content);
 
 
-	// the_ajax_script.ajaxurl is a variable that will contain the url to the ajax processing file
-	jQuery.post(the_ajax_script.ajaxurl, data, function(response) {
-
-		// This will be retrieved from the pin object, but for now RIP Rik Mayall
-		var fbURL = 'http://www.facebook.com/PokeHQ/posts/753773711329591';
-		var fbPost = '<div class="fb-post" data-href="' + fbURL + '"></div>';
-		var fbComments = '<div class="fb-comments" data-href="' + fbURL + '"></div>';
-		var content = fbPost + fbComments;
-
-		console.log(content);
-		openModal(content);
-	});
 }
 
 function openModal(content){
