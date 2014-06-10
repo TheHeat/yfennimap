@@ -49,7 +49,9 @@ class FB_Media extends FacebookRequest
 
 	function __construct($pin_id){
 		//Get the FB object ID from the WP post
-		$fb_object_id = get_post_meta( $pin_id, 'new_fb_object')[0]; //AHS: probably not the right custom field key
+		$fb_object_id = get_post_meta( $pin_id, 'new_fb_object', true); //AHS: probably not the right custom field key
+
+		print_r($fb_object_id);
 
 		$this->media_type = get_field('media_type', $pin_id);
 
@@ -60,6 +62,8 @@ class FB_Media extends FacebookRequest
 
 		//call the parent constructor
 		$request = parent::__construct($_SESSION['fb_session'], 'GET', $query);
+
+		//print_r($_SESSION['fb_session']);
 
 		$response = $request->execute();
 	  	// get response
@@ -72,6 +76,37 @@ class FB_Media extends FacebookRequest
 		// 	$media_type = 'album';
 		// }
 
+	}
+	public function get_url()
+	{
+		$graph_object = $this->graph_object;
+		$fb_media_type = $this->media_type;
+
+		switch ($fb_media_type) {
+			case 'link':
+				return $graph_object->getProperty('actions')->getProperty('0')->getProperty('link');
+				break;
+			
+			case 'video':
+				return $graph_object->getProperty('link');
+				break;
+			
+			case 'image':
+				return $graph_object->getProperty('link');
+				break;
+			
+			case 'text':
+				return $graph_object->getProperty('actions')->getProperty('0')->getProperty('link');
+				break;
+			
+			case 'album':
+				return $graph_object->getProperty('link');
+				break;
+			
+			default:
+				# nothing here...
+				break;
+		}
 	}
 
 	public function get_text()

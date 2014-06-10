@@ -11,9 +11,19 @@ use Facebook\GraphObject;
 use Facebook\FacebookPermissionException;
 use Facebook\FacebookClientException;
 use Facebook\FacebookOtherException;
-	
+
 	global $wpdb;
 	$post_id = $post->ID;
+
+//check if this is existing content
+if(get_field('field_537ccb499a819', $post_id, true)):
+
+	// if it is save the url against the fb_post_url wp custom field for display 
+	$existing_content_url = (get_field('field_537ccb9c9a81a', $post_id, true));
+
+	$fb_url = $existing_content_url;
+
+else:
 
 	// WP Variables
 	$media = get_post_meta($post_id, 'media_type', true);
@@ -54,6 +64,15 @@ use Facebook\FacebookOtherException;
 
 	$fb_object = fb_post_on_page($token, $edge, $content);
 
+	//save facebook bject against post
 	add_post_meta( $post_id, 'new_fb_object', $fb_object);
 
+	//save url of facebook post
+	$fb_media = new FB_Media($post->ID);
+
+	$fb_url = $fb_media-> get_url();
+
+endif;
+
+	add_post_meta( $post_id, 'fb_post_url', $fb_url );
 ?>

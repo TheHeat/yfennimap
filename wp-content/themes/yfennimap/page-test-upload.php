@@ -71,18 +71,7 @@ if (
 <?php
 echo '<div class="page-wrapper">';
 
-$fb_media = new FB_Media('421');
-echo '<pre>'; print_r($fb_media->getgraphobject; echo '</pre>'; 
-
-echo $fb_media-> get_text();
-echo $fb_media-> get_long_text();
-echo $fb_media-> get_images();
-echo $fb_media-> get_video();
-echo $fb_media-> get_comments();
-echo $fb_media-> get_link();
-
-
-echo '</div>';
+echo 'token: '.fb_get_token();
 
 get_footer( );
 
