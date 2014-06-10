@@ -30,7 +30,4 @@
 				</h1>
 			</div>
 			<?php fb_login(); ?>
-			<nav id="site-navigation" class="main-navigation" role="navigation">
-				<?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
-			</nav>
 		</header>
