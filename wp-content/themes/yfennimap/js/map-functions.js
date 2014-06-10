@@ -70,9 +70,10 @@ function createMarker(center, title, wpid) {
 
     	jQuery(function($){
 
-    		var gotTools = $('toolbox:visible');
+    		// var gotTools = $('toolbox:visible');
+    		// console.log(gotTools);
 
-    		if(gotTools == 1){
+    		if($('.toolbox').is(':visible')){
     			$('.toolbox').hide('slide', {direction: 'right'}, function(){
 					loadPin();   			
     			});
