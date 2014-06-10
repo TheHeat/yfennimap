@@ -70,27 +70,15 @@ function createMarker(center, title, wpid) {
 
     	jQuery(function($){
 
-    		var data = {
-    			action: 'pin_loader',
-    			pin_id: singlePin
-    		};
+    		var gotTools = $('toolbox:visible');
 
-    		$('.toolbox').hide('slide', {direction: 'right'}, function(){
-
-				// the_ajax_script.ajaxurl is a variable that will contain the url to the ajax processing file
-				$.post(the_ajax_script.ajaxurl, data, 
-
-
-				function(response) {
-	    			console.log(response); 
-	    			var content = response.post_title;
-	    			openModal();
-		    	});
-
-    		
-    			
-    		});
-    		
+    		if(gotTools == 1){
+    			$('.toolbox').hide('slide', {direction: 'right'}, function(){
+					loadPin();   			
+    			});
+    		}else{
+    			loadPin();
+    		}
     	});
   
     });
@@ -98,6 +86,20 @@ function createMarker(center, title, wpid) {
     markers.push(marker);
 
   }
+
+function loadPin(){
+	var data = {
+		action: 'pin_loader',
+		pin_id: singlePin
+	};
+
+	// the_ajax_script.ajaxurl is a variable that will contain the url to the ajax processing file
+	jQuery.post(the_ajax_script.ajaxurl, data, function(response) {
+		console.log(response);
+		var content = response.post_title;
+		openModal(JSON.stringify(response));
+	});
+}
 
 function openModal(content){
 
@@ -214,9 +216,6 @@ function toolboxLinks(position){
 
 jQuery(document).ready(function($){
 
-
-
-
 	// Create the .modal-close and .modal-content
 	var modalCloser = '<span class="modal-close">&times;</span>';
 	var modalContent = '<div class="modal-content"></div>';
@@ -229,7 +228,12 @@ jQuery(document).ready(function($){
 	$('.toolbox .tool').click(function(){
 		clearMarkers();
 
+		// Check whether the user is switching media types or starting from scratch
+		var addingMessage = 'Drag the marker, hit the add button.';
+
+		// Only show the message if the user is opening the 
 		if(!newPinMedia){
+			openModal(addingMessage);
 			addNewPin();
 		}
 
@@ -240,7 +244,6 @@ jQuery(document).ready(function($){
 		console.log(newPinMediaLabel);
 
 		toolboxLinks(newPinLatLng);
-
 
 		$('.toolbox .actions').show('slide', {direction: 'left'});
 		$('.toolbox .actions .cancel').click(function(){
