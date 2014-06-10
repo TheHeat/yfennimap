@@ -93,11 +93,18 @@ function loadPin(){
 		pin_id: singlePin
 	};
 
+
 	// the_ajax_script.ajaxurl is a variable that will contain the url to the ajax processing file
 	jQuery.post(the_ajax_script.ajaxurl, data, function(response) {
-		console.log(response);
-		var content = response.post_title;
-		openModal(JSON.stringify(response));
+
+		// This will be retrieved from the pin object, but for now RIP Rik Mayall
+		var fbURL = 'http://www.facebook.com/PokeHQ/posts/753773711329591';
+		var fbPost = '<div class="fb-post" data-href="' + fbURL + '"></div>';
+		var fbComments = '<div class="fb-comments" data-href="' + fbURL + '"></div>';
+		var content = fbPost + fbComments;
+
+		console.log(content);
+		openModal(content);
 	});
 }
 
@@ -106,6 +113,7 @@ function openModal(content){
 	jQuery('#modal-window').slideDown(function(){
 		
 		jQuery('.modal-content').append(content);
+		FB.XFBML.parse();
 		jQuery('.modal-close').click(function(){
 			jQuery('#modal-window').slideUp(function(){
 		    	jQuery('.modal-content').empty();

@@ -124,7 +124,7 @@ function yfenni_scripts() {
 		wp_localize_script( 'map-functions', 'pinsMap', get_pins() );
 		// make the ajaxurl var available to the map-functions script
 		wp_localize_script( 'map-functions', 'the_ajax_script', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );
-		wp_enqueue_script( 'facebook',get_template_directory_uri() . '/js/facebook.js' );
+		wp_enqueue_script( 'facebook',get_template_directory_uri() . '/js/facebook.js', array(), true );
 	//}
 }
 add_action( 'wp_enqueue_scripts', 'yfenni_scripts' );
