@@ -29,7 +29,7 @@ use Facebook\FacebookOtherException;
 define('page_id', '276813939159864');
 define('app_id', '235958703262480');
 define('app_secret', 'f608ec2687f60c051396c4d0fabaae06');
-define('page_token', 'CAACEdEose0cBAO5THb8knhpxsWS2P7rzyPMB9ejZC283TYHmkpbiwlZBbus9S5qb6BLOe7eG44d883jkJueyNDbt5ZC4YnPvzSDRHAThZBMI18CFX5L5A9zWZAiUQfTiJ6k75oxXhUp6hvp3ivi8axZBOlg8MqgKI01jcWhFLxiCs9ZCtZAXASHZC0gaGoAwI6OEZD');
+define('page_token', 'CAACEdEose0cBAAqyzh2LVCm91rbT1ZCqwIkEXzwZB7FYEuHNWScE6ll8b12e5urnhk5p8ohMiQvn8NKqZCcAO61iwJpuxz2ZBab00dgmZCtx3hNdMGyCTb4bxlO7JP9jiYZBairRJylhEiRhKab2V9ZCiwm1nC3W1IyVmBNjdPeOJ8ZA27rKMSOHpOnRiFk0mFYZD');
 
 // init app with app id and secret
 FacebookSession::setDefaultApplication( app_id, app_secret );
