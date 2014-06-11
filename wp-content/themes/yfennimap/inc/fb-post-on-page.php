@@ -17,6 +17,8 @@ function fb_post_on_page($token, $edge, $content){
 	//and act appropriately
 	$session = new FacebookSession($token);
 
+	//print_r($session);
+
 	//photo, video, feed
 	//content is associative array containing source (optional), message, location
 	//get page token from constant into FacebookSessions
@@ -35,6 +37,8 @@ function fb_post_on_page($token, $edge, $content){
 
 	$request = new FacebookRequest( $session, 'POST', $url, $params);
 
+	//echo '<pre>';print_r($request);
+
 	try{
 		$response = $request->execute()->getGraphObject();
 	
@@ -42,7 +46,7 @@ function fb_post_on_page($token, $edge, $content){
 	}
 	catch( FacebookRequestException $ex ) {
 	  // When Facebook returns an error
-		$error = "Exception occured, code: " . $ex->getCode()
+		$error = "Facebook Exception occured, code: " . $ex->getCode()
     		. " with message: " . $ex->getMessage();
 
     	return $error;

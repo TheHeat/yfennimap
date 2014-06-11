@@ -41,11 +41,18 @@ get_header(); ?>
 			<textarea name="postContent" id="postContent" rows="8" cols="30"><?php if(isset($_POST['postContent'])) { if(function_exists('stripslashes')) { echo stripslashes($_POST['postContent']); } else { echo $_POST['postContent']; } } ?></textarea>
 		</fieldset>
 
-		<?php if ( $media == 'video' || $media == 'pictures' || $media == 'Audio'): ?>
-		<fieldset>
-			<input type="file" name="media_upload[]" id="media_upload"  multiple="multiple" <?php if($media == 'video') echo'accept="3g2, 3gp, 3gpp, asf, avi, dat, divx, dv, f4v, flv, m2ts, m4v, mkv, mod, mov, mp4, mpe, mpeg, mpeg4, mpg, mts, nsv, ogm, ogv, qt, tod, ts, vob, wmv"'?>/>
-			<input type="hidden" name="post_id" id="post_id" value="55" />
-		</fieldset>
+		<?php if ( $media == 'video' || $media == 'link' ): ?>
+			<fieldset>
+				<label for="link"><?php _e('Link:') ?></label>
+				<input type="text" name="link" id="link"  multiple="false" />
+			</fieldset>
+		<?php endif ?>
+
+		<?php if ( $media == 'video' || $media == 'pictures' ): ?>
+			<fieldset>
+				<input type="file" name="media_upload[]" id="media_upload"  multiple="multiple" <?php if($media == 'video') echo'accept="3g2, 3gp, 3gpp, asf, avi, dat, divx, dv, f4v, flv, m2ts, m4v, mkv, mod, mov, mp4, mpe, mpeg, mpeg4, mpg, mts, nsv, ogm, ogv, qt, tod, ts, vob, wmv"'?>/>
+				<input type="hidden" name="post_id" id="post_id" value="55" />
+			</fieldset>
 		<?php endif ?>
 
 		<fieldset>			

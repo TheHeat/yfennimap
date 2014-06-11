@@ -81,8 +81,14 @@ class FB_Media extends FacebookRequest
 		$fb_media_type = $this->media_type;
 
 		switch ($fb_media_type) {
+			
+			case 'text':
 			case 'link':
-				return $graph_object->getProperty('actions')->getProperty('0')->getProperty('link');
+				$id_array = explode ( '_' , $graph_object->getProperty('id') );
+				$fbid = $id_array[1];
+				$userid = $id_array[0];
+
+				return 'https://www.facebook.com/permalink.php?story_fbid='.$fbid.'&id='.$userid;
 				break;
 			
 			case 'video':
@@ -91,10 +97,6 @@ class FB_Media extends FacebookRequest
 			
 			case 'image':
 				return $graph_object->getProperty('link');
-				break;
-			
-			case 'text':
-				return $graph_object->getProperty('actions')->getProperty('0')->getProperty('link');
 				break;
 			
 			case 'album':

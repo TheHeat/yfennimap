@@ -26,5 +26,11 @@ echo $fb_media-> get_url();
 // echo $fb_media-> get_comments();
 // echo $fb_media-> get_link();
 
+?>
+
+https://www.facebook.com/permalink.php?story_fbid=288486637992594&id=276813939159864
+
+<?php
+
 echo '</div>';
 get_footer(); ?>

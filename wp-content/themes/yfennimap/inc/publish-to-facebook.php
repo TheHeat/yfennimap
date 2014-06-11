@@ -31,9 +31,9 @@ else:
 	$content = array();
 
 	$content['title'] = get_the_title();;
-	$content['description'] = get_post_meta($post_id, 'description', true);
+	$content['description'] = get_field('field_5362ad1d9bf84', $post_id, true);
 
-	//FB variables
+	//FB variables 
 	$token = get_post_meta($post_id, 'user_fb_token', true);
 
 	if ( $token == null) $token = page_token;

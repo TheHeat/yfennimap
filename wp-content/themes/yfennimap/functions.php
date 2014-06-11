@@ -293,11 +293,35 @@ function register_cpt_pin() {
 function post_published( $new_status, $old_status, $post ) {
 	if( $post->post_type == 'pin'){
 	    if ( $old_status != 'publish' && $new_status == 'publish' ) {
+
+	    	// insert post so that custom fields are saved before we need them
+			wp_insert_post( $post );
+
 			require get_template_directory() . '/inc/publish-to-facebook.php';
 	    }
 	}
 }
-add_action( 'transition_post_status', 'post_published', 10, 3 );
+add_action( 'transition_post_status', 'post_published', 20, 3 );
+
+function my_acf_save_post( $post_id )
+{
+	// vars
+	$fields = false;
+ 
+	// load from post
+	if( isset($_POST['fields']) )
+	{
+		$fields = $_POST['fields'];
+	}
+ 
+	// ...
+}
+ 
+// run before ACF saves the $_POST['fields'] data
+add_action('transition_post_status', 'my_acf_save_post', 1);
+ 
+// run after ACF saves the $_POST['fields'] data
+add_action('acf/save_post', 'my_acf_save_post', 20);
 
 
 function insert_attachment($file_handler,$post_id,$setthumb='false') {
@@ -321,4 +345,6 @@ if( function_exists('acf_add_options_sub_page') )
 {
     acf_add_options_sub_page( 'Facebook Settings' );
 }
+
+add_filter('show_admin_bar', '__return_false');
 
