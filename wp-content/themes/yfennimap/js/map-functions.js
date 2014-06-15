@@ -1,17 +1,23 @@
+
+
 // Create map, geocoder and marker in the global scope
-	var map;
-	var markers = [];
-	var geocoder;
-	var bounds;
+var map;
+var markers = [];
+var geocoder;
+var bounds;
 
-	var singlePin;
-	var singlePinFB;
-	// what media type are we adding to the map
-	var newPinMedia;
-	var newPinLatLng = [];
-	var saveNewPin;
+// The pin to be displayed
+var singlePin;
+var singlePinFB;
 
-	// convert $pins from PHP to JSON object
+// New Pins
+// what media type are we adding to the map
+var newPinMedia;
+// where is the new pin
+var newPinLatLng = [];
+var saveNewPin;
+
+// convert $pins from PHP to JSON object
 
 	console.log(pinsMap);
 

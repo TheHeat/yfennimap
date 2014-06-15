@@ -17,13 +17,12 @@ get_header();
 	<div class="toolbox">
 		
 		<div class="actions" style="display:none;"></div>
-		<div class="handle" tabindex="1">Add a pin</div>
+		<div class="handle add" tabindex="1"></div>
 		<div class="box">
-		  	
-			    <a href="#" data-media="link" class="tool add link">Web Link</a>
-			    <a href="#" data-media="video" class="tool add video">Video</a>
-			    <a href="#" data-media="pictures" class="tool add pictures">Pictures</a>
-			    <a href="#" data-media="text" class="tool add words">Words</a>
+			<a href="#" data-media="link" class="tool add link">Web Link</a>
+			<a href="#" data-media="video" class="tool add video">Video</a>
+			<a href="#" data-media="pictures" class="tool add pictures">Pictures</a>
+			<a href="#" data-media="text" class="tool add words">Words</a>
 	  	</div>
 	</div>
 <?php endif; ?>

@@ -583,16 +583,7 @@ html {
   left: 2em;
   display: none; }
 
-/* line 33, scss/_map.scss */
-.modal-close {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  font-size: 200%;
-  line-height: 0.5;
-  cursor: pointer; }
-
-/* line 42, scss/_map.scss */
+/* line 34, scss/_map.scss */
 .toolbox {
   position: absolute;
   bottom: 2em;
@@ -605,49 +596,186 @@ html {
   color: white;
   z-index: 10; }
 
-/* line 58, scss/_map.scss */
+/* line 50, scss/_map.scss */
 .handle,
 .box,
 .tool,
 .actions,
 .action {
+  min-width: 1em;
   display: inline-block;
   float: right;
   overflow: hidden;
   white-space: nowrap; }
 
-/* line 64, scss/_map.scss */
+/* line 57, scss/_map.scss */
 .handle {
   -webkit-box-shadow: -0.25em 0 0.5em 0 rgba(0, 0, 0, 0.2);
   box-shadow: -0.25em 0 0.5em 0 rgba(0, 0, 0, 0.2); }
 
-/* line 70, scss/_map.scss */
+/* line 63, scss/_map.scss */
 .handle,
 .tool,
 .action {
   cursor: pointer;
-  padding: 1em;
   float: right;
   color: white;
   text-decoration: none; }
 
-/* line 79, scss/_map.scss */
+/* line 71, scss/_map.scss */
 a.tool:hover {
   background-color: rgba(210, 210, 210, 0.5); }
 
-/* line 84, scss/_map.scss */
+/* line 76, scss/_map.scss */
 .handle + .box {
   opacity: 0;
   -webkit-transition: all 1s;
   transition: all 1s;
   max-width: 0; }
 
-/* line 90, scss/_map.scss */
+/* line 82, scss/_map.scss */
 .handle:focus + .box {
   opacity: 1;
   margin: 0;
   max-width: 40em;
   -webkit-transition: 0.5s;
   transition: 0.5s; }
+
+/* line 101, scss/_map.scss */
+.modal-close {
+  display: inline-block;
+  width: 2em;
+  height: 2em;
+  background-position: center;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  -webkit-background-size: contain;
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin: 0.5em;
+  text-indent: 100%;
+  white-space: nowrap;
+  background-image: url('img/times.svg?1402861592');
+  z-index: 10;
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer; }
+
+/* line 111, scss/_map.scss */
+.handle.add {
+  display: inline-block;
+  width: 2em;
+  height: 2em;
+  background-position: center;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  -webkit-background-size: contain;
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin: 0.5em;
+  text-indent: 100%;
+  white-space: nowrap;
+  background-image: url('img/thumb-tack.svg?1402861592'); }
+
+/* line 115, scss/_map.scss */
+.tool.link {
+  display: inline-block;
+  width: 2em;
+  height: 2em;
+  background-position: center;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  -webkit-background-size: contain;
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin: 0.5em;
+  text-indent: 100%;
+  white-space: nowrap;
+  background-image: url('img/chain.svg?1402861592'); }
+
+/* line 119, scss/_map.scss */
+.tool.video {
+  display: inline-block;
+  width: 2em;
+  height: 2em;
+  background-position: center;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  -webkit-background-size: contain;
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin: 0.5em;
+  text-indent: 100%;
+  white-space: nowrap;
+  background-image: url('img/film.svg?1402861592'); }
+
+/* line 123, scss/_map.scss */
+.tool.pictures {
+  display: inline-block;
+  width: 2em;
+  height: 2em;
+  background-position: center;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  -webkit-background-size: contain;
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin: 0.5em;
+  text-indent: 100%;
+  white-space: nowrap;
+  background-image: url('img/picture.svg?1402754762'); }
+
+/* line 127, scss/_map.scss */
+.tool.words {
+  display: inline-block;
+  width: 2em;
+  height: 2em;
+  background-position: center;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  -webkit-background-size: contain;
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin: 0.5em;
+  text-indent: 100%;
+  white-space: nowrap;
+  background-image: url('img/pencil.svg?1402861592'); }
+
+/* line 132, scss/_map.scss */
+.action.cancel {
+  display: inline-block;
+  width: 2em;
+  height: 2em;
+  background-position: center;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  -webkit-background-size: contain;
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin: 0.5em;
+  text-indent: 100%;
+  white-space: nowrap;
+  background-image: url('img/times.svg?1402861592'); }
+
+/* line 136, scss/_map.scss */
+.action.save {
+  display: inline-block;
+  width: 2em;
+  height: 2em;
+  background-position: center;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  -webkit-background-size: contain;
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin: 0.5em;
+  text-indent: 100%;
+  white-space: nowrap;
+  background-image: url('img/check.svg?1402861592'); }
+
+/* line 141, scss/_map.scss */
+.fb_iframe_widget {
+  width: 100% !important; }
 
 /*# sourceMappingURL=style.css.map */
