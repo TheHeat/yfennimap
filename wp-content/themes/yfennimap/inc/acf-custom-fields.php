@@ -7,22 +7,6 @@ if(function_exists("register_field_group"))
 		'title' => 'Map Pin',
 		'fields' => array (
 			array (
-				'key' => 'field_5362ad319bf85',
-				'label' => 'Media Type',
-				'name' => 'media_type',
-				'type' => 'select',
-				'choices' => array (
-					'image' => 'Image',
-					'video' => 'Video',
-					'text' => 'Text',
-					'link' => 'Link',
-					'gallery' => 'Gallery',
-				),
-				'default_value' => '',
-				'allow_null' => 0,
-				'multiple' => 0,
-			),
-			array (
 				'key' => 'field_537ccb499a819',
 				'label' => 'Existing Content?',
 				'name' => 'existing_content',
@@ -49,10 +33,26 @@ if(function_exists("register_field_group"))
 				),
 				'default_value' => '',
 				'placeholder' => '',
-				'prepend' => 'http://',
+				// 'prepend' => 'http://',
 				'append' => '',
-				'formatting' => 'html',
+				'formatting' => 'none',
 				'maxlength' => '',
+			),
+			array (
+				'key' => 'field_5362ad319bf85',
+				'label' => 'Media Type',
+				'name' => 'media_type',
+				'type' => 'select',
+				'choices' => array (
+					'image' => 'Image',
+					'video' => 'Video',
+					'text' => 'Text',
+					'link' => 'Link',
+					'gallery' => 'Gallery',
+				),
+				'default_value' => '',
+				'allow_null' => 0,
+				'multiple' => 0,
 			),
 			array (
 				'key' => 'field_5362ad1d9bf84',
@@ -66,6 +66,17 @@ if(function_exists("register_field_group"))
 				'append' => '',
 				'formatting' => 'html',
 				'maxlength' => '',
+				'conditional_logic' => array (
+					'status' => 1,
+					'rules' => array (
+						array (
+							'field' => 'field_537ccb499a819',
+							'operator' => '!=',
+							'value' => '1',
+						),
+					),
+					'allorany' => 'all',
+				),
 			),
 			array (
 				'key' => 'field_5362addb9bf86',
@@ -117,9 +128,9 @@ if(function_exists("register_field_group"))
 				),
 				'default_value' => '',
 				'placeholder' => '',
-				'prepend' => 'http://',
+				// 'prepend' => 'http://',
 				'append' => '',
-				'formatting' => 'html',
+				'formatting' => 'none',
 				'maxlength' => '',
 			),
 			array (
