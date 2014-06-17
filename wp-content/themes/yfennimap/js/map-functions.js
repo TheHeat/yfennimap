@@ -233,7 +233,7 @@ jQuery(document).ready(function($){
 
 	$('.avatar-menu').hide('slide', {direction: 'right'});
 	$('.avatar-wrapper').click(function(){
-			$('.avatar-menu').show( 'slide', {direction: 'right'});
+			$('.avatar-menu').toggle( 'slide', {direction: 'right'});
 		});
 
 	// Create the .modal-close and .modal-content
