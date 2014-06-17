@@ -56,7 +56,7 @@ function fb_login(){
 			</div>
 			<div class="avatar-menu facebook">
 				<?php //add a parameter
-				$logout_uri = add_query_arg('logout', 'true', $current_url);
+				$logout_uri = add_query_arg('logout', 'true', home_url());
 
 				//display logout
 				echo '<a href="' . $logout_uri . '">Log out</a>';
