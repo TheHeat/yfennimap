@@ -18,10 +18,11 @@ function fb_login(){
 	// init app with app id and secret
 	FacebookSession::setDefaultApplication( app_id, app_secret );
 
-	global $wp;
-	$current_url = add_query_arg( $wp->query_string, '', home_url( $wp->request ) );
+	// code for using current url... can make the login process tempramental
+	//global $wp;
+	//$current_url = add_query_arg( $wp->query_string, '', home_url( $wp->request ) );
 
-	$helper = new FacebookRedirectLoginHelper( $current_url );
+	$helper = new FacebookRedirectLoginHelper( home_url() );
 
 	//print_r($helper);
 
