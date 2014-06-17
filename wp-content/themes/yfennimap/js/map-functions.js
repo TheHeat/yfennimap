@@ -31,6 +31,7 @@ function initialize() {
 		center: latlng,
 		zoom: 12,
 		disableDefaultUI: true,
+		zoomControl: true,
 	};
 
 	map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);

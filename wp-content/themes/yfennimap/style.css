@@ -566,7 +566,7 @@ html {
 /* line 14, scss/_map.scss */
 #map-canvas {
   position: absolute;
-  top: 2.5em;
+  top: 3em;
   right: 0;
   bottom: 0;
   left: 0; }
@@ -602,18 +602,17 @@ html {
 .tool,
 .actions,
 .action {
-  min-width: 1em;
   display: inline-block;
   float: right;
   overflow: hidden;
   white-space: nowrap; }
 
-/* line 57, scss/_map.scss */
+/* line 56, scss/_map.scss */
 .handle {
   -webkit-box-shadow: -0.25em 0 0.5em 0 rgba(0, 0, 0, 0.2);
   box-shadow: -0.25em 0 0.5em 0 rgba(0, 0, 0, 0.2); }
 
-/* line 63, scss/_map.scss */
+/* line 62, scss/_map.scss */
 .handle,
 .tool,
 .action {
@@ -622,18 +621,18 @@ html {
   color: white;
   text-decoration: none; }
 
-/* line 71, scss/_map.scss */
+/* line 70, scss/_map.scss */
 a.tool:hover {
-  background-color: rgba(210, 210, 210, 0.5); }
+  background-color: red; }
 
-/* line 76, scss/_map.scss */
+/* line 75, scss/_map.scss */
 .handle + .box {
   opacity: 0;
   -webkit-transition: all 1s;
   transition: all 1s;
   max-width: 0; }
 
-/* line 82, scss/_map.scss */
+/* line 81, scss/_map.scss */
 .handle:focus + .box {
   opacity: 1;
   margin: 0;
@@ -641,7 +640,7 @@ a.tool:hover {
   -webkit-transition: 0.5s;
   transition: 0.5s; }
 
-/* line 101, scss/_map.scss */
+/* line 100, scss/_map.scss */
 .modal-close {
   display: inline-block;
   width: 2em;
@@ -662,7 +661,7 @@ a.tool:hover {
   right: 0;
   cursor: pointer; }
 
-/* line 111, scss/_map.scss */
+/* line 110, scss/_map.scss */
 .handle.add {
   display: inline-block;
   width: 2em;
@@ -678,7 +677,7 @@ a.tool:hover {
   white-space: nowrap;
   background-image: url('img/thumb-tack.svg?1402861592'); }
 
-/* line 115, scss/_map.scss */
+/* line 114, scss/_map.scss */
 .tool.link {
   display: inline-block;
   width: 2em;
@@ -694,7 +693,7 @@ a.tool:hover {
   white-space: nowrap;
   background-image: url('img/chain.svg?1402861592'); }
 
-/* line 119, scss/_map.scss */
+/* line 118, scss/_map.scss */
 .tool.video {
   display: inline-block;
   width: 2em;
@@ -710,7 +709,7 @@ a.tool:hover {
   white-space: nowrap;
   background-image: url('img/film.svg?1402861592'); }
 
-/* line 123, scss/_map.scss */
+/* line 122, scss/_map.scss */
 .tool.pictures {
   display: inline-block;
   width: 2em;
@@ -726,7 +725,7 @@ a.tool:hover {
   white-space: nowrap;
   background-image: url('img/picture.svg?1402754762'); }
 
-/* line 127, scss/_map.scss */
+/* line 126, scss/_map.scss */
 .tool.words {
   display: inline-block;
   width: 2em;
@@ -742,7 +741,7 @@ a.tool:hover {
   white-space: nowrap;
   background-image: url('img/pencil.svg?1402861592'); }
 
-/* line 132, scss/_map.scss */
+/* line 131, scss/_map.scss */
 .action.cancel {
   display: inline-block;
   width: 2em;
@@ -758,7 +757,7 @@ a.tool:hover {
   white-space: nowrap;
   background-image: url('img/times.svg?1402861592'); }
 
-/* line 136, scss/_map.scss */
+/* line 135, scss/_map.scss */
 .action.save {
   display: inline-block;
   width: 2em;
@@ -774,7 +773,7 @@ a.tool:hover {
   white-space: nowrap;
   background-image: url('img/check.svg?1402861592'); }
 
-/* line 141, scss/_map.scss */
+/* line 140, scss/_map.scss */
 .fb_iframe_widget {
   width: 100% !important; }
 

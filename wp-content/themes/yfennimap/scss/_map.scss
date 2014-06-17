@@ -13,7 +13,7 @@ html {
 }
 #map-canvas {
 	position:absolute;
-	top:2.5em;
+	top:3em;
 	right: 0;
 	bottom: 0;
 	left: 0;
@@ -48,7 +48,6 @@ html {
 .tool,
 .actions,
 .action{
-  min-width: 1em;
   display:inline-block;
   float:right;
   overflow:hidden;
@@ -69,7 +68,7 @@ html {
 
 a.tool{
   &:hover{
-    background-color:rgba(210,210,210, 0.5);
+    background-color:red;
   }
 }
 
@@ -139,5 +138,5 @@ a.tool{
 }
 
 .fb_iframe_widget{
-  width: 100% !important;
+    width: 100% !important;
 }
