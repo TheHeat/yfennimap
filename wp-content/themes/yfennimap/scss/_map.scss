@@ -26,9 +26,18 @@ html {
 	z-index:10;
 	top:6em;
 	right:2em;
-	bottom:2em;
 	left:2em;
 	display:none;
+  margin:0 auto;
+  max-width: 790px
+}
+
+.modal-content{
+  background-color:white;
+  margin-top:3em;
+  padding:1em;
+  overflow-y: scroll; /* has to be scroll, not auto */
+  -webkit-overflow-scrolling: touch;
 }
 
 .toolbox{
@@ -40,7 +49,7 @@ html {
   overflow:hidden;
   background:black;
   color:white;
-  z-index:10;
+  z-index:15;
 }
 
 .handle,

@@ -566,11 +566,21 @@ html {
   z-index: 10;
   top: 6em;
   right: 2em;
-  bottom: 2em;
   left: 2em;
-  display: none; }
+  display: none;
+  margin: 0 auto;
+  max-width: 790px; }
 
-/* line 34, scss/_map.scss */
+/* line 35, scss/_map.scss */
+.modal-content {
+  background-color: white;
+  margin-top: 3em;
+  padding: 1em;
+  overflow-y: scroll;
+  /* has to be scroll, not auto */
+  -webkit-overflow-scrolling: touch; }
+
+/* line 43, scss/_map.scss */
 .toolbox {
   position: absolute;
   bottom: 2em;
@@ -581,9 +591,9 @@ html {
   overflow: hidden;
   background: black;
   color: white;
-  z-index: 10; }
+  z-index: 15; }
 
-/* line 50, scss/_map.scss */
+/* line 59, scss/_map.scss */
 .handle,
 .box,
 .tool,
@@ -594,12 +604,12 @@ html {
   overflow: hidden;
   white-space: nowrap; }
 
-/* line 56, scss/_map.scss */
+/* line 65, scss/_map.scss */
 .handle {
   -webkit-box-shadow: -0.25em 0 0.5em 0 rgba(0, 0, 0, 0.2);
   box-shadow: -0.25em 0 0.5em 0 rgba(0, 0, 0, 0.2); }
 
-/* line 62, scss/_map.scss */
+/* line 71, scss/_map.scss */
 .handle,
 .tool,
 .action {
@@ -608,18 +618,18 @@ html {
   color: white;
   text-decoration: none; }
 
-/* line 70, scss/_map.scss */
+/* line 79, scss/_map.scss */
 a.tool:hover {
   background-color: red; }
 
-/* line 75, scss/_map.scss */
+/* line 84, scss/_map.scss */
 .handle + .box {
   opacity: 0;
   -webkit-transition: all 1s;
   transition: all 1s;
   max-width: 0; }
 
-/* line 81, scss/_map.scss */
+/* line 90, scss/_map.scss */
 .handle:focus + .box {
   opacity: 1;
   margin: 0;
@@ -627,7 +637,7 @@ a.tool:hover {
   -webkit-transition: 0.5s;
   transition: 0.5s; }
 
-/* line 100, scss/_map.scss */
+/* line 109, scss/_map.scss */
 .modal-close {
   display: inline-block;
   width: 2em;
@@ -648,7 +658,7 @@ a.tool:hover {
   right: 0;
   cursor: pointer; }
 
-/* line 110, scss/_map.scss */
+/* line 119, scss/_map.scss */
 .handle.add {
   display: inline-block;
   width: 2em;
@@ -664,7 +674,7 @@ a.tool:hover {
   white-space: nowrap;
   background-image: url('img/thumb-tack.svg?1402861592'); }
 
-/* line 114, scss/_map.scss */
+/* line 123, scss/_map.scss */
 .tool.link {
   display: inline-block;
   width: 2em;
@@ -680,7 +690,7 @@ a.tool:hover {
   white-space: nowrap;
   background-image: url('img/chain.svg?1402861592'); }
 
-/* line 118, scss/_map.scss */
+/* line 127, scss/_map.scss */
 .tool.video {
   display: inline-block;
   width: 2em;
@@ -696,7 +706,7 @@ a.tool:hover {
   white-space: nowrap;
   background-image: url('img/film.svg?1402861592'); }
 
-/* line 122, scss/_map.scss */
+/* line 131, scss/_map.scss */
 .tool.pictures {
   display: inline-block;
   width: 2em;
@@ -712,7 +722,7 @@ a.tool:hover {
   white-space: nowrap;
   background-image: url('img/picture.svg?1402754762'); }
 
-/* line 126, scss/_map.scss */
+/* line 135, scss/_map.scss */
 .tool.words {
   display: inline-block;
   width: 2em;
@@ -728,7 +738,7 @@ a.tool:hover {
   white-space: nowrap;
   background-image: url('img/pencil.svg?1402861592'); }
 
-/* line 131, scss/_map.scss */
+/* line 140, scss/_map.scss */
 .action.cancel {
   display: inline-block;
   width: 2em;
@@ -744,7 +754,7 @@ a.tool:hover {
   white-space: nowrap;
   background-image: url('img/times.svg?1402861592'); }
 
-/* line 135, scss/_map.scss */
+/* line 144, scss/_map.scss */
 .action.save {
   display: inline-block;
   width: 2em;
@@ -760,7 +770,7 @@ a.tool:hover {
   white-space: nowrap;
   background-image: url('img/check.svg?1402861592'); }
 
-/* line 140, scss/_map.scss */
+/* line 149, scss/_map.scss */
 .fb_iframe_widget {
   width: 100% !important; }
 

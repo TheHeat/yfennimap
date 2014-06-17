@@ -102,9 +102,9 @@ function createMarker(center, title, fbURL) {
 function loadPin(){
 
 	var fbURL = singlePinFB;
-	var fbPost = '<div class="fb-post" data-href="' + fbURL + '"></div>';
-	var fbComments = '<div class="fb-comments" data-href="' + fbURL + '"></div>';
-	var content = fbPost + fbComments;
+	var fbPost = '<div class="fb-post" data-href="' + fbURL + '" data-width="750"></div>';
+	var fbComments = '<div class="fb-comments" data-href="' + fbURL + '" data-width="750"></div>';
+	var content = fbPost;
 
 	console.log(fbURL);
 
