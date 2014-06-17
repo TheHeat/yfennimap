@@ -2,7 +2,6 @@
 	font-size:1rem;
 	line-height:1;
 	font-weight:normal;
-	background-color:black;
 	padding:1em;
 	margin:0;
 }
@@ -59,22 +58,13 @@
 			margin:0;
 		}
 	}
-	.avatar-menu{
-		position:absolute;
-		top:3em;
-		display:none;
-	}
 }
 
-.avatar-wrapper .avatar-menu {
+.avatar-menu {
 	@include header-item;
     position: absolute;
     right: 3em;
     top:0;
-    display: none;
     transition:0.2s;
-    }
-
-.avatar-wrapper:focus > .avatar-menu{
-  display:block;
+    white-space: nowrap;
 }

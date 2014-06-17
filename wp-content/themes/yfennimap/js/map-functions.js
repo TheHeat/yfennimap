@@ -31,7 +31,7 @@ function initialize() {
 		center: latlng,
 		zoom: 12,
 		disableDefaultUI: true,
-		zoomControl: true,
+		zoomControl: true,	
 	};
 
 	map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
@@ -210,12 +210,11 @@ function addNewPin(){
 
 function toolboxLinks(position){
 
-	var siteRoot = '<?php echo esc_url( home_url( '/' ) ); ?>';
 	var saveQueryMedia = 'media=' + newPinMedia;
 	var saveQueryLat = 'lat=' + position.k;
 	var saveQueryLng = 'lng=' + position.A;
 		
-	var saveNewPin = '<a class="action save" href="' + siteRoot + '/upload-form/?' + saveQueryMedia + '&' + saveQueryLat + '&' + saveQueryLng + '">Add ' + newPinMediaLabel + '</a>';
+	var saveNewPin = '<a class="action save" href="upload-form/?' + saveQueryMedia + '&' + saveQueryLat + '&' + saveQueryLng + '">Add ' + newPinMediaLabel + '</a>';
 	var cancelNewPin = '<span class="action cancel">Cancel</span>';
 
 		
@@ -228,6 +227,14 @@ function toolboxLinks(position){
 
 
 jQuery(document).ready(function($){
+
+
+	// Login/Out
+
+	$('.avatar-menu').hide('slide', {direction: 'right'});
+	$('.avatar-wrapper').click(function(){
+			$('.avatar-menu').show( 'slide', {direction: 'right'});
+		});
 
 	// Create the .modal-close and .modal-content
 	var modalCloser = '<span class="modal-close">&times;</span>';
@@ -246,7 +253,7 @@ jQuery(document).ready(function($){
 
 		// Only show the message if the user is opening the 
 		if(!newPinMedia){
-			openModal(addingMessage);
+			alert(addingMessage);
 			addNewPin();
 		}
 
