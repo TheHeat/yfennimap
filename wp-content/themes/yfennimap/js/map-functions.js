@@ -106,11 +106,8 @@ function loadPin(){
 	var fbComments = '<div class="fb-comments" data-href="' + fbURL + '" data-width="750"></div>';
 	var content = fbPost;
 
-	console.log(fbURL);
-
+	// console.log(fbURL);
 	openModal(content);
-
-
 }
 
 function openModal(content){
@@ -154,6 +151,16 @@ function deleteMarkers() {
   markers = [];
 }
 
+function cancelButton(){
+	// The cancel button
+	jQuery('.cancel').click(function(){
+		jQuery('.actions').hide('slide', { direction: 'right' });
+		
+		newPinMedia = null;
+		initialize();
+	});
+}
+
 
 
 // Function for searching the map by text string
@@ -181,9 +188,9 @@ function showAddress(addressString) {
 
 
 function resetContent(element, newContent){
-		jQuery(element).empty();
-		jQuery(element).prepend(newContent);
-	}
+	jQuery(element).empty();
+	jQuery(element).prepend(newContent);
+}
 
 // Create a draggable marker in the centre of the current view and pass its LatLng to a var
 
@@ -205,6 +212,7 @@ function addNewPin(){
     	newPinLatLng = newMarker.getPosition();
     	console.log(newPinLatLng);
     	toolboxLinks(newPinLatLng);
+    	cancelButton();
     });
 }
 
@@ -224,7 +232,6 @@ function toolboxLinks(position){
 		// $('.toolbox .handle').prepend(newPinMediaLabel);
 		jQuery('.toolbox .actions').html(cancelNewPin + saveNewPin);
 }
-
 
 jQuery(document).ready(function($){
 
@@ -266,17 +273,11 @@ jQuery(document).ready(function($){
 		toolboxLinks(newPinLatLng);
 
 		$('.toolbox .actions').show('slide', {direction: 'left'});
-		$('.toolbox .actions .cancel').click(function(){
-			$('.toolbox .actions').hide('slide', {direction: 'left'});
-			newPinMedia = null;
-			initialize();
-			resetContent('.toolbox .handle', addLabel);
-		});
+
+		cancelButton();
 
 	});
 
-
-	
 
 });
 
