@@ -22,9 +22,11 @@ function fb_login(){
 	//global $wp;
 	//$current_url = add_query_arg( $wp->query_string, '', home_url( $wp->request ) );
 
-	$helper = new FacebookRedirectLoginHelper( home_url() );
+	$home_url = home_url() . '/';
+	$helper = new FacebookRedirectLoginHelper( $home_url );
 
-	//print_r($helper);
+
+	// print_r($helper);
 
 	//check if the user is trying to logout
 	fb_logout();
