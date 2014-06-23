@@ -158,6 +158,7 @@ function get_pins(){
 			$pin['title'] 	= get_the_title();
 			$pin['wpid']	= get_the_id();
 			$pin['fbURL']	= get_post_meta( get_the_ID(), 'fb_post_url', true);
+			$pin['icon']	= get_stylesheet_directory_uri() . '/img/mapicon_' . get_field('media_type') . '.svg';
 
 			// Push to the $pins object
 			$pins[ get_the_ID() ] = $pin;

@@ -6,10 +6,13 @@ html {
 }
 .site-wrapper{
 	position:absolute;
+  width:100%;
+  height:100%;
 	top: 0;
 	right: 0;
 	bottom: 0;
 	left: 0;
+  overflow:none;
 }
 #map-canvas {
 	position:absolute;
@@ -26,18 +29,16 @@ html {
 	z-index:10;
 	top:6em;
 	right:2em;
+  bottom:2em;
 	left:2em;
 	display:none;
   margin:0 auto;
-  max-width: 798px
+  max-width: 750px;
+  overflow-y:scroll;
 }
 
 .modal-content{
-  background-color:white;
   margin-top:3em;
-  padding:1em;
-  overflow-y: scroll; /* has to be scroll, not auto */
-  -webkit-overflow-scrolling: touch;
 }
 
 .toolbox{
@@ -105,6 +106,7 @@ a.tool{
   margin:0.5em;
   text-indent:100%;
   white-space: nowrap;
+  overflow:hidden;
 }
 .modal-close{
   @include icon-bg;
@@ -147,5 +149,5 @@ a.tool{
 }
 
 .fb_iframe_widget{
-    width: 100% !important;
+
 }

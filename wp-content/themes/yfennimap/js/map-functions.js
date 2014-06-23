@@ -49,9 +49,10 @@ function initialize() {
 			var title 	= pinsMap[i].title;
 			// var wpid	= pinsMap[i].wpid;
 			var fbURL	= pinsMap[i].fbURL;
+			var icon 	= pinsMap[i].icon;
 
 
-			createMarker(center, title, fbURL);
+			createMarker(center, title, icon, fbURL);
 
 			// extend the bounds to include this marker's position
 			bounds.extend(center);  
@@ -64,10 +65,14 @@ function initialize() {
 	}
 }
 
-function createMarker(center, title, fbURL) {
+function createMarker(center, title, icon, fbURL) {
 
     var marker = new google.maps.Marker({
       position: center,
+      icon: {
+      	url: icon,
+      	scaledSize: new google.maps.Size(45, 60),
+      },
       title: title,
       map: map,
       // animation: google.maps.Animation.DROP
@@ -102,8 +107,8 @@ function createMarker(center, title, fbURL) {
 function loadPin(){
 
 	var fbURL = singlePinFB;
-	var fbPost = '<div class="fb-post" data-href="' + fbURL + '" data-width="750"></div>';
-	var fbComments = '<div class="fb-comments" data-href="' + fbURL + '" data-width="750"></div>';
+	var fbPost = '<div class="fb-post" data-href="' + fbURL + '" data-width="500"></div>';
+	var fbComments = '<div class="fb-comments" data-href="' + fbURL + '" data-width="500"></div>';
 	var content = fbPost;
 
 	// console.log(fbURL);
