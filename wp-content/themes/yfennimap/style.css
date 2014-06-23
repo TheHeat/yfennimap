@@ -551,7 +551,7 @@ html {
   right: 0;
   bottom: 0;
   left: 0;
-  overflow: none; }
+  overflow: hidden; }
 
 /* line 17, scss/_map.scss */
 #map-canvas {
@@ -563,24 +563,27 @@ html {
 
 /* line 25, scss/_map.scss */
 #modal-window {
-  background: black;
+  background: rgba(0, 0, 0, 0.7);
   color: white;
   position: absolute;
   z-index: 10;
-  top: 6em;
-  right: 2em;
-  bottom: 2em;
-  left: 2em;
+  top: 3em;
+  right: 0em;
+  bottom: 0em;
+  left: 0em;
   display: none;
-  margin: 0 auto;
-  max-width: 750px;
+  margin: 0 auto; }
+
+/* line 38, scss/_map.scss */
+.modal-content {
+  position: absolute;
+  top: 3em;
+  left: 50%;
+  margin-left: -25%;
+  overflow: hidden;
   overflow-y: scroll; }
 
-/* line 40, scss/_map.scss */
-.modal-content {
-  margin-top: 3em; }
-
-/* line 44, scss/_map.scss */
+/* line 48, scss/_map.scss */
 .toolbox {
   position: absolute;
   bottom: 2em;
@@ -593,7 +596,7 @@ html {
   color: white;
   z-index: 15; }
 
-/* line 60, scss/_map.scss */
+/* line 64, scss/_map.scss */
 .handle,
 .box,
 .tool,
@@ -604,12 +607,12 @@ html {
   overflow: hidden;
   white-space: nowrap; }
 
-/* line 66, scss/_map.scss */
+/* line 70, scss/_map.scss */
 .handle {
   -webkit-box-shadow: -0.25em 0 0.5em 0 rgba(0, 0, 0, 0.2);
   box-shadow: -0.25em 0 0.5em 0 rgba(0, 0, 0, 0.2); }
 
-/* line 72, scss/_map.scss */
+/* line 76, scss/_map.scss */
 .handle,
 .tool,
 .action {
@@ -618,18 +621,18 @@ html {
   color: white;
   text-decoration: none; }
 
-/* line 80, scss/_map.scss */
+/* line 84, scss/_map.scss */
 a.tool:hover {
   background-color: red; }
 
-/* line 85, scss/_map.scss */
+/* line 89, scss/_map.scss */
 .handle + .box {
   opacity: 0;
   -webkit-transition: all 1s;
   transition: all 1s;
   max-width: 0; }
 
-/* line 91, scss/_map.scss */
+/* line 95, scss/_map.scss */
 .handle:focus + .box {
   opacity: 1;
   margin: 0;
@@ -637,7 +640,7 @@ a.tool:hover {
   -webkit-transition: 0.5s;
   transition: 0.5s; }
 
-/* line 111, scss/_map.scss */
+/* line 115, scss/_map.scss */
 .modal-close {
   display: inline-block;
   width: 2em;
@@ -654,12 +657,12 @@ a.tool:hover {
   overflow: hidden;
   background-image: url('img/times.svg?1402861592');
   z-index: 10;
-  position: absolute;
-  top: 0;
+  position: fixed;
+  top: 3em;
   right: 0;
   cursor: pointer; }
 
-/* line 121, scss/_map.scss */
+/* line 125, scss/_map.scss */
 .handle.add {
   display: inline-block;
   width: 2em;
@@ -676,7 +679,7 @@ a.tool:hover {
   overflow: hidden;
   background-image: url('img/thumb-tack.svg?1402861592'); }
 
-/* line 125, scss/_map.scss */
+/* line 129, scss/_map.scss */
 .tool.link {
   display: inline-block;
   width: 2em;
@@ -693,7 +696,7 @@ a.tool:hover {
   overflow: hidden;
   background-image: url('img/chain.svg?1402861592'); }
 
-/* line 129, scss/_map.scss */
+/* line 133, scss/_map.scss */
 .tool.video {
   display: inline-block;
   width: 2em;
@@ -710,7 +713,7 @@ a.tool:hover {
   overflow: hidden;
   background-image: url('img/film.svg?1402861592'); }
 
-/* line 133, scss/_map.scss */
+/* line 137, scss/_map.scss */
 .tool.pictures {
   display: inline-block;
   width: 2em;
@@ -727,7 +730,7 @@ a.tool:hover {
   overflow: hidden;
   background-image: url('img/picture.svg?1402754762'); }
 
-/* line 137, scss/_map.scss */
+/* line 141, scss/_map.scss */
 .tool.words {
   display: inline-block;
   width: 2em;
@@ -744,7 +747,7 @@ a.tool:hover {
   overflow: hidden;
   background-image: url('img/pencil.svg?1402861592'); }
 
-/* line 142, scss/_map.scss */
+/* line 146, scss/_map.scss */
 .action.cancel {
   display: inline-block;
   width: 2em;
@@ -761,7 +764,7 @@ a.tool:hover {
   overflow: hidden;
   background-image: url('img/times.svg?1402861592'); }
 
-/* line 146, scss/_map.scss */
+/* line 150, scss/_map.scss */
 .action.save {
   display: inline-block;
   width: 2em;

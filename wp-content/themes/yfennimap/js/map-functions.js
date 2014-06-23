@@ -19,7 +19,7 @@ var saveNewPin;
 
 // convert $pins from PHP to JSON object
 
-	console.log(pinsMap);
+	// console.log(pinsMap);
 
 function initialize() {
 
