@@ -121,6 +121,7 @@ function openModal(content){
 		
 		jQuery('.modal-content').append(content);
 		FB.XFBML.parse();
+		jQuery('.modal-content').position({my: 'center top', at: 'center top', of: '#modal-window'});
 		jQuery('.modal-close').click(function(){
 			jQuery('#modal-window').slideUp(function(){
 		    	jQuery('.modal-content').empty();
