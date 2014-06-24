@@ -126,7 +126,7 @@ function yfenni_scripts() {
 
 		wp_enqueue_script('map-functions');
 		wp_localize_script( 'map-functions', 'pinsMap', get_pins() );
-		wp_localize_script( 'map-functions', 'activeCategories', get_categories() );
+		wp_localize_script( 'map-functions', 'activeCategories', get_categories(array( 'taxonomy' => 'pin_category')) );
 		// make the ajaxurl var available to the map-functions script
 		wp_localize_script( 'map-functions', 'the_ajax_script', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );
 		
@@ -148,21 +148,6 @@ function get_pins(){
 	// The pins
 	$pin_args = array('post_type' => 'pin','posts_per_page'=>-1, 'orderby' => 'title', 'order' => 'ASC');
 	$pin_query = new WP_query($pin_args);
-
-	//filter by category if there is one specified in the url
-
-	$category = null; 
-	if(isset($_GET['category'])) $category = $_GET['category'];
-	if($category) {
-
-		$pin_args['tax_query'] = array(
-			array(
-				'taxonomy' => 'category',
-				'field' => 'slug',
-				'terms' => $category
-			)
-		);
-	}
 
 	if($pin_query->have_posts()):
 		while($pin_query->have_posts()):
@@ -404,33 +389,3 @@ if( function_exists('acf_add_options_sub_page') )
 }
 
 add_filter('show_admin_bar', '__return_false');
-
-function pin_display($media_type, $fb_media) {
-	switch ($media_type) {
-		case 'text':
-
-			echo $fb_media->get_text();
-
-			break;
-
-		case 'image':
-
-			echo $fb_media->get_images();
-			echo $fb_media->get_text();
-
-			break;
-
-		case 'video':
-
-			echo $fb_media->get_video();
-			echo $fb_media->get_text();
-
-			break;
-
-		case 'link':
-
-			echo $fb_media->get_link();
-
-			break;
-	}
-}
