@@ -54,12 +54,20 @@ get_header(); ?>
 				<input type="hidden" name="post_id" id="post_id" value="55" />
 			</fieldset>
 		<?php endif ?>
+		
+		<fieldset>
+			<label for="year-created"><?php _e('Year Created:') ?></label>
+			<input type="number" name="year-created" id="year-created" multiple="false" max='2020' />
+		</fieldset>
+
+		<?php wp_dropdown_categories( array('taxonomy' => 'category', 'hide_empty' => 0 )); ?>
 
 		<fieldset>			
 			<?php wp_nonce_field('post_nonce', 'post_nonce_field'); ?>
 			<input type="hidden" name="submitted" id="submitted" value="true" />
 			<button type="submit"><?php _e('Add Post') ?></button>
 		</fieldset>
+
 	</form>
 </div>
 
