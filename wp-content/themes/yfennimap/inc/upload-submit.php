@@ -26,6 +26,7 @@
 	update_post_meta( $post_id, "description", esc_attr(strip_tags(isset($_POST['postContent']) ? $_POST['postContent'] : null )) );
 	update_post_meta( $post_id, "media_type", $_GET['media'] );
 	update_post_meta( $post_id, "link",esc_attr(strip_tags(isset($_POST['link']) ? $_POST['link'] : null )) );
+	update_post_meta( $post_id, "year-created",esc_attr(strip_tags(isset($_POST['year-created']) ? $_POST['year-created'] : null )) );
 	//get users fb token and save against post
 	add_post_meta( $post_id, 'user_fb_token', fb_get_token() );
 	
@@ -34,6 +35,8 @@
 	$location['lat'] = $_GET['lat'];
 	$location['lng'] = $_GET['lng'];
 	update_field( 'field_5362ae02910ff',  $location, $post_id);
+	update_field( 'field_53a9772057ffd',  $_POST['cat'], $post_id);
+
 
 	$location_field = get_field( 'field_5362ae02910ff', $post_id);
 

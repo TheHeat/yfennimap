@@ -144,6 +144,21 @@ function get_pins(){
 	$pin_args = array('post_type' => 'pin','posts_per_page'=>-1, 'orderby' => 'title', 'order' => 'ASC');
 	$pin_query = new WP_query($pin_args);
 
+	//filter by category if there is one specified in the url
+
+	$category = null; 
+	if(isset($_GET['category'])) $category = $_GET['category'];
+	if($category) {
+
+		$pin_args['tax_query'] = array(
+			array(
+				'taxonomy' => 'category',
+				'field' => 'slug',
+				'terms' => $category
+			)
+		);
+	}
+
 	if($pin_query->have_posts()):
 		while($pin_query->have_posts()):
 
@@ -272,7 +287,7 @@ function register_cpt_pin() {
         'labels' => $labels,
         'hierarchical' => false,
         
-        'supports' => array( 'title', 'custom-fields' ),
+        'supports' => array( 'title', 'custom-fields', 'taxonomies' ),
         
         'public' => true,
         'show_ui' => true,
@@ -282,7 +297,7 @@ function register_cpt_pin() {
         'show_in_nav_menus' => true,
         'publicly_queryable' => true,
         'exclude_from_search' => false,
-        'has_archive' => true,
+        'has_archive' => false,
         'query_var' => true,
         'can_export' => true,
         'rewrite' => true,
@@ -291,6 +306,41 @@ function register_cpt_pin() {
 
     register_post_type( 'pin', $args );
 }
+// Register Custom Taxonomy
+function categories() {
+
+	$labels = array(
+		'name'                       => _x( 'Categories', 'Taxonomy General Name', 'text_domain' ),
+		'singular_name'              => _x( 'Category', 'Taxonomy Singular Name', 'text_domain' ),
+		'menu_name'                  => __( 'Categories', 'text_domain' ),
+		'all_items'                  => __( 'All Items', 'text_domain' ),
+		'parent_item'                => __( 'Parent Item', 'text_domain' ),
+		'parent_item_colon'          => __( 'Parent Item:', 'text_domain' ),
+		'new_item_name'              => __( 'New Item Name', 'text_domain' ),
+		'add_new_item'               => __( 'Add New Item', 'text_domain' ),
+		'edit_item'                  => __( 'Edit Item', 'text_domain' ),
+		'update_item'                => __( 'Update Item', 'text_domain' ),
+		'separate_items_with_commas' => __( 'Separate items with commas', 'text_domain' ),
+		'search_items'               => __( 'Search Items', 'text_domain' ),
+		'add_or_remove_items'        => __( 'Add or remove items', 'text_domain' ),
+		'choose_from_most_used'      => __( 'Choose from the most used items', 'text_domain' ),
+		'not_found'                  => __( 'Not Found', 'text_domain' ),
+	);
+	$args = array(
+		'labels'                     => $labels,
+		'hierarchical'               => false,
+		'public'                     => true,
+		'show_ui'                    => true,
+		'show_admin_column'          => true,
+		'show_in_nav_menus'          => true,
+		'show_tagcloud'              => true,
+	);
+	register_taxonomy( 'category', array( 'pin' ), $args );
+
+}
+
+// Hook into the 'init' action
+add_action( 'init', 'categories', 0 );
 
 function post_published( $new_status, $old_status, $post ) {
 	if( $post->post_type == 'pin'){
@@ -350,3 +400,32 @@ if( function_exists('acf_add_options_sub_page') )
 
 add_filter('show_admin_bar', '__return_false');
 
+function pin_display($media_type, $fb_media) {
+	switch ($media_type) {
+		case 'text':
+
+			echo $fb_media->get_text();
+
+			break;
+
+		case 'image':
+
+			echo $fb_media->get_images();
+			echo $fb_media->get_text();
+
+			break;
+
+		case 'video':
+
+			echo $fb_media->get_video();
+			echo $fb_media->get_text();
+
+			break;
+
+		case 'link':
+
+			echo $fb_media->get_link();
+
+			break;
+	}
+}

@@ -7,7 +7,7 @@
  * @package yfennimap
  */
 
-get_header(); 
+//get_header(); 
 echo '<div class="page-wrapper">';
 
 $post = $wp_query->post;
@@ -21,7 +21,9 @@ echo '<pre>'; print_r($fb_media); echo '</pre>';
 
 $mediaType = get_field('media_type');
 
-pinDisplay($mediaType);
+echo $mediaType;
+
+pin_display($mediaType, $fb_media);
 
 // echo $fb_media-> get_url();
 // echo $fb_media-> get_long_text();
@@ -30,4 +32,5 @@ pinDisplay($mediaType);
 // echo $fb_media-> get_comments();
 // echo $fb_media-> get_link();
 
+echo '</div>';
 get_footer(); ?>
