@@ -149,20 +149,21 @@ function get_pins(){
 	$pin_args = array('post_type' => 'pin','posts_per_page'=>-1, 'orderby' => 'title', 'order' => 'ASC');
 	$pin_query = new WP_query($pin_args);
 
-	//filter by category if there is one specified in the url
+	// //filter by category if there is one specified in the url
+	// $category = null; 
 
-	$category = null; 
-	if(isset($_GET['category'])) $category = $_GET['category'];
-	if($category) {
+	// if(isset($_GET['category'])) $category = $_GET['category'];
 
-		$pin_args['tax_query'] = array(
-			array(
-				'taxonomy' => 'category',
-				'field' => 'slug',
-				'terms' => $category
-			)
-		);
-	}
+	// if($category) {
+
+	// 	$pin_args['tax_query'] = array(
+	// 		array(
+	// 			'taxonomy' => 'category',
+	// 			'field' => 'slug',
+	// 			'terms' => $category
+	// 		)
+	// 	);
+	// }
 
 	if($pin_query->have_posts()):
 		while($pin_query->have_posts()):
@@ -173,14 +174,16 @@ function get_pins(){
 			$pin_query->the_post();
 
 			// Location from ACF Google Maps field
-			$location 		= get_field('location');
-			$pin['lat']		= $location['lat'];
-			$pin['lng'] 	= $location['lng'];
-			$pin['title'] 	= get_the_title();
-			$pin['wpid']	= get_the_id();
-			$pin['fbURL']	= get_post_meta( get_the_ID(), 'fb_post_url', true);
-			$pin['icon']	= get_stylesheet_directory_uri() . '/img/mapicon_' . get_field('media_type') . '.svg';
-			$pin['year']	= get_field('year-created');
+			$location 			= get_field('location');
+			$pin['lat']			= $location['lat'];
+			$pin['lng'] 		= $location['lng'];
+			$pin['title'] 		= get_the_title();
+			$pin['wpid']		= get_the_id();
+			$pin['fbURL']		= get_post_meta( get_the_ID(), 'fb_post_url', true);
+			$pin['icon']		= get_stylesheet_directory_uri() . '/img/mapicon_' . get_field('media_type') . '.svg';
+			$pin['year']		= get_field('year-created');
+			$pin['categories'] 	= wp_get_post_terms( get_the_ID(), 'pin_category', array( 'fields' => 'names' ) );
+
 			// Push to the $pins object
 			$pins[ get_the_ID() ] = $pin;
 
@@ -433,4 +436,18 @@ function pin_display($media_type, $fb_media) {
 
 			break;
 	}
+}
+
+function get_the_category_custompost( $id = false, $tcat = 'category' ) {
+    $categories = get_the_terms( $id, $tcat );
+    if ( ! $categories )
+        $categories = array();
+
+    $categories = array_values( $categories );
+
+    foreach ( array_keys( $categories ) as $key ) {
+        _make_cat_compat( $categories[$key] );
+    }
+
+    return apply_filters( 'get_the_categories', $categories );
 }

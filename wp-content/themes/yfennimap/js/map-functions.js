@@ -16,6 +16,9 @@ var newPinMedia;
 // where is the new pin
 var newPinLatLng = [];
 var saveNewPin;
+var filterCategory;
+var filterYearStart;
+var filterYearEnd;
 
 // convert $pins from PHP to JSON object
 
@@ -50,9 +53,30 @@ function initialize() {
 			// var wpid	= pinsMap[i].wpid;
 			var fbURL	= pinsMap[i].fbURL;
 			var icon 	= pinsMap[i].icon;
+			var cats	= pinsMap[i].categories;
+			var year 	= pinsMap[i].year;
+			
+			//destroy these at the start of the loop
+			var inCategory = null;
+			var inYearRange = null;
 
+			//Test to see if the pin is in the selected category and
+			//within the date range
+		
+			//Test that the pin is in the selected category using inArray
+			if(!filterCategory || cats.indexOf(filterCategory) > -1){
+				var inCategory = true;
+			}
 
-			createMarker(center, title, icon, fbURL);
+			//Test that the pin's date is within the date range
+			if(!filterYearStart || (year >= filterYearStart && year <= filterYearEnd)){
+				var inYearRange = true;
+			}
+
+			//If it's in the category and the year range, render a pin
+			if(inCategory == true && inYearRange == true){
+				createMarker(center, title, icon, fbURL);
+			}
 
 			// extend the bounds to include this marker's position
 			bounds.extend(center);  
