@@ -119,6 +119,7 @@ function yfenni_scripts() {
 		wp_enqueue_script( 'jquery-ui-position' );
 		wp_enqueue_script( 'jquery-effects-core' );
 		wp_enqueue_script( 'jquery-effects-slide' );
+		wp_enqueue_script( 'jquery-ui-widget');
 		wp_enqueue_script( 'google_map_api', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyC1ssxs7SdqghQui-UadBDVF3bHCarfsng&sensor=false');	
 
 		wp_enqueue_script('map-functions');
