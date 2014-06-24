@@ -60,7 +60,7 @@ get_header(); ?>
 			<input type="number" name="year-created" id="year-created" multiple="false" max='2020' />
 		</fieldset>
 
-		<?php wp_dropdown_categories( array('taxonomy' => 'category', 'hide_empty' => 0 )); ?>
+		<?php wp_dropdown_categories( array('taxonomy' => 'pin_category', 'hide_empty' => 0 )); ?>
 
 		<fieldset>			
 			<?php wp_nonce_field('post_nonce', 'post_nonce_field'); ?>

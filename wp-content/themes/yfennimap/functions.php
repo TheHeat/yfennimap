@@ -113,19 +113,23 @@ function yfenni_scripts() {
 		wp_enqueue_script( 'comment-reply' );
 	}
 		wp_enqueue_script( 'jquery' );
-	//if (is_home()){
-		wp_register_script( 'map-functions', get_template_directory_uri() . '/js/map-functions.js', array('jquery'), true );
-
 		wp_enqueue_script( 'jquery-ui-position' );
 		wp_enqueue_script( 'jquery-effects-core' );
 		wp_enqueue_script( 'jquery-effects-slide' );
 		wp_enqueue_script( 'jquery-ui-widget');
+
+	//if (is_home()){
+		wp_register_script( 'map-functions', get_template_directory_uri() . '/js/map-functions.js', array('jquery'), true );
+
+		
 		wp_enqueue_script( 'google_map_api', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyC1ssxs7SdqghQui-UadBDVF3bHCarfsng&sensor=false');	
 
 		wp_enqueue_script('map-functions');
 		wp_localize_script( 'map-functions', 'pinsMap', get_pins() );
+		wp_localize_script( 'map-functions', 'activeCategories', get_categories() );
 		// make the ajaxurl var available to the map-functions script
 		wp_localize_script( 'map-functions', 'the_ajax_script', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );
+		
 		wp_enqueue_script( 'facebook',get_template_directory_uri() . '/js/facebook.js', array(), true );
 	//}
 }
@@ -308,7 +312,7 @@ function register_cpt_pin() {
     register_post_type( 'pin', $args );
 }
 // Register Custom Taxonomy
-function categories() {
+function pin_categories() {
 
 	$labels = array(
 		'name'                       => _x( 'Categories', 'Taxonomy General Name', 'text_domain' ),
@@ -336,12 +340,12 @@ function categories() {
 		'show_in_nav_menus'          => true,
 		'show_tagcloud'              => true,
 	);
-	register_taxonomy( 'category', array( 'pin' ), $args );
+	register_taxonomy( 'pin_category', array( 'pin' ), $args );
 
 }
 
 // Hook into the 'init' action
-add_action( 'init', 'categories', 0 );
+add_action( 'init', 'pin_categories', 0 );
 
 function post_published( $new_status, $old_status, $post ) {
 	if( $post->post_type == 'pin'){

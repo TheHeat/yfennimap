@@ -160,7 +160,7 @@ if(function_exists("register_field_group"))
 				'label' => 'Category',
 				'name' => 'category',
 				'type' => 'taxonomy',
-				'taxonomy' => 'category',
+				'taxonomy' => 'pin-category',
 				'field_type' => 'multi_select',
 				'allow_null' => 0,
 				'load_save_terms' => 1,
