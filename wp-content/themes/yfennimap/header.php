@@ -30,4 +30,5 @@
 				</h1>
 			</div>
 			<?php fb_login(); ?>
+			<span class="tool info"></span>
 		</header>

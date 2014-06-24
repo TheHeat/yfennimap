@@ -746,7 +746,24 @@ a.tool:hover {
   overflow: hidden;
   background-image: url('img/pencil.svg?1402861592'); }
 
-/* line 144, scss/_map.scss */
+/* line 143, scss/_map.scss */
+.tool.info {
+  display: inline-block;
+  width: 2em;
+  height: 2em;
+  background-position: center;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  -webkit-background-size: contain;
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin: 0.5em;
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  background-image: url('img/info.svg?1402861592'); }
+
+/* line 148, scss/_map.scss */
 .action.cancel {
   display: inline-block;
   width: 2em;
@@ -763,7 +780,7 @@ a.tool:hover {
   overflow: hidden;
   background-image: url('img/times.svg?1402861592'); }
 
-/* line 148, scss/_map.scss */
+/* line 152, scss/_map.scss */
 .action.save {
   display: inline-block;
   width: 2em;

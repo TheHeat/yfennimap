@@ -257,6 +257,11 @@ function toolboxLinks(position){
 
 jQuery(document).ready(function($){
 
+	// Open info panel
+	$('.tool.info').click(function(){
+		openModal($('.info-window').html());
+	});
+
 
 	// Login/Out
 

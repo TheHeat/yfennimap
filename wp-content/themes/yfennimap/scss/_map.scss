@@ -140,6 +140,10 @@ a.tool{
   @include icon-bg;
   background-image:image-url('pencil.svg');
 }
+.tool.info{
+  @include icon-bg;
+  background-image:image-url('info.svg');
+}
 
 .action.cancel{
   @include icon-bg;
