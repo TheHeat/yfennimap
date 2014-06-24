@@ -126,7 +126,7 @@ function yfenni_scripts() {
 
 		wp_enqueue_script('map-functions');
 		wp_localize_script( 'map-functions', 'pinsMap', get_pins() );
-		wp_localize_script( 'map-functions', 'activeCategories', get_categories() );
+		wp_localize_script( 'map-functions', 'activeCategories', get_categories(array( 'taxonomy' => 'pin_category')) );
 		// make the ajaxurl var available to the map-functions script
 		wp_localize_script( 'map-functions', 'the_ajax_script', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );
 		
@@ -164,6 +164,7 @@ function get_pins(){
 	// 		)
 	// 	);
 	// }
+
 
 	if($pin_query->have_posts()):
 		while($pin_query->have_posts()):
@@ -408,6 +409,7 @@ if( function_exists('acf_add_options_sub_page') )
 
 add_filter('show_admin_bar', '__return_false');
 
+
 function pin_display($media_type, $fb_media) {
 	switch ($media_type) {
 		case 'text':
@@ -436,18 +438,4 @@ function pin_display($media_type, $fb_media) {
 
 			break;
 	}
-}
-
-function get_the_category_custompost( $id = false, $tcat = 'category' ) {
-    $categories = get_the_terms( $id, $tcat );
-    if ( ! $categories )
-        $categories = array();
-
-    $categories = array_values( $categories );
-
-    foreach ( array_keys( $categories ) as $key ) {
-        _make_cat_compat( $categories[$key] );
-    }
-
-    return apply_filters( 'get_the_categories', $categories );
 }

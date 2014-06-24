@@ -108,19 +108,7 @@ function createMarker(center, title, icon, fbURL) {
     	singlePinFB = fbURL;
     	// console.log(singlePin);
 
-    	jQuery(function($){
-
-    		// var gotTools = $('toolbox:visible');
-    		// console.log(gotTools);
-
-    		if($('.toolbox').is(':visible')){
-    			$('.toolbox').hide('slide', {direction: 'right'}, function(){
-					loadPin();   			
-    			});
-    		}else{
-    			loadPin();
-    		}
-    	});
+    	loadPin();
   
     });
 
@@ -141,26 +129,45 @@ function loadPin(){
 
 function openModal(content){
 
-	jQuery('#modal-window').slideDown(function(){
+	if(jQuery('.toolbox').is(':visible')){
+    			jQuery('.toolbox').hide('slide', {direction: 'right'}, function(){
+
+    				jQuery('#modal-window').slideDown(function(){
 		
-		jQuery('.modal-content').append(content);
-		FB.XFBML.parse(document, function(){
-			jQuery('.modal-content').position({my: 'center top', at: 'center top', of: '#modal-window'});
-		});
+						jQuery('.modal-content').append(content);
+						FB.XFBML.parse(document, function(){
+							jQuery('.modal-content').position({my: 'center top', at: 'center top', of: '#modal-window'});
+						});
 
-		jQuery('.modal-close').click(function(){
-			jQuery('#modal-window').slideUp(function(){
-		    	jQuery('.modal-content').empty();
-		    	jQuery('.toolbox').show('slide', {direction: 'right'});
-		    });
-		});
+					});
+								
+    			});
+    		}else{
 
-		jQuery('#modal-window').click(function(){
-			jQuery('#modal-window').slideUp(function(){
-		    	jQuery('.modal-content').empty();
-		    	jQuery('.toolbox').show('slide', {direction: 'right'});
-		    });
-		});
+    			jQuery('#modal-window').slideDown(function(){
+		
+					jQuery('.modal-content').append(content);
+					FB.XFBML.parse(document, function(){
+						jQuery('.modal-content').position({my: 'center top', at: 'center top', of: '#modal-window'});
+					});
+				});
+    			
+    		}
+
+
+
+	jQuery('.modal-close').click(function(){
+		jQuery('#modal-window').slideUp(function(){
+	    	jQuery('.modal-content').empty();
+	    	jQuery('.toolbox').show('slide', {direction: 'right'});
+	    });
+	});
+
+	jQuery('#modal-window').click(function(){
+		jQuery('#modal-window').slideUp(function(){
+	    	jQuery('.modal-content').empty();
+	    	jQuery('.toolbox').show('slide', {direction: 'right'});
+	    });
 	});
 
 }
@@ -273,6 +280,11 @@ function toolboxLinks(position){
 }
 
 jQuery(document).ready(function($){
+
+	// Open info panel
+	$('.tool.info').click(function(){
+		openModal($('.info-window').html());
+	});
 
 
 	// Login/Out
