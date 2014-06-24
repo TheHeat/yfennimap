@@ -113,12 +113,14 @@ function yfenni_scripts() {
 		wp_enqueue_script( 'comment-reply' );
 	}
 		wp_enqueue_script( 'jquery' );
-	//if (is_home()){
-		wp_register_script( 'map-functions', get_template_directory_uri() . '/js/map-functions.js', array('jquery'), true );
-
 		wp_enqueue_script( 'jquery-ui-position' );
 		wp_enqueue_script( 'jquery-effects-core' );
 		wp_enqueue_script( 'jquery-effects-slide' );
+
+	//if (is_home()){
+		wp_register_script( 'map-functions', get_template_directory_uri() . '/js/map-functions.js', array('jquery'), true );
+
+		
 		wp_enqueue_script( 'google_map_api', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyC1ssxs7SdqghQui-UadBDVF3bHCarfsng&sensor=false');	
 
 		wp_enqueue_script('map-functions');
