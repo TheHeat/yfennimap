@@ -58,8 +58,11 @@ class FB_Media extends FacebookRequest
 		//Construct the query
 		$query = '/' . $fb_object_id;
 
+		//get a session object using the token stored in ACF Options
+		$session = new FacebookSession(page_token);
+
 		//call the parent constructor
-		$request = parent::__construct($_SESSION['fb_session'], 'GET', $query);
+		$request = parent::__construct($session, 'GET', $query);
 
 		//print_r($_SESSION['fb_session']);
 
