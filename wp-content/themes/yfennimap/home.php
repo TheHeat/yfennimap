@@ -13,9 +13,11 @@ get_header();
 <div id="fb-root"></div>
 <?php get_template_part('map-pins' ); ?>	
 
+<div class="filters">
+</div>
+
 <?php if(fb_get_token()): ?>
 	<div class="toolbox">
-		
 		<div class="actions" style="display:none;"></div>
 		<div class="handle add" tabindex="1"></div>
 		<div class="box">

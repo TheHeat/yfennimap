@@ -36,13 +36,11 @@ html {
 }
 
 .modal-content{
-  position:absolute;
-  top:3em;
   max-width:100%;
-  overflow-y: scroll; /* has to be scroll, not auto */
-  webkit-overflow-scrolling:touch;
+  padding:1em 3em;
   margin:0 auto;
-  background-color:white;
+  max-width: 40em;
+  overflow-y: auto;
 }
 
 .toolbox{
