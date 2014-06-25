@@ -17,8 +17,8 @@ var newPinMedia;
 var newPinLatLng = [];
 var saveNewPin;
 var filterCategory;
-var filterYearStart;
-var filterYearEnd;
+var filterStartDate;
+var filterEndDate;
 
 // convert $pins from PHP to JSON object
 
@@ -44,47 +44,45 @@ function initialize() {
 
 	for (var i in pinsMap) {
 
-		if(!singlePin || singlePin === pinsMap[i].wpid){
-
 			var lat 	= pinsMap[i].lat;
 			var lng 	= pinsMap[i].lng;
 			var center 	= new google.maps.LatLng(lat, lng);
 			var title 	= pinsMap[i].title;
-			// var wpid	= pinsMap[i].wpid;
+			var wpid	= pinsMap[i].wpid;
 			var fbURL	= pinsMap[i].fbURL;
 			var icon 	= pinsMap[i].icon;
 			var cats	= pinsMap[i].categories;
-			var year 	= pinsMap[i].year;
+			var pinYear = pinsMap[i].year;
 			
 			//destroy these at the start of the loop
-			var inCategory = null;
-			var inYearRange = null;
+			var inCategory;
+			var inYearRange;
 
 			//Test to see if the pin is in the selected category and
 			//within the date range
 		
 			//Test that the pin is in the selected category using inArray
 			if(!filterCategory || cats.indexOf(filterCategory) > -1){
-				var inCategory = true;
+				inCategory = true;
 			}
 
 			//Test that the pin's date is within the date range
-			if(!filterYearStart || (year >= filterYearStart && year <= filterYearEnd)){
-				var inYearRange = true;
+			if( (!filterStartDate || filterStartDate <= pinYear) && (!filterEndDate || filterEndDate >= pinYear)  ){
+				inYearRange = true;
 			}
 
-			//If it's in the category and the year range, render a pin
-			if(inCategory == true && inYearRange == true){
+			if(inYearRange && inCategory){
 				createMarker(center, title, icon, fbURL);
+				console.log(pinYear);
 			}
+
+
 
 			// extend the bounds to include this marker's position
 			bounds.extend(center);  
 
 			// resize the map
 			map.fitBounds(bounds);
-
-		}
 
 	}
 }
@@ -99,7 +97,7 @@ function createMarker(center, title, icon, fbURL) {
       },
       title: title,
       map: map,
-      // animation: google.maps.Animation.DROP
+      animation: google.maps.Animation.DROP
     });
 
     google.maps.event.addListener(marker, 'click', function () {
@@ -128,6 +126,8 @@ function loadPin(){
 }
 
 function openModal(content){
+
+	jQuery('.modal-content').empty();
 
 	if(jQuery('.toolbox').is(':visible')){
     			jQuery('.toolbox').hide('slide', {direction: 'right'}, function(){

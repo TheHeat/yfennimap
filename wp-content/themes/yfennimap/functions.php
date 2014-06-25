@@ -182,7 +182,7 @@ function get_pins(){
 			$pin['wpid']		= get_the_id();
 			$pin['fbURL']		= get_post_meta( get_the_ID(), 'fb_post_url', true);
 			$pin['icon']		= get_stylesheet_directory_uri() . '/img/mapicon_' . get_field('media_type') . '.svg';
-			$pin['year']		= get_field('year-created');
+			$pin['year']		= intval(get_field('year-created'));
 			$pin['categories'] 	= wp_get_post_terms( get_the_ID(), 'pin_category', array( 'fields' => 'names' ) );
 
 			// Push to the $pins object
