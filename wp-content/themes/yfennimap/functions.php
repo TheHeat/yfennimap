@@ -121,12 +121,17 @@ function yfenni_scripts() {
 		wp_enqueue_script( 'jquery-ui-widget');
 
 	//if (is_home()){
-		wp_register_script( 'map-functions', get_template_directory_uri() . '/js/map-functions.js', array('jquery'), true );
+		
+
+		wp_register_script( 'set-form-fields', get_template_directory_uri() . '/js/set-form-fields.js', array('jquery'), true );
+		wp_enqueue_script('set-form-fields');
 
 		
 		wp_enqueue_script( 'google_map_api', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyC1ssxs7SdqghQui-UadBDVF3bHCarfsng&sensor=false');	
 
+		wp_register_script( 'map-functions', get_template_directory_uri() . '/js/map-functions.js', array('jquery'), true );
 		wp_enqueue_script('map-functions');
+		
 		wp_localize_script( 'map-functions', 'pinsMap', get_pins() );
 		wp_localize_script( 'map-functions', 'activeCategories', get_categories(array( 'taxonomy' => 'pin_category')) );
 		// make the ajaxurl var available to the map-functions script
@@ -444,3 +449,5 @@ function pin_display($media_type, $fb_media) {
 			break;
 	}
 }
+
+

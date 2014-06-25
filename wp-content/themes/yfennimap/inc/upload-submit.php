@@ -9,6 +9,10 @@
 	// } else {
 	// 	$postContent = trim($_POST['postContent']);
 	// }
+
+	// echo '<pre>';
+	// 	print_r($_POST);
+	// echo '</pre>';
 	
 	//Insert Post
 	//standard WP info
@@ -27,6 +31,7 @@
 	update_post_meta( $post_id, "media_type", $_GET['media'] );
 	update_post_meta( $post_id, "link",esc_attr(strip_tags(isset($_POST['link']) ? $_POST['link'] : null )) );
 	update_post_meta( $post_id, "year-created",esc_attr(strip_tags(isset($_POST['year-created']) ? $_POST['year-created'] : null )) );
+	wp_set_post_terms( $post_id, $_POST['pin-category'], 'pin-category');
 	//get users fb token and save against post
 	add_post_meta( $post_id, 'user_fb_token', fb_get_token() );
 	

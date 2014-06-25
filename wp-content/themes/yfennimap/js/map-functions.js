@@ -162,7 +162,10 @@ function openModal(content){
 	    	jQuery('.modal-content').empty();
 	    	jQuery('.toolbox').show('slide', {direction: 'right'});
 	    });
+
 	    jQuery('.date').show();
+	});
+
 	});
 
 }
@@ -320,10 +323,10 @@ jQuery(document).ready(function($){
 
 		newPinMedia = $(this).data('media');
 		setFormFields(newPinMedia);
-		console.log(newPinMedia);
 
+		// console.log(newPinMedia);
 		newPinMediaLabel = $(this).text();
-		console.log(newPinMediaLabel);
+		// console.log(newPinMediaLabel);
 
 		toolboxLinks(newPinLatLng);
 
