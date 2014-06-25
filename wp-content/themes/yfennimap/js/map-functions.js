@@ -128,7 +128,7 @@ function openModal(content){
 
 	jQuery('.modal-content').empty();
 
-	jQuery('.date').toggle('slide', {direction: 'top'});
+	jQuery('.date').hide();
 
 	if(jQuery('.toolbox').is(':visible')){
     			jQuery('.toolbox').hide('slide', {direction: 'right'}, function(){
@@ -162,13 +162,7 @@ function openModal(content){
 	    	jQuery('.modal-content').empty();
 	    	jQuery('.toolbox').show('slide', {direction: 'right'});
 	    });
-	});
-
-	jQuery('#modal-window').click(function(){
-		jQuery('#modal-window').slideUp(function(){
-	    	jQuery('.modal-content').empty();
-	    	jQuery('.toolbox').show('slide', {direction: 'right'});
-	    });
+	    jQuery('.date').show();
 	});
 
 }
