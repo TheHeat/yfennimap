@@ -306,14 +306,17 @@ function register_cpt_pin() {
         'show_in_nav_menus' => true,
         'publicly_queryable' => true,
         'exclude_from_search' => false,
-        'has_archive' => false,
+        'has_archive' => true,
         'query_var' => true,
         'can_export' => true,
-        'rewrite' => true,
-        'capability_type' => 'post'
+        // 'rewrite' => false,
+        'capability_type' => 'post',
+
+        'rewrite' => array('slug' => 'wow', 'with_front' => true )
     );
 
     register_post_type( 'pin', $args );
+    flush_rewrite_rules(false);
 }
 // Register Custom Taxonomy
 function pin_categories() {
