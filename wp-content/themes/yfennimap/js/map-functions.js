@@ -260,6 +260,7 @@ function addNewPin(){
     	toolboxLinks(newPinLatLng);
     	cancelButton();
     });
+
 }
 
 function toolboxLinks(position){
@@ -268,7 +269,8 @@ function toolboxLinks(position){
 	var saveQueryLat = 'lat=' + position.k;
 	var saveQueryLng = 'lng=' + position.A;
 		
-	var saveNewPin = '<a class="action save" href="upload-form/?' + saveQueryMedia + '&' + saveQueryLat + '&' + saveQueryLng + '">Add ' + newPinMediaLabel + '</a>';
+	// var saveNewPin = '<a class="action save" href="upload-form/?' + saveQueryMedia + '&' + saveQueryLat + '&' + saveQueryLng + '">Add ' + newPinMediaLabel + '</a>';
+	var saveNewPin = '<span class="action save">save</span>'
 	var cancelNewPin = '<span class="action cancel">Cancel</span>';
 
 		
@@ -277,6 +279,12 @@ function toolboxLinks(position){
 	// $('.toolbox .handle').empty();
 		// $('.toolbox .handle').prepend(newPinMediaLabel);
 		jQuery('.toolbox .actions').html(cancelNewPin + saveNewPin);
+
+
+		//Open the upload content form
+		jQuery('.action.save').click(function(){
+			openModal(jQuery('.upload-form').html());
+		});
 }
 
 jQuery(document).ready(function($){
@@ -328,6 +336,7 @@ jQuery(document).ready(function($){
 		cancelButton();
 
 	});
+
 
 
 });
