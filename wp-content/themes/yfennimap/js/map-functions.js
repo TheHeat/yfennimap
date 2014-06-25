@@ -73,7 +73,6 @@ function initialize() {
 
 			if(inYearRange && inCategory){
 				createMarker(center, title, icon, fbURL);
-				console.log(pinYear);
 			}
 
 
@@ -128,6 +127,8 @@ function loadPin(){
 function openModal(content){
 
 	jQuery('.modal-content').empty();
+
+	jQuery('.date').toggle('slide', {direction: 'top'});
 
 	if(jQuery('.toolbox').is(':visible')){
     			jQuery('.toolbox').hide('slide', {direction: 'right'}, function(){
@@ -324,6 +325,7 @@ jQuery(document).ready(function($){
 		}
 
 		newPinMedia = $(this).data('media');
+		setFormFields(newPinMedia);
 		console.log(newPinMedia);
 
 		newPinMediaLabel = $(this).text();
@@ -337,7 +339,25 @@ jQuery(document).ready(function($){
 
 	});
 
-
+	$( '#date-range' ).slider({
+		range: true,
+		min: 1900,
+		max: 2014,
+		values: [ 1900, 2014 ],
+		slide: function( event, ui ) { 
+			$( '#date-label' ).val( ui.values[ 0 ] + ' - ' + ui.values[ 1 ] );
+		},
+		change: function( event, ui ){
+			filterStartDate = Number(ui.values[ 0 ]);
+			filterEndDate = Number(ui.values[ 1 ]);
+		},
+		stop: function( event, ui){
+			filterStartDate = Number(ui.values[ 0 ]);
+			filterEndDate = Number(ui.values[ 1 ]);
+			initialize();
+		},
+    });
+    $( '#date-label' ).val( $( '#date-range' ).slider( 'values', 0 ) + ' - ' + $( '#date-range' ).slider( 'values', 1 ) );
 
 });
 

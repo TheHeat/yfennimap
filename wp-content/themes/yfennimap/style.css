@@ -523,6 +523,44 @@ Accessibility
 /*--------------------------------------------------------------
 Navigation
 --------------------------------------------------------------*/
+/* 	The track of the slider control. 
+	This element will additionally have a class name of ui-slider-horizontal 
+	or ui-slider-vertical depending on the orientation of the slider. 
+*/
+/* line 5, scss/_jqueryui.scss */
+.ui-slider {
+  background: silver;
+  height: 0.5em;
+  margin: 2em 0 1em;
+  position: relative;
+  width: 100%; }
+
+/*The slider handles.*/
+/* line 14, scss/_jqueryui.scss */
+a.ui-slider-handle {
+  background: red;
+  width: 0.5em;
+  height: 2em;
+  position: absolute;
+  top: -0.75em; }
+
+/* 	The selected range used when the range option is set. 
+	This element can additionally have a class of ui-slider-range-min 
+	or ui-slider-range-max if the range option is set to "min" or "max" respectively.
+*/
+/* line 27, scss/_jqueryui.scss */
+.ui-slider-range {
+  position: relative;
+  background: black;
+  height: 0.5em; }
+
+/* line 33, scss/_jqueryui.scss */
+#date-label {
+  border: none;
+  background: transparent;
+  font-size: 2em;
+  font-weight: bold; }
+
 /* line 1, scss/_layout.scss */
 * {
   -webkit-box-sizing: border-box;
@@ -585,7 +623,7 @@ html {
 /* line 46, scss/_map.scss */
 .toolbox {
   position: absolute;
-  bottom: 2em;
+  bottom: 5em;
   right: 0;
   height: 3em;
   -webkit-background-clip: padding-box;
@@ -796,5 +834,13 @@ a.tool:hover {
   white-space: nowrap;
   overflow: hidden;
   background-image: url('img/check.svg?1402861592'); }
+
+/* line 158, scss/_map.scss */
+.date {
+  position: absolute;
+  z-index: 15;
+  bottom: 0;
+  width: 100%;
+  padding: 2em; }
 
 /*# sourceMappingURL=style.css.map */

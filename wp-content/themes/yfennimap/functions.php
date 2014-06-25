@@ -1,4 +1,4 @@
-<?php
+	<?php
 /**
  * yfennimap functions and definitions
  *
@@ -113,7 +113,9 @@ function yfenni_scripts() {
 		wp_enqueue_script( 'comment-reply' );
 	}
 		wp_enqueue_script( 'jquery' );
+		wp_enqueue_script( 'jquery-ui-core' );
 		wp_enqueue_script( 'jquery-ui-position' );
+		wp_enqueue_script( 'jquery-ui-slider' );
 		wp_enqueue_script( 'jquery-effects-core' );
 		wp_enqueue_script( 'jquery-effects-slide' );
 		wp_enqueue_script( 'jquery-ui-widget');

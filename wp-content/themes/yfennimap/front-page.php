@@ -41,6 +41,11 @@ get_header();
 <div class="filters">
 </div>
 
+<div class="date">
+	<input type="text" id="date-label">
+	<div id="date-range"></div>
+</div>
+
 <?php if(fb_get_token()): ?>
 	<div class="toolbox">
 		<div class="actions" style="display:none;"></div>

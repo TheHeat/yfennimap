@@ -45,7 +45,7 @@ html {
 
 .toolbox{
   position:absolute;
-  bottom:2em;
+  bottom:5em;
   right:0;
   height:3em;
   background-clip:padding-box;
@@ -154,3 +154,11 @@ a.tool{
   background-image:image-url('check.svg');
 }
 
+
+.date{
+  position: absolute;
+  z-index: 15;
+  bottom: 0; 
+  width:100%;
+  padding:2em;
+}
