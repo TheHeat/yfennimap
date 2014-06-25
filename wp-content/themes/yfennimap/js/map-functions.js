@@ -73,7 +73,7 @@ function initialize() {
 
 			if(inYearRange && inCategory){
 				createMarker(center, title, icon, fbURL);
-				console.log(pinYear);
+				// console.log(pinYear);
 			}
 
 
@@ -163,12 +163,12 @@ function openModal(content){
 	    });
 	});
 
-	jQuery('#modal-window').click(function(){
-		jQuery('#modal-window').slideUp(function(){
-	    	jQuery('.modal-content').empty();
-	    	jQuery('.toolbox').show('slide', {direction: 'right'});
-	    });
-	});
+	// jQuery('#modal-window').click(function(){
+	// 	jQuery('#modal-window').slideUp(function(){
+	//     	jQuery('.modal-content').empty();
+	//     	jQuery('.toolbox').show('slide', {direction: 'right'});
+	//     });
+	// });
 
 }
 
@@ -324,10 +324,11 @@ jQuery(document).ready(function($){
 		}
 
 		newPinMedia = $(this).data('media');
-		console.log(newPinMedia);
+		setFormFields(newPinMedia);
+		// console.log(newPinMedia);
 
 		newPinMediaLabel = $(this).text();
-		console.log(newPinMediaLabel);
+		// console.log(newPinMediaLabel);
 
 		toolboxLinks(newPinLatLng);
 
