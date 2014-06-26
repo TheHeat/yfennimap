@@ -155,10 +155,18 @@ function openModal(content, callback){
     			
     		}
 
-
-    		 if (typeof callback == 'function') { // make sure the callback is a function
+    		setTimeout(function(){
+    			if (typeof callback == 'function') { // make sure the callback is a function
     		 	callback.call(this); // brings the scope to the callback
     		 }
+    		}, 2000);
+
+    		// jQuery('.modal-content form').load(function(){
+    		 // if (typeof callback == 'function') { // make sure the callback is a function
+    		 // 	callback.call(this); // brings the scope to the callback
+    		 // }
+
+    		 // });
 
 
 
@@ -285,7 +293,16 @@ function toolboxLinks(position){
 
 		//Open the upload content form
 		jQuery('.action.save').click(function(){
-			openModal(jQuery('.upload-form').html());
+			openModal(jQuery('.upload-form').html(),function(){
+
+
+				jQuery('.media-hidden').each(function(){
+					jQuery(this).val(newPinMedia);
+					console.log(jQuery(this).val());
+				});
+
+
+			});
 
 			//bind a function onto the submit topopulate some information into hidden form fields
 			// jQuery('form').submit(function(){
@@ -298,9 +315,7 @@ function toolboxLinks(position){
 			// 	jQuery(this).val(newPinMedia);
 			// });
 
-			jQuery('.modal-content input.media-hidden').val(newPinMedia);
-
-			console.log(jQuery('.modal-content input.media-hidden').val());
+			
 
 			// jQuery.each( jQuery('.media-hidden'), function(){
 			// 	console.log(jQuery(this).val());
