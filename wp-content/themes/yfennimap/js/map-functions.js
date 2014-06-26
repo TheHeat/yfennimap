@@ -20,7 +20,7 @@ var filterCategory;
 var filterStartDate;
 var filterEndDate;
 
-// convert $pins from PHP to JSON object
+// convert $pins from PHP to JSON obj`ect
 
 	// console.log(pinsMap);
 
@@ -124,7 +124,7 @@ function loadPin(){
 	openModal(content);
 }
 
-function openModal(content){
+function openModal(content, callback){
 
 	jQuery('.modal-content').empty();
 
@@ -154,6 +154,11 @@ function openModal(content){
 				});
     			
     		}
+
+
+    		 if (typeof callback == 'function') { // make sure the callback is a function
+    		 	callback.call(this); // brings the scope to the callback
+    		 }
 
 
 
