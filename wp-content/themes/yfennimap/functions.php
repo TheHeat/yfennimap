@@ -313,7 +313,7 @@ function register_cpt_pin() {
         'publicly_queryable' => true,
         'exclude_from_search' => false,
         'has_archive' => true,
-        'query_var' => true,
+        'query_var' => false,
         'can_export' => true,
         // 'rewrite' => false,
         'capability_type' => 'post',
@@ -352,6 +352,7 @@ function pin_categories() {
 		'show_admin_column'          => true,
 		'show_in_nav_menus'          => true,
 		'show_tagcloud'              => true,
+		'query_var'					 => false,
 	);
 	register_taxonomy( 'pin_category', array( 'pin' ), $args );
 

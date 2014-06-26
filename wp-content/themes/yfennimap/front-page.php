@@ -14,10 +14,7 @@ get_header();
 <?php get_template_part('map-pins' ); ?>
 
 <?php
-	echo 'wow';
-	echo '<pre>';
-		print_r($_POST);
-	echo '</pre>';
+
 	//check if the post has been submitted
 	if(isset($_POST['submitted']) && isset($_POST['post_nonce_field']) && wp_verify_nonce($_POST['post_nonce_field'], 'post_nonce')) {
 
@@ -93,9 +90,14 @@ get_header();
 				<?php
 					$terms = get_terms('pin_category');
 					
-					foreach ($terms as $term) { ?>
-						<input type="checkbox" name="pin_category" value="<?php echo $term->cat_ID;?>">
-						
+					foreach ($terms as $term) { 
+						//Get the term ID
+						$term_id = $term->cat_ID;
+
+						//It returns a string. Cast it as an integer
+						$term_id = (integer)$term_id;
+						?>
+						<input type="checkbox" name="pin_category[]" value=<?php echo $term_id;?> />
 						<?php
 						echo $term->cat_name;
 						echo '<br/>';

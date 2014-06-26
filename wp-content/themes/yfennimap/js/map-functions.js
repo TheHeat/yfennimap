@@ -348,31 +348,25 @@ function toolboxLinks(position){
 		jQuery('.action.save').click(function(){
 			openModal(jQuery('.upload-form').html(),function(){
 
-
+				//populate the media type form field
 				jQuery('.media-hidden').each(function(){
 					jQuery(this).val(newPinMedia);
-					console.log(jQuery(this).val());
+					// console.log(jQuery(this).val());
 				});
 
+				//populate the lat form field
+				jQuery('.lat-hidden').each(function(){
+					jQuery(this).val(newPinLatLng.k);
+					// console.log(jQuery(this).val());
+				});
+
+				//populate the lng form field
+				jQuery('.lng-hidden').each(function(){
+					jQuery(this).val(newPinLatLng.A);
+					// console.log(jQuery(this).val());
+				});
 
 			});
-
-			//bind a function onto the submit topopulate some information into hidden form fields
-			// jQuery('form').submit(function(){
-			// 	jQuery('.media-hidden').val(newPinMedia);
-			// 	jQuery('.lat-hidden').val(newPinLatLng.k);
-			// 	jQuery('.lng-hidden').val(newPinLatLng.A);
-			// });
-
-			// jQuery.each( jQuery('.media-hidden'), function(){
-			// 	jQuery(this).val(newPinMedia);
-			// });
-
-			
-
-			// jQuery.each( jQuery('.media-hidden'), function(){
-			// 	console.log(jQuery(this).val());
-			// });
 			
 		});
 }
