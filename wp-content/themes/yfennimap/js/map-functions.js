@@ -166,7 +166,7 @@ function openModal(content){
 	    jQuery('.date').show();
 	});
 
-	});
+	// });
 
 }
 
