@@ -14,6 +14,10 @@ get_header();
 <?php get_template_part('map-pins' ); ?>
 
 <?php
+	echo 'wow';
+	echo '<pre>';
+		print_r($_POST);
+	echo '</pre>';
 	//check if the post has been submitted
 	if(isset($_POST['submitted']) && isset($_POST['post_nonce_field']) && wp_verify_nonce($_POST['post_nonce_field'], 'post_nonce')) {
 
@@ -57,7 +61,7 @@ get_header();
 
 <!-- Upload new content form -->
 <div class="upload-form" style="display:none;">
-	<form action="" id="pinForm" method="POST" enctype="multipart/form-data">
+	<form action="<?php echo site_url() . '/';?>" id="pinForm" method="POST" enctype="multipart/form-data">
 
 		<fieldset class="title">
 			<label for="postTitle"><?php _e('Pin title:') ?></label>
@@ -99,10 +103,15 @@ get_header();
 				?>
 		</fieldset>
 
+		<!-- Hidden fields for JQuery use -->
+		<input type="hidden" class="media-hidden" name="media"/>
+		<input type="hidden" class="lat-hidden" name="lat"/>
+		<input type="hidden" class="lng-hidden" name="lng"/>
+
 		<fieldset>			
 			<?php wp_nonce_field('post_nonce', 'post_nonce_field'); ?>
 			<input type="hidden" name="submitted" id="submitted" value="true" />
-			<button type="submit"><?php _e('Add Post') ?></button>
+			<button type="submit"><?php _e('Add Pin') ?></button>
 		</fieldset>
 
 	</form>

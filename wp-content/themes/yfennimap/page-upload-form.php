@@ -19,7 +19,7 @@ get_header(); ?>
 
 <div class="page-wrapper">
 
-	<form action="" id="pinForm" method="POST" enctype="multipart/form-data">
+	<form action="" id="pinForm" method="post" enctype="multipart/form-data">
 
 		<?php if ( $media == 'text'): ?>
 			<fieldset>

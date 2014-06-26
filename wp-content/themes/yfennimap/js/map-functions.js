@@ -248,13 +248,14 @@ function addNewPin(){
 
 	// Define var newPinLatLng as this starting position in case the user doesn't sweat the small stuff!
     newPinLatLng = newMarker.position;
-    console.log(newPinLatLng);
+    // console.log(newPinLatLng.k);
+    // console.log(newPinLatLng.A);
 
     // Pass position of draggable marker to newPinLatLng
     google.maps.event.addListener(newMarker, 'dragend', function () {
 
     	newPinLatLng = newMarker.getPosition();
-    	console.log(newPinLatLng);
+    	// console.log(newPinLatLng);
     	toolboxLinks(newPinLatLng);
     	cancelButton();
     });
@@ -282,6 +283,26 @@ function toolboxLinks(position){
 		//Open the upload content form
 		jQuery('.action.save').click(function(){
 			openModal(jQuery('.upload-form').html());
+
+			//bind a function onto the submit topopulate some information into hidden form fields
+			// jQuery('form').submit(function(){
+			// 	jQuery('.media-hidden').val(newPinMedia);
+			// 	jQuery('.lat-hidden').val(newPinLatLng.k);
+			// 	jQuery('.lng-hidden').val(newPinLatLng.A);
+			// });
+
+			// jQuery.each( jQuery('.media-hidden'), function(){
+			// 	jQuery(this).val(newPinMedia);
+			// });
+
+			jQuery('.modal-content .media-hidden').val('newPinMedia');
+
+			console.log(jQuery('.modal-content .media-hidden').val());
+
+			// jQuery.each( jQuery('.media-hidden'), function(){
+			// 	console.log(jQuery(this).val());
+			// });
+			
 		});
 }
 

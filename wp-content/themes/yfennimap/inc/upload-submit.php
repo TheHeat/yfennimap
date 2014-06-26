@@ -9,10 +9,6 @@
 	// } else {
 	// 	$postContent = trim($_POST['postContent']);
 	// }
-
-	// echo '<pre>';
-	// 	print_r($_POST);
-	// echo '</pre>';
 	
 	//Insert Post
 	//standard WP info
@@ -25,7 +21,7 @@
 
 	//Create Post
 	$post_id = wp_insert_post($post_information);
-
+	
 	//Custom Fields
 	update_post_meta( $post_id, "description", esc_attr(strip_tags(isset($_POST['postContent']) ? $_POST['postContent'] : null )) );
 	update_post_meta( $post_id, "media_type", $_GET['media'] );
