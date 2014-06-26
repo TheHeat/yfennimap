@@ -24,3 +24,5 @@ wp-content/themes/*
 # SASS
 
 *.sass-cache/
+
+wp-content/themes/yfennimap/.DS_Store

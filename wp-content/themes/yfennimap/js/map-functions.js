@@ -114,6 +114,15 @@ function initialize() {
 
 	// create the date slider
 	createDateSlider();
+
+	//If we have a single pin in the query string, open it
+	var displayPinId = getParameterByName('p');
+	if(displayPinId !== ''){
+
+		singlePinFB = pinsMap[displayPinId]['fbURL'];
+		loadPin();
+	}
+
 }
 
 function createMarker(center, title, icon, fbURL) {

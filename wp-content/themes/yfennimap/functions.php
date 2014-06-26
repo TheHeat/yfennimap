@@ -125,6 +125,8 @@ function yfenni_scripts() {
 		wp_register_script( 'set-form-fields', get_template_directory_uri() . '/js/set-form-fields.js', array('jquery'), true );
 		wp_enqueue_script('set-form-fields');
 
+		wp_register_script( 'get-parameter-by-name', get_template_directory_uri() . '/js/get-parameter-by-name.js', array('jquery'), true );
+		wp_enqueue_script('get-parameter-by-name');
 		
 		wp_enqueue_script( 'google_map_api', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyC1ssxs7SdqghQui-UadBDVF3bHCarfsng&sensor=false');	
 
