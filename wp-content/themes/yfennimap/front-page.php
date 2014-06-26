@@ -39,6 +39,8 @@ get_header();
 <?php endwhile; endif; ?>
 
 <div class="filters">
+	<span class="tool categories"></span>
+	<span class="tool clear-categories"></span>
 </div>
 
 <div class="date">

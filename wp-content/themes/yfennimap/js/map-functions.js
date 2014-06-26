@@ -17,6 +17,9 @@ var newPinMedia;
 var newPinLatLng = [];
 var saveNewPin;
 var filterCategory;
+if(getQueryStringParams('pinCat')){
+	filterCategory = getQueryStringParams('pinCat');
+}
 
 // Date sorting
 var dateArray = [];
@@ -86,11 +89,9 @@ function initialize() {
 			}
 
 
-
 			if(inYearRange && inCategory){
 				createMarker(center, title, icon, fbURL);
 			}
-
 
 
 			// extend the bounds to include this marker's position
@@ -114,6 +115,19 @@ function initialize() {
 
 	// create the date slider
 	createDateSlider();
+
+}
+
+function getQueryStringParams(sParam){
+	var sPageURL = window.location.search.substring(1);
+	var sURLVariables = sPageURL.split('&');
+
+	for (var i = 0; i < sURLVariables.length; i++){
+		var sParameterName = sURLVariables[i].split('=');
+		if (sParameterName[0] == sParam){
+			return sParameterName[1];
+		}
+	}
 }
 
 function createMarker(center, title, icon, fbURL) {
@@ -159,6 +173,7 @@ function openModal(content, callback){
 	jQuery('.modal-content').empty();
 
 	jQuery('.date').hide();
+	jQuery('.filters').hide('slide', {direction: 'right'});
 
 	if(jQuery('.toolbox').is(':visible')){
     			jQuery('.toolbox').hide('slide', {direction: 'right'}, function(){
@@ -207,11 +222,22 @@ function openModal(content, callback){
 	    });
 
 	    jQuery('.date').show();
+	    jQuery('.filters').show('slide', {direction: 'right'});
 	});
 
 }
 
+// Create categories interface from activeCategories object
+function createCategoryLinks(){
 
+	var categoryLinks = [];
+
+	for (var i = activeCategories.length - 1; i >= 0; i--) {
+		categoryLinks.push('<span data-link="' + activeCategories[i].slug + '" class="category-link">'+ activeCategories[i].name +'</span>');
+	};
+
+	return categoryLinks;
+}
 
 // Sets the map on all markers in the array.
 function setAllMap(map) {
@@ -275,23 +301,26 @@ function createDateSlider(){
 
 	var filteredDateRange = [filterStartDate, filterEndDate];
 
-	jQuery( '#date-range' ).slider({
-		range: true,
-		min: dateRangeMin - 1,
-		max: dateRangeMax + 1,
-		values: filteredDateRange,
-		slide: function( event, ui ) { 
-			jQuery( '#date-label' ).val( ui.values[ 0 ] + ' - ' + ui.values[ 1 ] );
-		},
-		stop: function( event, ui){
-			filterStartDate = Number(ui.values[ 0 ]*1);
-			filterEndDate = Number(ui.values[ 1 ]*1);
-			initialize();
-			console.log(filterStartDate, filterEndDate);
-		},
-    });
-    jQuery( '#date-label' ).val( jQuery( '#date-range' ).slider( 'values', 0 ) + ' - ' + jQuery( '#date-range' ).slider( 'values', 1 ) );
+		jQuery( '#date-range' ).slider({
+			range: true,
+			min: dateRangeMin - 1,
+			max: dateRangeMax + 1,
+			values: filteredDateRange,
+			slide: function( event, ui ) { 
+				jQuery( '#date-label' ).val( ui.values[ 0 ] + ' - ' + ui.values[ 1 ] );
+			},
+			stop: function( event, ui){
+				filterStartDate = Number(ui.values[ 0 ]*1);
+				filterEndDate = Number(ui.values[ 1 ]*1);
+				initialize();
+				console.log(filterStartDate, filterEndDate);
+			},
+	    });
 
+	    jQuery( '#date-label' ).val( jQuery( '#date-range' ).slider( 'values', 0 ) + ' - ' + jQuery( '#date-range' ).slider( 'values', 1 ) );
+
+
+	
 }
 
 
@@ -372,6 +401,32 @@ function toolboxLinks(position){
 }
 
 jQuery(document).ready(function($){
+
+	if(filterCategory){
+		$('.tool.categories').hide();
+		$('.tool.clear-categories').show(function(){
+			$(this).click(function(){
+				$(location).attr('href', './');
+			});
+		});
+
+	}else{
+		$('.tool.clear-categories').hide();
+	}
+
+
+	// Create Category Links
+	$('.tool.categories').click(function(){
+		openModal(createCategoryLinks(), function(){
+			$('.category-link').each(function(){
+				// var catQuery = '//' + window.location.host + '?pinCat=' + $(this).data('link');
+				var catQuery = './' + '?pinCat=' + $(this).data('link');
+				$(this).click(function(){
+					$(location).attr('href', catQuery);
+				});
+			});
+		});
+	});
 
 	// Open info panel
 	$('.tool.info').click(function(){

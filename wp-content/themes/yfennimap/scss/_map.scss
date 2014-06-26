@@ -43,17 +43,23 @@ html {
   overflow-y: auto;
 }
 
-.toolbox{
+.toolbox, .filters{
   position:absolute;
-  bottom:5em;
   right:0;
+  bottom:5em;
   height:3em;
   background-clip:padding-box;
   overflow:hidden;
-  background:black;
+  background-color:black;
   color:white;
   z-index:15;
 }
+
+
+.filters{
+  bottom:9em;
+}
+
 
 .handle,
 .box,
@@ -120,9 +126,18 @@ a.tool{
   cursor:pointer;
 }
 
+.tool.categories{
+  @include icon-bg;
+  background-image:image-url('thumb-tack.svg');  
+}
+.tool.clear-categories{
+  @include icon-bg;
+  background-image:image-url('rotate-left.svg');    
+}
+
 .handle.add{
   @include icon-bg;
-  background-image:image-url('thumb-tack.svg');
+  background-image:image-url('plus.svg');
 }
 .tool.link{
   @include icon-bg;
@@ -161,4 +176,17 @@ a.tool{
   bottom: 0; 
   width:100%;
   padding:2em;
+}
+
+
+.category-link{
+  display:block;
+  text-align:center;
+  text-decoration:none;
+  text-transform:uppercase;
+  font-size:2em;
+  color:white;
+  padding:0.5em;
+  margin-bottom:0.5em;
+  background:red;
 }
