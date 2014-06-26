@@ -102,9 +102,9 @@
 		update_field( 'field_5362addb9bf86',  $new_upload, $post_id);
 
 	endif;
-	//Message if succesful
-	if($post_id) _e('<p> Your Post has been submitted for moderation </p>' ); 
+	// //Message if succesful
+	// if($post_id) _e('<p> Your Post has been submitted for moderation </p>' ); 
 
-	exit;
+	// exit;
 
 	?>
