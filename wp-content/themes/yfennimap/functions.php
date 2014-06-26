@@ -123,10 +123,10 @@ function yfenni_scripts() {
 		
 
 		wp_register_script( 'set-form-fields', get_template_directory_uri() . '/js/set-form-fields.js', array('jquery'), true );
-		wp_enqueue_script('set-form-fields');
+		wp_enqueue_script(  'set-form-fields' );
 		
 		wp_register_script( 'get-parameter-by-name', get_template_directory_uri() . '/js/get-parameter-by-name.js', array('jquery'), true );
- 		wp_enqueue_script('get-parameter-by-name');
+ 		wp_enqueue_script(  'get-parameter-by-name');
 		
 		wp_enqueue_script( 'google_map_api', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyC1ssxs7SdqghQui-UadBDVF3bHCarfsng&sensor=false');	
 
@@ -191,7 +191,7 @@ function get_pins(){
 			$pin['fbURL']		= get_post_meta( get_the_ID(), 'fb_post_url', true);
 			$pin['icon']		= get_stylesheet_directory_uri() . '/img/mapicon_' . get_field('media_type') . '.svg';
 			$pin['year']		= intval(get_field('year-created'));
-			$pin['categories'] 	= wp_get_post_terms( get_the_ID(), 'pin_category', array( 'fields' => 'slug' ) );
+			$pin['categories'] 	= wp_get_post_terms( get_the_id(), 'pin_category', array( 'fields' => 'slugs' ) );
 
 			// Push to the $pins object
 			$pins[ get_the_ID() ] = $pin;
