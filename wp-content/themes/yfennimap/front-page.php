@@ -30,12 +30,7 @@ get_header();
 	</div>
 
 	<!-- Message if a pin was sucessfully submitted -->
-	<div class="success-message" style="display:none;">
-		<?php
-		$success_message = get_post_meta( get_the_id(), 'success_message', true );
-		echo $success_message;
-		?>
-	</div>
+
 <?php endwhile; endif; ?>
 
 <div class="filters">
@@ -72,27 +67,27 @@ get_header();
 
 		<fieldset class="title">
 			<label for="postTitle"><?php _e('Pin title:') ?></label>
-			<input type="text" name="postTitle" id="postTitle" value="<?php if(isset($_POST['postTitle'])) echo $_POST['postTitle'];?>" />
+			<input type="text" name="postTitle" id="postTitle" value="<?php if(isset($_POST['postTitle'])) echo $_POST['postTitle'];?>" required aria-required="true" />
 		</fieldset>
 
 		<fieldset class="content">					
 			<label for="postContent">Description</label>
-			<textarea name="postContent" id="postContent" rows="8" cols="30"><?php if(isset($_POST['postContent'])) { if(function_exists('stripslashes')) { echo stripslashes($_POST['postContent']); } else { echo $_POST['postContent']; } } ?></textarea>
+			<textarea name="postContent" id="postContent" rows="8" cols="30" required aria-required="true"><?php if(isset($_POST['postContent'])) { if(function_exists('stripslashes')) { echo stripslashes($_POST['postContent']); } else { echo $_POST['postContent']; } } ?></textarea>
 		</fieldset>
 
 		<fieldset class="link">
 			<label for="link"><?php _e('Link:') ?></label>
-			<input type="text" name="link" id="link"  multiple="false"/>
+			<input type="text" name="link" id="link"  multiple="false" required aria-required="true"/>
 		</fieldset>
 
 		<fieldset class="file">
-			<input type="file" name="media_upload[]" id="media_upload"  multiple/>
+			<input type="file" name="media_upload[]" id="media_upload"  multiple required aria-required="true"/>
 			<input type="hidden" name="post_id" id="post_id" value="55" />
 		</fieldset>
 		
 		<fieldset>
 			<label for="year-created"><?php _e('Year Created:') ?></label>
-			<input type="number" name="year-created" id="year-created" multiple="false" max='2020' value="<?php echo date('Y');  ?>"/>
+			<input type="number" name="year-created" id="year-created" multiple="false" max='2020' value="<?php echo date('Y');  ?>" required aria-required="true"/>
 		</fieldset>
 
 		<fieldset>

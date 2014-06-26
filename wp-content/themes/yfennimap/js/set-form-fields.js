@@ -21,12 +21,16 @@ function setFormFields(newPinMedia){
 				// console.log('works');
 				//hide link and files
 				$('fieldset.link').hide();
+				$('fieldset.link input').prop('required',false);
 				$('fieldset.file').hide();
+				$('fieldset.file input').prop('required',false);
 				break;
 			case 'pictures':
 				//hide title, link
 				$('fieldset.title').hide();
 				$('fieldset.link').hide();
+				$('fieldset.title input').prop('required',false);
+				$('fieldset.link input').prop('required',false);
 
 				//Allow multiple files when uploading photos
 				$('fieldset.file input').prop('multiple', 'true');
@@ -38,6 +42,9 @@ function setFormFields(newPinMedia){
 			case 'video':
 				//hide title
 				$('fieldset.title').hide();
+				$('fieldset.title input').prop('required',false);
+				$('fieldset.link input').prop('required',false);
+				$('fieldset.file input').prop('required',false);
 
 				//Add some accepted file types
 				$('fieldset.file input').prop('accept', 'video/*');
@@ -47,6 +54,8 @@ function setFormFields(newPinMedia){
 				//hide title, file chooser
 				$('fieldset.title').hide();
 				$('fieldset.file').hide();
+				$('fieldset.title input').prop('required',false);
+				$('fieldset.file input').prop('required',false);
 
 				//Change the description field to 'message'
 

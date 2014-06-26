@@ -116,6 +116,16 @@ function initialize() {
 	// create the date slider
 	createDateSlider();
 
+
+	//If we have a single pin in the query string, open it
+	var displayPinId = getParameterByName('p');
+	if(displayPinId !== ''){
+
+		singlePinFB = pinsMap[displayPinId]['fbURL'];
+		loadPin();
+	}
+
+
 }
 
 function getQueryStringParams(sParam){
@@ -128,6 +138,7 @@ function getQueryStringParams(sParam){
 			return sParameterName[1];
 		}
 	}
+
 }
 
 function createMarker(center, title, icon, fbURL) {
@@ -448,6 +459,11 @@ jQuery(document).ready(function($){
 	$('#modal-window').prepend(modalCloser, modalContent);
 
 	var addLabel = 'Add a pin';
+
+	//Open the success-message div if it exists
+	if($('.success-message').length){
+		openModal($('.success-message').html());
+	}
 
 	// Pass media type from the add toolbox link to the newMedia var
 	$('.toolbox .tool').click(function(){

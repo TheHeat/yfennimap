@@ -128,11 +128,11 @@ a.tool{
 
 .tool.categories{
   @include icon-bg;
-  background-image:image-url('thumb-tack.svg');  
+  background-image:image-url('tags.svg');  
 }
 .tool.clear-categories{
   @include icon-bg;
-  background-image:image-url('rotate-left.svg');    
+  background-image:image-url('refresh.svg');    
 }
 
 .handle.add{

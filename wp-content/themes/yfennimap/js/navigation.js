@@ -32,3 +32,4 @@
 			container.className += ' toggled';
 	};
 } )();
+
