@@ -55,11 +55,9 @@ get_header();
 	  	</div>
 	</div>
 <?php endif; ?>
-<div id="map-canvas">
-</div>
-<div id="modal-window">
+<div id="map-canvas"></div>
 
-</div>
+<div id="modal-window"></div>
 
 <!-- Upload new content form -->
 <div class="upload-form" style="display:none;">

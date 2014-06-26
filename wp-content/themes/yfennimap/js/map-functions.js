@@ -79,7 +79,7 @@ function initialize() {
 			//within the date range
 		
 			//Test that the pin is in the selected category using inArray
-			if(!filterCategory || cats.indexOf(filterCategory) > -1){
+			if(!filterCategory || cats.indexOf(filterCategory)){
 				inCategory = true;
 			}
 

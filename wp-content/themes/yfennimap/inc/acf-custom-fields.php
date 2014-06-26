@@ -1,7 +1,7 @@
 <?php
 
-if(function_exists("register_field_group"))
-{
+if(function_exists("register_field_group")){
+
 	register_field_group(array (
 		'id' => 'acf_map-pin',
 		'title' => 'Map Pin',
@@ -155,18 +155,6 @@ if(function_exists("register_field_group"))
 				'formatting' => 'html',
 				'maxlength' => '4',
 			),
-			// array (
-			// 	'key' => 'field_53a9772057ffd',
-			// 	'label' => 'Category',
-			// 	'name' => 'category',
-			// 	'type' => 'taxonomy',
-			// 	'taxonomy' => 'pin-category',
-			// 	'field_type' => 'multi_select',
-			// 	'allow_null' => 0,
-			// 	'load_save_terms' => 1,
-			// 	'return_format' => 'object',
-			// 	'multiple' => 0,
-			// ),
 			array (
 				'key' => 'field_5362af0591101',
 				'label' => 'FB User ID',
@@ -259,6 +247,42 @@ if(function_exists("register_field_group"))
 					'param' => 'options_page',
 					'operator' => '==',
 					'value' => 'acf-options-facebook-settings',
+					'order_no' => 0,
+					'group_no' => 0,
+				),
+			),
+		),
+		'options' => array (
+			'position' => 'normal',
+			'layout' => 'no_box',
+			'hide_on_screen' => array (
+			),
+		),
+		'menu_order' => 0,
+	));
+
+	register_field_group(array (
+		'id' => 'acf_messages',
+		'title' => 'Messages',
+		'fields' => array (
+			array (
+				'key' => 'field_53ac8c218fcb0',
+				'label' => 'Success Message',
+				'name' => 'success_message',
+				'type' => 'wysiwyg',
+				'instructions' => 'The message displayed on a successful submission. ',
+				'required' => 1,
+				'default_value' => '',
+				'toolbar' => 'full',
+				'media_upload' => 'yes',
+			),
+		),
+		'location' => array (
+			array (
+				array (
+					'param' => 'page_type',
+					'operator' => '==',
+					'value' => 'front_page',
 					'order_no' => 0,
 					'group_no' => 0,
 				),

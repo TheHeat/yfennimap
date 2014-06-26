@@ -908,6 +908,7 @@ a.tool:hover {
   color: white;
   padding: 0.5em;
   margin-bottom: 0.5em;
-  background: red; }
+  background: red;
+  cursor: pointer; }
 
 /*# sourceMappingURL=style.css.map */
