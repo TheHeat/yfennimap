@@ -2,7 +2,7 @@
 	This element will additionally have a class name of ui-slider-horizontal 
 	or ui-slider-vertical depending on the orientation of the slider. 
 */
-.ui-slider, .noUi-base{
+.ui-slider{
 	background:silver;
 	height:0.5em;
 	margin:2em 0 1em;
@@ -17,11 +17,11 @@
 }
      
 /*The slider handles.*/
-a.ui-slider-handle, .noUi-handle{
+a.ui-slider-handle{
 	background:red;
 	width:0.5em;
 	height:2em;
-	// position:absolute;
+	position:absolute;
 	top:-0.75em;
  
 }
@@ -36,7 +36,7 @@ a.ui-slider-handle, .noUi-handle{
 	height:0.5em;	
 }
 
-#date-label, .date-label input{
+#date-label{
 	border:none;
 	background:transparent;
 	font-size:2em;

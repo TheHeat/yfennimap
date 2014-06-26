@@ -528,7 +528,7 @@ Navigation
 	or ui-slider-vertical depending on the orientation of the slider. 
 */
 /* line 5, scss/_jqueryui.scss */
-.ui-slider, .noUi-base {
+.ui-slider {
   background: silver;
   height: 0.5em;
   margin: 2em 0 1em;
@@ -542,10 +542,11 @@ Navigation
 
 /*The slider handles.*/
 /* line 20, scss/_jqueryui.scss */
-a.ui-slider-handle, .noUi-handle {
+a.ui-slider-handle {
   background: red;
   width: 0.5em;
   height: 2em;
+  position: absolute;
   top: -0.75em; }
 
 /* 	The selected range used when the range option is set. 
@@ -559,7 +560,7 @@ a.ui-slider-handle, .noUi-handle {
   height: 0.5em; }
 
 /* line 39, scss/_jqueryui.scss */
-#date-label, .date-label input {
+#date-label {
   border: none;
   background: transparent;
   font-size: 2em;
