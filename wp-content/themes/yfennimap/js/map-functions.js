@@ -293,9 +293,9 @@ function toolboxLinks(position){
 			// 	jQuery(this).val(newPinMedia);
 			// });
 
-			jQuery('.modal-content .media-hidden').val('newPinMedia');
+			jQuery('.modal-content input.media-hidden').val(newPinMedia);
 
-			console.log(jQuery('.modal-content .media-hidden').val());
+			console.log(jQuery('.modal-content input.media-hidden').val());
 
 			// jQuery.each( jQuery('.media-hidden'), function(){
 			// 	console.log(jQuery(this).val());
