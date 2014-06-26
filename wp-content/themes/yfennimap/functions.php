@@ -107,6 +107,9 @@ add_action( 'widgets_init', 'yfenni_widgets_init' );
 function yfenni_scripts() {
 	wp_enqueue_style( 'yfenni-style', get_stylesheet_uri() );
 
+	wp_enqueue_style( 'bootstrap-validator', get_template_directory_uri() . '/js/bootstrapValidator.min.css' );
+	wp_register_script( 'bootstrapValidator.min.js', get_template_directory_uri() . '/js/bootstrapValidator.min.js.js', array('jquery'), true );
+
 	wp_enqueue_script( 'yfenni-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20130115', true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
@@ -125,7 +128,7 @@ function yfenni_scripts() {
 		wp_register_script( 'set-form-fields', get_template_directory_uri() . '/js/set-form-fields.js', array('jquery'), true );
 		wp_enqueue_script('set-form-fields');
 
-		wp_register_script( 'get-parameter-by-name', get_template_directory_uri() . '/js/get-parameter-by-name.js', array('jquery'), true );
+		wp_register_script( 'bootstrapValidator.min.js', get_template_directory_uri() . '/js/bootstrapValidator.min.js.js', array('jquery'), true );
 		wp_enqueue_script('get-parameter-by-name');
 		
 		wp_enqueue_script( 'google_map_api', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyC1ssxs7SdqghQui-UadBDVF3bHCarfsng&sensor=false');	
