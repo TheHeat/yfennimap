@@ -17,6 +17,14 @@ var newPinMedia;
 var newPinLatLng = [];
 var saveNewPin;
 var filterCategory;
+
+// Date sorting
+var dateArray = [];
+var dateRange = [];
+var dateRangeMin;
+var dateRangeMax;
+
+var filteredDateRange = [];
 var filterStartDate;
 var filterEndDate;
 
@@ -25,6 +33,9 @@ var filterEndDate;
 	// console.log(pinsMap);
 
 function initialize() {
+
+	// flush the date range array just in case
+	dateRange = [];
 
 	geocoder = new google.maps.Geocoder();
 
@@ -53,6 +64,9 @@ function initialize() {
 			var icon 	= pinsMap[i].icon;
 			var cats	= pinsMap[i].categories;
 			var pinYear = pinsMap[i].year;
+
+			// populate th main dateRange array
+			dateArray.push(pinYear);
 			
 			//destroy these at the start of the loop
 			var inCategory;
@@ -67,9 +81,11 @@ function initialize() {
 			}
 
 			//Test that the pin's date is within the date range
-			if( (!filterStartDate || filterStartDate <= pinYear) && (!filterEndDate || filterEndDate >= pinYear)  ){
+			if( (pinYear >= filterStartDate) && (pinYear <= filterEndDate) ){
 				inYearRange = true;
 			}
+
+
 
 			if(inYearRange && inCategory){
 				createMarker(center, title, icon, fbURL);
@@ -84,6 +100,20 @@ function initialize() {
 			map.fitBounds(bounds);
 
 	}
+
+	dateRangeMin = Math.min.apply(Math, dateArray);
+	dateRangeMax = Math.max.apply(Math, dateArray);
+
+	if(!filterStartDate){
+		filterStartDate = dateRangeMin;
+	}
+
+	if(!filterEndDate){
+		filterEndDate = dateRangeMax;
+	}
+
+	// create the date slider
+	createDateSlider();
 }
 
 function createMarker(center, title, icon, fbURL) {
@@ -241,6 +271,29 @@ function showAddress(addressString) {
     });
 }
 
+function createDateSlider(){
+
+	var filteredDateRange = [filterStartDate, filterEndDate];
+
+	jQuery( '#date-range' ).slider({
+		range: true,
+		min: dateRangeMin - 1,
+		max: dateRangeMax + 1,
+		values: filteredDateRange,
+		slide: function( event, ui ) { 
+			jQuery( '#date-label' ).val( ui.values[ 0 ] + ' - ' + ui.values[ 1 ] );
+		},
+		stop: function( event, ui){
+			filterStartDate = Number(ui.values[ 0 ]*1);
+			filterEndDate = Number(ui.values[ 1 ]*1);
+			initialize();
+			console.log(filterStartDate, filterEndDate);
+		},
+    });
+    jQuery( '#date-label' ).val( jQuery( '#date-range' ).slider( 'values', 0 ) + ' - ' + jQuery( '#date-range' ).slider( 'values', 1 ) );
+
+}
+
 
 function resetContent(element, newContent){
 	jQuery(element).empty();
@@ -374,26 +427,6 @@ jQuery(document).ready(function($){
 		cancelButton();
 
 	});
-
-	$( '#date-range' ).slider({
-		range: true,
-		min: 1900,
-		max: 2014,
-		values: [ 1900, 2014 ],
-		slide: function( event, ui ) { 
-			$( '#date-label' ).val( ui.values[ 0 ] + ' - ' + ui.values[ 1 ] );
-		},
-		change: function( event, ui ){
-			filterStartDate = Number(ui.values[ 0 ]);
-			filterEndDate = Number(ui.values[ 1 ]);
-		},
-		stop: function( event, ui){
-			filterStartDate = Number(ui.values[ 0 ]);
-			filterEndDate = Number(ui.values[ 1 ]);
-			initialize();
-		},
-    });
-    $( '#date-label' ).val( $( '#date-range' ).slider( 'values', 0 ) + ' - ' + $( '#date-range' ).slider( 'values', 1 ) );
 
 });
 
