@@ -102,9 +102,18 @@
 		update_field( 'field_5362addb9bf86',  $new_upload, $post_id);
 
 	endif;
-	// //Message if succesful
-	// if($post_id) _e('<p> Your Post has been submitted for moderation </p>' ); 
 
-	// exit;
+	//Message if succesful
+	if($post_id){
+
+		?>
+		<div class="success-message" style="display:none;">
+			<?php
+			$success_message = get_post_meta( get_option('page_on_front' ), 'success_message', true );
+			echo $success_message;
+			?>
+		</div>
+		<?php
+	} 
 
 	?>

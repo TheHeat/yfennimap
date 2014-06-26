@@ -394,6 +394,11 @@ jQuery(document).ready(function($){
 
 	var addLabel = 'Add a pin';
 
+	//Open the success-message div if it exists
+	if($('.success-message').length){
+		openModal($('.success-message').html());
+	}
+
 	// Pass media type from the add toolbox link to the newMedia var
 	$('.toolbox .tool').click(function(){
 		clearMarkers();
