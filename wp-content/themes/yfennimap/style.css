@@ -528,38 +528,54 @@ Navigation
 	or ui-slider-vertical depending on the orientation of the slider. 
 */
 /* line 5, scss/_jqueryui.scss */
-.ui-slider {
+.ui-slider, .noUi-base {
   background: silver;
   height: 0.5em;
   margin: 2em 0 1em;
   position: relative;
   width: 100%; }
 
+/* line 13, scss/_jqueryui.scss */
+.noUi-origin {
+  position: absolute;
+  top: -0.75em; }
+
 /*The slider handles.*/
-/* line 14, scss/_jqueryui.scss */
-a.ui-slider-handle {
+/* line 20, scss/_jqueryui.scss */
+a.ui-slider-handle, .noUi-handle {
   background: red;
   width: 0.5em;
   height: 2em;
-  position: absolute;
   top: -0.75em; }
 
 /* 	The selected range used when the range option is set. 
 	This element can additionally have a class of ui-slider-range-min 
 	or ui-slider-range-max if the range option is set to "min" or "max" respectively.
 */
-/* line 27, scss/_jqueryui.scss */
+/* line 33, scss/_jqueryui.scss */
 .ui-slider-range {
   position: relative;
   background: black;
   height: 0.5em; }
 
-/* line 33, scss/_jqueryui.scss */
-#date-label {
+/* line 39, scss/_jqueryui.scss */
+#date-label, .date-label input {
   border: none;
   background: transparent;
   font-size: 2em;
   font-weight: bold; }
+
+/* line 2, scss/_form.scss */
+.modal-content form fieldset {
+  border: none; }
+/* line 5, scss/_form.scss */
+.modal-content form label {
+  line-height: 2;
+  font-weight: bold; }
+/* line 10, scss/_form.scss */
+.modal-content form input[type=text], .modal-content form input[type=number], .modal-content form textarea, .modal-content form button {
+  width: 100%;
+  padding: 0.5em; }
 
 /* line 1, scss/_layout.scss */
 * {

@@ -1,0 +1,44 @@
+/* 	The track of the slider control. 
+	This element will additionally have a class name of ui-slider-horizontal 
+	or ui-slider-vertical depending on the orientation of the slider. 
+*/
+.ui-slider, .noUi-base{
+	background:silver;
+	height:0.5em;
+	margin:2em 0 1em;
+	position:relative;
+	width:100%;
+}
+
+.noUi-origin{
+	position:absolute;
+	// position:absolute;
+	top:-0.75em;
+}
+     
+/*The slider handles.*/
+a.ui-slider-handle, .noUi-handle{
+	background:red;
+	width:0.5em;
+	height:2em;
+	// position:absolute;
+	top:-0.75em;
+ 
+}
+
+/* 	The selected range used when the range option is set. 
+	This element can additionally have a class of ui-slider-range-min 
+	or ui-slider-range-max if the range option is set to "min" or "max" respectively.
+*/
+.ui-slider-range{
+	position:relative;
+	background:black;
+	height:0.5em;	
+}
+
+#date-label, .date-label input{
+	border:none;
+	background:transparent;
+	font-size:2em;
+	font-weight:bold;
+}
