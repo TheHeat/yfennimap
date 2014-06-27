@@ -85,9 +85,12 @@ function initialize() {
 				inCategory = false;
 			}
 
+
 			//Test that the pin's date is within the date range
 			if( (pinYear >= filterStartDate) && (pinYear <= filterEndDate) ){
 				inYearRange = true;
+			}else{
+				inYearRange = false;
 			}
 
 

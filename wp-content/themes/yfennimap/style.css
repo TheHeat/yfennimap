@@ -627,17 +627,18 @@ html {
   bottom: 0em;
   left: 0em;
   display: none;
-  margin: 0 auto; }
+  margin: 0 auto;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch; }
 
-/* line 38, scss/_map.scss */
+/* line 40, scss/_map.scss */
 .modal-content {
   max-width: 100%;
   padding: 1em 3em;
   margin: 0 auto;
-  max-width: 40em;
-  overflow-y: auto; }
+  max-width: 40em; }
 
-/* line 46, scss/_map.scss */
+/* line 47, scss/_map.scss */
 .toolbox, .filters {
   position: absolute;
   right: 0;
@@ -650,11 +651,11 @@ html {
   color: white;
   z-index: 15; }
 
-/* line 59, scss/_map.scss */
+/* line 60, scss/_map.scss */
 .filters {
   bottom: 9em; }
 
-/* line 68, scss/_map.scss */
+/* line 69, scss/_map.scss */
 .handle,
 .box,
 .tool,
@@ -665,12 +666,12 @@ html {
   overflow: hidden;
   white-space: nowrap; }
 
-/* line 74, scss/_map.scss */
+/* line 75, scss/_map.scss */
 .handle {
   -webkit-box-shadow: -0.25em 0 0.5em 0 rgba(0, 0, 0, 0.2);
   box-shadow: -0.25em 0 0.5em 0 rgba(0, 0, 0, 0.2); }
 
-/* line 80, scss/_map.scss */
+/* line 81, scss/_map.scss */
 .handle,
 .tool,
 .action {
@@ -679,18 +680,18 @@ html {
   color: white;
   text-decoration: none; }
 
-/* line 88, scss/_map.scss */
+/* line 89, scss/_map.scss */
 a.tool:hover {
   background-color: red; }
 
-/* line 93, scss/_map.scss */
+/* line 94, scss/_map.scss */
 .handle + .box {
   opacity: 0;
   -webkit-transition: all 1s;
   transition: all 1s;
   max-width: 0; }
 
-/* line 99, scss/_map.scss */
+/* line 100, scss/_map.scss */
 .handle:focus + .box {
   opacity: 1;
   margin: 0;
@@ -698,7 +699,7 @@ a.tool:hover {
   -webkit-transition: 0.5s;
   transition: 0.5s; }
 
-/* line 119, scss/_map.scss */
+/* line 120, scss/_map.scss */
 .modal-close {
   display: inline-block;
   width: 2em;
@@ -720,7 +721,7 @@ a.tool:hover {
   right: 0;
   cursor: pointer; }
 
-/* line 129, scss/_map.scss */
+/* line 130, scss/_map.scss */
 .tool.categories {
   display: inline-block;
   width: 2em;
@@ -737,7 +738,7 @@ a.tool:hover {
   overflow: hidden;
   background-image: url('img/tags.svg?1403816324'); }
 
-/* line 133, scss/_map.scss */
+/* line 134, scss/_map.scss */
 .tool.clear-categories {
   display: inline-block;
   width: 2em;
@@ -754,7 +755,7 @@ a.tool:hover {
   overflow: hidden;
   background-image: url('img/refresh.svg?1403816324'); }
 
-/* line 138, scss/_map.scss */
+/* line 139, scss/_map.scss */
 .handle.add {
   display: inline-block;
   width: 2em;
@@ -771,7 +772,7 @@ a.tool:hover {
   overflow: hidden;
   background-image: url('img/plus.svg?1403816324'); }
 
-/* line 142, scss/_map.scss */
+/* line 143, scss/_map.scss */
 .tool.link {
   display: inline-block;
   width: 2em;
@@ -788,7 +789,7 @@ a.tool:hover {
   overflow: hidden;
   background-image: url('img/chain.svg?1403816324'); }
 
-/* line 146, scss/_map.scss */
+/* line 147, scss/_map.scss */
 .tool.video {
   display: inline-block;
   width: 2em;
@@ -805,7 +806,7 @@ a.tool:hover {
   overflow: hidden;
   background-image: url('img/film.svg?1403816324'); }
 
-/* line 150, scss/_map.scss */
+/* line 151, scss/_map.scss */
 .tool.pictures {
   display: inline-block;
   width: 2em;
@@ -822,7 +823,7 @@ a.tool:hover {
   overflow: hidden;
   background-image: url('img/picture.svg?1402754762'); }
 
-/* line 154, scss/_map.scss */
+/* line 155, scss/_map.scss */
 .tool.words {
   display: inline-block;
   width: 2em;
@@ -839,7 +840,7 @@ a.tool:hover {
   overflow: hidden;
   background-image: url('img/pencil.svg?1403816324'); }
 
-/* line 158, scss/_map.scss */
+/* line 159, scss/_map.scss */
 .tool.info {
   display: inline-block;
   width: 2em;
@@ -856,7 +857,7 @@ a.tool:hover {
   overflow: hidden;
   background-image: url('img/info.svg?1403816324'); }
 
-/* line 163, scss/_map.scss */
+/* line 164, scss/_map.scss */
 .action.cancel {
   display: inline-block;
   width: 2em;
@@ -873,7 +874,7 @@ a.tool:hover {
   overflow: hidden;
   background-image: url('img/times.svg?1403816324'); }
 
-/* line 167, scss/_map.scss */
+/* line 168, scss/_map.scss */
 .action.save {
   display: inline-block;
   width: 2em;
@@ -890,7 +891,7 @@ a.tool:hover {
   overflow: hidden;
   background-image: url('img/check.svg?1403816324'); }
 
-/* line 173, scss/_map.scss */
+/* line 174, scss/_map.scss */
 .date {
   position: absolute;
   z-index: 15;
@@ -898,7 +899,7 @@ a.tool:hover {
   width: 100%;
   padding: 2em; }
 
-/* line 182, scss/_map.scss */
+/* line 183, scss/_map.scss */
 .category-link {
   display: block;
   text-align: center;
@@ -911,7 +912,7 @@ a.tool:hover {
   background: red;
   cursor: pointer; }
 
-/* line 195, scss/_map.scss */
+/* line 196, scss/_map.scss */
 .pin-cats {
   background: red;
   padding: 1em; }
