@@ -96,7 +96,7 @@ function initialize() {
 
 			if(inYearRange && inCategory){
 				createMarker(wpid, center, title, icon, fbURL);
-				console.log(wpid + '::' + pinYear);
+				// console.log(wpid + ':' + pinYear);
 				
 				// extend the bounds to include this marker's position
 				bounds.extend(center); 
@@ -190,7 +190,7 @@ function loadPin(){
 		data,
 		function(response){
 
-			console.log(response);
+			// console.log(response);
 
 			var fbURL = singlePinFB;
 			var fbPost = '<div class="fb-post" data-href="' + fbURL + '" data-width="500"></div>' + response.join(' ');
@@ -292,7 +292,7 @@ function showAddress(addressString) {
 
 		if (status == google.maps.GeocoderStatus.OK) {
 		
-			console.log(results[0]);
+			// console.log(results[0]);
 			map.setCenter(results[0].geometry.location);
 			
 			if(results[0].geometry.bounds){
@@ -300,7 +300,7 @@ function showAddress(addressString) {
 			}
 
 		} else {
-			console.log("Geocode was not successful for the following reason: " + status);
+			// console.log("Geocode was not successful for the following reason: " + status);
 		}
 	});
 }
@@ -321,14 +321,12 @@ function createDateSlider(){
 				filterStartDate = Number(ui.values[ 0 ]*1);
 				filterEndDate = Number(ui.values[ 1 ]*1);
 				initialize();
-				console.log(filterStartDate, filterEndDate);
+				// console.log(filterStartDate, filterEndDate);
 			},
 		});
 
 		jQuery( '#date-label' ).val( jQuery( '#date-range' ).slider( 'values', 0 ) + ' - ' + jQuery( '#date-range' ).slider( 'values', 1 ) );
 
-
-	
 }
 
 
@@ -454,8 +452,6 @@ jQuery(document).ready(function($){
 	var modalContent = '<div class="modal-content"></div>';
 
 	$('#modal-window').prepend(modalCloser, modalContent);
-
-	var addLabel = 'Add a pin';
 
 	//Open the success-message div if it exists
 	if($('.success-message').length){
