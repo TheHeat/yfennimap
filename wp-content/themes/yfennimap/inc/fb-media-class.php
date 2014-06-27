@@ -49,7 +49,7 @@ class FB_Media extends FacebookRequest
 
 	function __construct($pin_id){
 		//Get the FB object ID from the WP post
-		$fb_object_id = get_post_meta( $pin_id, 'new_fb_object', true); //AHS: probably not the right custom field key
+		$fb_object_id = get_post_meta( $pin_id, 'new_fb_object', true); 
 
 		$this->media_type = get_field('media_type', $pin_id);
 
@@ -83,6 +83,11 @@ class FB_Media extends FacebookRequest
 		$graph_object = $this->graph_object;
 		$fb_media_type = $this->media_type;
 
+		echo 'graphobject';
+		echo '<pre>';
+			print_r($graph_object);
+		echo '</pre>';
+		
 		switch ($fb_media_type) {
 			
 			case 'text':

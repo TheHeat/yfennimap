@@ -41,7 +41,9 @@ function fb_post_on_page($token, $edge, $content){
 
 	try{
 		$response = $request->execute()->getGraphObject();
-	
+		echo '<pre>';
+			print_r($response);
+		echo '</pre>';
 		return $response->getProperty('id'); //string with object id
 	}
 	catch( FacebookRequestException $ex ) {

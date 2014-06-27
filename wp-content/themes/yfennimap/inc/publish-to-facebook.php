@@ -65,6 +65,9 @@ else:
 
 	$fb_object = fb_post_on_page($token, $edge, $content);
 
+	echo '<pre>';
+		print_r($fb_object);
+	echo '</pre>';
 	//save facebook bject against post
 	add_post_meta( $post_id, 'new_fb_object', $fb_object);
 
