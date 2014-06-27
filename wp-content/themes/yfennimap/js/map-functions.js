@@ -93,14 +93,13 @@ function initialize() {
 
 			if(inYearRange && inCategory){
 				createMarker(center, title, icon, fbURL);
+				
+				// extend the bounds to include this marker's position
+				bounds.extend(center); 
+				// resize the map
+				map.fitBounds(bounds);
 			}
-
-
-			// extend the bounds to include this marker's position
-			bounds.extend(center);  
-
-			// resize the map
-			map.fitBounds(bounds);
+ 
 
 	}
 
