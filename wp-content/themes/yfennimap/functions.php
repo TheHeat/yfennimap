@@ -159,6 +159,7 @@ function get_pins(){
 	$pin_args = array('post_type' => 'pin','posts_per_page'=>-1, 'orderby' => 'title', 'order' => 'ASC');
 	$pin_query = new WP_query($pin_args);
 
+
 	if($pin_query->have_posts()):
 		while($pin_query->have_posts()):
 
@@ -199,13 +200,29 @@ function get_pins(){
 function yfenni_pin_template() {
 
 	// first check if data is being sent and that it is the data we want
-  	if ( isset( $_POST["pin_id"] ) ) {
+  	if ( isset( $_POST['pin_id'] ) ) {
 
-		// now set our response var equal to that of the POST var pin_id
-		$pin_obect = get_post( $_POST["pin_id"] );
+  		// now set our response var equal to that of the POST var pin_id
+  		$pin_id = $_POST["pin_id"];
+		$post = get_post( $pin_id );
+ 		
+		$the_goodies = [];
 
-		// send the response back to the front end
-		wp_send_json( $pin_obect ); 
+ 		$pin_cats = wp_get_object_terms($pin_id, 'pin_category');
+		if(!empty($pin_cats)){
+			if(!is_wp_error( $pin_cats )){
+				foreach($pin_cats as $term){
+					$the_goodies[] = '<a class="pin-cats" href="./?pinCat='. $term->slug .'">'.$term->name.'</a>';
+				}
+			}
+		}
+
+		if(is_admin()){
+			$the_goodies[] = '<a href="' . get_edit_post_link( $pin_id, '' ) . '">Edit</a>';
+		}
+
+		wp_send_json( $the_goodies );
+
 	}
 }
 add_action('wp_ajax_pin_loader', 'yfenni_pin_template');
@@ -250,27 +267,6 @@ require get_template_directory() . '/inc/jetpack.php';
  * Load our Facebook PHP SDK
  */
 require get_template_directory() . '/inc/facebook-functions.php';
-
-
-// Ajax function
-
-function yfenni_modal_content($post_id){
-
-	// if($pin_id > 0){
-
-		$post_id = get_post($pin_id ); 
-		?>
-
-		<div>
-			YOYOYO
-		</div>
-		<?php
-	// }
-	die();
-}
-
-add_action('wp_ajax_nopriv_modal_content', 'yfenni_modal_content' );
-add_action('wp_ajax_modal_content', 'yfenni_modal_content' );
 
 add_action( 'init', 'register_cpt_pin' );
 
@@ -321,9 +317,9 @@ function register_cpt_pin() {
 function pin_categories() {
 
 	$labels = array(
-		'name'                       => _x( 'Categories', 'Taxonomy General Name', 'text_domain' ),
-		'singular_name'              => _x( 'Category', 'Taxonomy Singular Name', 'text_domain' ),
-		'menu_name'                  => __( 'Categories', 'text_domain' ),
+		'name'                       => _x( 'Pin Categories', 'Taxonomy General Name', 'text_domain' ),
+		'singular_name'              => _x( 'Pin Category', 'Taxonomy Singular Name', 'text_domain' ),
+		'menu_name'                  => __( 'Pin Categories', 'text_domain' ),
 		'all_items'                  => __( 'All Items', 'text_domain' ),
 		'parent_item'                => __( 'Parent Item', 'text_domain' ),
 		'parent_item_colon'          => __( 'Parent Item:', 'text_domain' ),

@@ -159,7 +159,7 @@ function createMarker(wpid, center, title, icon, fbURL) {
 		map.setCenter(marker.getPosition());
 		singlePin = wpid;
 		singlePinFB = fbURL;
-		console.log(singlePin);
+		// console.log(singlePin);
 
 		loadPin();
   
@@ -171,18 +171,35 @@ function createMarker(wpid, center, title, icon, fbURL) {
 
 function loadPin(){
 
+	var wpMeta;
+
 	// Ajax Data
-	// var data = {
-	// 	action: 'pin_loader',
-	// 	pin_id: singlePin
-	// };
+	var data = {
+		action: 'pin_loader',
+		pin_id: singlePin,
+	};
 
-	var fbURL = singlePinFB;
-	var fbPost = '<div class="fb-post" data-href="' + fbURL + '" data-width="500"></div>';
-	var fbComments = '<div class="fb-comments" data-href="' + fbURL + '" data-width="500"></div>';
-	var content = fbPost;
 
-	openModal(content);
+	// the_ajax_script.ajaxurl is a variable that will contain the url to the ajax processing file
+	jQuery.post(
+		the_ajax_script.ajaxurl, 
+		data,
+		function(response){
+
+			console.log(response);
+
+			var fbURL = singlePinFB;
+			var fbPost = '<div class="fb-post" data-href="' + fbURL + '" data-width="500"></div>' + response;
+			var content = fbPost;
+
+			openModal(content, function(){
+				FB.XFBML.parse(document, function(){
+					jQuery('.modal-content').position({my: 'center top', at: 'center top', of: '#modal-window'});
+				});
+			});
+
+		});
+ 
 }
 
 function openModal(content, callback){
@@ -194,9 +211,6 @@ function openModal(content, callback){
 
 	jQuery('#modal-window').slideDown(function(){
 		jQuery('.modal-content').append(content);
-		FB.XFBML.parse(document, function(){
-			jQuery('.modal-content').position({my: 'center top', at: 'center top', of: '#modal-window'});
-		});
 	});
 				
 	setTimeout(function(){
@@ -206,7 +220,6 @@ function openModal(content, callback){
 			callback.call(this);
 		}
 	}, 2000);
-
 
 	jQuery('.modal-close').click(function(){
 		jQuery('#modal-window').slideUp(function(){

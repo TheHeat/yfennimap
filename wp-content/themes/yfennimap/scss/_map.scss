@@ -178,7 +178,7 @@ a.tool{
   padding:2em;
 }
 
-
+// The big category links in the modal
 .category-link{
   display:block;
   text-align:center;
@@ -190,4 +190,9 @@ a.tool{
   margin-bottom:0.5em;
   background:red;
   cursor: pointer;
+}
+
+.pin-cats{
+  background:red;
+  padding:1em;
 }

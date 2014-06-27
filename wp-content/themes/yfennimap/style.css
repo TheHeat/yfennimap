@@ -911,4 +911,9 @@ a.tool:hover {
   background: red;
   cursor: pointer; }
 
+/* line 195, scss/_map.scss */
+.pin-cats {
+  background: red;
+  padding: 1em; }
+
 /*# sourceMappingURL=style.css.map */
