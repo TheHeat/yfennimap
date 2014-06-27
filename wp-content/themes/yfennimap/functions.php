@@ -119,9 +119,6 @@ function yfenni_scripts() {
 		wp_enqueue_script( 'jquery-effects-slide' );
 		wp_enqueue_script( 'jquery-ui-widget');
 
-	//if (is_home()){
-		
-
 		wp_register_script( 'set-form-fields', get_template_directory_uri() . '/js/set-form-fields.js', array('jquery'), true );
 		wp_enqueue_script(  'set-form-fields' );
 		
@@ -133,13 +130,13 @@ function yfenni_scripts() {
 		wp_register_script( 'map-functions', get_template_directory_uri() . '/js/map-functions.js', array('jquery'), true );
 		wp_enqueue_script('map-functions');
 		
+		// some objects and scripts available to the map-functions javascript
 		wp_localize_script( 'map-functions', 'pinsMap', get_pins() );
 		wp_localize_script( 'map-functions', 'activeCategories', get_categories(array( 'taxonomy' => 'pin_category')) );
-		// make the ajaxurl var available to the map-functions script
 		wp_localize_script( 'map-functions', 'the_ajax_script', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );
 		
 		wp_enqueue_script( 'facebook',get_template_directory_uri() . '/js/facebook.js', array(), true );
-	//}
+
 }
 add_action( 'wp_enqueue_scripts', 'yfenni_scripts' );
 
@@ -157,25 +154,14 @@ function get_pins(){
 	$pin_args = array('post_type' => 'pin','posts_per_page'=>-1, 'orderby' => 'title', 'order' => 'ASC');
 	$pin_query = new WP_query($pin_args);
 
-	// //filter by category if there is one specified in the url
-	// $category = null; 
-
-	// if(isset($_GET['category'])) $category = $_GET['category'];
-
-	// if($category) {
-
-	// 	$pin_args['tax_query'] = array(
-	// 		array(
-	// 			'taxonomy' => 'category',
-	// 			'field' => 'slug',
-	// 			'terms' => $category
-	// 		)
-	// 	);
-	// }
-
-
 	if($pin_query->have_posts()):
 		while($pin_query->have_posts()):
+
+			if(get_field('year-created')){
+				$year = get_field('year-created');
+			}else{
+				$year = get_the_date( 'Y' );;
+			}
 
 			// Create a container array for pin information
 			$pin = array();
@@ -190,7 +176,7 @@ function get_pins(){
 			$pin['wpid']		= get_the_id();
 			$pin['fbURL']		= get_post_meta( get_the_ID(), 'fb_post_url', true);
 			$pin['icon']		= get_stylesheet_directory_uri() . '/img/mapicon_' . get_field('media_type') . '.svg';
-			$pin['year']		= intval(get_field('year-created'));
+			$pin['year']		= intval($year);
 			$pin['categories'] 	= wp_get_post_terms( get_the_id(), 'pin_category', array( 'fields' => 'slugs' ) );
 
 			// Push to the $pins object
