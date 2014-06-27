@@ -160,7 +160,7 @@ function createMarker(center, title, icon, fbURL) {
     	map.setCenter(marker.getPosition());
     	// singlePin = wpid;
     	singlePinFB = fbURL;
-    	// console.log(singlePin);
+    	console.log(singlePin);
 
     	loadPin();
   
@@ -177,7 +177,6 @@ function loadPin(){
 	var fbComments = '<div class="fb-comments" data-href="' + fbURL + '" data-width="500"></div>';
 	var content = fbPost;
 
-	// console.log(fbURL);
 	openModal(content);
 }
 
@@ -186,56 +185,30 @@ function openModal(content, callback){
 	jQuery('.modal-content').empty();
 
 	jQuery('.date').hide();
-	jQuery('.filters').hide('slide', {direction: 'right'});
+	jQuery('.toolbox, .filters').hide('slide', {direction: 'right'});
 
-	if(jQuery('.toolbox').is(':visible')){
-    			jQuery('.toolbox').hide('slide', {direction: 'right'}, function(){
-
-    				jQuery('#modal-window').slideDown(function(){
-		
-						jQuery('.modal-content').append(content);
-						FB.XFBML.parse(document, function(){
-							jQuery('.modal-content').position({my: 'center top', at: 'center top', of: '#modal-window'});
-						});
-
-					});
-								
-    			});
-    		}else{
-
-    			jQuery('#modal-window').slideDown(function(){
-		
-					jQuery('.modal-content').append(content);
-					FB.XFBML.parse(document, function(){
-						jQuery('.modal-content').position({my: 'center top', at: 'center top', of: '#modal-window'});
-					});
-				});
+	jQuery('#modal-window').slideDown(function(){
+		jQuery('.modal-content').append(content);
+		FB.XFBML.parse(document, function(){
+			jQuery('.modal-content').position({my: 'center top', at: 'center top', of: '#modal-window'});
+		});
+	});
     			
-    		}
-
-    		setTimeout(function(){
-    			if (typeof callback == 'function') { // make sure the callback is a function
-    		 	callback.call(this); // brings the scope to the callback
-    		 }
-    		}, 2000);
-
-    		// jQuery('.modal-content form').load(function(){
-    		 // if (typeof callback == 'function') { // make sure the callback is a function
-    		 // 	callback.call(this); // brings the scope to the callback
-    		 // }
-
-    		 // });
-
+    setTimeout(function(){
+    	// make sure the callback is a function
+    	if (typeof callback == 'function') { 
+    		// brings the scope to the callback
+    	 	callback.call(this);
+    	}
+    }, 2000);
 
 
 	jQuery('.modal-close').click(function(){
 		jQuery('#modal-window').slideUp(function(){
 	    	jQuery('.modal-content').empty();
-	    	jQuery('.toolbox').show('slide', {direction: 'right'});
+	    	jQuery('.toolbox, .filters').show('slide', {direction: 'right'});
+	    	jQuery('.date').show();
 	    });
-
-	    jQuery('.date').show();
-	    jQuery('.filters').show('slide', {direction: 'right'});
 	});
 
 }
