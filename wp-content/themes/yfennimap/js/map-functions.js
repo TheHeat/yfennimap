@@ -68,12 +68,12 @@ function initialize() {
 			var cats	= pinsMap[i].categories;
 			var pinYear = pinsMap[i].year;
 
-			// populate th main dateRange array
+			// populate the main dateArray
 			dateArray.push(pinYear);
 			
 			//destroy these at the start of the loop
-			var inCategory;
-			var inYearRange;
+			var inCategory = null;
+			var inYearRange = null;
 
 			//Test to see if the pin is in the selected category and
 			//within the date range
@@ -87,7 +87,7 @@ function initialize() {
 
 
 			//Test that the pin's date is within the date range
-			if( (pinYear >= filterStartDate) && (pinYear <= filterEndDate) ){
+			if( pinYear >= filterStartDate && pinYear <= filterEndDate ){
 				inYearRange = true;
 			}else{
 				inYearRange = false;
@@ -96,6 +96,7 @@ function initialize() {
 
 			if(inYearRange && inCategory){
 				createMarker(wpid, center, title, icon, fbURL);
+				console.log(wpid + '::' + pinYear);
 				
 				// extend the bounds to include this marker's position
 				bounds.extend(center); 

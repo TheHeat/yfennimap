@@ -163,12 +163,6 @@ function get_pins(){
 	if($pin_query->have_posts()):
 		while($pin_query->have_posts()):
 
-			if(get_field('year-created')){
-				$year = get_field('year-created');
-			}else{
-				$year = get_the_date( 'Y' );;
-			}
-
 			// Create a container array for pin information
 			$pin = array();
 
@@ -182,11 +176,11 @@ function get_pins(){
 			$pin['wpid']		= get_the_id();
 			$pin['fbURL']		= get_post_meta( get_the_ID(), 'fb_post_url', true);
 			$pin['icon']		= get_stylesheet_directory_uri() . '/img/mapicon_' . get_field('media_type') . '.svg';
-			$pin['year']		= intval($year);
+			$pin['year']		= ( get_field('year-created') ?: get_the_date('Y' ) );
 			$pin['categories'] 	= wp_get_post_terms( get_the_id(), 'pin_category', array( 'fields' => 'slugs' ) );
 
 			// Push to the $pins object
-			$pins[ get_the_ID() ] = $pin;
+			$pins[] = $pin;
 
 		endwhile;
 
