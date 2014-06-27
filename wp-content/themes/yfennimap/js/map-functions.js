@@ -189,7 +189,7 @@ function loadPin(){
 			console.log(response);
 
 			var fbURL = singlePinFB;
-			var fbPost = '<div class="fb-post" data-href="' + fbURL + '" data-width="500"></div>' + response;
+			var fbPost = '<div class="fb-post" data-href="' + fbURL + '" data-width="500"></div>' + response.join(' ');
 			var content = fbPost;
 
 			openModal(content, function(){

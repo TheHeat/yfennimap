@@ -217,7 +217,7 @@ function yfenni_pin_template() {
 			}
 		}
 
-		if(is_admin()){
+		if(is_user_logged_in() && is_admin()){
 			$the_goodies[] = '<a href="' . get_edit_post_link( $pin_id, '' ) . '">Edit</a>';
 		}
 
