@@ -53,8 +53,8 @@ function initialize() {
 
 	map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
 	
-  	// create the Bounds object
-  	bounds = new google.maps.LatLngBounds();
+	// create the Bounds object
+	bounds = new google.maps.LatLngBounds();
 
 	for (var i in pinsMap) {
 
@@ -92,7 +92,7 @@ function initialize() {
 
 
 			if(inYearRange && inCategory){
-				createMarker(center, title, icon, fbURL);
+				createMarker(wpid, center, title, icon, fbURL);
 				
 				// extend the bounds to include this marker's position
 				bounds.extend(center); 
@@ -142,34 +142,40 @@ function getQueryStringParams(sParam){
 
 }
 
-function createMarker(center, title, icon, fbURL) {
+function createMarker(wpid, center, title, icon, fbURL) {
 
-    var marker = new google.maps.Marker({
-      position: center,
-      icon: {
-      	url: icon,
-      	scaledSize: new google.maps.Size(45, 60),
-      },
-      title: title,
-      map: map,
-      animation: google.maps.Animation.DROP
-    });
+	var marker = new google.maps.Marker({
+		position: center,
+		icon: {
+			url: icon,
+			scaledSize: new google.maps.Size(45, 60),
+		},
+		title: title,
+		map: map,
+		animation: google.maps.Animation.DROP
+	});
 
-    google.maps.event.addListener(marker, 'click', function () {
-    	map.setCenter(marker.getPosition());
-    	// singlePin = wpid;
-    	singlePinFB = fbURL;
-    	console.log(singlePin);
+	google.maps.event.addListener(marker, 'click', function () {
+		map.setCenter(marker.getPosition());
+		singlePin = wpid;
+		singlePinFB = fbURL;
+		console.log(singlePin);
 
-    	loadPin();
+		loadPin();
   
-    });
+	});
 
-    markers.push(marker);
+	markers.push(marker);
 
   }
 
 function loadPin(){
+
+	// Ajax Data
+	// var data = {
+	// 	action: 'pin_loader',
+	// 	pin_id: singlePin
+	// };
 
 	var fbURL = singlePinFB;
 	var fbPost = '<div class="fb-post" data-href="' + fbURL + '" data-width="500"></div>';
@@ -192,22 +198,22 @@ function openModal(content, callback){
 			jQuery('.modal-content').position({my: 'center top', at: 'center top', of: '#modal-window'});
 		});
 	});
-    			
-    setTimeout(function(){
-    	// make sure the callback is a function
-    	if (typeof callback == 'function') { 
-    		// brings the scope to the callback
-    	 	callback.call(this);
-    	}
-    }, 2000);
+				
+	setTimeout(function(){
+		// make sure the callback is a function
+		if (typeof callback == 'function') { 
+			// brings the scope to the callback
+			callback.call(this);
+		}
+	}, 2000);
 
 
 	jQuery('.modal-close').click(function(){
 		jQuery('#modal-window').slideUp(function(){
-	    	jQuery('.modal-content').empty();
-	    	jQuery('.toolbox, .filters').show('slide', {direction: 'right'});
-	    	jQuery('.date').show();
-	    });
+			jQuery('.modal-content').empty();
+			jQuery('.toolbox, .filters').show('slide', {direction: 'right'});
+			jQuery('.date').show();
+		});
 	});
 
 }
@@ -227,7 +233,7 @@ function createCategoryLinks(){
 // Sets the map on all markers in the array.
 function setAllMap(map) {
   for (var i = 0; i < markers.length; i++) {
-    markers[i].setMap(map);
+	markers[i].setMap(map);
   }
 }
 
@@ -268,18 +274,18 @@ function showAddress(addressString) {
 	geocoder.geocode( { 'address': address}, function(results, status) {
 
 		if (status == google.maps.GeocoderStatus.OK) {
-      	
-      		console.log(results[0]);
-      		map.setCenter(results[0].geometry.location);
-      		
-      		if(results[0].geometry.bounds){
-      			map.fitBounds(results[0].geometry.bounds);
-      		}
+		
+			console.log(results[0]);
+			map.setCenter(results[0].geometry.location);
+			
+			if(results[0].geometry.bounds){
+				map.fitBounds(results[0].geometry.bounds);
+			}
 
-      	} else {
-      		console.log("Geocode was not successful for the following reason: " + status);
-      	}
-    });
+		} else {
+			console.log("Geocode was not successful for the following reason: " + status);
+		}
+	});
 }
 
 function createDateSlider(){
@@ -300,9 +306,9 @@ function createDateSlider(){
 				initialize();
 				console.log(filterStartDate, filterEndDate);
 			},
-	    });
+		});
 
-	    jQuery( '#date-label' ).val( jQuery( '#date-range' ).slider( 'values', 0 ) + ' - ' + jQuery( '#date-range' ).slider( 'values', 1 ) );
+		jQuery( '#date-label' ).val( jQuery( '#date-range' ).slider( 'values', 0 ) + ' - ' + jQuery( '#date-range' ).slider( 'values', 1 ) );
 
 
 	
@@ -319,24 +325,24 @@ function resetContent(element, newContent){
 function addNewPin(){
 
 	var newMarker = new google.maps.Marker({
-	 	position: map.getCenter(),
-    	map: map,
-    	draggable: true,
-    });
+		position: map.getCenter(),
+		map: map,
+		draggable: true,
+	});
 
 	// Define var newPinLatLng as this starting position in case the user doesn't sweat the small stuff!
-    newPinLatLng = newMarker.position;
-    // console.log(newPinLatLng.k);
-    // console.log(newPinLatLng.A);
+	newPinLatLng = newMarker.position;
+	// console.log(newPinLatLng.k);
+	// console.log(newPinLatLng.A);
 
-    // Pass position of draggable marker to newPinLatLng
-    google.maps.event.addListener(newMarker, 'dragend', function () {
+	// Pass position of draggable marker to newPinLatLng
+	google.maps.event.addListener(newMarker, 'dragend', function () {
 
-    	newPinLatLng = newMarker.getPosition();
-    	// console.log(newPinLatLng);
-    	toolboxLinks(newPinLatLng);
-    	cancelButton();
-    });
+		newPinLatLng = newMarker.getPosition();
+		// console.log(newPinLatLng);
+		toolboxLinks(newPinLatLng);
+		cancelButton();
+	});
 
 }
 

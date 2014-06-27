@@ -148,7 +148,7 @@ if(function_exists("register_field_group")){
 				'label' => 'Year Created',
 				'name' => 'year-created',
 				'type' => 'number',
-				'default_value' => '',
+				'default_value' => date('Y'),
 				'placeholder' => '',
 				'prepend' => '',
 				'append' => '',
