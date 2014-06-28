@@ -74,7 +74,7 @@ else:
 	//save url of facebook post
 	$fb_media = new FB_Media($post->ID);
 
-	$fb_url = $fb_media-> get_url();
+	$fb_url = $fb_media->get_url();
 
 endif;
 

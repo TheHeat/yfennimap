@@ -53,8 +53,6 @@ class FB_Media extends FacebookRequest
 
 		$this->media_type = get_field('media_type', $pin_id);
 
-		//print_r($fb_object_id);
-
 		//Construct the query
 		$query = '/' . $fb_object_id;
 
