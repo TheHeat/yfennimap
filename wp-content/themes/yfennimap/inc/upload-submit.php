@@ -76,14 +76,14 @@
 
 
 	// if user has uploaded an image file
-	if ( $media == 'pictures' || $media == 'video'):
+	if ( $media == 'image' || $media == 'video'):
 
 		//change media type if multiple images uploaded 
 		if (count($_FILES['media_upload']['name']) > 1) $media = 'gallery'; 
 		update_post_meta( $post_id, "media_type", $media );
 
 		//get the media field to input files to
-		// $media_field = get_field('field_5362addb9bf86', $post_id);  //looks like this isn't used...
+		$media_field = get_field('field_5362addb9bf86', $post_id);  //looks like this isn't used...
 
 
 		//$_FILES is the result of the form submit with input type files
@@ -107,12 +107,12 @@
 						$new_upload[] = array('file' => insert_attachment($file,$post_id));						
 					}
 
-					echo '<pre>';
-						print_r($new_upload);
-					echo '</pre>';
+					// echo '<pre>';
+					// 	print_r($new_upload);
+					// echo '</pre>';
 				}
 			}
-		}	
+		}
 
 		//add media to media upload array to acf repeater field
 		update_field( 'field_5362addb9bf86',  $new_upload, $post_id);

@@ -81,10 +81,10 @@ class FB_Media extends FacebookRequest
 		$graph_object = $this->graph_object;
 		$fb_media_type = $this->media_type;
 
-		echo 'graphobject';
-		echo '<pre>';
-			print_r($graph_object);
-		echo '</pre>';
+		// echo 'graphobject';
+		// echo '<pre>';
+		// 	print_r($graph_object);
+		// echo '</pre>';
 		
 		switch ($fb_media_type) {
 			

@@ -38,6 +38,7 @@ else:
 
 	if ( $token == null) $token = page_token;
 	
+	
 	switch ($media){
 
 		case ('gallery'): 
@@ -48,8 +49,8 @@ else:
 		case ('video'):
 			$edge = 'videos';
 
-		case ('pictures'): 
-			if ($media == 'pictures') $edge = 'photos';
+		case ('image'): 
+			if ($media == 'image') $edge = 'photos';
 
 			$attachment = get_field('field_5362addb9bf86', $post_id, true)[0];
 			$attachment_filepath = get_attached_file( $attachment['file']['id'], true );
