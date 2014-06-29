@@ -212,7 +212,7 @@ function yfenni_pin_template() {
 		}
 
 		if(is_user_logged_in() && is_admin()){
-			$the_goodies[] = '<a href="' . get_edit_post_link( $pin_id, '' ) . '">Edit</a>';
+			$the_goodies[] = '<a class="edit-link" href="' . get_edit_post_link( $pin_id, '' ) . '">Edit</a>';
 		}
 
 		wp_send_json( $the_goodies );

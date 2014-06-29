@@ -46,7 +46,7 @@ function initialize() {
 
 	var mapOptions = {
 		center: latlng,
-		zoom: 12,
+		zoom: 15,
 		disableDefaultUI: true,
 		zoomControl: true,	
 	};
@@ -97,14 +97,13 @@ function initialize() {
 			if(inYearRange && inCategory){
 				createMarker(wpid, center, title, icon, fbURL);
 				// console.log(wpid + ':' + pinYear);
-				
-				// extend the bounds to include this marker's position
-				bounds.extend(center); 
-				// resize the map
-				map.fitBounds(bounds);
+
 			}
  
-
+			// extend the bounds to include this marker's position
+			bounds.extend(center); 
+			// resize the map
+			map.fitBounds(bounds);
 	}
 
 	dateRangeMin = Math.min.apply(Math, dateArray);
@@ -156,7 +155,7 @@ function createMarker(wpid, center, title, icon, fbURL) {
 		},
 		title: title,
 		map: map,
-		animation: google.maps.Animation.DROP
+		// animation: google.maps.Animation.DROP
 	});
 
 	google.maps.event.addListener(marker, 'click', function () {
@@ -193,12 +192,13 @@ function loadPin(){
 			// console.log(response);
 
 			var fbURL = singlePinFB;
-			var fbPost = '<div class="fb-post" data-href="' + fbURL + '" data-width="500"></div>' + response.join(' ');
-			var content = fbPost;
+			var fbPost = '<div class="fb-post" href="' + fbURL + ' data-width="300"></div>';
+			var wpMeta = '<div class="wp-meta">' + response.join(' ') + '</div>'; 
+			var content = fbPost + wpMeta;
 
 			openModal(content, function(){
 				FB.XFBML.parse(document, function(){
-					jQuery('.modal-content').position({my: 'center top', at: 'center top', of: '#modal-window'});
+					jQuery('.fb_iframe_widget span').position({my: 'center top', at: 'center top', of: '.modal-content'});
 				});
 			});
 
@@ -398,7 +398,7 @@ function toolboxLinks(position){
 				//populate the lng form field
 				jQuery('.lng-hidden').each(function(){
 					jQuery(this).val(newPinLatLng.A);
-					// console.log(jQuery(this).val());
+					// conso.log(jQuery(this).val());
 				});
 
 			});
