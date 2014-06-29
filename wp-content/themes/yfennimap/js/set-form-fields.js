@@ -25,7 +25,7 @@ function setFormFields(newPinMedia){
 				$('fieldset.file').hide();
 				$('fieldset.file input').prop('required',false);
 				break;
-			case 'pictures':
+			case 'image':
 				//hide title, link
 				$('fieldset.title').hide();
 				$('fieldset.link').hide();
@@ -47,6 +47,7 @@ function setFormFields(newPinMedia){
 				$('fieldset.file input').prop('required',false);
 
 				//Add some accepted file types
+				$('fieldset.file').hide();
 				$('fieldset.file input').prop('accept', 'video/*');
 				$('fieldset.file input').removeAttr('multiple');
 				break;

@@ -38,6 +38,10 @@ else:
 
 	if ( $token == null) $token = page_token;
 	
+	//If the user selected video but added a link rather than a file, change the media type to link
+	$link_content = get_post_meta($post_id, 'link', true);
+	if ( $media == 'video' && $link_content != '') $media = 'link';
+	
 	switch ($media){
 
 		case ('gallery'): 
@@ -48,8 +52,10 @@ else:
 		case ('video'):
 			$edge = 'videos';
 
-		case ('pictures'): 
-			if ($media == 'pictures') $edge = 'photos';
+		break;
+
+		case ('image'): 
+			if ($media == 'image') $edge = 'photos';
 
 			$attachment = get_field('field_5362addb9bf86', $post_id, true)[0];
 			$attachment_filepath = get_attached_file( $attachment['file']['id'], true );

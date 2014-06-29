@@ -393,7 +393,9 @@ function insert_attachment($file_handler,$post_id,$setthumb='false') {
  
   if ($setthumb) update_post_meta($post_id,'_thumbnail_id',$attach_id);
   return $attach_id;
- }
+}
+
+
 
 if( function_exists('acf_add_options_sub_page') )
 {
@@ -401,6 +403,8 @@ if( function_exists('acf_add_options_sub_page') )
 }
 
 add_filter('show_admin_bar', '__return_false');
+
+
 
 
 function pin_display($media_type, $fb_media) {
