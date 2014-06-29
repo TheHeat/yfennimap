@@ -56,6 +56,9 @@ class FB_Media extends FacebookRequest
 		//Construct the query
 		$query = '/' . $fb_object_id;
 
+		//store the pin id in case we need it again
+		$this->pin_id = $pin_id;
+
 		//get a session object using the token stored in ACF Options
 		$session = new FacebookSession(page_token);
 
@@ -80,6 +83,10 @@ class FB_Media extends FacebookRequest
 	{
 		$graph_object = $this->graph_object;
 		$fb_media_type = $this->media_type;
+
+		//Override media type if it's a video but a link was submitted
+		$link_content = get_post_meta($this->pin_id, 'link', true);
+		if ( $fb_media_type == 'video' && $link_content != '') $fb_media_type = 'link';
 
 		// echo 'graphobject';
 		// echo '<pre>';

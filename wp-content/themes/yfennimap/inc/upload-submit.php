@@ -74,8 +74,10 @@
 
 	$location_field = get_field( 'field_5362ae02910ff', $post_id);
 
-
-	// if user has uploaded an image file
+	//If the user has selected 'video' but added a link, change the media type to link
+	if ($media == 'video' && isset($_POST['link'])) $media = 'link';
+	
+	// if user has uploaded an image file or a video
 	if ( $media == 'image' || $media == 'video'):
 
 		//change media type if multiple images uploaded 
@@ -106,10 +108,6 @@
 					foreach ($_FILES as $file => $array) {
 						$new_upload[] = array('file' => insert_attachment($file,$post_id));						
 					}
-
-					// echo '<pre>';
-					// 	print_r($new_upload);
-					// echo '</pre>';
 				}
 			}
 		}
@@ -130,6 +128,9 @@
 			?>
 		</div>
 		<?php
+
+		//unset the $_POST
+		// unset($_POST)
 	} 
 
 	?>

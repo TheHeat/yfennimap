@@ -38,6 +38,9 @@ else:
 
 	if ( $token == null) $token = page_token;
 	
+	//If the user selected video but added a link rather than a file, change the media type to link
+	$link_content = get_post_meta($post_id, 'link', true);
+	if ( $media == 'video' && $link_content != '') $media = 'link';
 	
 	switch ($media){
 
@@ -48,6 +51,8 @@ else:
 
 		case ('video'):
 			$edge = 'videos';
+
+		break;
 
 		case ('image'): 
 			if ($media == 'image') $edge = 'photos';
