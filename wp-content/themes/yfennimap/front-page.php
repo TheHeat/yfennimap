@@ -61,7 +61,7 @@ get_header();
 
 <!-- Upload new content form -->
 <div class="upload-form" style="display:none;">
-	<form action="<?php echo site_url() . '/';?>" id="pinForm" method="POST" enctype="multipart/form-data">
+	<form action="<?php echo site_url() . '/';?>" id="pinForm" method="POST" enctype="multipart/form-data" name="pinForm">
 
 		<fieldset class="title">
 			<label for="postTitle"><?php _e('Pin title:') ?></label>

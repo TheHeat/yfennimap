@@ -9,6 +9,14 @@
 	// } else {
 	// 	$postContent = trim($_POST['postContent']);
 	// }
+
+	// echo '<pre>';
+	// 	print_r($_POST);
+	// echo '</pre>';
+
+	// echo '<pre>';
+	// 	print_r($_FILES);
+	// echo '</pre>';
 	
 	//Insert Post
 	//standard WP info
@@ -43,7 +51,7 @@
 		$pin_cats = array_map('intval', $_POST['pin_category']);
 	}
 
-	echo 'type';
+	// echo 'type';
 
 
 	//Set the categories
@@ -66,6 +74,7 @@
 
 	$location_field = get_field( 'field_5362ae02910ff', $post_id);
 
+
 	// if user has uploaded an image file
 	if ( $media == 'pictures' || $media == 'video'):
 
@@ -74,11 +83,13 @@
 		update_post_meta( $post_id, "media_type", $media );
 
 		//get the media field to input files to
-		$media_field = get_field('field_5362addb9bf86', $post_id);
+		// $media_field = get_field('field_5362addb9bf86', $post_id);  //looks like this isn't used...
+
 
 		//$_FILES is the result of the form submit with input type files
 		if ( $_FILES ) {
 			$files = $_FILES['media_upload'];
+
 			foreach ($files['name'] as $key => $value) {
 				if ($files['name'][$key]) {
 					$file = array(
@@ -88,12 +99,17 @@
 						'error'    => $files['error'][$key],
 						'size'     => $files['size'][$key]
 					);
+
 		 
 					$_FILES = array("upload_attachment" => $file);
-		 
+		 			
 					foreach ($_FILES as $file => $array) {
 						$new_upload[] = array('file' => insert_attachment($file,$post_id));						
 					}
+
+					echo '<pre>';
+						print_r($new_upload);
+					echo '</pre>';
 				}
 			}
 		}	
