@@ -466,7 +466,7 @@ jQuery(document).ready(function($){
 		clearMarkers();
 
 		// Check whether the user is switching media types or starting from scratch
-		var addingMessage = 'Drag the marker, hit the add button.';
+		var addingMessage = 'Drag the marker and tick to confirm.';
 
 		// Only show the message if the user is opening the 
 		if(!newPinMedia){
