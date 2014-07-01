@@ -195,7 +195,7 @@ function loadPin(){
 			// console.log(response);
 
 			var fbURL = singlePinFB;
-			var fbPost = '<div class="fb-post" href="' + fbURL + '" data-width="300"></div>';
+			var fbPost = '<div class="fb-post" href="' + fbURL + '"></div>';
 			var wpMeta = '<div class="wp-meta">' + response.join(' ') + '</div>'; 
 			var content = fbPost + wpMeta;
 

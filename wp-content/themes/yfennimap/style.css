@@ -392,10 +392,6 @@ table {
   border-collapse: collapse;
   border-spacing: 0; }
 
-/* line 3, scss/_colors.scss */
-a {
-  color: #5a9b0a; }
-
 /* line 10, scss/_layout.scss */
 * {
   -webkit-box-sizing: border-box;
@@ -415,6 +411,71 @@ html {
   position: relative;
   top: 4em;
   padding: 1em; }
+
+/* line 3, scss/_colors.scss */
+a {
+  color: #5a9b0a; }
+
+/*--------------------------------------------------------------
+Elements
+--------------------------------------------------------------*/
+/* line 4, scss/_elements.scss */
+hr {
+  background-color: #ccc;
+  border: 0;
+  height: 1px;
+  margin-bottom: 1.5em; }
+
+/* line 10, scss/_elements.scss */
+ul, ol {
+  text-align: left;
+  margin: 0 1em 1.5em 1em; }
+  @media (min-width: 640px) {
+    /* line 10, scss/_elements.scss */
+    ul, ol {
+      margin: 0 4em 1.5em 4em; } }
+
+/* line 17, scss/_elements.scss */
+ul {
+  list-style: disc; }
+
+/* line 20, scss/_elements.scss */
+ol {
+  list-style: decimal; }
+
+/* line 24, scss/_elements.scss */
+li > ul,
+li > ol {
+  margin-bottom: 0;
+  margin-left: 1.5em; }
+
+/* line 28, scss/_elements.scss */
+dt {
+  font-weight: bold; }
+
+/* line 31, scss/_elements.scss */
+dd {
+  margin: 0 1.5em 1.5em; }
+
+/* line 34, scss/_elements.scss */
+img {
+  height: auto;
+  /* Make sure images are scaled correctly. */
+  max-width: 100%;
+  /* Adhere to container width. */ }
+
+/* line 38, scss/_elements.scss */
+figure {
+  margin: 0; }
+
+/* line 41, scss/_elements.scss */
+table {
+  margin: 0 0 1.5em;
+  width: 100%; }
+
+/* line 45, scss/_elements.scss */
+th {
+  font-weight: bold; }
 
 /* line 9, scss/_header.scss */
 .site-header {
@@ -536,7 +597,7 @@ Navigation
 /* line 17, scss/_modal.scss */
 .modal-content {
   margin: 0 auto;
-  width: 320px !important;
+  width: 300px !important;
   text-align: center; }
   @media (min-width: 640px) {
     /* line 17, scss/_modal.scss */
@@ -554,7 +615,7 @@ Navigation
   /* line 35, scss/_modal.scss */
   .fb_iframe_widget span iframe {
     text-align: center;
-    width: 320px !important; }
+    width: 300px !important; }
     @media (min-width: 640px) {
       /* line 35, scss/_modal.scss */
       .fb_iframe_widget span iframe {

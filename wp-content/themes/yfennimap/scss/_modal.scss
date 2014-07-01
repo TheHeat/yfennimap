@@ -16,7 +16,7 @@
 
 .modal-content{
 	margin:0 auto;
-	width:320px !important;
+	width:300px !important;
 	text-align:center;
 	@include media(momma){
     	width:600px !important;
@@ -34,7 +34,7 @@
 	margin:0 auto;
     span iframe{
     	text-align:center;
-    	width:320px !important;
+    	width:300px !important;
     	@include media(momma){
     		width:600px !important;
     	}
