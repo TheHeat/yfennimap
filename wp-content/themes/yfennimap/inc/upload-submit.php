@@ -74,9 +74,7 @@
 
 	$location_field = get_field( 'field_5362ae02910ff', $post_id);
 
-	//If the user has selected 'video' but added a link, change the media type to link
-	if ($media == 'video' && isset($_POST['link'])) $media = 'link';
-	
+
 	// if user has uploaded an image file or a video
 	if ( $media == 'image' || $media == 'video'):
 

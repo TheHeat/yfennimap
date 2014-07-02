@@ -351,7 +351,7 @@ function addNewPin(){
 	// Define var newPinLatLng as this starting position in case the user doesn't sweat the small stuff!
 	newPinLatLng = newMarker.position;
 	// console.log(newPinLatLng.k);
-	// console.log(newPinLatLng.A);
+	// console.log(newPinLatLng.B);
 
 	// Pass position of draggable marker to newPinLatLng
 	google.maps.event.addListener(newMarker, 'dragend', function () {
@@ -368,7 +368,7 @@ function toolboxLinks(position){
 
 	var saveQueryMedia = 'media=' + newPinMedia;
 	var saveQueryLat = 'lat=' + position.k;
-	var saveQueryLng = 'lng=' + position.A;
+	var saveQueryLng = 'lng=' + position.B;
 		
 	// var saveNewPin = '<a class="action save" href="upload-form/?' + saveQueryMedia + '&' + saveQueryLat + '&' + saveQueryLng + '">Add ' + newPinMediaLabel + '</a>';
 	var saveNewPin = '<span class="action save">save</span>'
@@ -400,7 +400,7 @@ function toolboxLinks(position){
 
 				//populate the lng form field
 				jQuery('.lng-hidden').each(function(){
-					jQuery(this).val(newPinLatLng.A);
+					jQuery(this).val(newPinLatLng.B);
 					// conso.log(jQuery(this).val());
 				});
 
