@@ -1,4 +1,4 @@
-/*
+
 Theme Name: yfennimap
 Theme URI: http://underscores.me/
 Author: Marc Heatley Design
@@ -1008,6 +1008,11 @@ a.tool {
   overflow: hidden;
   background-image: url('img/check.svg?1403816324'); }
 
+/*Fix squashed controls bug*/
+  .gmnoprint img {
+    max-width: none; 
+}
+
 /*--------------------------------------------------------------
 Accessibility
 --------------------------------------------------------------*/
@@ -1040,4 +1045,4 @@ Accessibility
   z-index: 100000;
   /* Above WP toolbar */ }
 
-/*# sourceMappingURL=style.css.map */
+/*# sourceMappingURL=style.css.map 
