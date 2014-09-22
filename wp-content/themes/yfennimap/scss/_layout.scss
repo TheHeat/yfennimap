@@ -30,3 +30,21 @@ html{
       width:800px !important;
     }
 }
+
+.map-steps{
+  display:flex;
+  flex-direction: column;
+  @include media(momma){
+    flex-direction: row;
+  }
+}
+
+.step{
+  padding:1em;
+  @include media(momma){
+    width:50%;
+  }
+  img{
+    max-width:100%;
+  }
+}

@@ -449,6 +449,37 @@ html {
     .page-wrapper {
       width: 800px !important; } }
 
+/* line 34, scss/_layout.scss */
+.map-steps {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column; }
+  @media (min-width: 640px) {
+    /* line 34, scss/_layout.scss */
+    .map-steps {
+      -webkit-box-orient: horizontal;
+      -webkit-box-direction: normal;
+      -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+      flex-direction: row; } }
+
+/* line 42, scss/_layout.scss */
+.step {
+  padding: 1em; }
+  @media (min-width: 640px) {
+    /* line 42, scss/_layout.scss */
+    .step {
+      width: 50%; } }
+  /* line 47, scss/_layout.scss */
+  .step img {
+    max-width: 100%; }
+
 /*--------------------------------------------------------------
 Elements
 --------------------------------------------------------------*/

@@ -280,9 +280,9 @@ if(function_exists("register_field_group")){
 		'location' => array (
 			array (
 				array (
-					'param' => 'page_type',
+					'param' => 'page_template',
 					'operator' => '==',
-					'value' => 'front_page',
+					'value' => 'map-template.php',
 					'order_no' => 0,
 					'group_no' => 0,
 				),
@@ -296,6 +296,106 @@ if(function_exists("register_field_group")){
 		),
 		'menu_order' => 0,
 	));
+
+	register_field_group(array (
+	'key' => 'group_5420185eeb03a',
+	'title' => 'Homepage Fields',
+	'fields' => array (
+		array (
+			'key' => 'field_5420186b94467',
+			'label' => 'Map Steps',
+			'name' => 'map_steps',
+			'prefix' => '',
+			'type' => 'repeater',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'min' => '',
+			'max' => 2,
+			'layout' => 'table',
+			'button_label' => 'Add Row',
+			'sub_fields' => array (
+				array (
+					'key' => 'field_5420187d94468',
+					'label' => 'Title',
+					'name' => 'title',
+					'prefix' => '',
+					'type' => 'text',
+					'instructions' => '',
+					'required' => 1,
+					'conditional_logic' => 0,
+					'column_width' => '',
+					'default_value' => '',
+					'placeholder' => '',
+					'prepend' => '',
+					'append' => '',
+					'maxlength' => '',
+					'readonly' => 0,
+					'disabled' => 0,
+				),
+				array (
+					'key' => 'field_5420189994469',
+					'label' => 'Text',
+					'name' => 'text',
+					'prefix' => '',
+					'type' => 'wysiwyg',
+					'instructions' => '',
+					'required' => 0,
+					'conditional_logic' => 0,
+					'column_width' => '',
+					'default_value' => '',
+					'tabs' => 'all',
+					'toolbar' => 'basic',
+					'media_upload' => 0,
+				),
+				array (
+					'key' => 'field_542018be9446a',
+					'label' => 'Image',
+					'name' => 'image',
+					'prefix' => '',
+					'type' => 'image',
+					'instructions' => 'Upload a square (1:1) image to represent this item.',
+					'required' => 0,
+					'conditional_logic' => 0,
+					'column_width' => '',
+					'return_format' => 'array',
+					'preview_size' => 'thumbnail',
+					'library' => 'all',
+				),
+			),
+		),
+		array (
+			'key' => 'field_54201a329446b',
+			'label' => 'Project Details',
+			'name' => 'project_details',
+			'prefix' => '',
+			'type' => 'wysiwyg',
+			'instructions' => 'Describe the project.',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'default_value' => '',
+			'tabs' => 'all',
+			'toolbar' => 'basic',
+			'media_upload' => 0,
+		),
+	),
+	'location' => array (
+		array (
+			array (
+				'param' => 'page_type',
+				'operator' => '==',
+				'value' => 'front_page',
+			),
+		),
+	),
+	'menu_order' => 0,
+	'position' => 'normal',
+	'style' => 'seamless',
+	'label_placement' => 'top',
+	'instruction_placement' => 'label',
+	'hide_on_screen' => '',
+));
+
 }
 
 ?>
