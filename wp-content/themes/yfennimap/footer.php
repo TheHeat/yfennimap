@@ -11,6 +11,11 @@
 
 	</div>
 
+<footer>
+	<img src="http://placehold.it/200x50" alt="" class="logo">
+	<img src="http://placehold.it/200x50" alt="" class="logo">
+	<img src="http://placehold.it/200x50" alt="" class="logo">
+</footer>
 <?php wp_footer(); ?>
 
 </body>

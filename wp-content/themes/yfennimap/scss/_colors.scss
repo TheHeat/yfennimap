@@ -1,4 +1,11 @@
-$green: rgb(90,155,10);
+$black: #3F3F3F;
+$white: #F3F0D2;
+$red : #D74123;
+$yellow: #F3AE18;
+$green: #2E984E;
+$blue: #1A619C;
+
+$stripes: linear-gradient(left, $red 0, $red 25%, $yellow 25%, $yellow 50%, $green 50%, $green 75%, $blue 75%);
 
 a{
 	color:$green;

@@ -19,7 +19,14 @@ html{
 }
 
 .page-wrapper{
-  position:relative;
-  top: 4em;
-  padding:1em;
+  margin:13em auto 0;
+  padding:0 1em;
+  max-width: 100%;
+  text-align:center;
+  @include media(momma){
+      width:600px !important;
+    }
+    @include media(poppa){
+      width:800px !important;
+    }
 }
