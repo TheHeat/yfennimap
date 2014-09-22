@@ -29,6 +29,6 @@
 					</a>
 				</h1>
 			</div>
-			<?php fb_login(); ?>
 			<span class="tool info"></span>
+			<?php fb_login(); ?>
 		</header>

@@ -1006,6 +1006,10 @@ a.tool {
   overflow: hidden;
   background-image: url('img/check.svg?1403816324'); }
 
+/* line 145, scss/_map.scss */
+.gmnoprint img {
+  max-width: none; }
+
 /*--------------------------------------------------------------
 Accessibility
 --------------------------------------------------------------*/
@@ -1037,4 +1041,5 @@ Accessibility
   width: auto;
   z-index: 100000;
   /* Above WP toolbar */ }
+
 /*# sourceMappingURL=style.css.map */
