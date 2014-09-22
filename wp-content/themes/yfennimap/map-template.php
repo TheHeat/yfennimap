@@ -1,5 +1,6 @@
 <?php
 /**
+ * Template Name: Map
  *
  * Map interface for "pins" custom post type
  * All we have is a canvas and an empty media container

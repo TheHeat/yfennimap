@@ -460,9 +460,7 @@ dd {
 /* line 34, scss/_elements.scss */
 img {
   height: auto;
-  /* Make sure images are scaled correctly. */
-  max-width: 100%;
-  /* Adhere to container width. */ }
+  /* Make sure images are scaled correctly. */ }
 
 /* line 38, scss/_elements.scss */
 figure {
@@ -1039,5 +1037,4 @@ Accessibility
   width: auto;
   z-index: 100000;
   /* Above WP toolbar */ }
-
 /*# sourceMappingURL=style.css.map */
