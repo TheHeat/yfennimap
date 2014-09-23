@@ -420,6 +420,13 @@ p:first-child {
   font-weight: bold;
   font-size: 1.4em; }
 
+/* line 29, scss/_global.scss */
+.btn {
+  background: #2e984e;
+  color: #f3f0d2;
+  padding: 1em;
+  text-decoration: none; }
+
 /* line 10, scss/_layout.scss */
 * {
   -webkit-box-sizing: border-box;

@@ -25,14 +25,14 @@ get_header(); ?>
 					// loop through the rows of data
 					while ( have_rows('map_steps') ) : the_row(); ?>
 
-					<div class="step">
+						<div class="step">
 
-					<img src="http://placehold.it/500" alt="point">
+							<img src="http://placehold.it/500" alt="point">
 
-				        <?php echo '<h2>' . get_sub_field('title') . '</h2>';
-				        the_sub_field('text'); ?>
+					        <?php echo '<h2>' . get_sub_field('title') . '</h2>';
+					        the_sub_field('text'); ?>
 
-				        </div>
+					    </div>
 
 			       	<?php endwhile; ?>
 
@@ -40,12 +40,11 @@ get_header(); ?>
 
 				<?php endif; ?>
 
-
+			<?php $map_post = get_field('map_link'); ?>
+			<a class="btn call-to-action" href="<?php echo get_permalink( $map_post->ID ); ?>"><?php the_field('map_cta'); ?></a>
 
     		<?php the_field('project_details'); ?>
 			<?php endwhile; // end of the loop. ?>
-
-
 
 		</main>
 	</div>
