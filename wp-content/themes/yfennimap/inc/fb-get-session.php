@@ -26,6 +26,7 @@ function fb_get_session($helper = null){
 		//create a new FB session
 		try {
 			//get the session from the query string
+			// echo 'wow';
 			$session = $helper->getSessionFromRedirect();
 		} catch( FacebookRequestException $ex ) {
 			echo "Exception occured, code: " . $ex->getCode();
@@ -38,7 +39,7 @@ function fb_get_session($helper = null){
 		}
 		//echo 'php session '; print_r($session);
 		// echo '<pre>';
-		// 	print_r($helper->getSessionFromRedirect());
+		// 	print_r($session);
 		// echo '</pre>';
 	}
 	  	//set the FB session into a PHP session so that the user can stay logged in
