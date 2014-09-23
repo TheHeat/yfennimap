@@ -23,11 +23,15 @@ get_header(); ?>
 				<div class="map-steps">
 				<?php
 					// loop through the rows of data
-					while ( have_rows('map_steps') ) : the_row(); ?>
+					while ( have_rows('map_steps') ) : the_row();
+
+						$step_image = get_sub_field('image');
+
+					?>
 
 						<div class="step">
 
-							<img src="http://placehold.it/500" alt="point">
+							<img src="<?php echo $step_image['url']; ?>" alt="point">
 
 					        <?php echo '<h2>' . get_sub_field('title') . '</h2>';
 					        the_sub_field('text'); ?>

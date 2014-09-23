@@ -485,7 +485,9 @@ html {
       width: 50%; } }
   /* line 47, scss/_layout.scss */
   .step img {
-    max-width: 100%; }
+    max-width: 100%;
+    border-radius: 50%;
+    border: solid; }
 
 /* line 1, scss/_footer.scss */
 .site-footer {
@@ -736,7 +738,7 @@ Navigation
 /* line 56, scss/_modal.scss */
 .pin-cats {
   color: white;
-  background: #5a9b0a;
+  background: #2e984e;
   padding: 0.5em;
   text-decoration: none;
   border-radius: 0.25em;
@@ -744,18 +746,19 @@ Navigation
 
 /* line 65, scss/_modal.scss */
 .edit-link {
+  color: #d74123;
   display: block;
   margin: 1em 0;
   color: white; }
 
-/* line 72, scss/_modal.scss */
+/* line 73, scss/_modal.scss */
 .category-link {
   font-size: 2em;
   display: block;
   text-align: center;
   text-transform: uppercase;
   color: white;
-  background: #5a9b0a;
+  background: #2e984e;
   padding: 0.5em;
   text-decoration: none;
   border-radius: 0.25em;
@@ -809,7 +812,7 @@ Navigation
 /*The slider handles.*/
 /* line 46, scss/_filters.scss */
 a.ui-slider-handle {
-  background: red;
+  background: #d74123;
   width: 0.5em;
   height: 2em;
   position: absolute;

@@ -55,7 +55,7 @@
 
 .pin-cats{
     color:white;   
-	background: rgb(90,155,10);
+	background: $green;
 	padding: 0.5em;
     text-decoration:none;
     border-radius:0.25em;
@@ -63,6 +63,7 @@
 }
 
 .edit-link{
+	color:$red;
 	display:block;
 	margin:1em 0;
 	color:white;
@@ -75,7 +76,7 @@
 	text-align:center;
 	text-transform:uppercase;
 	color:white;
-	background: rgb(90,155,10);
+	background:$green;
 	padding: 0.5em;
     text-decoration:none;
     border-radius:0.25em;
