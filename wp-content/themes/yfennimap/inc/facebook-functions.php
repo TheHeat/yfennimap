@@ -26,6 +26,7 @@ use Facebook\FacebookClientException;
 use Facebook\FacebookOtherException;
 
 //app ip, app secret, page token, page id
+//The page token needs to be permanent. This page explains how to get it http://logicum.co/getting-a-facebook-page-permanent-access-token/
 define('page_id', get_field('field_53970c9b6e9ff', 'option'));
 define('app_id', get_field('field_53970cc16ea00', 'option'));
 define('app_secret', get_field('field_53970cd36ea01', 'option'));
