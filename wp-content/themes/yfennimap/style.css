@@ -480,6 +480,30 @@ html {
   .step img {
     max-width: 100%; }
 
+/* line 1, scss/_footer.scss */
+.site-footer {
+  padding: 1em; }
+
+/* line 5, scss/_footer.scss */
+.footer-logos {
+  max-width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  background: #fff;
+  padding: 0.5em; }
+  /* line 11, scss/_footer.scss */
+  .footer-logos img {
+    max-width: 100%;
+    background: #FFF;
+    padding: 0.5em;
+    height: auto; }
+
 /*--------------------------------------------------------------
 Elements
 --------------------------------------------------------------*/

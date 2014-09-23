@@ -11,10 +11,14 @@
 
 	</div>
 
-<footer>
-	<img src="http://placehold.it/200x50" alt="" class="logo">
-	<img src="http://placehold.it/200x50" alt="" class="logo">
-	<img src="http://placehold.it/200x50" alt="" class="logo">
+<?php $logo_root = get_stylesheet_directory_uri() . '/img/logos/'; ?>
+<footer class="site-footer">
+	<div class="footer-logos">
+		<div class="logo"><img src="<?php echo $logo_root; ?>cardiff.jpg" alt=""></div>
+		<div class="logo"><img src="<?php echo $logo_root; ?>manchester.png" alt=""></div>
+		<div class="logo"><img src="<?php echo $logo_root; ?>southampton.png" alt=""></div>
+		<div class="logo"><img src="<?php echo $logo_root; ?>ahrc.png" alt=""></div>
+	</div>
 </footer>
 <?php wp_footer(); ?>
 
