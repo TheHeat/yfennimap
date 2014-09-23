@@ -22,18 +22,23 @@ function fb_login(){
 	//global $wp;
 	//$current_url = add_query_arg( $wp->query_string, '', home_url( $wp->request ) );
 
-	$home_url = home_url() . '/';
-	$helper = new FacebookRedirectLoginHelper( $home_url );
+	//Compose the page URL
+	$page_url = home_url() . $_SERVER['REQUEST_URI'] . '/';
+	$helper = new FacebookRedirectLoginHelper( $page_url );
 
-
-	// print_r($helper);
+	// echo '<pre>';
+	// 	print_r($helper);
+	// echo '</pre>';
 
 	//check if the user is trying to logout
 	fb_logout();
-
+	
 	//get the fb session out of the PHP session, otherwise get a new FB session
 	if( fb_get_session( $helper )){
 		$session = fb_get_session();
+		// echo '<pre>';
+		// 	print_r($session);
+		// echo '</pre>';
 	}
 	 
 	// see if we have a session
