@@ -225,11 +225,6 @@ include_once('advanced-custom-fields/acf.php' );
 require get_template_directory() . '/inc/acf-custom-fields.php';
 
 /**
- * Implement the Custom Header feature.
- */
-//require get_template_directory() . '/inc/custom-header.php';
-
-/**
  * Custom template tags for this theme.
  */
 require get_template_directory() . '/inc/template-tags.php';
@@ -389,9 +384,9 @@ function insert_attachment($file_handler,$post_id,$setthumb='false') {
 
 
 
-if( function_exists('acf_add_options_sub_page') )
+if( function_exists('acf_add_options_page') )
 {
-    acf_add_options_sub_page( 'Facebook Settings' );
+    acf_add_options_page( 'Facebook Settings' );
 }
 
 add_filter('show_admin_bar', '__return_false');
