@@ -15,7 +15,7 @@ use Facebook\FacebookOtherException;
 function fb_get_session($helper = null){
 
 //check if there is currently a session created, if not return False 
-
+	
 	//get session from php session if one is available
 	if ( isset($_SESSION['fb_session'])) {
 
@@ -24,7 +24,6 @@ function fb_get_session($helper = null){
 	
 	} elseif(null !=$helper) {
 		//create a new FB session
-
 		try {
 			//get the session from the query string
 			$session = $helper->getSessionFromRedirect();
@@ -38,6 +37,9 @@ function fb_get_session($helper = null){
 		  // When validation fails or other local issues
 		}
 		//echo 'php session '; print_r($session);
+		// echo '<pre>';
+		// 	print_r($helper->getSessionFromRedirect());
+		// echo '</pre>';
 	}
 	  	//set the FB session into a PHP session so that the user can stay logged in
   	if(isset($session)):
