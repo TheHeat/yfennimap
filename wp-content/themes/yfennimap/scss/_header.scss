@@ -13,8 +13,11 @@
 	top: 0;
 	right: 0;
 	left: 0;
-	height:12em;
+	height:20em;
 	z-index:10;
+	background-position:top center;
+	background-attachment:fixed;
+	background-size:contain;
 	a{
 		color:white;
 		text-decoration:none;
