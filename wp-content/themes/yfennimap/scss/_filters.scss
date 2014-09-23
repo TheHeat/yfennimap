@@ -5,7 +5,7 @@
   height:3em;
   background-clip:padding-box;
   overflow:hidden;
-  color:black;
+  color:$black;
   z-index:20;
 }
 
@@ -35,7 +35,7 @@
 	or ui-slider-vertical depending on the orientation of the slider. 
 */
 .ui-slider{
-	background:silver;
+	background:$white;
 	height:0.5em;
 	margin:2em 0 1em;
 	position:relative;
@@ -58,7 +58,7 @@ a.ui-slider-handle{
 */
 .ui-slider-range{
 	position:relative;
-	background:black;
+	background:$black;
 	height:0.5em;	
 }
 

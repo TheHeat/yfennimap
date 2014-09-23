@@ -396,7 +396,7 @@ table {
 
 /* line 10, scss/_colors.scss */
 a {
-  color: #2e984e; }
+  color: #f3ae18; }
 
 /* line 4, scss/_global.scss */
 body {
@@ -405,14 +405,14 @@ body {
   color: #f3f0d2; }
 
 /* line 11, scss/_global.scss */
-.page-wrapper h1, .page-wrapper h2 {
+.page-wrapper h1, .page-wrapper h2, .modal-content h1, .modal-content h2 {
   font-family: 'Changa One', cursive;
   font-weight: normal; }
 /* line 15, scss/_global.scss */
-.page-wrapper h1 {
+.page-wrapper h1, .modal-content h1 {
   font-size: 4em; }
 /* line 18, scss/_global.scss */
-.page-wrapper h2 {
+.page-wrapper h2, .modal-content h2 {
   font-size: 2.5em; }
 
 /* line 23, scss/_global.scss */
@@ -774,7 +774,7 @@ Navigation
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
   overflow: hidden;
-  color: black;
+  color: #3f3f3f;
   z-index: 20; }
 
 /* line 13, scss/_filters.scss */
@@ -803,7 +803,7 @@ Navigation
 */
 /* line 37, scss/_filters.scss */
 .ui-slider {
-  background: silver;
+  background: #f3f0d2;
   height: 0.5em;
   margin: 2em 0 1em;
   position: relative;
@@ -825,7 +825,7 @@ a.ui-slider-handle {
 /* line 59, scss/_filters.scss */
 .ui-slider-range {
   position: relative;
-  background: black;
+  background: #3f3f3f;
   height: 0.5em; }
 
 /* line 2, scss/_form.scss */
@@ -875,8 +875,8 @@ html {
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
   overflow: hidden;
-  background-color: black;
-  color: white;
+  background-color: #3f3f3f;
+  color: #f3f0d2;
   z-index: 20; }
 
 /* line 50, scss/_map.scss */

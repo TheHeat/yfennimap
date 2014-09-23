@@ -47,6 +47,8 @@ get_header(); ?>
 			<?php $map_post = get_field('map_link'); ?>
 			<a class="btn call-to-action" href="<?php echo get_permalink( $map_post->ID ); ?>"><?php the_field('map_cta'); ?></a>
 
+    		
+			<h2>About The Project</h2>
     		<?php the_field('project_details'); ?>
 			<?php endwhile; // end of the loop. ?>
 

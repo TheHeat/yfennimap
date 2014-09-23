@@ -21,7 +21,7 @@
 
 <body <?php body_class(); ?> onload="initialize();">
 	<div class="site-wrapper">
-		<header id="masthead" class="site-header" role="banner" style="background-image:url(<?php header_image(); ?>);">
+		<header id="masthead" class="site-header" role="banner" style="background-image:url(<?php if(!is_page_template('map-template.php' )){ header_image(); } ?>);">
 			<div id="site-branding">
 				<h1 class="site-title">
 					<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
