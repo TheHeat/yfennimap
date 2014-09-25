@@ -11,6 +11,7 @@ use Facebook\GraphObject;
 use Facebook\FacebookPermissionException;
 use Facebook\FacebookClientException;
 use Facebook\FacebookOtherException;
+use Facebook\GraphSessionInfo;
 
 
 function fb_login(){
@@ -23,7 +24,8 @@ function fb_login(){
 	//$current_url = add_query_arg( $wp->query_string, '', home_url( $wp->request ) );
 
 	//Compose the page URL
-	$page_url = home_url() . $_SERVER['REQUEST_URI'] . '/';
+	// $page_url = home_url() . $_SERVER['REQUEST_URI'] . '/';
+	$page_url = 'http://localhost/yfennimap/map/';
 	$helper = new FacebookRedirectLoginHelper( $page_url );
 
 	// echo '<pre>';
@@ -31,19 +33,51 @@ function fb_login(){
 	// echo '</pre>';
 
 	//check if the user is trying to logout
-	fb_logout();
+	//If logout = true, then destroy the FB session
+	if(isset($_GET['logout'])){
+		unset($_SESSION['fb_session']);
+	}
 	
 	//get the fb session out of the PHP session, otherwise get a new FB session
-	if( fb_get_session( $helper )){
-		$session = fb_get_session();
-		// echo '<pre>';
-		// 	print_r($session);
-		// echo '</pre>';
+	if ( isset( $_SESSION ) && isset( $_SESSION['fb_token'] ) ) {
+	 // create new session from saved access_token
+
+	 $session = new FacebookSession( $_SESSION['fb_token'] );
+
+	 // validate the access_token to make sure it's still valid
+	 try {
+	   if ( !$session->validate() ) {
+	     
+	     $session = null;
+	   }
+	 } catch ( Exception $e ) {
+	   
+	   // catch any exceptions
+	   $session = null;
+	 }
+	  
+	} else {
+	// no session exists
+	 
+	 try {
+	   $session = $helper->getSessionFromRedirect();
+	 } catch( FacebookRequestException $ex ) {
+	   // When Facebook returns an error
+	   // handle this better in production code
+	   print_r( $ex );
+	 } catch( Exception $ex ) {
+	   // When validation fails or other local issues
+	   // handle this better in production code
+	   print_r( $ex );
+	 }
+	 
 	}
 	 
 	// see if we have a session
 	if ( isset($session) ) {
-
+		echo '<pre>';
+			print_r($session);
+		echo '</pre>';
 	  	// graph api request for user data
 	  	$request = new FacebookRequest( $session, 'GET', '/me' );
 	  	$response = $request->execute();
@@ -63,7 +97,7 @@ function fb_login(){
 			</div>
 			<div class="avatar-menu facebook">
 				<?php //add a parameter
-				$logout_uri = add_query_arg('logout', 'true', home_url());
+				$logout_uri = add_query_arg('logout', 'true', home_url() . '/map');
 
 				//display logout
 				echo '<a href="' . $logout_uri . '">Log out</a>';

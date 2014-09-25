@@ -11,6 +11,7 @@ use Facebook\GraphObject;
 use Facebook\FacebookPermissionException;
 use Facebook\FacebookClientException;
 use Facebook\FacebookOtherException;
+use Facebook\GraphSessionInfo;
 
 function fb_get_session($helper = null){
 
