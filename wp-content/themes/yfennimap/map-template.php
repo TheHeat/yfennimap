@@ -106,9 +106,9 @@ if ( isset( $session ) ) {
   // get response
   $graphObject = $response->getGraphObject();
   
-  echo '<pre>';
-  	print_r($_SESSION);
-  echo '</pre>';
+  // echo '<pre>';
+  // 	print_r($_SESSION);
+  // echo '</pre>';
   // print profile data
   // echo '<pre>' . print_r( $graphObject, 1 ) . '</pre>';
   
