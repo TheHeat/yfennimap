@@ -51,7 +51,11 @@ function yfenni_setup() {
 		'comment-form',
 		'gallery',
 	) );
+
 }
+
+
+
 endif; // yfenni_setup
 add_action( 'after_setup_theme', 'yfenni_setup' );
 

@@ -456,7 +456,12 @@ html {
     .page-wrapper {
       width: 800px !important; } }
 
-/* line 34, scss/_layout.scss */
+/* line 35, scss/_layout.scss */
+aside img {
+  max-width: 100%;
+  height: auto; }
+
+/* line 41, scss/_layout.scss */
 .map-steps {
   display: -webkit-box;
   display: -webkit-flex;
@@ -468,7 +473,7 @@ html {
   -ms-flex-direction: column;
   flex-direction: column; }
   @media (min-width: 640px) {
-    /* line 34, scss/_layout.scss */
+    /* line 41, scss/_layout.scss */
     .map-steps {
       -webkit-box-orient: horizontal;
       -webkit-box-direction: normal;
@@ -476,14 +481,14 @@ html {
       -ms-flex-direction: row;
       flex-direction: row; } }
 
-/* line 42, scss/_layout.scss */
+/* line 49, scss/_layout.scss */
 .step {
   padding: 1em; }
   @media (min-width: 640px) {
-    /* line 42, scss/_layout.scss */
+    /* line 49, scss/_layout.scss */
     .step {
       width: 50%; } }
-  /* line 47, scss/_layout.scss */
+  /* line 54, scss/_layout.scss */
   .step img {
     max-width: 100%;
     border-radius: 50%;

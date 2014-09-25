@@ -31,6 +31,13 @@ html{
     }
 }
 
+aside{
+  img{
+    max-width: 100%;
+    height:auto;
+  }
+}
+
 .map-steps{
   display:flex;
   flex-direction: column;

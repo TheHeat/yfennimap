@@ -31,7 +31,7 @@ get_header(); ?>
 
 						<div class="step">
 
-							<img src="<?php echo $step_image['url']; ?>" alt="point">
+							<img src="<?php echo $step_image['sizes']['thumbnail']; ?>" alt="<?php echo $step_image['alt']; ?>">
 
 					        <?php echo '<h2>' . get_sub_field('title') . '</h2>';
 					        the_sub_field('text'); ?>
