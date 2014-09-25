@@ -6,6 +6,7 @@
  *
  * @package yfennimap
  */
+use Facebook\FacebookRedirectLoginHelper;
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
@@ -29,8 +30,8 @@
 					</a>
 				</h1>
 			</div>
+
 			<?php if(is_page_template('map-template.php' )): ?>
 				<span class="tool info"></span>
-				<?php fb_login(); ?>
 			<?php endif; ?>
 		</header>

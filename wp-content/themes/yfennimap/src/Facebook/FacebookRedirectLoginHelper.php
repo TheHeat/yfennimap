@@ -87,6 +87,9 @@ class FacebookRedirectLoginHelper
   {
     $version = ($version ?: FacebookRequest::GRAPH_API_VERSION);
     $this->state = md5(uniqid(mt_rand(), true));
+    echo '<pre>';
+      print_r('this - '.$this->state);
+    echo '</pre>';
     $this->storeState($this->state);
     $params = array(
       'client_id' => $this->appId,

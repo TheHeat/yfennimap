@@ -61,8 +61,8 @@ function yfenni_setup() {
 endif; // yfenni_setup
 add_action( 'after_setup_theme', 'yfenni_setup' );
 
-add_action('init', 'yfenniStartSession', 1);
-add_action('wp_logout', 'yfenniEndSession');
+add_action('init', 'yfenniStartSession', 2);
+add_action('wp_logout', 'yfenniEndSession',1);
 add_action('wp_login', 'yfenniEndSession');
 
 function yfenniStartSession() {
@@ -72,7 +72,9 @@ function yfenniStartSession() {
 }
 
 function yfenniEndSession() {
-    session_destroy ();
+	if(session_id()) {
+    	session_destroy ();
+	}
 }
 
 /**

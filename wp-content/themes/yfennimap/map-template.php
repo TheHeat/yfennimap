@@ -10,10 +10,12 @@
  */
 
 get_header();
+
 ?>
+
 <div id="fb-root"></div>
 <?php get_template_part('map-pins' ); ?>
-
+<?php fb_login() ?>
 <?php
 
 	//check if the post has been submitted

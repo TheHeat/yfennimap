@@ -16,6 +16,6 @@ function fb_logout(){
 
 	//If logout = true, then destroy the FB session
 	if(isset($_GET['logout'])){
-		unset($_SESSION['fb_session']);
+		session_unset();
 	}
 }
