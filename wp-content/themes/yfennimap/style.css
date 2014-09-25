@@ -572,9 +572,9 @@ table {
 th {
   font-weight: bold; }
 
-/* line 9, scss/_header.scss */
+/* line 10, scss/_header.scss */
 .site-header {
-  background-color: #d74123;
+  background-color: #3f3f3f;
   color: #3f3f3f;
   position: absolute;
   top: 0;
@@ -586,91 +586,84 @@ th {
   background-attachment: fixed;
   -webkit-background-size: contain;
   background-size: contain; }
-  /* line 21, scss/_header.scss */
+  /* line 22, scss/_header.scss */
   .site-header a {
     color: white;
     text-decoration: none; }
 
-/* line 27, scss/_header.scss */
+/* line 28, scss/_header.scss */
 .page-template-map-template-php .site-header {
-  height: 3em; }
+  height: 8em; }
 
-/* line 31, scss/_header.scss */
+/* line 32, scss/_header.scss */
 #site-branding {
   padding: 1em 0;
   float: left; }
-  /* line 34, scss/_header.scss */
+  /* line 35, scss/_header.scss */
   #site-branding h1 {
     display: inline;
     font-size: 1rem;
     line-height: 1;
     font-weight: normal;
     padding: 1em;
-    margin: 0;
-    background: transparent; }
+    margin: 0.5em;
+    background-color: #d74123; }
 
 /* line 41, scss/_header.scss */
 #site-navigation {
-  float: right;
+  float: left;
   padding: 1em 0; }
   /* line 44, scss/_header.scss */
   #site-navigation .menu ul {
-    margin: 0;
     padding: 0;
-    border: 0;
-    overflow: hidden;
-    *zoom: 1; }
-    /* line 49, ../../../../../../usr/share/koala/rubygems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/typography/lists/_inline-block-list.scss */
+    margin: 0;
+    list-style: none; }
+    /* line 48, scss/_header.scss */
     #site-navigation .menu ul li {
-      list-style-image: none;
-      list-style-type: none;
-      margin-left: 0;
-      display: -moz-inline-stack;
-      display: inline-block;
-      vertical-align: middle;
-      *vertical-align: auto;
-      zoom: 1;
-      *display: inline;
-      white-space: nowrap; }
-    /* line 46, scss/_header.scss */
+      display: block;
+      float: left; }
+    /* line 53, scss/_header.scss */
     #site-navigation .menu ul a {
       font-size: 1rem;
       line-height: 1;
       font-weight: normal;
       padding: 1em;
-      margin: 0; }
+      margin: 0.5em;
+      background-color: #d74123; }
 
-/* line 52, scss/_header.scss */
+/* line 59, scss/_header.scss */
 .avatar-wrapper {
   float: right;
   padding: 1em 0;
   margin: 0; }
-  /* line 56, scss/_header.scss */
+  /* line 63, scss/_header.scss */
   .avatar-wrapper a {
     font-size: 1rem;
     line-height: 1;
     font-weight: normal;
     padding: 1em;
-    margin: 0; }
-  /* line 59, scss/_header.scss */
+    margin: 0.5em;
+    background-color: #d74123; }
+  /* line 66, scss/_header.scss */
   .avatar-wrapper .avatar {
     height: 3em;
     width: 3em;
     margin: -1em 0;
     cursor: pointer; }
-    /* line 64, scss/_header.scss */
+    /* line 71, scss/_header.scss */
     .avatar-wrapper .avatar img {
       width: 100%;
       display: block;
       margin: 0; }
 
-/* line 72, scss/_header.scss */
+/* line 79, scss/_header.scss */
 .avatar-menu {
   font-size: 1rem;
   line-height: 1;
   font-weight: normal;
   padding: 1em;
-  margin: 0;
+  margin: 0.5em;
+  background-color: #d74123;
   position: absolute;
   right: 3em;
   top: 0;
@@ -688,7 +681,7 @@ Navigation
   color: white;
   position: absolute;
   z-index: 10;
-  top: 3em;
+  top: 8em;
   right: 0em;
   bottom: 0em;
   left: 0em;
@@ -861,7 +854,7 @@ html {
 /* line 24, scss/_map.scss */
 #map-canvas {
   position: absolute;
-  top: 3em;
+  top: 8em;
   right: 0;
   bottom: 0;
   left: 0; }
@@ -923,6 +916,12 @@ a.tool {
 
 /* line 99, scss/_map.scss */
 .modal-close {
+  font-size: 1rem;
+  line-height: 1;
+  font-weight: normal;
+  padding: 1em;
+  margin: 0.5em;
+  background-color: #d74123;
   display: inline-block;
   width: 2em;
   height: 2em;
@@ -938,12 +937,12 @@ a.tool {
   overflow: hidden;
   background-image: url('img/times.svg?1403816324');
   z-index: 10;
-  position: fixed;
-  top: 3em;
-  right: 0;
+  position: absolute;
+  top: 1em;
+  right: 1em;
   cursor: pointer; }
 
-/* line 109, scss/_map.scss */
+/* line 110, scss/_map.scss */
 .tool.categories {
   display: inline-block;
   width: 2em;
@@ -960,7 +959,7 @@ a.tool {
   overflow: hidden;
   background-image: url('img/tags.svg?1404082648'); }
 
-/* line 113, scss/_map.scss */
+/* line 114, scss/_map.scss */
 .tool.clear-categories {
   display: inline-block;
   width: 2em;
@@ -977,7 +976,7 @@ a.tool {
   overflow: hidden;
   background-image: url('img/refresh.svg?1404082588'); }
 
-/* line 118, scss/_map.scss */
+/* line 119, scss/_map.scss */
 .handle.add {
   display: inline-block;
   width: 2em;
@@ -994,7 +993,7 @@ a.tool {
   overflow: hidden;
   background-image: url('img/plus.svg?1403816324'); }
 
-/* line 122, scss/_map.scss */
+/* line 123, scss/_map.scss */
 .tool.link {
   display: inline-block;
   width: 2em;
@@ -1011,7 +1010,7 @@ a.tool {
   overflow: hidden;
   background-image: url('img/chain.svg?1404073639'); }
 
-/* line 126, scss/_map.scss */
+/* line 127, scss/_map.scss */
 .tool.video {
   display: inline-block;
   width: 2em;
@@ -1028,7 +1027,7 @@ a.tool {
   overflow: hidden;
   background-image: url('img/film.svg?1404082971'); }
 
-/* line 130, scss/_map.scss */
+/* line 131, scss/_map.scss */
 .tool.pictures {
   display: inline-block;
   width: 2em;
@@ -1045,7 +1044,7 @@ a.tool {
   overflow: hidden;
   background-image: url('img/picture.svg?1404073244'); }
 
-/* line 134, scss/_map.scss */
+/* line 135, scss/_map.scss */
 .tool.words {
   display: inline-block;
   width: 2em;
@@ -1062,8 +1061,14 @@ a.tool {
   overflow: hidden;
   background-image: url('img/pencil.svg?1404082897'); }
 
-/* line 138, scss/_map.scss */
+/* line 139, scss/_map.scss */
 .tool.info {
+  font-size: 1rem;
+  line-height: 1;
+  font-weight: normal;
+  padding: 1em;
+  margin: 0.5em;
+  background-color: #d74123;
   display: inline-block;
   width: 2em;
   height: 2em;
@@ -1079,7 +1084,7 @@ a.tool {
   overflow: hidden;
   background-image: url('img/info.svg?1403816324'); }
 
-/* line 143, scss/_map.scss */
+/* line 145, scss/_map.scss */
 .action.cancel {
   display: inline-block;
   width: 2em;
@@ -1096,7 +1101,7 @@ a.tool {
   overflow: hidden;
   background-image: url('img/times.svg?1403816324'); }
 
-/* line 147, scss/_map.scss */
+/* line 149, scss/_map.scss */
 .action.save {
   display: inline-block;
   width: 2em;
@@ -1113,7 +1118,7 @@ a.tool {
   overflow: hidden;
   background-image: url('img/check.svg?1403816324'); }
 
-/* line 152, scss/_map.scss */
+/* line 154, scss/_map.scss */
 .gmnoprint img {
   max-width: none; }
 
