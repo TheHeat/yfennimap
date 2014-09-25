@@ -51,6 +51,7 @@ if(isset($_GET['logout'])){
 // session_start();
  
 // init app with app id and secret
+
 FacebookSession::setDefaultApplication( app_id,app_secret );
 
 //Get page URL

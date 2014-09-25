@@ -495,8 +495,10 @@ jQuery(document).ready(function($){
 
 	});
 
-	// Open modal by default
-	openModal($('.info-window').html());
+	// Open modal by default if we're not logged in
+	// if($('.avatar').length == 0){
+	// 	openModal($('.info-window').html());
+	// }
 
 });
 
