@@ -41,7 +41,7 @@
 #site-navigation{
 	float:left;
 	padding:1em 0;
-	.menu ul{
+	ul{
 		padding:0;
 		margin:0;
 		list-style: none;
@@ -53,7 +53,7 @@
 		a{
 			@include header-item;
 		}
-	}	
+	}
 }
 
 .avatar-wrapper{

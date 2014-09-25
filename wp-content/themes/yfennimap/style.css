@@ -614,16 +614,16 @@ th {
   float: left;
   padding: 1em 0; }
   /* line 44, scss/_header.scss */
-  #site-navigation .menu ul {
+  #site-navigation ul {
     padding: 0;
     margin: 0;
     list-style: none; }
     /* line 48, scss/_header.scss */
-    #site-navigation .menu ul li {
+    #site-navigation ul li {
       display: block;
       float: left; }
     /* line 53, scss/_header.scss */
-    #site-navigation .menu ul a {
+    #site-navigation ul a {
       font-size: 1rem;
       line-height: 1;
       font-weight: normal;
