@@ -56,10 +56,14 @@
 	}
 }
 
+
 .avatar-wrapper{
-	float:right;
+	// float:right;
 	padding:1em 0;
 	margin:0;
+	z-index: 1000;
+	position: absolute;
+	right: 3em;
 	a{
 		@include header-item;
 	}
@@ -80,8 +84,14 @@
 	@include header-item;
     position: absolute;
     right: 3em;
+    margin: 0;
     top:0;
-    transition:0.2s;
+    padding: 1em 0;
+    // transition:0.2s;
     white-space: nowrap;
-    background:black;
+    background-color: transparent;
+    // background:black;
+    a{
+    	margin: 0;
+    }
 }

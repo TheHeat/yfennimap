@@ -655,12 +655,14 @@ th {
       margin: 0.5em;
       background-color: #d74123; }
 
-/* line 59, scss/_header.scss */
+/* line 60, scss/_header.scss */
 .avatar-wrapper {
-  float: right;
   padding: 1em 0;
-  margin: 0; }
-  /* line 63, scss/_header.scss */
+  margin: 0;
+  z-index: 1000;
+  position: absolute;
+  right: 3em; }
+  /* line 67, scss/_header.scss */
   .avatar-wrapper a {
     font-size: 1rem;
     line-height: 1;
@@ -668,19 +670,19 @@ th {
     padding: 1em;
     margin: 0.5em;
     background-color: #d74123; }
-  /* line 66, scss/_header.scss */
+  /* line 70, scss/_header.scss */
   .avatar-wrapper .avatar {
     height: 3em;
     width: 3em;
     margin: -1em 0;
     cursor: pointer; }
-    /* line 71, scss/_header.scss */
+    /* line 75, scss/_header.scss */
     .avatar-wrapper .avatar img {
       width: 100%;
       display: block;
       margin: 0; }
 
-/* line 79, scss/_header.scss */
+/* line 83, scss/_header.scss */
 .avatar-menu {
   font-size: 1rem;
   line-height: 1;
@@ -690,11 +692,14 @@ th {
   background-color: #d74123;
   position: absolute;
   right: 3em;
+  margin: 0;
   top: 0;
-  -webkit-transition: 0.2s;
-  transition: 0.2s;
+  padding: 1em 0;
   white-space: nowrap;
-  background: black; }
+  background-color: transparent; }
+  /* line 94, scss/_header.scss */
+  .avatar-menu a {
+    margin: 0; }
 
 /*--------------------------------------------------------------
 Navigation
