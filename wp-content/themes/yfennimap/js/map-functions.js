@@ -437,7 +437,7 @@ jQuery(document).ready(function($){
 		});
 	});
 
-	// Open info panel
+	// Open info panel on click
 	$('.tool.info').click(function(){
 		openModal($('.info-window').html());
 	});
@@ -488,6 +488,9 @@ jQuery(document).ready(function($){
 		cancelButton();
 
 	});
+
+	// Open modal by default
+	openModal($('.info-window').html());
 
 });
 

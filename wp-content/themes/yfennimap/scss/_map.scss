@@ -101,9 +101,17 @@ a.tool{
   background-image:image-url('times.svg');
   z-index:10;
   position:fixed;
-  top:3em;
-  right:0;
+  top:4em;
+  right:1em;
   cursor:pointer;
+  @include media(momma){
+    top:5em;
+    right:2em;
+  }
+  @include media(poppa){
+    top:7em;
+    right:4em;
+  }
 }
 
 .tool.categories{
