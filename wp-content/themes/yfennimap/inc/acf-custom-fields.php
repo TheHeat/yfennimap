@@ -413,6 +413,20 @@ if(function_exists("register_field_group")){
 			'toolbar' => 'basic',
 			'media_upload' => 0,
 		),
+		array (
+			'key' => 'field_54246b01a3294',
+			'label' => 'Forgotten Abergavenny Details',
+			'name' => 'fafb',
+			'prefix' => '',
+			'type' => 'wysiwyg',
+			'instructions' => 'Describe the Forgotten Abergavenny Page.',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'default_value' => '',
+			'tabs' => 'all',
+			'toolbar' => 'basic',
+			'media_upload' => 0,
+		),
 	),
 	'location' => array (
 		array (
