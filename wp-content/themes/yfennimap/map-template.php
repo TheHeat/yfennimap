@@ -51,7 +51,7 @@ if(isset($_GET['logout'])){
 // session_start();
  
 // init app with app id and secret
-FacebookSession::setDefaultApplication( '235958703262480','5a2916a451c2274eb70280221ff1fafb' );
+FacebookSession::setDefaultApplication( app_id,app_secret );
 
 //Get page URL
 $page_url = home_url() . strtok($_SERVER['REQUEST_URI'], '?');
