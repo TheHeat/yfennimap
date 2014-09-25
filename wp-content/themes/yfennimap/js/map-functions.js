@@ -234,7 +234,7 @@ function openModal(content, callback){
 
 	jQuery('.modal-close').position({my: 'center', at: 'left top', of: '.modal-content'});
 
-	jQuery('.modal-close, #modal-window').click(function(){
+	jQuery('.modal-close').click(function(){
 		jQuery('#modal-window').slideUp(function(){
 			jQuery('.modal-content').empty();
 			jQuery('.toolbox, .filters').show('slide', {direction: 'right'});
