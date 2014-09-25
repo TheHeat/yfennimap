@@ -20,6 +20,11 @@
 			<div class="logo"><img src="<?php echo $logo_root; ?>southampton.png" alt=""></div>
 			<div class="logo"><img src="<?php echo $logo_root; ?>ahrc.png" alt=""></div>
 		</div>
+
+		<!-- Secondary menu -->
+		<div class="secondary-navigation">
+			<nav><?php wp_nav_menu(array('theme_location'=>'second',)); ?></nav>
+		</div>
 	</footer>
 <?php endif; ?>
 
