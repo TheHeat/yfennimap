@@ -64,6 +64,7 @@
 	z-index: 1000;
 	position: absolute;
 	right: 3em;
+	outline: none;
 	a{
 		@include header-item;
 	}
@@ -76,6 +77,7 @@
 			width:100%;
 			display:block;
 			margin:0;
+
 		}
 	}
 }

@@ -185,7 +185,7 @@ if ( isset( $session ) ) {
 	<div id="date-range"></div>
 </div>
 
-<?php if(fb_get_token()): ?>
+<?php if($_SESSION['fb_token']): ?>
 	<div class="toolbox">
 		<div class="actions" style="display:none;"></div>
 		<div class="handle add" tabindex="1"></div>

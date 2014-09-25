@@ -661,8 +661,9 @@ th {
   margin: 0;
   z-index: 1000;
   position: absolute;
-  right: 3em; }
-  /* line 67, scss/_header.scss */
+  right: 3em;
+  outline: none; }
+  /* line 68, scss/_header.scss */
   .avatar-wrapper a {
     font-size: 1rem;
     line-height: 1;
@@ -670,19 +671,19 @@ th {
     padding: 1em;
     margin: 0.5em;
     background-color: #d74123; }
-  /* line 70, scss/_header.scss */
+  /* line 71, scss/_header.scss */
   .avatar-wrapper .avatar {
     height: 3em;
     width: 3em;
     margin: -1em 0;
     cursor: pointer; }
-    /* line 75, scss/_header.scss */
+    /* line 76, scss/_header.scss */
     .avatar-wrapper .avatar img {
       width: 100%;
       display: block;
       margin: 0; }
 
-/* line 83, scss/_header.scss */
+/* line 85, scss/_header.scss */
 .avatar-menu {
   font-size: 1rem;
   line-height: 1;
@@ -697,19 +698,13 @@ th {
   padding: 1em 0;
   white-space: nowrap;
   background-color: transparent; }
-  /* line 94, scss/_header.scss */
+  /* line 96, scss/_header.scss */
   .avatar-menu a {
     margin: 0; }
 
 /*--------------------------------------------------------------
 Navigation
 --------------------------------------------------------------*/
-/* line 6, scss/_navigation.scss */
-.avatar-wrapper {
-  z-index: 1000;
-  position: absolute;
-  right: 3em; }
-
 /* line 1, scss/_modal.scss */
 #modal-window {
   background: rgba(255, 255, 255, 0.6);
