@@ -11,6 +11,7 @@ use Facebook\GraphObject;
 use Facebook\FacebookPermissionException;
 use Facebook\FacebookClientException;
 use Facebook\FacebookOtherException;
+use Facebook\GraphSessionInfo;
 
 function fb_post_on_page($token, $edge, $content){
 	//Would like this to be able to take either a FacebookSession object or a strong

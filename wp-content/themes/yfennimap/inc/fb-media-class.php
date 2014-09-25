@@ -24,6 +24,7 @@ use Facebook\GraphObject;
 use Facebook\FacebookPermissionException;
 use Facebook\FacebookClientException;
 use Facebook\FacebookOtherException;
+use Facebook\GraphSessionInfo;
 
 /**
 * Takes a pin ID, queries the FB API and returns an object with the appropriate data

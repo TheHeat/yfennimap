@@ -699,6 +699,12 @@ th {
 /*--------------------------------------------------------------
 Navigation
 --------------------------------------------------------------*/
+/* line 6, scss/_navigation.scss */
+.avatar-wrapper {
+  z-index: 1000;
+  position: absolute;
+  right: 3em; }
+
 /* line 1, scss/_modal.scss */
 #modal-window {
   background: rgba(0, 0, 0, 0.7);

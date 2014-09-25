@@ -33,6 +33,5 @@
 
 			<?php if(is_page_template('map-template.php' )): ?>
 				<span class="tool info"></span>
-				<?php fb_login(); ?>
 			<?php endif; ?>
 		</header>
