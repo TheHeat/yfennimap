@@ -77,9 +77,16 @@ function fb_login(){
 	 
 	// see if we have a session
 	if ( isset($session) ) {
-		echo '<pre>';
-			print_r($session);
-		echo '</pre>';
+		// echo '<pre>';
+		// 	print_r($session);
+		// echo '</pre>';
+
+		//Save the FB session to a $_SESSION
+		// save the session
+		$_SESSION['fb_token'] = $session->getToken();
+		// create a session using saved token or the new one we generated at login
+		$session = new FacebookSession( $session->getToken() );
+		
 	  	// graph api request for user data
 	  	$request = new FacebookRequest( $session, 'GET', '/me' );
 	  	$response = $request->execute();
