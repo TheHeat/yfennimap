@@ -21,11 +21,13 @@ function fb_login(){
 
 	// code for using current url... can make the login process tempramental
 	//global $wp;
-	//$current_url = add_query_arg( $wp->query_string, '', home_url( $wp->request ) );
+	// $page_url = home_url( $wp->request ) ;
 
+	// echo 'pageurl ' .$page_url;
 	//Compose the page URL
-	// $page_url = home_url() . $_SERVER['REQUEST_URI'] . '/';
-	$page_url = 'http://localhost/yfennimap/map/';
+	$page_url = home_url() . strtok($_SERVER['REQUEST_URI'], '?');
+	// echo 'pageurl ' .$page_url;
+	// $page_url = 'http://localhost/yfennimap/map/';
 	$helper = new FacebookRedirectLoginHelper( $page_url );
 
 	// echo '<pre>';
@@ -97,7 +99,7 @@ function fb_login(){
 			</div>
 			<div class="avatar-menu facebook">
 				<?php //add a parameter
-				$logout_uri = add_query_arg('logout', 'true', home_url() . '/map');
+				$logout_uri = add_query_arg('logout', 'true', $page_url);
 
 				//display logout
 				echo '<a href="' . $logout_uri . '">Log out</a>';
