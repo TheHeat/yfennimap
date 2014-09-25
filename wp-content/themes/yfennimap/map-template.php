@@ -163,13 +163,15 @@ else {
 		<?php the_content(); ?>
 	</div>
 
-	<!-- Message if a pin was sucessfully submitted -->
-	<div class="success-message" style="display:none;">
-		<?php
-		$success_message = get_post_meta( get_the_id(), 'success_message', true );
-		echo $success_message;
-		?>
-	</div>
+	<?php if(isset($_POST['submitted']) && isset($_POST['post_nonce_field']) && wp_verify_nonce($_POST['post_nonce_field'], 'post_nonce')){ ?>
+		<!-- Message if a pin was sucessfully submitted -->
+		<div class="success-message" style="display:none;">
+			<?php
+			$success_message = get_post_meta( get_the_id(), 'success_message', true );
+			echo $success_message;
+			?>
+		</div>
+	<?php }?>
 
 <?php endwhile; endif; ?>
 
