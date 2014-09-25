@@ -42,6 +42,7 @@ function yfenni_setup() {
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus( array(
 		'primary' => __( 'Primary Menu', 'yfenni' ),
+		'second' => 'Secondary Menu',
 	) );
 
 	// Enable support for HTML5 markup.
