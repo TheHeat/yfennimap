@@ -75,16 +75,16 @@ function fb_login(){
 
 	else {	//if not logged in show login link
 
-	// get permissions required
-  	$params = array(
-    	'scope' => 'publish_actions',
-  		); ?>
+		// get permissions required
+	  	$params = array(
+	    	'scope' => 'publish_actions',
+	  		); ?>
 
-  	<div class="avatar-wrapper facebook">	
-		<?php // show login url
-   			echo '<a href="' . $helper->getLoginUrl($params) . '">Login</a>';
-		?>
-	</div>
+	  	<div class="avatar-wrapper facebook">	
+			<?php // show login url
+	   			echo '<a href="' . $helper->getLoginUrl($params) . '">Login</a>';
+			?>
+		</div>
     <?php
 	}
 }

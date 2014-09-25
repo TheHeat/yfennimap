@@ -7,11 +7,18 @@
 	right:0em;
 	bottom:0em;
 	left:0em;
-	display:none;
+	// display:none;
 	padding:1em;
-	margin:0 auto;
+	// margin:0 auto;
+	margin: 1em;
 	overflow-y:scroll;
 	-webkit-overflow-scrolling: touch ;
+	@include media(momma){
+		margin: 2em;
+	}
+	@include media(poppa){
+		margin: 4em;
+	}
 }
 
 .modal-content{

@@ -685,50 +685,57 @@ Navigation
   right: 0em;
   bottom: 0em;
   left: 0em;
-  display: none;
   padding: 1em;
-  margin: 0 auto;
+  margin: 1em;
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch; }
+  @media (min-width: 640px) {
+    /* line 1, scss/_modal.scss */
+    #modal-window {
+      margin: 2em; } }
+  @media (min-width: 1200px) {
+    /* line 1, scss/_modal.scss */
+    #modal-window {
+      margin: 4em; } }
 
-/* line 17, scss/_modal.scss */
+/* line 24, scss/_modal.scss */
 .modal-content {
   margin: 0 auto;
   width: 300px !important;
   text-align: center; }
   @media (min-width: 640px) {
-    /* line 17, scss/_modal.scss */
+    /* line 24, scss/_modal.scss */
     .modal-content {
       width: 600px !important; } }
   @media (min-width: 1200px) {
-    /* line 17, scss/_modal.scss */
+    /* line 24, scss/_modal.scss */
     .modal-content {
       width: 800px !important; } }
 
-/* line 32, scss/_modal.scss */
+/* line 39, scss/_modal.scss */
 .fb_iframe_widget {
   padding: 0;
   margin: 0 auto; }
-  /* line 35, scss/_modal.scss */
+  /* line 42, scss/_modal.scss */
   .fb_iframe_widget span iframe {
     text-align: center;
     width: 300px !important; }
     @media (min-width: 640px) {
-      /* line 35, scss/_modal.scss */
+      /* line 42, scss/_modal.scss */
       .fb_iframe_widget span iframe {
         width: 600px !important; } }
     @media (min-width: 1200px) {
-      /* line 35, scss/_modal.scss */
+      /* line 42, scss/_modal.scss */
       .fb_iframe_widget span iframe {
         width: 800px !important; } }
 
-/* line 50, scss/_modal.scss */
+/* line 57, scss/_modal.scss */
 .wp-meta {
   display: block;
   clear: both;
   padding: 1em 0; }
 
-/* line 56, scss/_modal.scss */
+/* line 63, scss/_modal.scss */
 .pin-cats {
   color: white;
   background: #2e984e;
@@ -737,14 +744,14 @@ Navigation
   border-radius: 0.25em;
   margin: 0.5em; }
 
-/* line 65, scss/_modal.scss */
+/* line 72, scss/_modal.scss */
 .edit-link {
   color: #d74123;
   display: block;
   margin: 1em 0;
   color: white; }
 
-/* line 73, scss/_modal.scss */
+/* line 80, scss/_modal.scss */
 .category-link {
   font-size: 2em;
   display: block;

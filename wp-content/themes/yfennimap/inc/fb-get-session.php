@@ -46,6 +46,8 @@ function fb_get_session($helper = null){
   	if(isset($session)):
 	  	$_SESSION['fb_session'] = $session;
 		return $session ;
+	else:
+		return null;
 	endif;
 
 }
