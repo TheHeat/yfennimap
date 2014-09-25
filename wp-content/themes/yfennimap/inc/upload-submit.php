@@ -115,20 +115,5 @@
 
 	endif;
 
-	//Message if succesful
-	if($post_id){
-
-		?>
-		<div class="success-message" style="display:none;">
-			<?php
-			$success_message = get_post_meta( get_option('page_on_front' ), 'success_message', true );
-			echo $success_message;
-			?>
-		</div>
-		<?php
-
-		//unset the $_POST
-		// unset($_POST)
-	} 
 
 	?>
