@@ -12,9 +12,8 @@
 get_header();
 ?>
 <div id="fb-root"></div>
-<?php //fb_login(); ?>
 
-<?
+<?php
 /**
  * Load Facebook PHP SDK
  */
