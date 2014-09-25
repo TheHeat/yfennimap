@@ -928,7 +928,67 @@ a.tool {
   -webkit-transition: 0.5s;
   transition: 0.5s; }
 
-/* line 99, scss/_map.scss */
+@-webkit-keyframes imagebulger {
+  /* line 105, scss/_map.scss */
+  50% {
+    width: 2.5em;
+    height: 2.5em;
+    top: 3.75em;
+    right: 0.75em;
+    -webkit-transition: 1s ease-in-out;
+    transition: 1s ease-in-out; } }
+
+@keyframes imagebulger {
+  /* line 105, scss/_map.scss */
+  50% {
+    width: 2.5em;
+    height: 2.5em;
+    top: 3.75em;
+    right: 0.75em;
+    -webkit-transition: 1s ease-in-out;
+    transition: 1s ease-in-out; } }
+
+@-webkit-keyframes imagebulgermomma {
+  /* line 119, scss/_map.scss */
+  50% {
+    width: 2.5em;
+    height: 2.5em;
+    top: 4.75em;
+    right: 1.75em;
+    -webkit-transition: 1s ease-in-out;
+    transition: 1s ease-in-out; } }
+
+@keyframes imagebulgermomma {
+  /* line 119, scss/_map.scss */
+  50% {
+    width: 2.5em;
+    height: 2.5em;
+    top: 4.75em;
+    right: 1.75em;
+    -webkit-transition: 1s ease-in-out;
+    transition: 1s ease-in-out; } }
+
+@-webkit-keyframes imagebulgerpoppa {
+  /* line 133, scss/_map.scss */
+  50% {
+    width: 2.5em;
+    height: 2.5em;
+    top: 6.75em;
+    right: 3.75em;
+    -webkit-transition: 1s ease-in-out;
+    transition: 1s ease-in-out; } }
+
+@keyframes imagebulgerpoppa {
+  /* line 133, scss/_map.scss */
+  50% {
+    width: 2.5em;
+    height: 2.5em;
+    top: 6.75em;
+    right: 3.75em;
+    -webkit-transition: 1s ease-in-out;
+    transition: 1s ease-in-out; } }
+
+/* line 143, scss/_map.scss */
 .modal-close {
   display: inline-block;
   width: 2em;
@@ -948,19 +1008,25 @@ a.tool {
   position: fixed;
   top: 4em;
   right: 1em;
-  cursor: pointer; }
+  cursor: pointer;
+  -webkit-animation: imagebulger 2s infinite;
+  animation: imagebulger 2s infinite; }
   @media (min-width: 640px) {
-    /* line 99, scss/_map.scss */
+    /* line 143, scss/_map.scss */
     .modal-close {
       top: 5em;
-      right: 2em; } }
+      right: 2em;
+      -webkit-animation: imagebulgermomma 2s infinite;
+      animation: imagebulgermomma 2s infinite; } }
   @media (min-width: 1200px) {
-    /* line 99, scss/_map.scss */
+    /* line 143, scss/_map.scss */
     .modal-close {
       top: 7em;
-      right: 4em; } }
+      right: 4em;
+      -webkit-animation: imagebulgerpoppa 2s infinite;
+      animation: imagebulgerpoppa 2s infinite; } }
 
-/* line 117, scss/_map.scss */
+/* line 164, scss/_map.scss */
 .tool.categories {
   display: inline-block;
   width: 2em;
@@ -977,7 +1043,7 @@ a.tool {
   overflow: hidden;
   background-image: url('img/tags.svg?1411382369'); }
 
-/* line 121, scss/_map.scss */
+/* line 168, scss/_map.scss */
 .tool.clear-categories {
   display: inline-block;
   width: 2em;
@@ -994,7 +1060,7 @@ a.tool {
   overflow: hidden;
   background-image: url('img/refresh.svg?1411382369'); }
 
-/* line 126, scss/_map.scss */
+/* line 173, scss/_map.scss */
 .handle.add {
   display: inline-block;
   width: 2em;
@@ -1011,7 +1077,7 @@ a.tool {
   overflow: hidden;
   background-image: url('img/plus.svg?1411382369'); }
 
-/* line 130, scss/_map.scss */
+/* line 177, scss/_map.scss */
 .tool.link {
   display: inline-block;
   width: 2em;
@@ -1028,7 +1094,7 @@ a.tool {
   overflow: hidden;
   background-image: url('img/chain.svg?1411382369'); }
 
-/* line 134, scss/_map.scss */
+/* line 181, scss/_map.scss */
 .tool.video {
   display: inline-block;
   width: 2em;
@@ -1045,7 +1111,7 @@ a.tool {
   overflow: hidden;
   background-image: url('img/film.svg?1411382369'); }
 
-/* line 138, scss/_map.scss */
+/* line 185, scss/_map.scss */
 .tool.pictures {
   display: inline-block;
   width: 2em;
@@ -1062,7 +1128,7 @@ a.tool {
   overflow: hidden;
   background-image: url('img/picture.svg?1404140471'); }
 
-/* line 142, scss/_map.scss */
+/* line 189, scss/_map.scss */
 .tool.words {
   display: inline-block;
   width: 2em;
@@ -1079,7 +1145,7 @@ a.tool {
   overflow: hidden;
   background-image: url('img/pencil.svg?1411382369'); }
 
-/* line 146, scss/_map.scss */
+/* line 193, scss/_map.scss */
 .tool.info {
   display: inline-block;
   width: 2em;
@@ -1096,7 +1162,7 @@ a.tool {
   overflow: hidden;
   background-image: url('img/info.svg?1411382369'); }
 
-/* line 151, scss/_map.scss */
+/* line 198, scss/_map.scss */
 .action.cancel {
   display: inline-block;
   width: 2em;
@@ -1113,7 +1179,7 @@ a.tool {
   overflow: hidden;
   background-image: url('img/times.svg?1411382369'); }
 
-/* line 155, scss/_map.scss */
+/* line 202, scss/_map.scss */
 .action.save {
   display: inline-block;
   width: 2em;
@@ -1130,7 +1196,7 @@ a.tool {
   overflow: hidden;
   background-image: url('img/check.svg?1411382369'); }
 
-/* line 160, scss/_map.scss */
+/* line 207, scss/_map.scss */
 .gmnoprint img {
   max-width: none; }
 

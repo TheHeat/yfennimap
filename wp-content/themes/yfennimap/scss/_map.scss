@@ -96,6 +96,50 @@ a.tool{
   white-space: nowrap;
   overflow:hidden;
 }
+
+
+@keyframes imagebulger {
+  // 50% {
+  //   background-size: contain;
+  // }
+  50% {
+    width: 2.5em;
+    height: 2.5em;
+    top: 3.75em;
+    right: 0.75em;
+    transition: 1s ease-in-out;
+    // transform: scale; 
+  }
+}
+
+@keyframes imagebulgermomma {
+  // 50% {
+  //   background-size: contain;
+  // }
+  50% {
+    width: 2.5em;
+    height: 2.5em;
+    top: 4.75em;
+    right: 1.75em;
+    transition: 1s ease-in-out;
+    // transform: scale; 
+  }
+}
+
+@keyframes imagebulgerpoppa {
+  // 50% {
+  //   background-size: contain;
+  // }
+  50% {
+    width: 2.5em;
+    height: 2.5em;
+    top: 6.75em;
+    right: 3.75em;
+    transition: 1s ease-in-out;
+    // transform: scale; 
+  }
+}
+
 .modal-close{
   @include icon-bg;
   background-image:image-url('times.svg');
@@ -104,13 +148,16 @@ a.tool{
   top:4em;
   right:1em;
   cursor:pointer;
+  animation: imagebulger 2s infinite;
   @include media(momma){
     top:5em;
     right:2em;
+    animation: imagebulgermomma 2s infinite;
   }
   @include media(poppa){
     top:7em;
     right:4em;
+    animation: imagebulgerpoppa 2s infinite;
   }
 }
 
