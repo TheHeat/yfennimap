@@ -608,8 +608,8 @@ th {
   z-index: 10;
   background-position: top center;
   background-attachment: fixed;
-  -webkit-background-size: contain;
-  background-size: contain; }
+  -webkit-background-size: cover;
+  background-size: cover; }
   /* line 22, scss/_header.scss */
   .site-header a {
     color: white;
