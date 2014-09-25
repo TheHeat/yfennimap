@@ -921,7 +921,27 @@ a.tool {
   -webkit-transition: 0.5s;
   transition: 0.5s; }
 
-/* line 99, scss/_map.scss */
+@-webkit-keyframes imagebulger {
+  /* line 105, scss/_map.scss */
+  50% {
+    width: 2.5em;
+    height: 2.5em;
+    top: 0.75em;
+    right: 0.75em;
+    -webkit-transition: 1s ease-in-out;
+    transition: 1s ease-in-out; } }
+
+@keyframes imagebulger {
+  /* line 105, scss/_map.scss */
+  50% {
+    width: 2.5em;
+    height: 2.5em;
+    top: 0.75em;
+    right: 0.75em;
+    -webkit-transition: 1s ease-in-out;
+    transition: 1s ease-in-out; } }
+
+/* line 116, scss/_map.scss */
 .modal-close {
   font-size: 1rem;
   line-height: 1;
@@ -942,14 +962,16 @@ a.tool {
   text-indent: 100%;
   white-space: nowrap;
   overflow: hidden;
-  background-image: url('img/times.svg?1403816324');
+  background-image: url('img/times.svg?1411382369');
   z-index: 10;
   position: absolute;
   top: 1em;
   right: 1em;
-  cursor: pointer; }
+  cursor: pointer;
+  -webkit-animation: imagebulger 2s infinite;
+  animation: imagebulger 2s infinite; }
 
-/* line 110, scss/_map.scss */
+/* line 136, scss/_map.scss */
 .tool.categories {
   display: inline-block;
   width: 2em;
@@ -964,9 +986,9 @@ a.tool {
   text-indent: 100%;
   white-space: nowrap;
   overflow: hidden;
-  background-image: url('img/tags.svg?1404082648'); }
+  background-image: url('img/tags.svg?1411382369'); }
 
-/* line 114, scss/_map.scss */
+/* line 140, scss/_map.scss */
 .tool.clear-categories {
   display: inline-block;
   width: 2em;
@@ -981,9 +1003,9 @@ a.tool {
   text-indent: 100%;
   white-space: nowrap;
   overflow: hidden;
-  background-image: url('img/refresh.svg?1404082588'); }
+  background-image: url('img/refresh.svg?1411382369'); }
 
-/* line 119, scss/_map.scss */
+/* line 145, scss/_map.scss */
 .handle.add {
   display: inline-block;
   width: 2em;
@@ -998,9 +1020,9 @@ a.tool {
   text-indent: 100%;
   white-space: nowrap;
   overflow: hidden;
-  background-image: url('img/plus.svg?1403816324'); }
+  background-image: url('img/plus.svg?1411382369'); }
 
-/* line 123, scss/_map.scss */
+/* line 149, scss/_map.scss */
 .tool.link {
   display: inline-block;
   width: 2em;
@@ -1015,9 +1037,9 @@ a.tool {
   text-indent: 100%;
   white-space: nowrap;
   overflow: hidden;
-  background-image: url('img/chain.svg?1404073639'); }
+  background-image: url('img/chain.svg?1411382369'); }
 
-/* line 127, scss/_map.scss */
+/* line 153, scss/_map.scss */
 .tool.video {
   display: inline-block;
   width: 2em;
@@ -1032,9 +1054,9 @@ a.tool {
   text-indent: 100%;
   white-space: nowrap;
   overflow: hidden;
-  background-image: url('img/film.svg?1404082971'); }
+  background-image: url('img/film.svg?1411382369'); }
 
-/* line 131, scss/_map.scss */
+/* line 157, scss/_map.scss */
 .tool.pictures {
   display: inline-block;
   width: 2em;
@@ -1049,9 +1071,9 @@ a.tool {
   text-indent: 100%;
   white-space: nowrap;
   overflow: hidden;
-  background-image: url('img/picture.svg?1404073244'); }
+  background-image: url('img/picture.svg?1404140471'); }
 
-/* line 135, scss/_map.scss */
+/* line 161, scss/_map.scss */
 .tool.words {
   display: inline-block;
   width: 2em;
@@ -1066,9 +1088,9 @@ a.tool {
   text-indent: 100%;
   white-space: nowrap;
   overflow: hidden;
-  background-image: url('img/pencil.svg?1404082897'); }
+  background-image: url('img/pencil.svg?1411382369'); }
 
-/* line 139, scss/_map.scss */
+/* line 165, scss/_map.scss */
 .tool.info {
   font-size: 1rem;
   line-height: 1;
@@ -1089,9 +1111,9 @@ a.tool {
   text-indent: 100%;
   white-space: nowrap;
   overflow: hidden;
-  background-image: url('img/info.svg?1403816324'); }
+  background-image: url('img/info.svg?1411382369'); }
 
-/* line 145, scss/_map.scss */
+/* line 171, scss/_map.scss */
 .action.cancel {
   display: inline-block;
   width: 2em;
@@ -1106,9 +1128,9 @@ a.tool {
   text-indent: 100%;
   white-space: nowrap;
   overflow: hidden;
-  background-image: url('img/times.svg?1403816324'); }
+  background-image: url('img/times.svg?1411382369'); }
 
-/* line 149, scss/_map.scss */
+/* line 175, scss/_map.scss */
 .action.save {
   display: inline-block;
   width: 2em;
@@ -1123,9 +1145,9 @@ a.tool {
   text-indent: 100%;
   white-space: nowrap;
   overflow: hidden;
-  background-image: url('img/check.svg?1403816324'); }
+  background-image: url('img/check.svg?1411382369'); }
 
-/* line 154, scss/_map.scss */
+/* line 180, scss/_map.scss */
 .gmnoprint img {
   max-width: none; }
 
@@ -1160,5 +1182,3 @@ Accessibility
   width: auto;
   z-index: 100000;
   /* Above WP toolbar */ }
-
-/*# sourceMappingURL=style.css.map */

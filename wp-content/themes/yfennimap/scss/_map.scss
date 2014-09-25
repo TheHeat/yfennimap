@@ -96,6 +96,23 @@ a.tool{
   white-space: nowrap;
   overflow:hidden;
 }
+
+
+@keyframes imagebulger {
+  // 50% {
+  //   background-size: contain;
+  // }
+  50% {
+    width: 2.5em;
+    height: 2.5em;
+    top: 0.75em;
+    right: 0.75em;
+    transition: 1s ease-in-out;
+    // transform: scale; 
+  }
+}
+
+
 .modal-close{
   @include header-item;
   @include icon-bg;
@@ -105,6 +122,15 @@ a.tool{
   top:1em;
   right:1em;
   cursor:pointer;
+  animation: imagebulger 2s infinite;
+  // @include media(momma){
+  //   top:5em;
+  //   right:2em;
+  // }
+  // @include media(poppa){
+  //   top:1em;
+  //   right:1em;
+  // }
 }
 
 .tool.categories{
