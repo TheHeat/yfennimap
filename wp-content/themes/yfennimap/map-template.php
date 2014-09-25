@@ -55,7 +55,9 @@ if(isset($_GET['logout'])){
 FacebookSession::setDefaultApplication( app_id,app_secret );
 
 //Get page URL
-$page_url = home_url() . strtok($_SERVER['REQUEST_URI'], '?');
+// $page_url = home_url() . strtok($_SERVER['REQUEST_URI'], '?');
+global $wp;
+$page_url = trailingslashit(home_url($wp->request ));
  
 // login helper with redirect_uri
 $helper = new FacebookRedirectLoginHelper($page_url);
@@ -117,27 +119,27 @@ if ( isset( $session ) ) {
   // echo '<a href="' . $helper->getLogoutUrl( $session, 'http://localhost/yfennimap/test?logout=true' ) . '">Logout</a>';
   //print_r($graphObject);
 
-	  	//display the FB Avatar/logout
-	  	?>
-		<div class="avatar-wrapper facebook" tabindex="2">
-			<div class="avatar facebook">
-				
-				<?php $avatar_url = 'http://graph.facebook.com/' . $graphObject->getProperty('id') . '/picture'; ?>
+//display the FB Avatar/logout
+?>
+<div class="avatar-wrapper facebook" tabindex="2">
+	<div class="avatar facebook">
+		
+		<?php $avatar_url = 'http://graph.facebook.com/' . $graphObject->getProperty('id') . '/picture'; ?>
 
-				<img src="<?php echo $avatar_url; ?>"/>
-			</div>
-			<div class="avatar-menu facebook">
-				<?php //add a parameter
-				$logout_uri = add_query_arg('logout', 'true', $page_url);
+		<img src="<?php echo $avatar_url; ?>"/>
+	</div>
+	<div class="avatar-menu facebook">
+		<?php //add a parameter
+		$logout_uri = add_query_arg('logout', 'true', $page_url);
 
-				//display logout
-				echo '<a href="' . $logout_uri . '">Log out</a>';
-				?>
-			</div>
-		</div>
-	<?php
-
-} else {
+		//display logout
+		echo '<a href="' . $logout_uri . '">Log out</a>';
+		?>
+	</div>
+</div>
+<?php
+}
+else {
 	// get permissions required
 	$params = array(
 	'scope' => 'publish_actions',
@@ -204,7 +206,7 @@ if ( isset( $session ) ) {
 
 <!-- Upload new content form -->
 <div class="upload-form" style="display:none;">
-	<form action="<?php echo site_url() . '/';?>" id="pinForm" method="POST" enctype="multipart/form-data" name="pinForm">
+	<form action="<?php echo $page_url;?>" id="pinForm" method="POST" enctype="multipart/form-data" name="pinForm">
 
 		<fieldset class="title">
 			<label for="postTitle"><?php _e('Pin title:') ?></label>
