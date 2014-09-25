@@ -217,8 +217,12 @@ function openModal(content, callback){
 	jQuery('.toolbox, .filters').hide('slide', {direction: 'right'});
 
 	jQuery('#modal-window').slideDown(function(){
+
+		jQuery('.modal-content').position({my: 'center top', at: 'center top+32', of: '#modal-window'});
 		jQuery('.modal-content').append(content);
 	});
+
+
 				
 	setTimeout(function(){
 		// make sure the callback is a function
@@ -228,7 +232,9 @@ function openModal(content, callback){
 		}
 	}, 2000);
 
-	jQuery('.modal-close').click(function(){
+	jQuery('.modal-close').position({my: 'center', at: 'left top', of: '.modal-content'});
+
+	jQuery('.modal-close, #modal-window').click(function(){
 		jQuery('#modal-window').slideUp(function(){
 			jQuery('.modal-content').empty();
 			jQuery('.toolbox, .filters').show('slide', {direction: 'right'});
