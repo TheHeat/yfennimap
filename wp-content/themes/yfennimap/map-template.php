@@ -96,7 +96,7 @@ if ( !isset( $session ) || $session === null ) {
 }
  
 // see if we have a session
-if ( isset( $session ) ) {
+if(isset($session)){
   
   // save the session
   $_SESSION['fb_token'] = $session->getToken();
@@ -108,16 +108,6 @@ if ( isset( $session ) ) {
   $response = $request->execute();
   // get response
   $graphObject = $response->getGraphObject();
-  
-  // echo '<pre>';
-  // 	print_r($_SESSION);
-  // echo '</pre>';
-  // print profile data
-  // echo '<pre>' . print_r( $graphObject, 1 ) . '</pre>';
-  
-  // print logout url using session and redirect_uri (logout.php page should destroy the session)
-  // echo '<a href="' . $helper->getLogoutUrl( $session, 'http://localhost/yfennimap/test?logout=true' ) . '">Logout</a>';
-  //print_r($graphObject);
 
 //display the FB Avatar/logout
 ?>
