@@ -9,12 +9,6 @@
 ini_set('display_errors',1); 
 error_reporting(E_ALL);
 
-/**
- * Set the content width based on the theme's design and stylesheet.
- */
-if ( ! isset( $content_width ) ) {
-	$content_width = 640; /* pixels */
-}
 
 if ( ! function_exists( 'yfenni_setup' ) ) :
 /**
