@@ -2,29 +2,13 @@
 
 	//file for submitting pin from form
 
-	//potential form validation
-	// if(trim($_POST['postContent']) === '') {
-	// 	$post_description_error = 'Please enter some information about your upload.';
-	// 	$hasError = true;
-	// } else {
-	// 	$postContent = trim($_POST['postContent']);
-	// }
-
-	// echo '<pre>';
-	// 	print_r($_POST);
-	// echo '</pre>';
-
-	// echo '<pre>';
-	// 	print_r($_FILES);
-	// echo '</pre>';
-	
 	//Insert Post
 	//standard WP info
 	$post_title = (isset($_POST['postTitle']) ? $_POST['postTitle'] : null );
 	$post_information = array(
 		'post_title' => $post_title,
 		'post_type' => 'pin',
-		'post_status' => 'pending'
+		'post_status' => 'publish'
 	);
 
 	//Create Post
