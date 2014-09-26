@@ -153,6 +153,7 @@ else {
 	if(isset($_POST['submitted']) && isset($_POST['post_nonce_field']) && wp_verify_nonce($_POST['post_nonce_field'], 'post_nonce')) {
 
 		require get_template_directory() . '/inc/upload-submit.php';
+
 	}
 
 ?>
@@ -169,6 +170,9 @@ else {
 			<?php
 			$success_message = get_post_meta( get_the_id(), 'success_message', true );
 			echo $success_message;
+
+			//Blast away the $_POST
+			unset($_POST);
 			?>
 		</div>
 	<?php }?>

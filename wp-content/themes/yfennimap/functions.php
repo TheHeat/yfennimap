@@ -210,8 +210,19 @@ function yfenni_pin_template() {
 
 	}
 }
+
+//pin loader ajax hook
 add_action('wp_ajax_pin_loader', 'yfenni_pin_template');
 add_action('wp_ajax_nopriv_pin_loader', 'yfenni_pin_template');
+
+function get_pins_ajax() {
+
+	wp_send_json(get_pins());
+}
+
+//get_pins ajax hook
+add_action('wp_ajax_get_pins', 'get_pins_ajax');
+add_action('wp_ajax_nopriv_get_pins', 'get_pins_ajax');
 
 /**
  * Get the ACF plugin
