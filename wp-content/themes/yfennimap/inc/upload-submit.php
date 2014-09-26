@@ -8,7 +8,7 @@
 	$post_information = array(
 		'post_title' => $post_title,
 		'post_type' => 'pin',
-		'post_status' => 'publish'
+		'post_status' => 'pending'
 	);
 
 	//Create Post
@@ -99,5 +99,5 @@
 
 	endif;
 
-
+change_post_status( $post_id ,'publish' );
 	?>
