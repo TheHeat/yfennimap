@@ -29,6 +29,26 @@
 	-webkit-overflow-scrolling: touch;
 }
 
+.modal-close{
+  z-index:10;
+  position: absolute;
+  top:1em;
+  right:1em;
+  cursor:pointer;
+  // animation: imagebulger 2s infinite;
+  // @include media(momma){
+  //   top:5em;
+  //   right:2em;
+  // }
+  // @include media(poppa){
+  //   top:1em;
+  //   right:1em;
+  // }
+  &:before{
+
+  }
+}
+
 // Content inside the modal
 // FB
 
