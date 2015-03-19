@@ -1,5 +1,9 @@
 <?php
 
+echo '<pre>';
+	print_r($_POST);
+echo '</pre>';
+
 	//file for submitting pin from form
 
 	//Insert Post
