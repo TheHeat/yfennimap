@@ -237,7 +237,7 @@ else {
 		<fieldset>
 			<label for="pin_category"><?php _e('Categories:') ?></label><br/>
 				<?php
-					$terms = get_terms('pin_category');
+					$terms = get_terms('pin_category', array('hide_empty' => false ));
 					
 					foreach ($terms as $term) { 
 						//Get the term ID
@@ -248,7 +248,7 @@ else {
 						?>
 						<input type="checkbox" name="pin_category[]" value=<?php echo $term_id;?> />
 						<?php
-						echo $term->cat_name;
+						echo $term->name;
 						echo '<br/>';
 					}
 				?>
