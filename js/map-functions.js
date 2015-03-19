@@ -363,7 +363,7 @@ function addNewPin(){
 	google.maps.event.addListener(newMarker, 'dragend', function () {
 
 		newPinLatLng = newMarker.getPosition();
-		// console.log(newPinLatLng);
+		//console.log(newPinLatLng);
 		toolboxLinks(newPinLatLng);
 		cancelButton();
 	});
@@ -374,7 +374,7 @@ function toolboxLinks(position){
 
 	var saveQueryMedia = 'media=' + newPinMedia;
 	var saveQueryLat = 'lat=' + position.k;
-	var saveQueryLng = 'lng=' + position.B;
+	var saveQueryLng = 'lng=' + position.D;
 		
 	// var saveNewPin = '<a class="action save" href="upload-form/?' + saveQueryMedia + '&' + saveQueryLat + '&' + saveQueryLng + '">Add ' + newPinMediaLabel + '</a>';
 	var saveNewPin = '<span class="action save">save</span>'
@@ -401,13 +401,13 @@ function toolboxLinks(position){
 				//populate the lat form field
 				jQuery('.lat-hidden').each(function(){
 					jQuery(this).val(newPinLatLng.k);
-					// console.log(jQuery(this).val());
+					console.log(jQuery(this).val());
 				});
 
 				//populate the lng form field
 				jQuery('.lng-hidden').each(function(){
-					jQuery(this).val(newPinLatLng.B);
-					// conso.log(jQuery(this).val());
+					jQuery(this).val(newPinLatLng.D);
+					console.log(jQuery(this).val());
 				});
 
 			});
