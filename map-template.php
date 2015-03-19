@@ -209,11 +209,6 @@ else {
 <div class="upload-form" style="display:none;">
 	<form action="<?php echo $page_url;?>" id="pinForm" method="POST" enctype="multipart/form-data" name="pinForm">
 
-		<fieldset class="title">
-			<label for="postTitle"><?php _e('Pin title:') ?></label>
-			<input type="text" name="postTitle" id="postTitle" value="<?php if(isset($_POST['postTitle'])) echo $_POST['postTitle'];?>" required aria-required="true" />
-		</fieldset>
-
 		<fieldset class="content">					
 			<label for="postContent">Description</label>
 			<textarea name="postContent" id="postContent" rows="8" cols="30" required aria-required="true"><?php if(isset($_POST['postContent'])) { if(function_exists('stripslashes')) { echo stripslashes($_POST['postContent']); } else { echo $_POST['postContent']; } } ?></textarea>

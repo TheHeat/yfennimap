@@ -4,7 +4,7 @@
 
 	//Insert Post
 	//standard WP info
-	$post_title = (isset($_POST['postTitle']) ? $_POST['postTitle'] : null );
+	$post_title = (isset($_POST['postTitle']) ? $_POST['postTitle'] : substr($_POST['postContent'], 0, 15) );
 	$post_information = array(
 		'post_title' => $post_title,
 		'post_type' => 'pin',
@@ -17,7 +17,7 @@
 	//Custom Fields
 	//Only try to set it if it exists...
 	if(isset($_POST['postContent'])){
-		update_post_meta( $post_id, "description", esc_attr(strip_tags(isset($_POST['postContent']) ? $_POST['postContent'] : null )) );
+		update_post_meta( $post_id, "description", strip_tags(isset($_POST['postContent']) ? $_POST['postContent'] : null ));
 	}
 	if(isset($_POST['media'])){
 		$media = $_POST['media'];
