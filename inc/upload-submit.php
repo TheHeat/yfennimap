@@ -99,5 +99,8 @@
 
 	endif;
 
-change_post_status( $post_id ,'publish' );
+	change_post_status( $post_id ,'publish' );
+
+	require get_template_directory() . '/inc/publish-to-facebook.php';
+
 	?>

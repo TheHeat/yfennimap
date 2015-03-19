@@ -5,10 +5,6 @@
  * @package yfenni
  */
 
-// Error Reporting for DEV
-ini_set('display_errors',1); 
-error_reporting(E_ALL);
-
 
 if ( ! function_exists( 'yfenni_setup' ) ) :
 /**
@@ -161,17 +157,20 @@ function get_pins(){
 
 			// Location from ACF Google Maps field
 			$location 			= get_field('location');
-			$pin['lat']			= $location['lat'];
-			$pin['lng'] 		= $location['lng'];
-			$pin['title'] 		= get_the_title();
-			$pin['wpid']		= get_the_id();
-			$pin['fbURL']		= get_post_meta( get_the_ID(), 'fb_post_url', true);
-			$pin['icon']		= get_stylesheet_directory_uri() . '/img/mapicon_' . get_field('media_type') . '.svg';
-			$pin['year']		= ( get_field('year-created') ?: get_the_date('Y' ) );
-			$pin['categories'] 	= wp_get_post_terms( get_the_id(), 'pin_category', array( 'fields' => 'slugs' ) );
+			// only continue if we have a location
+			if($location) {			
+				$pin['lat']			= $location['lat'];
+				$pin['lng'] 		= $location['lng'];
+				$pin['title'] 		= get_the_title();
+				$pin['wpid']		= get_the_id();
+				$pin['fbURL']		= get_post_meta( get_the_ID(), 'fb_post_url', true);
+				$pin['icon']		= get_stylesheet_directory_uri() . '/img/mapicon_' . get_field('media_type') . '.svg';
+				$pin['year']		= ( get_field('year-created') ?: get_the_date('Y' ) );
+				$pin['categories'] 	= wp_get_post_terms( get_the_id(), 'pin_category', array( 'fields' => 'slugs' ) );
 
-			// Push to the $pins object
-			$pins[] = $pin;
+				// Push to the $pins object
+				$pins[] = $pin;
+			}
 
 		endwhile;
 
@@ -341,18 +340,6 @@ function pin_categories() {
 // Hook into the 'init' action
 add_action( 'init', 'pin_categories', 0 );
 
-function post_published( $new_status, $old_status, $post ) {
-	if( $post->post_type == 'pin'){
-	    if ( $old_status != 'publish' && $new_status == 'publish' ) {
-
-	    	// insert post so that custom fields are saved before we need them
-			wp_insert_post( $post );
-
-			require get_template_directory() . '/inc/publish-to-facebook.php';
-	    }
-	}
-}
-add_action( 'transition_post_status', 'post_published', 20, 3 );
 
 function my_acf_save_post( $post_id )
 {
@@ -442,4 +429,3 @@ function change_post_status($post_id,$status){
     $current_post['post_status'] = $status;
     wp_update_post($current_post);
 }
-

@@ -23,18 +23,10 @@ get_header(); ?>
 
 		<?php if ( $media == 'text'): ?>
 			<fieldset>
-				<label for="postTitle"><?php _e('Pin\'s Title:') ?></label>
+				<label for="postTitle"><?php _e('P Title:') ?></label>
 				<input type="text" name="postTitle" id="postTitle" value="<?php if(isset($_POST['postTitle'])) echo $_POST['postTitle'];?>" />
 			</fieldset>
 		<?php endif ?>
-
-
-
-		<?php
-		// validation
-		// if($post_description_error != '') { 
-		// 	echo '<span class="error">. $post_description_error; </span>';
-		// } ?>
 
 		<fieldset>					
 			<label for="postContent"><?php _e($description_field) ?></label>
