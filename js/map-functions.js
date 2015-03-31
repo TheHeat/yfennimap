@@ -232,8 +232,6 @@ function openModal(content, callback){
 		}
 	}, 2000);
 
-	jQuery('.modal-close').position({my: 'center', at: 'left top', of: '.modal-content'});
-
 	jQuery('.modal-close').click(function(){
 		jQuery('#modal-window').slideUp(function(){
 			jQuery('.modal-content').empty();
