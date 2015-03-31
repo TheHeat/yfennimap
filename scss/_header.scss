@@ -59,19 +59,22 @@
 
 .avatar-wrapper{
 	// float:right;
-	padding:1em 0;
+	// padding:1em 0;
 	margin:0;
 	z-index: 1000;
 	position: absolute;
-	right: 3em;
+	right: 5em;
+	// top: 1em;
 	outline: none;
-	a{
-		@include header-item;
-	}
+
+	// a{
+	// 	@include header-item;
+	// }
 	.avatar{
 		height:3em;
-		width:3em;
-		margin:-1em 0;
+		// width:10em;
+		@include header-item;
+		margin:0;
 		cursor:pointer;
 		img{
 			width:100%;

@@ -107,7 +107,7 @@
 
     // the_ajax_script.ajaxurl is a variable that will contain the url to the ajax processing file
     jQuery.post(the_ajax_script.ajaxurl, data, function(response) {
-      console.log(response);
+      // console.log(response);
     });
   }
 

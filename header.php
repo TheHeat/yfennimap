@@ -30,11 +30,6 @@
 				</h1>
 			</div>
 			<div id="site-navigation"><?php wp_nav_menu('primary' ); ?></div>
-			
-			<div class="fb-login">Login with Facebook</div>
-
-			<div id="status">
-			</div>
 
 			<?php if(is_page_template('map-template.php' )): ?>
 				<span class="tool info"></span>
