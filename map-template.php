@@ -110,6 +110,11 @@ if(isset($session)){
 
 //display the FB Avatar/logout
 ?>
+<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+</fb:login-button>
+
+<div id="status">blah
+</div>
 <div class="avatar-wrapper facebook" tabindex="2">
 	<div class="avatar facebook">
 		

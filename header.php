@@ -31,6 +31,13 @@
 			</div>
 			<div id="site-navigation"><?php wp_nav_menu('primary' ); ?></div>
 
+
+			<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+			</fb:login-button>
+
+			<div id="status">
+			</div>
+
 			<?php if(is_page_template('map-template.php' )): ?>
 				<span class="tool info"></span>
 			<?php endif; ?>

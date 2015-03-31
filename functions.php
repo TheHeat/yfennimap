@@ -122,13 +122,13 @@ function yfenni_scripts() {
 		wp_register_script( 'map-functions', get_template_directory_uri() . '/js/map-functions.js', array('jquery'), true );
 		wp_enqueue_script('map-functions');
 		
+		wp_enqueue_script( 'facebook',get_template_directory_uri() . '/js/facebook.js', array(), true );
+
 		// some objects and scripts available to the map-functions javascript
 		wp_localize_script( 'map-functions', 'pinsMap', get_pins() );
 		wp_localize_script( 'map-functions', 'activeCategories', get_categories(array( 'taxonomy' => 'pin_category')) );
 		wp_localize_script( 'map-functions', 'the_ajax_script', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );
-		
-		wp_enqueue_script( 'facebook',get_template_directory_uri() . '/js/facebook.js', array(), true );
-
+		wp_localize_script( 'facebook', 'facebookAppId', get_field('field_53970cc16ea00', 'option') );
 }
 add_action( 'wp_enqueue_scripts', 'yfenni_scripts' );
 
