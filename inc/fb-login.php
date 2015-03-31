@@ -131,3 +131,33 @@ function fb_login(){
     <?php
 	}
 }
+
+
+
+/* Exchanges tokens from the JS login handler*/
+
+function fb_exchange_token_ajax() {
+
+	// Create a session with the old token
+	$session = new FacebookSession( $_POST['token'] );
+
+	$long_lived_token = $session->getLongLivedSession( get_field('field_53970cc16ea00', 'option'), get_field('field_53970cd36ea01', 'option')); 
+	echo $long_lived_token->getToken();
+
+	// // graph api request for user data
+	// $request = new FacebookRequest( $session, 'GET', '/oauth/access_token?grant_type=fb_exchange_token&client_id=' . get_field('field_53970cc16ea00', 'option') . '&client_secret=' . get_field('field_53970cd36ea01', 'option') . '&fb_exchange_token=' . $_POST['token'] );
+	// // $request = new FacebookRequest( $session, 'GET', '/oauth/access_token?grant_type=fb_exchange_token&client_id=1580803575533208&client_secret=4a4ed335bae5a1713290cdb3078161e0&fb_exchange_token=CAAWdu4OUTpgBACXZAY3VIiNQ5KcPImrur4B3YRzsPVuW2EdIZADzcZAlZBkez55kRFeBFXUbnE9TLFyc4vrMsKxT5VkNpP8P5Mv1kyFDpZBWxRilLLSzJhhnt3ugpOJcc8sU5WMkZCOWzecwtQCMgKZAszy3OsWojguxvqlxkdvZBd0ztwtSnCtiSDVuf0D3gmz4ZAZB9K0OvYPf913df4z6Kt' );
+	// // $request = new FacebookRequest( $session, 'GET', '/me');
+
+	// $response = $request->execute();
+	// // get response
+	// $graphObject = $response->getGraphObject();
+
+	// print_r($graphObject);
+
+	die();
+}
+
+//get_pins ajax hook
+add_action('wp_ajax_fb_exchange_token_ajax', 'fb_exchange_token_ajax');
+add_action('wp_ajax_nopriv_fb_exchange_token_ajax', 'fb_exchange_token_ajax');

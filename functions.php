@@ -223,6 +223,7 @@ function get_pins_ajax() {
 add_action('wp_ajax_get_pins', 'get_pins_ajax');
 add_action('wp_ajax_nopriv_get_pins', 'get_pins_ajax');
 
+
 /**
  * Get the ACF plugin
  */

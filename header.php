@@ -30,10 +30,8 @@
 				</h1>
 			</div>
 			<div id="site-navigation"><?php wp_nav_menu('primary' ); ?></div>
-
-
-			<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-			</fb:login-button>
+			
+			<div class="fb-login">Login with Facebook</div>
 
 			<div id="status">
 			</div>
