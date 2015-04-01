@@ -12,13 +12,10 @@
 get_header();
 ?>
 
-<div class="avatar-wrapper facebook fb-login" tabindex="2">
+<div class="avatar-wrapper facebook" tabindex="2">
 	<div class="avatar facebook">
-		Login
+		<?php _e('Login', 'yfenni') ?>
 	</div>
-	<div class="avatar-menu facebook">
-	</div>
-	<div id="status"></div> <!-- Content injected in JS -->
 </div>
 
 <?php get_template_part('map-pins' ); ?>
