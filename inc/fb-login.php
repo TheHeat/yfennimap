@@ -134,7 +134,7 @@ function fb_login(){
 
 
 
-/* Exchanges tokens from the JS login handler*/
+/* Exchanges tokens from the JS login handler */
 
 function fb_exchange_token_ajax() {
 
@@ -156,3 +156,21 @@ function fb_exchange_token_ajax() {
 //get_pins ajax hook
 add_action('wp_ajax_fb_exchange_token_ajax', 'fb_exchange_token_ajax');
 add_action('wp_ajax_nopriv_fb_exchange_token_ajax', 'fb_exchange_token_ajax');
+
+/* Exchanges tokens from the JS login handler */
+
+function fb_kill_token() {
+
+	if($_SESSION['fb_session']){
+		unset($_SESSION['fb_session']);
+	}
+	
+	// echo $long_lived_token;
+	echo 'Successfully deleted FB session';
+
+	die();
+}
+
+//get_pins ajax hook
+add_action('wp_ajax_fb_kill_token', 'fb_kill_token');
+add_action('wp_ajax_nopriv_fb_kill_token', 'fb_exchange_token_ajax');

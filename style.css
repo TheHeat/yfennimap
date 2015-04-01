@@ -905,6 +905,11 @@ html {
   background-color: #3F3F3F;
   color: #F3F0D2;
   z-index: 20;
+  display: none;
+}
+
+.fb-logged-in .toolbox {
+  display: block;
 }
 
 .handle,

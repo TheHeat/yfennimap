@@ -62,18 +62,17 @@ get_header();
 	<div id="date-range"></div>
 </div>
 
-<?php if($_SESSION['fb_token']): ?>
-	<div class="toolbox">
-		<div class="actions" style="display:none;"></div>
-		<div class="handle add" tabindex="1"></div>
-		<div class="box">
-			<a href="#" data-media="link" class="tool add link">Web Link</a>
-			<a href="#" data-media="video" class="tool add video">Video</a>
-			<a href="#" data-media="image" class="tool add pictures">Pictures</a>
-			<a href="#" data-media="text" class="tool add words">Words</a>
-	  	</div>
-	</div>
-<?php endif; ?>
+<div class="toolbox">
+	<div class="actions" style="display:none;"></div>
+	<div class="handle add" tabindex="1"></div>
+	<div class="box">
+		<a href="#" data-media="link" class="tool add link">Web Link</a>
+		<a href="#" data-media="video" class="tool add video">Video</a>
+		<a href="#" data-media="image" class="tool add pictures">Pictures</a>
+		<a href="#" data-media="text" class="tool add words">Words</a>
+  	</div>
+</div>
+
 <div id="map-canvas"></div>
 
 <div id="modal-window"></div>

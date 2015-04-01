@@ -41,6 +41,11 @@ html {
   background-color:$black;
   color:$white;
   z-index:20;
+  display: none;
+}
+
+.fb-logged-in .toolbox{
+  display: block;
 }
 
 .handle,

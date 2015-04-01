@@ -114,18 +114,24 @@ function toggleAvatar(show){
 
       // Get the user's picture and set it to the .avatar
       FB.api('/' + response.id +'/picture', function(response){
+        // Got the user's picture
         jQuery('.avatar').html('<img src=' + response.data.url + '>');
+
+        // Add the fb-logged-in class to the body
+        jQuery('body').addClass('fb-logged-in');
       })
     });
   }
   else{
     jQuery('.avatar').html('Login');
+
+    // Remove the fb-logged-in class from the body
+    jQuery('body').removeClass('fb-logged-in');
   }
 }
 // Calls to PHP AJAX handler to exchange to token for a long-lived fella
 function fbExchangeToken(){
 
-  //Get the pins again
   var data = {
     action: 'fb_exchange_token_ajax',
     token: FB.getAccessToken()
@@ -161,6 +167,22 @@ function fbToggleLogin(){
 
     fbLogin();
   }
+}
+
+function fbLogout(){
+
+  // Destroy the PHP $_SESSION on the server
+  var data = {
+    action: 'fb_kill_token'
+  };
+
+  // the_ajax_script.ajaxurl is a variable that will contain the url to the ajax processing file
+  jQuery.post(the_ajax_script.ajaxurl, data, function(response) {
+    // console.log(response);
+  });
+
+  // Destroy the JS session
+  FB.logout();
 }
 
 function fbLogin(){
