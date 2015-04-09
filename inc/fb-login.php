@@ -146,7 +146,8 @@ function fb_exchange_token_ajax() {
 	$long_lived_token = $long_lived_session->getToken();
 
 	$_SESSION['fb_session'] = $long_lived_session;
-	
+
+	// $_SESSION['fb_session'] = $session->getToken();	
 	// echo $long_lived_token;
 	echo 'Successfully exchanged token';
 

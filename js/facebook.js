@@ -153,12 +153,12 @@ function fbToggleLogin(){
 
   if(status === 'connected'){
     // Already logged in.  Log out
-    FB.logout();
+    fbLogout();
     toggleAvatar(false);
   }
   else if (status === 'not_authorized') {
     // User is logged in to FB but not our app. Log them out before logging them in
-    FB.logout();
+    fbLogout();
 
     fbLogin();
   }
@@ -181,20 +181,30 @@ function fbLogout(){
     // console.log(response);
   });
 
-  // Destroy the JS session
-  FB.logout();
+  // Invalidate the token
+  FB.api('/me/permissions', 'DELETE', function(response){
+
+    console.log('Logged out from Facebook');
+    // Destroy the JS session
+    // FB.logout();
+  });
+
+  
 }
 
 function fbLogin(){
   FB.login(function(response) {
     // handle the response
-
+    console.log(response);
     // Show the user's avatar
     toggleAvatar(true);
 
     // Initiate an AJAX call to swap the tokens on the server and store the long-lived token in a PHP $_SESSION
     fbExchangeToken();
-  }, {scope: 'publish_actions'});
+  }, {
+    scope: 'publish_actions',
+    return_scopes: true
+  });
 }
 
 
