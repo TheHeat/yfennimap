@@ -186,7 +186,7 @@ function fbLogout(){
 
     console.log('Logged out from Facebook');
     // Destroy the JS session
-    // FB.logout();
+    FB.logout();
   });
 
   
