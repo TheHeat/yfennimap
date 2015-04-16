@@ -1,4 +1,6 @@
 <?php
+	
+function create_pin( $body ){
 
 	//file for submitting pin from form
 
@@ -8,7 +10,7 @@
 	$post_information = array(
 		'post_title' => $post_title,
 		'post_type' => 'pin',
-		'post_status' => 'pending'
+		'post_status' => 'publish'
 	);
 
 	//Create Post
@@ -102,5 +104,5 @@
 	change_post_status( $post_id ,'publish' );
 
 	require get_template_directory() . '/inc/publish-to-facebook.php';
-
+}		
 	?>
