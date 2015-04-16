@@ -49,6 +49,7 @@ function yfenni_setup() {
 		'gallery',
 	) );
 
+	require_once('inc/fb-handler.php');
 }
 
 
