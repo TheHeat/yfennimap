@@ -430,3 +430,23 @@ function change_post_status($post_id,$status){
     $current_post['post_status'] = $status;
     wp_update_post($current_post);
 }
+
+function get_yfenni_language_link(){
+
+	// Inactive language link
+	if(function_exists('icl_get_languages')){
+		//WPML Lanuage Switcher
+		$langs = icl_get_languages('skip_missing=0&orderby=KEY&order=DIR');
+
+		if(count($langs) > 1){
+			foreach ($langs as $lang) {
+
+				// print_r($lang);
+
+				if($lang['active'] == 0){
+					return  '<a href="' . add_query_arg(array('noajax' => 1),$lang['url']) . '">' . ucwords($lang['native_name']) . '</a>';
+				}
+			}
+		}
+	}
+}

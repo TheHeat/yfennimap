@@ -29,7 +29,29 @@
 					</a>
 				</h1>
 			</div>
-			<div id="site-navigation"><?php wp_nav_menu('primary' ); ?></div>
+			<div id="site-navigation">
+				<?php 
+				$language_menu_item = '<li class="menu-item language-menu-item">' . get_yfenni_language_link() . '</li>';
+				$args = array(
+						'theme_location' => 'primary',
+						'container' => 'nav',
+						'container_class' => 'site-nav',
+						'container_id' => 'site-nav',
+						'menu_class' => 'menu',
+						'menu_id' => '',
+						'echo' => true,
+						'fallback_cb' => 'wp_page_menu',
+						'before' => '',
+						'after' => '',
+						'link_before' => '',
+						'link_after' => '',
+						'items_wrap' => '<ul id = "%1$s" class = "%2$s">%3$s '. $language_menu_item .'</ul>',
+						'depth' => 1,
+						'walker' => ''
+					);
+					wp_nav_menu( $args ); ?>
+				 ?>
+			</div>
 
 			<?php if(is_page_template('map-template.php' )): ?>
 				<span class="tool info"></span>
