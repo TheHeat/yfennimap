@@ -444,7 +444,7 @@ function get_yfenni_language_link(){
 				// print_r($lang);
 
 				if($lang['active'] == 0){
-					return  '<a href="' . add_query_arg(array('noajax' => 1),$lang['url']) . '">' . ucwords($lang['native_name']) . '</a>';
+					return  '<a href="' . $lang['url'] . '">' . ucwords($lang['native_name']) . '</a>';
 				}
 			}
 		}

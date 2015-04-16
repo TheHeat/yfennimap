@@ -283,7 +283,7 @@ function cancelButton(){
 	// The cancel button
 	jQuery('.cancel').click(function(){
 		jQuery('.actions').hide('slide', { direction: 'right' });
-		
+		jQuery('.toolbox .handle').show('slide', {direction: 'left'});
 		newPinMedia = null;
 		initialize();
 	});
@@ -485,6 +485,9 @@ jQuery(document).ready(function($){
 	$('.toolbox .tool').click(function(){
 		clearMarkers();
 
+		// Hide the + button
+		$('.toolbox .handle').hide('slide', {direction: 'left'});
+
 		// Check whether the user is switching media types or starting from scratch
 		var addingMessage = 'Drag the marker and tick to confirm.';
 
@@ -506,7 +509,6 @@ jQuery(document).ready(function($){
 		$('.toolbox .actions').show('slide', {direction: 'left'});
 
 		cancelButton();
-
 	});
 
 	// Open modal by default if we're not logged in
