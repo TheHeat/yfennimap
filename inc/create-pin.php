@@ -2,7 +2,7 @@
 	
 function create_pin( $body ){
 
-	//file for submitting pin from form
+	// Creates a new post in WordPress
 
 	//Insert Post
 	//standard WP info
@@ -33,15 +33,15 @@ function create_pin( $body ){
 	}
 
 	//Make sure that the category IDs are as integers rather than strings
-	if(isset($_POST['pin_category'])){
-		$pin_cats = array_map('intval', $_POST['pin_category']);
+	if(isset($body['category'])){
+		$pin_cats = array_map('intval', $body['category']);
 	}
 
 	// echo 'type';
 
 
 	//Set the categories
-	if(isset($_POST['pin_category'])){
+	if(isset($body['category'])){
 		
 		$new_terms = wp_set_object_terms( $post_id, $pin_cats, 'pin_category', true);
 
@@ -103,6 +103,6 @@ function create_pin( $body ){
 
 	change_post_status( $post_id ,'publish' );
 
-	require get_template_directory() . '/inc/publish-to-facebook.php';
+	return $post_id;
 }		
 ?>

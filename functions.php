@@ -50,6 +50,8 @@ function yfenni_setup() {
 	) );
 
 	require_once('inc/fb-handler.php');
+	require_once('inc/create-pin.php');
+	require_once('inc/publish-to-facebook.php');
 }
 
 

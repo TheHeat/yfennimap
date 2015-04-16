@@ -45,21 +45,21 @@ function fb_post_on_page($token, $edge, $content){
 		// echo '<pre>';
 		// 	print_r($response);
 		// echo '</pre>';
-		return $response->getProperty('id'); //string with object id
+		return array('fb_object_id' => $response->getProperty('id')); //string with object id
 	}
 	catch( FacebookRequestException $ex ) {
 	  // When Facebook returns an error
 		$error = "Facebook Exception occured, code: " . $ex->getCode()
     		. " with message: " . $ex->getMessage();
 
-    	return $error;
+    	return array('error' => $error );
 	} 
 	catch( Exception $ex ) {
 	  // When validation fails or other local issues
 		$error = "Exception occured, code: " . $ex->getCode()
     		. " with message: " . $ex->getMessage();
 
-    	return $error;
+    	return array('error' => $error );
 	}
 }
 

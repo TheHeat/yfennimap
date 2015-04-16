@@ -13,15 +13,7 @@ use Facebook\FacebookClientException;
 use Facebook\FacebookOtherException;
 use Facebook\GraphSessionInfo;
 
-//check if this is existing content
-if(get_field('field_537ccb499a819', $post_id, true)):
-
-	// if it is save the url against the fb_post_url wp custom field for display 
-	$existing_content_url = (get_field('field_537ccb9c9a81a', $post_id, true));
-
-	$fb_url = $existing_content_url;
-
-else:
+function publish_to_facebook($post_id){
 
 	// WP Variables
 	$media = get_post_meta($post_id, 'media_type', true);
@@ -68,18 +60,17 @@ else:
 
 	$fb_object = fb_post_on_page($token, $edge, $content);
 
-	// echo '<pre>';
-	// 	print_r($fb_object);
-	// echo '</pre>';
-	//save facebook bject against post
-	add_post_meta( $post_id, 'new_fb_object', $fb_object);
+	if($fb_object['fb_object_id']){
+		// The post was successful. Make a record of its object ID
+		add_post_meta( $post_id, 'new_fb_object', $fb_object);
 
-	//save url of facebook post
-	$fb_media = new FB_Media($post->ID);
-
-	$fb_url = $fb_media->get_url();
-
-endif;
-
-	add_post_meta( $post_id, 'fb_post_url', $fb_url );
+		//save url of facebook post
+		$fb_media = new FB_Media($post->ID);
+		$fb_url = $fb_media->get_url();
+		add_post_meta( $post_id, 'fb_post_url', $fb_url );
+	}
+	
+	// Return either the object id, if successful, or the error or not
+	return $fb_object;
+}
 ?>

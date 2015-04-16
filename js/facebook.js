@@ -220,12 +220,11 @@ function fbLogin(){
 })(jQuery);
 
 
-var fbPost = function( token, media, body ){
+var fbPost = function( token, body ){
   (function($){
     var data = {
       action: 'ajax_post_to_facebook',
       token: token,
-      media: media,
       body: body
     };
     // the_ajax_script.ajaxurl is a variable that will contain the url to the ajax processing file
