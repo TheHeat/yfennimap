@@ -219,3 +219,18 @@ function fbLogin(){
   });
 })(jQuery);
 
+
+var fbPost = function(){
+  (function($){
+    var data = {
+      action: 'post_to_facebook',
+      post_var: 'this will be echoed back'
+    };
+    // the_ajax_script.ajaxurl is a variable that will contain the url to the ajax processing file
+    $.post(the_ajax_script.ajaxurl, data, function(response) {
+      console.log(response);
+    });
+    return false;
+  })(jQuery);
+};  
+
