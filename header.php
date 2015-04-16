@@ -50,7 +50,6 @@
 						'walker' => ''
 					);
 					wp_nav_menu( $args ); ?>
-				 ?>
 			</div>
 
 			<?php if(is_page_template('map-template.php' )): ?>

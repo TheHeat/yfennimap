@@ -136,7 +136,7 @@ else {
 
 	<div class="avatar-wrapper facebook">	
 	<?php // show login url
-			echo '<a href="' . $helper->getLoginUrl($params) . '">Login</a>';
+			echo '<a href="' . $helper->getLoginUrl($params) . '">' . _e( 'Login', 'yfenni') . '</a>';
 	?>
 	</div>
 <?php
