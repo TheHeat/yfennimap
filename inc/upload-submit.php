@@ -6,11 +6,11 @@ function create_pin( $body ){
 
 	//Insert Post
 	//standard WP info
-	$post_title = (isset($_POST['postTitle']) ? $_POST['postTitle'] : substr($_POST['postContent'], 0, 15) );
+	$post_title = (isset($body['title']) ? $body['title'] : substr($body['content'], 0, 15) );
 	$post_information = array(
 		'post_title' => $post_title,
 		'post_type' => 'pin',
-		'post_status' => 'publish'
+		'post_status' => 'pending' // Set to 'publish' once we're done all this jazz
 	);
 
 	//Create Post
@@ -18,18 +18,18 @@ function create_pin( $body ){
 	
 	//Custom Fields
 	//Only try to set it if it exists...
-	if(isset($_POST['postContent'])){
-		update_post_meta( $post_id, "description", strip_tags(isset($_POST['postContent']) ? $_POST['postContent'] : null ));
+	if(isset($body['content'])){
+		update_post_meta( $post_id, "description", strip_tags(isset($body['content']) ? $body['content'] : null ));
 	}
-	if(isset($_POST['media'])){
-		$media = $_POST['media'];
-		update_post_meta( $post_id, "media_type", esc_attr(strip_tags(isset($_POST['media']) ? $_POST['media'] : null )) );
+	if(isset($body['media'])){
+		$media = $body['media'];
+		update_post_meta( $post_id, "media_type", esc_attr(strip_tags(isset($body['media']) ? $body['media'] : null )) );
 	}
-	if(isset($_POST['link'])){
-		update_post_meta( $post_id, "link",esc_attr(strip_tags(isset($_POST['link']) ? $_POST['link'] : null )) );
+	if(isset($body['link'])){
+		update_post_meta( $post_id, "link",esc_attr(strip_tags(isset($body['link']) ? $body['link'] : null )) );
 	}
-	if(isset($_POST['year-created'])){
-		update_post_meta( $post_id, "year-created",esc_attr(strip_tags(isset($_POST['year-created']) ? $_POST['year-created'] : null )) );
+	if(isset($body['year'])){
+		update_post_meta( $post_id, "year-created",esc_attr(strip_tags(isset($body['year']) ? $body['year'] : null )) );
 	}
 
 	//Make sure that the category IDs are as integers rather than strings
@@ -48,12 +48,12 @@ function create_pin( $body ){
 	}
 
 	//get users fb token and save against post
-	add_post_meta( $post_id, 'user_fb_token', fb_get_token() );
+	// add_post_meta( $post_id, 'user_fb_token', fb_get_token() );
 	
 	//get location info from pin placement from url string nd add to acf google map field
 	$location['address'] = '';
-	$location['lat'] = esc_attr(strip_tags(isset($_POST['lat']) ? $_POST['lat'] : null ));
-	$location['lng'] = esc_attr(strip_tags(isset($_POST['lng']) ? $_POST['lng'] : null ));
+	$location['lat'] = esc_attr(strip_tags(isset($body['lat']) ? $body['lat'] : null ));
+	$location['lng'] = esc_attr(strip_tags(isset($body['lng']) ? $body['lng'] : null ));
 	update_field( 'field_5362ae02910ff',  $location, $post_id);
 	// update_field( 'field_53a9772057ffd',  $_POST['cat'], $post_id);
 
@@ -105,4 +105,4 @@ function create_pin( $body ){
 
 	require get_template_directory() . '/inc/publish-to-facebook.php';
 }		
-	?>
+?>
