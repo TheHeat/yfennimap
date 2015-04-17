@@ -839,7 +839,7 @@ Navigation
 }
 
 /*The slider handles.*/
-a.ui-slider-handle {
+.ui-slider-handle {
   background: #D74123;
   width: 0.5em;
   height: 2em;
@@ -987,7 +987,7 @@ a.tool:hover {
   text-indent: 100%;
   white-space: nowrap;
   overflow: hidden;
-  background-image: url('img/tags.svg?1426784114');
+  background-image: url('img/tags.svg?1426773095');
 }
 
 .tool.clear-categories {
@@ -1002,7 +1002,7 @@ a.tool:hover {
   text-indent: 100%;
   white-space: nowrap;
   overflow: hidden;
-  background-image: url('img/refresh.svg?1426784114');
+  background-image: url('img/refresh.svg?1426773095');
 }
 
 .handle.add {
@@ -1017,7 +1017,7 @@ a.tool:hover {
   text-indent: 100%;
   white-space: nowrap;
   overflow: hidden;
-  background-image: url('img/plus.svg?1426784114');
+  background-image: url('img/plus.svg?1426773095');
 }
 
 .tool.link {
@@ -1032,7 +1032,7 @@ a.tool:hover {
   text-indent: 100%;
   white-space: nowrap;
   overflow: hidden;
-  background-image: url('img/chain.svg?1426784114');
+  background-image: url('img/chain.svg?1426773095');
 }
 
 .tool.video {
@@ -1047,7 +1047,7 @@ a.tool:hover {
   text-indent: 100%;
   white-space: nowrap;
   overflow: hidden;
-  background-image: url('img/film.svg?1426784114');
+  background-image: url('img/film.svg?1426773095');
 }
 
 .tool.pictures {
@@ -1062,7 +1062,7 @@ a.tool:hover {
   text-indent: 100%;
   white-space: nowrap;
   overflow: hidden;
-  background-image: url('img/picture.svg?1426784114');
+  background-image: url('img/picture.svg?1426773095');
 }
 
 .tool.words {
@@ -1077,7 +1077,7 @@ a.tool:hover {
   text-indent: 100%;
   white-space: nowrap;
   overflow: hidden;
-  background-image: url('img/pencil.svg?1426784114');
+  background-image: url('img/pencil.svg?1426773095');
 }
 
 .tool.info {
@@ -1098,7 +1098,7 @@ a.tool:hover {
   text-indent: 100%;
   white-space: nowrap;
   overflow: hidden;
-  background-image: url('img/info.svg?1426784114');
+  background-image: url('img/info.svg?1426773095');
 }
 
 .action.cancel {
@@ -1113,7 +1113,7 @@ a.tool:hover {
   text-indent: 100%;
   white-space: nowrap;
   overflow: hidden;
-  background-image: url('img/times.svg?1426784114');
+  background-image: url('img/times.svg?1426773095');
 }
 
 .action.save {
@@ -1128,7 +1128,7 @@ a.tool:hover {
   text-indent: 100%;
   white-space: nowrap;
   overflow: hidden;
-  background-image: url('img/check.svg?1426784114');
+  background-image: url('img/check.svg?1426773095');
 }
 
 .gmnoprint img {
