@@ -53,6 +53,6 @@
 			</div>
 
 			<?php if(is_page_template('map-template.php' )): ?>
-				<span class="tool info"></span>
+				<span class="tool info" title="<?php _e('information','yfenni')?>"></span>
 			<?php endif; ?>
 		</header>

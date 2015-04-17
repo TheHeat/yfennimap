@@ -46,7 +46,7 @@ get_header();
 <?php endwhile; endif; ?>
 
 <div class="filters">
-	<span class="tool categories"></span>
+	<span class="tool categories" title="<?php _e('Tags','yfenni')?>"></span>
 	<span class="tool clear-categories"></span>
 </div>
 
