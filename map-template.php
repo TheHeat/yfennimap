@@ -13,9 +13,10 @@ get_header();
 ?>
 
 <div class="avatar-wrapper facebook" tabindex="2">
-	<div class="avatar facebook">
-		<?php _e('Login', 'yfenni') ?>
-	</div>
+	<div class="avatar facebook"></div>
+</div>
+<div class="login-wrapper">
+	<?php _e('Login', 'yfenni') ?>
 </div>
 
 <?php get_template_part('map-pins' ); ?>
