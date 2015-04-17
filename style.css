@@ -656,23 +656,42 @@ th {
   margin: 0;
   z-index: 1000;
   position: absolute;
-  right: 5em;
+  right: 11em;
   outline: none;
 }
 .avatar-wrapper .avatar {
   font-size: 1rem;
   line-height: 1;
   font-weight: normal;
-  padding: 0.25em 1em;
+  padding: 1em;
   margin: 0.5em;
   background-color: #D74123;
+  background: transparent;
+  padding: 0;
   margin: 0;
   cursor: pointer;
 }
 .avatar-wrapper .avatar img {
   width: 100%;
-  display: block;
   margin: 0;
+}
+.avatar-wrapper .avatar a {
+  padding: 1em 0;
+}
+
+.login-wrapper {
+  font-size: 1rem;
+  line-height: 1;
+  font-weight: normal;
+  padding: 1em;
+  margin: 0.5em;
+  background-color: #D74123;
+  cursor: pointer;
+  margin: 0;
+  z-index: 1000;
+  position: absolute;
+  right: 4em;
+  outline: none;
 }
 
 .avatar-menu {

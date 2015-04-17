@@ -115,7 +115,9 @@ function toggleAvatar(show){
       // Get the user's picture and set it to the .avatar
       FB.api('/' + response.id +'/picture', function(response){
         // Got the user's picture
+        console.log(response.data);
         jQuery('.avatar').html('<img src=' + response.data.url + '>');
+        jQuery('.login-wrapper').html('<div class="logout">Logout</div>');
 
         // Add the fb-logged-in class to the body
         jQuery('body').addClass('fb-logged-in');
@@ -123,7 +125,8 @@ function toggleAvatar(show){
     });
   }
   else{
-    jQuery('.avatar').html('Login');
+    jQuery('.login-wrapper').html('Login');
+    jQuery('.avatar').html('');
 
     // Remove the fb-logged-in class from the body
     jQuery('body').removeClass('fb-logged-in');
@@ -212,7 +215,7 @@ function fbLogin(){
   $(document).ready(function(){
 
     // Bind the login functionality to the button
-    $('.avatar').on('click', function(){
+    $('.avatar, .login-wrapper').on('click', function(){
       fbToggleLogin();
     });
 
