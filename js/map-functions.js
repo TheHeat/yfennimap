@@ -218,7 +218,9 @@ function openModal(content, callback){
 
 	jQuery('#modal-window').slideDown(function(){
 
-		jQuery('.modal-content').position({my: 'center top', at: 'center top+32', of: '#modal-window'});
+		jQuery('.modal-content').append()
+
+		jQuery('.modal-content-wrapper').position({my: 'center top', at: 'center top+32', of: '#modal-window'});
 		jQuery('.modal-content').append(content);
 	});
 
@@ -231,8 +233,6 @@ function openModal(content, callback){
 			callback.call(this);
 		}
 	}, 2000);
-
-	jQuery('.modal-close').position({my: 'center', at: 'left top', of: '.modal-content'});
 
 	jQuery('.modal-close').click(function(){
 		jQuery('#modal-window').slideUp(function(){
@@ -457,10 +457,9 @@ jQuery(document).ready(function($){
 		});
 
 	// Create the .modal-close and .modal-content
-	var modalCloser = '<span class="modal-close">&times;</span>';
-	var modalContent = '<div class="modal-content"></div>';
+	var modalContentWrapper = '<div class="modal-content-wrapper"><span class="modal-close">&times;</span><div class="modal-content"></div></div>';
 
-	$('#modal-window').prepend(modalCloser, modalContent);
+	$('#modal-window').prepend(modalContentWrapper);
 
 	//Open the success-message div if it exists
 	if($('.success-message').length){
