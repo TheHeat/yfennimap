@@ -56,11 +56,11 @@ function ajax_post_to_facebook(){
 	$post_id = create_pin($_POST['body']);
 
 	// Execute post to Facebook
-	$output = publish_to_facebook($post_id);
+	$output = publish_to_facebook($post_id, $_POST['token']);
 
-	$output = array(
-		'result' => $output
-	);
+	// $output = array(
+	// 	'result' => $output
+	// );
 
 	wp_send_json( $output );
 	

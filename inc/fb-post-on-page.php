@@ -52,7 +52,10 @@ function fb_post_on_page($token, $edge, $content){
 		$error = "Facebook Exception occured, code: " . $ex->getCode()
     		. " with message: " . $ex->getMessage();
 
-    	return array('error' => $error );
+    	return array(
+    		'error' => $error,
+    		'token' => $token
+    	 );
 	} 
 	catch( Exception $ex ) {
 	  // When validation fails or other local issues

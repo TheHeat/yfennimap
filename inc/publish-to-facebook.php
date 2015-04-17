@@ -13,7 +13,7 @@ use Facebook\FacebookClientException;
 use Facebook\FacebookOtherException;
 use Facebook\GraphSessionInfo;
 
-function publish_to_facebook($post_id){
+function publish_to_facebook($post_id, $token){
 
 	// WP Variables
 	$media = get_post_meta($post_id, 'media_type', true);
@@ -21,11 +21,6 @@ function publish_to_facebook($post_id){
 
 	$content['title'] = get_the_title();;
 	$content['description'] = get_field('field_5362ad1d9bf84', $post_id, true);
-
-	//FB variables 
-	$token = get_post_meta($post_id, 'user_fb_token', true);
-
-	if ( $token == null) $token = page_token;
 	
 	//If the user selected video but added a link rather than a file, change the media type to link
 	$link_content = get_post_meta($post_id, 'link', true);
