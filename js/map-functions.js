@@ -393,9 +393,12 @@ function toolboxLinks(position){
 			// Inject the form content and open the modal
 			openModal(uploadForm ,function(){
 
+				// Set the visible fields
+				setFormFields(newPinMedia);
+				
 				//bind form handling
 				bindAjaxFormHandling();
-				
+
 				//populate the media type form field
 				jQuery('.media-hidden').each(function(){
 					jQuery(this).val(newPinMedia);
@@ -482,7 +485,6 @@ jQuery(document).ready(function($){
 		}
 
 		newPinMedia = $(this).data('media');
-		setFormFields(newPinMedia);
 
 		// console.log(newPinMedia);
 		newPinMediaLabel = $(this).text();

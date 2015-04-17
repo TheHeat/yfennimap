@@ -56,10 +56,10 @@ function ajax_post_to_facebook(){
 	$post_id = create_pin($_POST['body']);
 
 	// Execute post to Facebook
-	// $output = publish_to_facebook($post_id, $_POST['token']);
+	$output = publish_to_facebook($post_id, $_POST['token']);
 	
 	// For testing only - deliberate breakage
-	$output = publish_to_facebook($post_id, 'CAAWdu4OUTpgBAE6b9rD0QwoB9ivcpEt8x951uRjoUZC5D6TidRZAMv5eUgMwpISG2lm9VvJbalkpvrs5XRxNIa0n91YcaxoFJP98OqQMT5dIQNZBy9qgoxXc0XeqIw41dx8QG7O6bdt11EGZASN6P7PwtCZAESN65ej2qI8AVWSXpp0dZBDRj02Y7yXAXQqYMZBKXEPX8vdTzZADDktECxvCpo7o1FsEyNcZD');
+	// $output = publish_to_facebook($post_id, 'CAAWdu4OUTpgBAE6b9rD0QwoB9ivcpEt8x951uRjoUZC5D6TidRZAMv5eUgMwpISG2lm9VvJbalkpvrs5XRxNIa0n91YcaxoFJP98OqQMT5dIQNZBy9qgoxXc0XeqIw41dx8QG7O6bdt11EGZASN6P7PwtCZAESN65ej2qI8AVWSXpp0dZBDRj02Y7yXAXQqYMZBKXEPX8vdTzZADDktECxvCpo7o1FsEyNcZD');
 
 	// $output = array(
 	// 	'result' => $output

@@ -72,27 +72,28 @@ function setFormFields(newPinMedia){
 /* jQuery AJAX form hanlding thanks to  https://scotch.io/tutorials/submitting-ajax-forms-with-jquery */
 
 var bindAjaxFormHandling = function(){
+	(function($){
+	    // process the form
+	    $('.pin-form').submit(function(event) {
 
-    // process the form
-    $('.pin-form').submit(function(event) {
+	        // get the form data
+	        var body = {
+	            'content' : $('#postContent').val(),
+	            // 'media' : $('#media_upload').val(),
+	            'link' : $('#link').val(),
+	            'content' : $('#postContent').val(),
+	            'year' : $('#year-created').val(),
+	            // 'category' : $('#pin_category').val(),
+	            'mediaType' : $('#media-hidden').val(),
+	            'lat' : $('#lat-hidden').val(),
+	            'lng' : $('#lng-hidden').val()
+	        };
 
-        // get the form data
-        var body = {
-            'content' : $('#postContent').val(),
-            // 'media' : $('#media_upload').val(),
-            'link' : $('#link').val(),
-            'content' : $('#postContent').val(),
-            'year' : $('#year-created').val(),
-            // 'category' : $('#pin_category').val(),
-            'mediaType' : $('#media-hidden').val(),
-            'lat' : $('#lat-hidden').val(),
-            'lng' : $('#lng-hidden').val()
-        };
+	        // Call out fbPost function to ship the data to Facebook
+	        fbPost( FB.getAccessToken(), body );
 
-        // Call out fbPost function to ship the data to Facebook
-        fbPost( FB.getAccessToken(), body );
-
-        // stop the form from submitting the normal way and refreshing the page
-        event.preventDefault();
-    });
+	        // stop the form from submitting the normal way and refreshing the page
+	        event.preventDefault();
+	    });
+	})(jQuery);
 };
