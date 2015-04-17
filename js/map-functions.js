@@ -375,8 +375,7 @@ function toolboxLinks(position){
 	var saveQueryMedia = 'media=' + newPinMedia;
 	var saveQueryLat = 'lat=' + position.k;
 	var saveQueryLng = 'lng=' + position.D;
-		
-	// var saveNewPin = '<a class="action save" href="upload-form/?' + saveQueryMedia + '&' + saveQueryLat + '&' + saveQueryLng + '">Add ' + newPinMediaLabel + '</a>';
+
 	var saveNewPin = '<span class="action save">save</span>'
 	var cancelNewPin = '<span class="action cancel">Cancel</span>';
 
@@ -390,8 +389,13 @@ function toolboxLinks(position){
 
 		//Open the upload content form
 		jQuery('.action.save').click(function(){
-			openModal(jQuery('.upload-form').html(),function(){
 
+			// Inject the form content and open the modal
+			openModal(uploadForm ,function(){
+
+				//bind form handling
+				bindAjaxFormHandling();
+				
 				//populate the media type form field
 				jQuery('.media-hidden').each(function(){
 					jQuery(this).val(newPinMedia);
