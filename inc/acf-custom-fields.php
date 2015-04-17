@@ -276,6 +276,17 @@ if(function_exists("register_field_group")){
 				'toolbar' => 'full',
 				'media_upload' => 'yes',
 			),
+			array (
+				'key' => 'field_53ac8c218fcb9',
+				'label' => 'Failure Message',
+				'name' => 'failure_message',
+				'type' => 'wysiwyg',
+				'instructions' => 'The message displayed on a unsuccessful submission. ',
+				'required' => 1,
+				'default_value' => '',
+				'toolbar' => 'full',
+				'media_upload' => 'yes',
+			),
 		),
 		'location' => array (
 			array (

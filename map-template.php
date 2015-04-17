@@ -20,35 +20,27 @@ get_header();
 
 <?php get_template_part('map-pins' ); ?>
 
-<?php
-
-	//check if the post has been submitted
-	if(isset($_POST['submitted']) && isset($_POST['post_nonce_field']) && wp_verify_nonce($_POST['post_nonce_field'], 'post_nonce')) {
-
-		require get_template_directory() . '/inc/upload-submit.php';
-
-	}
-
-?>
-
 <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 	<div class="info-window" style="display:none;">
 		<?php the_title( '<h1>', '</h1>'); ?>
 		<?php the_content(); ?>
 	</div>
 
-	<?php if(isset($_POST['submitted'])){ ?>
-		<!-- Message if a pin was sucessfully submitted -->
-		<div class="success-message" style="display:none;">
-			<?php
-			$success_message = get_post_meta( get_the_id(), 'success_message', true );
-			echo $success_message;
+	<!-- Message to be displayed if a pin was sucessfully submitted -->
+	<div class="success-message" style="display:none;">
+		<?php
+		$success_message = get_post_meta( get_the_id(), 'success_message', true );
+		echo $success_message;
+		?>
+	</div>
 
-			//Blast away the $_POST
-			unset($_POST);
-			?>
-		</div>
-	<?php }?>
+	<!-- Message to be displayed if a pin was NOT sucessfully submitted -->
+	<div class="failure-message" style="display:none;">
+		<?php
+		$success_message = get_post_meta( get_the_id(), 'failure_message', true );
+		echo $success_message;
+		?>
+	</div>
 
 <?php endwhile; endif; ?>
 

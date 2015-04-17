@@ -230,8 +230,57 @@ var fbPost = function( token, body ){
     // the_ajax_script.ajaxurl is a variable that will contain the url to the ajax processing file
     $.post(the_ajax_script.ajaxurl, data, function(response) {
       console.log(response);
+      if(response.fb_object_id){ // We've had a successful response
+        //Get the pins again
+        var data = {
+          action: 'get_pins',
+                post_var: 'this will be echoed back'
+        };
+        // the_ajax_script.ajaxurl is a variable that will contain the url to the ajax processing file
+        $.post(the_ajax_script.ajaxurl, data, function(response) {
+          //Put the response into pinsMap
+          pinsMap = response;
+        });
+        
+        //initialize
+        initialize();
+        //Open the modal with the success message
+        openModal($('.success-message').html());
+      }
+      else{ // We haven't had a successful response. Wha-wha. Give the user a friendly message
+        message = $('.failure-message').html();
+        message += '<pre>' + response.error + '</pre>';
+
+        //Open the modal with the unsuccessful message
+        openModal(message);
+      }
     });
     return false;
   })(jQuery);
 };  
+
+var postPostHandling = function(){
+  (function($){
+
+
+      //Open the success-message div if it exists
+      if($('.success-message').length){
+        //Get the pins again
+        var data = {
+          action: 'get_pins',
+                post_var: 'this will be echoed back'
+        };
+        // the_ajax_script.ajaxurl is a variable that will contain the url to the ajax processing file
+        $.post(the_ajax_script.ajaxurl, data, function(response) {
+          //Put the response into pinsMap
+          pinsMap = response;
+        });
+        
+        //initialize
+        initialize();
+        //Open the modal with the success message
+        openModal($('.success-message').html());
+      }
+  })(jQuery);
+}
 
