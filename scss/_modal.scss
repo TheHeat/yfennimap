@@ -10,7 +10,7 @@
 	display: none;
 }
 
-.modal-content{
+.modal-content-wrapper{
 	box-sizing:content-box;
 	background:rgba(0,0,0,0.75);
 	width:300px !important;
@@ -32,9 +32,11 @@
 .modal-close{
   z-index:10;
   position: absolute;
-  top:1em;
-  right:1em;
+  top:0.5em;
+  right:0.5em;
   cursor:pointer;
+  font-size: 2em;
+  line-height: 1em;
   // animation: imagebulger 2s infinite;
   // @include media(momma){
   //   top:5em;
