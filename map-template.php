@@ -21,35 +21,27 @@ get_header();
 
 <?php get_template_part('map-pins' ); ?>
 
-<?php
-
-	//check if the post has been submitted
-	if(isset($_POST['submitted']) && isset($_POST['post_nonce_field']) && wp_verify_nonce($_POST['post_nonce_field'], 'post_nonce')) {
-
-		require get_template_directory() . '/inc/upload-submit.php';
-
-	}
-
-?>
-
 <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 	<div class="info-window" style="display:none;">
 		<?php the_title( '<h1>', '</h1>'); ?>
 		<?php the_content(); ?>
 	</div>
 
-	<?php if(isset($_POST['submitted'])){ ?>
-		<!-- Message if a pin was sucessfully submitted -->
-		<div class="success-message" style="display:none;">
-			<?php
-			$success_message = get_post_meta( get_the_id(), 'success_message', true );
-			echo $success_message;
+	<!-- Message to be displayed if a pin was sucessfully submitted -->
+	<div class="success-message" style="display:none;">
+		<?php
+		$success_message = get_post_meta( get_the_id(), 'success_message', true );
+		echo $success_message;
+		?>
+	</div>
 
-			//Blast away the $_POST
-			unset($_POST);
-			?>
-		</div>
-	<?php }?>
+	<!-- Message to be displayed if a pin was NOT sucessfully submitted -->
+	<div class="failure-message" style="display:none;">
+		<?php
+		$success_message = get_post_meta( get_the_id(), 'failure_message', true );
+		echo $success_message;
+		?>
+	</div>
 
 <?php endwhile; endif; ?>
 
@@ -77,64 +69,6 @@ get_header();
 <div id="map-canvas"></div>
 
 <div id="modal-window"></div>
-
-<!-- Upload new content form -->
-<div class="upload-form" style="display:none;">
-	<form action="<?php echo $page_url;?>" id="pinForm" method="POST" enctype="multipart/form-data" name="pinForm">
-
-		<fieldset class="content">					
-			<label for="postContent">Description</label>
-			<textarea name="postContent" id="postContent" rows="8" cols="30" required aria-required="true"><?php if(isset($_POST['postContent'])) { if(function_exists('stripslashes')) { echo stripslashes($_POST['postContent']); } else { echo $_POST['postContent']; } } ?></textarea>
-		</fieldset>
-
-		<fieldset class="link">
-			<label for="link"><?php _e('Link:') ?></label>
-			<input type="text" name="link" id="link"  multiple="false" required aria-required="true"/>
-		</fieldset>
-
-		<fieldset class="file">
-			<input type="file" name="media_upload[]" id="media_upload"  multiple required aria-required="true"/>
-			<input type="hidden" name="post_id" id="post_id" value="55" />
-		</fieldset>
-		
-		<fieldset>
-			<label for="year-created"><?php _e('Year Created:') ?></label>
-			<input type="number" name="year-created" id="year-created" multiple="false" max='2020' value="<?php echo date('Y');  ?>" required aria-required="true"/>
-		</fieldset>
-
-		<fieldset>
-			<label for="pin_category"><?php _e('Categories:') ?></label><br/>
-				<?php
-					$terms = get_terms('pin_category', array('hide_empty' => false ));
-					
-					foreach ($terms as $term) { 
-						//Get the term ID
-						$term_id = $term->cat_ID;
-
-						//It returns a string. Cast it as an integer
-						$term_id = (integer)$term_id;
-						?>
-						<input type="checkbox" name="pin_category[]" value=<?php echo $term_id;?> />
-						<?php
-						echo $term->name;
-						echo '<br/>';
-					}
-				?>
-		</fieldset>
-
-		<!-- Hidden fields for JQuery use -->
-		<input type="hidden" class="media-hidden" name="media"/>
-		<input type="hidden" class="lat-hidden" name="lat"/>
-		<input type="hidden" class="lng-hidden" name="lng"/>
-
-		<fieldset>			
-			<?php wp_nonce_field('post_nonce', 'post_nonce_field'); ?>
-			<input type="hidden" name="submitted" id="submitted" value="true" />
-			<button type="submit"><?php _e('Add Pin') ?></button>
-		</fieldset>
-
-	</form>
-</div>
 
 
 <?php get_footer(); ?>

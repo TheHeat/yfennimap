@@ -114,8 +114,9 @@ function yfenni_scripts() {
 		wp_register_script( 'jq-plugins', get_template_directory_uri() . '/js/plugins.js', array('jquery', 'jquery-ui-widget', 'jquery-ui-mouse'), true );
 		wp_enqueue_script(  'jq-plugins' );
 
-		wp_register_script( 'set-form-fields', get_template_directory_uri() . '/js/set-form-fields.js', array('jquery'), true );
-		wp_enqueue_script(  'set-form-fields' );
+		wp_register_script( 'forms', get_template_directory_uri() . '/js/forms.js', array('jquery'), true );
+		wp_enqueue_script(  'forms' );
+		wp_localize_script( 'forms', 'uploadForm', upload_form() );
 		
 		wp_register_script( 'get-parameter-by-name', get_template_directory_uri() . '/js/get-parameter-by-name.js', array('jquery'), true );
  		wp_enqueue_script(  'get-parameter-by-name');
@@ -452,4 +453,74 @@ function get_yfenni_language_link(){
 			}
 		}
 	}
+}
+
+function upload_form(){
+ 
+	// Capture the content of the upload form so that we can populate a JS variable to inject into the modal
+	ob_start();
+	?>
+
+	
+	<form action="<?php echo $page_url;?>" id="pinForm" method="POST" enctype="multipart/form-data" name="pinForm" class="pin-form">
+
+		<fieldset class="content">					
+			<label for="postContent">Description</label>
+			<textarea name="postContent" id="postContent" rows="8" cols="30" required aria-required="true"><?php if(isset($_POST['postContent'])) { if(function_exists('stripslashes')) { echo stripslashes($_POST['postContent']); } else { echo $_POST['postContent']; } } ?></textarea>
+		</fieldset>
+
+		<fieldset class="link">
+			<label for="link"><?php _e('Link:') ?></label>
+			<input type="text" name="link" id="link"  multiple="false" required aria-required="true"/>
+		</fieldset>
+
+		<fieldset class="file">
+			<input type="file" name="media_upload[]" id="media_upload"  multiple required aria-required="true"/>
+			<input type="hidden" name="post_id" id="post_id" value="55" />
+		</fieldset>
+		
+		<fieldset>
+			<label for="year-created"><?php _e('Year Created:') ?></label>
+			<input type="number" name="year-created" id="year-created" multiple="false" max='2020' value="<?php echo date('Y');  ?>" required aria-required="true"/>
+		</fieldset>
+
+		<fieldset>
+			<label for="pin_category"><?php _e('Categories:') ?></label><br/>
+				<?php
+					$terms = get_terms('pin_category', array('hide_empty' => false ));
+					
+					foreach ($terms as $term) { 
+						//Get the term ID
+						$term_id = $term->cat_ID;
+
+						//It returns a string. Cast it as an integer
+						$term_id = (integer)$term_id;
+						?>
+						<input type="checkbox" name="pin_category[]" value=<?php echo $term_id;?> />
+						<?php
+						echo $term->name;
+						echo '<br/>';
+					}
+				?>
+		</fieldset>
+
+		<!-- Hidden fields for JQuery use -->
+		<input type="hidden" class="media-hidden" id="media-hidden" name="media"/>
+		<input type="hidden" class="lat-hidden" id="lat-hidden" name="lat"/>
+		<input type="hidden" class="lng-hidden" id="lng-hidden" name="lng"/>
+
+		<fieldset>			
+			<?php wp_nonce_field('post_nonce', 'post_nonce_field'); ?>
+			<input type="hidden" name="submitted" id="submitted" value="true" />
+			<button type="submit"><?php _e('Add Pin') ?></button>
+		</fieldset>
+
+	</form>
+	
+
+	<?php
+	// Get the contents of the above and put them in a variable
+	$upload_form = ob_get_clean();
+
+	return $upload_form;
 }
