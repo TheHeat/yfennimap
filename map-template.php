@@ -71,7 +71,7 @@ get_header();
 
 <!-- Upload new content form -->
 <div class="upload-form" style="display:none;">
-	<form action="<?php echo $page_url;?>" id="pinForm" method="POST" enctype="multipart/form-data" name="pinForm">
+	<form action="<?php echo $page_url;?>" id="pinForm" method="POST" enctype="multipart/form-data" name="pinForm" class="pin-form">
 
 		<fieldset class="content">					
 			<label for="postContent">Description</label>
@@ -114,9 +114,9 @@ get_header();
 		</fieldset>
 
 		<!-- Hidden fields for JQuery use -->
-		<input type="hidden" class="media-hidden" name="media"/>
-		<input type="hidden" class="lat-hidden" name="lat"/>
-		<input type="hidden" class="lng-hidden" name="lng"/>
+		<input type="hidden" class="media-hidden" id="media-hidden" name="media"/>
+		<input type="hidden" class="lat-hidden" id="lat-hidden" name="lat"/>
+		<input type="hidden" class="lng-hidden" id="lng-hidden" name="lng"/>
 
 		<fieldset>			
 			<?php wp_nonce_field('post_nonce', 'post_nonce_field'); ?>

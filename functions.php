@@ -114,8 +114,8 @@ function yfenni_scripts() {
 		wp_register_script( 'jq-plugins', get_template_directory_uri() . '/js/plugins.js', array('jquery', 'jquery-ui-widget', 'jquery-ui-mouse'), true );
 		wp_enqueue_script(  'jq-plugins' );
 
-		wp_register_script( 'set-form-fields', get_template_directory_uri() . '/js/set-form-fields.js', array('jquery'), true );
-		wp_enqueue_script(  'set-form-fields' );
+		wp_register_script( 'forms', get_template_directory_uri() . '/js/forms.js', array('jquery'), true );
+		wp_enqueue_script(  'forms' );
 		
 		wp_register_script( 'get-parameter-by-name', get_template_directory_uri() . '/js/get-parameter-by-name.js', array('jquery'), true );
  		wp_enqueue_script(  'get-parameter-by-name');
