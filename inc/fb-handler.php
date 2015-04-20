@@ -64,8 +64,8 @@ function ajax_post_to_facebook(){
 	// $output = array(
 	// 	'result' => $output
 	// );
-
+	// wp_send_json( $_POST['body'] );
 	wp_send_json( $output );
-	
+	// print_r($output);
 	die();
 }

@@ -42,10 +42,6 @@ function fb_post_on_page($token, $edge, $content){
 
 	try{
 		$response = $request->execute()->getGraphObject();
-		// echo '<pre>';
-		// 	print_r($response);
-		// echo '</pre>';
-		return array('fb_object_id' => $response->getProperty('id')); //string with object id
 	}
 	catch( FacebookRequestException $ex ) {
 	  // When Facebook returns an error
@@ -64,6 +60,12 @@ function fb_post_on_page($token, $edge, $content){
 
     	return array('error' => $error );
 	}
+
+	// The request was successful
+
+	return array(
+		'fb_object_id' => $response->getProperty('id'), //string with object id
+	); 
 }
 
 
