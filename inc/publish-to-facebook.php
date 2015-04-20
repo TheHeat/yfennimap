@@ -54,7 +54,7 @@ function publish_to_facebook($post_id, $token){
 	}
 
 	$fb_object = fb_post_on_page($token, $edge, $content);
-
+	// echo $fb_object;
 	if($fb_object['fb_object_id']){
 		// The post was successful. Make a record of its object ID
 		add_post_meta( $post_id, 'new_fb_object', $fb_object);

@@ -415,13 +415,13 @@ function toolboxLinks(position){
 					//populate the lat form field
 					jQuery('.lat-hidden').each(function(){
 						jQuery(this).val(newPinLatLng.k);
-						console.log(jQuery(this).val());
+						// console.log(jQuery(this).val());
 					});
 
 					//populate the lng form field
 					jQuery('.lng-hidden').each(function(){
 						jQuery(this).val(newPinLatLng.D);
-						console.log(jQuery(this).val());
+						// console.log(jQuery(this).val());
 					});
 
 				});

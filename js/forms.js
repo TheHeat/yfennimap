@@ -70,7 +70,7 @@ function setFormFields(form, newPinMedia, callback){
 		}
 
 	})(jQuery);
-	console.log(jQuery('.upload-form-workspace').html());
+	// console.log(jQuery('.upload-form-workspace').html());
 
 	// Call the callback once the manipulation is done
 	typeof callback === 'function' && callback();

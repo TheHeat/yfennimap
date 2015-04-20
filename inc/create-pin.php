@@ -21,9 +21,10 @@ function create_pin( $body ){
 	if(isset($body['content'])){
 		update_post_meta( $post_id, "description", strip_tags(isset($body['content']) ? $body['content'] : null ));
 	}
-	if(isset($body['media'])){
-		$media = $body['media'];
-		update_post_meta( $post_id, "media_type", esc_attr(strip_tags(isset($body['media']) ? $body['media'] : null )) );
+	if(isset($body['mediaType'])){
+		$media = $body['mediaType'];
+		update_post_meta( $post_id, "media_type", strip_tags($media) );
+		// update_post_meta( $post_id, "media_type", 'text' );
 	}
 	if(isset($body['link'])){
 		update_post_meta( $post_id, "link",esc_attr(strip_tags(isset($body['link']) ? $body['link'] : null )) );
