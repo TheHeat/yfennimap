@@ -49,6 +49,7 @@ class FB_Media extends FacebookRequest
 	//public $graph_object;
 
 	function __construct($pin_id){
+
 		//Get the FB object ID from the WP post
 		$fb_object_id = get_post_meta( $pin_id, 'new_fb_object', true); 
 
@@ -69,6 +70,7 @@ class FB_Media extends FacebookRequest
 		//print_r($_SESSION['fb_session']);
 
 		
+		  	echo 'wow';
 
   		try{
 			$response = $request->execute();
@@ -78,17 +80,17 @@ class FB_Media extends FacebookRequest
   		}
   		catch( FacebookRequestException $ex ) {
   		  // When Facebook returns an error
-  			// $error = "Facebook Exception occured, code: " . $ex->getCode()
-  	  //   		. " with message: " . $ex->getMessage();
-
-  	  //   	return $error;
+  			$error = "Facebook Exception occured, code: " . $ex->getCode()
+  	    		. " with message: " . $ex->getMessage();
+  	    	echo $error;
+  	    	return $error;
   		} 
   		catch( Exception $ex ) {
   		  // When validation fails or other local issues
-  			// $error = "Exception occured, code: " . $ex->getCode()
-  	  //   		. " with message: " . $ex->getMessage();
-
-  	  //   	return $error;
+  			$error = "Exception occured, code: " . $ex->getCode()
+  	    		. " with message: " . $ex->getMessage();
+  	    	echo $error;
+  	    	return $error;
   		}
 		//Our pin will have a media type = image if the FB object is either photo or album. 
 		//Do a little check to see if we're in an album, and if so set media_type = album

@@ -66,6 +66,6 @@ function ajax_post_to_facebook(){
 	// );
 	// wp_send_json( $_POST['body'] );
 	wp_send_json( $output );
-	
+	// print_r($output);
 	die();
 }

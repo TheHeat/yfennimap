@@ -57,11 +57,44 @@ function publish_to_facebook($post_id, $token){
 	// echo $fb_object;
 	if($fb_object['fb_object_id']){
 		// The post was successful. Make a record of its object ID
-		add_post_meta( $post_id, 'new_fb_object', $fb_object);
+		add_post_meta( $post_id, 'new_fb_object', $fb_object['fb_object_id']);
 
 		//save url of facebook post
-		$fb_media = new FB_Media($post->ID);
-		$fb_url = $fb_media->get_url();
+		// $fb_media = new FB_Media($post_id, $token);
+		// print_r($fb_media->graph_object);
+		// $fb_url = $fb_media->get_url();
+		// add_post_meta( $post_id, 'fb_post_url', $fb_url );
+		
+
+		// Get the url of facebook post
+		//Override media type if it's a video but a link was submitted
+		
+		switch ($media) {
+			
+			case 'text':
+			case 'link':
+				$id_array = explode ( '_' , $fb_object['fb_object_id'] );
+				$fbid = $id_array[1];
+				$userid = $id_array[0];
+
+				$fb_url = 'https://www.facebook.com/permalink.php?story_fbid='.$fbid.'&id='.$userid;
+				break;
+			
+			case 'video':
+				$fb_url = $graph_object->getProperty('link');
+				break;
+			
+			case 'image':
+				$fb_url = $graph_object->getProperty('link');
+				break;
+			
+			case 'album':
+				$fb_url = $graph_object->getProperty('link');
+				break;
+			
+			default:
+				# nothing here...
+		}
 		add_post_meta( $post_id, 'fb_post_url', $fb_url );
 	}
 	
