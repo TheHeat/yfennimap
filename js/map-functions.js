@@ -390,33 +390,41 @@ function toolboxLinks(position){
 		//Open the upload content form
 		jQuery('.action.save').click(function(){
 
-			// Inject the form content and open the modal
-			openModal(uploadForm ,function(){
+			// Set the visible form fields
+			setFormFields(uploadForm, newPinMedia, function(){
 
-				// Set the visible fields
-				setFormFields(newPinMedia);
-				
-				//bind form handling
-				bindAjaxFormHandling();
+				// console.log(jQuery('.upload-form-workspace').html());
+				// Inject the form content and open the modal
+				openModal( jQuery('.upload-form-workspace').html(), function(){
 
-				//populate the media type form field
-				jQuery('.media-hidden').each(function(){
-					jQuery(this).val(newPinMedia);
-					// console.log(jQuery(this).val());
+					// Clear the temporary div
+					jQuery('.upload-form-workspace').html('');
+
+					// // Set the visible fields
+					// setFormFields(newPinMedia);
+					
+					//bind form handling
+					bindAjaxFormHandling();
+
+					//populate the media type form field
+					jQuery('.media-hidden').each(function(){
+						jQuery(this).val(newPinMedia);
+						// console.log(jQuery(this).val());
+					});
+
+					//populate the lat form field
+					jQuery('.lat-hidden').each(function(){
+						jQuery(this).val(newPinLatLng.k);
+						console.log(jQuery(this).val());
+					});
+
+					//populate the lng form field
+					jQuery('.lng-hidden').each(function(){
+						jQuery(this).val(newPinLatLng.D);
+						console.log(jQuery(this).val());
+					});
+
 				});
-
-				//populate the lat form field
-				jQuery('.lat-hidden').each(function(){
-					jQuery(this).val(newPinLatLng.k);
-					console.log(jQuery(this).val());
-				});
-
-				//populate the lng form field
-				jQuery('.lng-hidden').each(function(){
-					jQuery(this).val(newPinLatLng.D);
-					console.log(jQuery(this).val());
-				});
-
 			});
 			
 		});
