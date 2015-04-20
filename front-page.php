@@ -55,12 +55,12 @@ get_header(); ?>
 			<?php endwhile; // end of the loop. ?>
 		</aside>
 		
-	<?php if(get_field('fafb')): ?>
-		<aside>
-			<h3>Forgotten Abergavenny Facebook Page</h3>
-			<?php the_field('fafb'); ?>
-		</aside>
-	<?php endif; ?>
+		<?php if(get_field('fafb')): ?>
+			<aside>
+				<h3>Forgotten Abergavenny Facebook Page</h3>
+				<?php the_field('fafb'); ?>
+			</aside>
+		<?php endif; ?>
 
 
 

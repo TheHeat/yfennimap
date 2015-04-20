@@ -816,6 +816,55 @@ Navigation
   cursor: pointer;
 }
 
+.loading .pin-form button {
+  position: relative;
+  overflow: hidden;
+  background-color: #4ac870;
+  color: #4ac870;
+}
+.loading .pin-form button:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 2em;
+  height: 2.5em;
+  background-color: #2E984E;
+  -webkit-animation: loading-bar 1.5s linear infinite;
+          animation: loading-bar 1.5s linear infinite;
+  -webkit-animation-delay: 0.5s;
+          animation-delay: 0.5s;
+}
+
+@-webkit-keyframes loading-bar {
+  0% {
+    left: 0%;
+    width: 1em;
+  }
+  50% {
+    left: 25%;
+    width: 50%;
+  }
+  100% {
+    left: 100%;
+    width: 1em;
+  }
+}
+
+@keyframes loading-bar {
+  0% {
+    left: 0%;
+    width: 1em;
+  }
+  50% {
+    left: 25%;
+    width: 50%;
+  }
+  100% {
+    left: 100%;
+    width: 1em;
+  }
+}
 .filters {
   position: absolute;
   right: 0;
