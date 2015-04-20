@@ -25,9 +25,15 @@
 		<div class="secondary-navigation">
 			<nav><?php wp_nav_menu(array('theme_location'=>'second',)); ?></nav>
 		</div>
+
+		
 	</footer>
 <?php endif; ?>
 
+<?php // Placeholder div for form content ?>
+<div class="upload-form-workspace" style="display: none;">
+</div>
+		
 <?php wp_footer(); ?>
 
 </body>

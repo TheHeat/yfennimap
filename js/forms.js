@@ -1,72 +1,79 @@
 jQuery.noConflict();
 
 
-function setFormFields(newPinMedia){
+function setFormFields(form, newPinMedia, callback){
 
 	(function($){
 		//Depending on the pin type that was selected, manipulate the form
-		
+		// console.log(newPinMedia);
+		// Put the form contents into a temporary div
+		$('.upload-form-workspace').html(form);
+
 		//make sure everything is shown to start with
-		$('fieldset.title').show();
-		$('fieldset.content').show();
-		$('fieldset.link').show();
-		$('fieldset.file').show();
+		$('.upload-form-workspace.title').show();
+		$('.upload-form-workspace.content').show();
+		$('.upload-form-workspace.link').show();
+		$('.upload-form-workspace.file').show();
 
 		//We usually want the long text to be called 'description'
-		$('fieldset.content label').html('Description');
+		$('.upload-form-workspace.content label').html('Description');
 
-		//conditionally hide some stuff
+		//conditionally remove some stuff
 		switch(newPinMedia){
 			case 'text':
 				// console.log('works');
-				//hide link and files
-				$('fieldset.link').hide();
-				$('fieldset.link input').prop('required',false);
-				$('fieldset.file').hide();
-				$('fieldset.file input').prop('required',false);
+				//remove link and files
+				$('.upload-form-workspace .link').remove();
+				$('.upload-form-workspace .link input').prop('required',false);
+				$('.upload-form-workspace .file').remove();
+				$('.upload-form-workspace .file input').prop('required',false);
 				break;
 			case 'image':
-				//hide title, link
-				$('fieldset.title').hide();
-				$('fieldset.link').hide();
-				$('fieldset.title input').prop('required',false);
-				$('fieldset.link input').prop('required',false);
+				//remove title, link
+				$('.upload-form-workspace .title').remove();
+				$('.upload-form-workspace .link').remove();
+				$('.upload-form-workspace .title input').prop('required',false);
+				$('.upload-form-workspace .link input').prop('required',false);
 
 				//Allow multiple files when uploading photos
-				$('fieldset.file input').prop('multiple', 'true');
+				$('.upload-form-workspace .file input').prop('multiple', 'true');
 
 				//Add some accepted file types
-				$('fieldset.file input').prop('accept', 'image/*');
+				$('.upload-form-workspace .file input').prop('accept', 'image/*');
 
 				break;
 			case 'video':
-				//hide title
-				$('fieldset.title').hide();
-				$('fieldset.title input').prop('required',false);
-				$('fieldset.link input').prop('required',false);
-				$('fieldset.file input').prop('required',false);
+				//remove title
+				$('.upload-form-workspace .title').remove();
+				$('.upload-form-workspace .title input').prop('required',false);
+				$('.upload-form-workspace .link input').prop('required',false);
+				$('.upload-form-workspace .file input').prop('required',false);
 
 				//Add some accepted file types
-				$('fieldset.file').hide();
-				$('fieldset.file input').prop('accept', 'video/*');
-				$('fieldset.file input').removeAttr('multiple');
+				$('.upload-form-workspace .file').remove();
+				$('.upload-form-workspace .file input').prop('accept', 'video/*');
+				$('.upload-form-workspace .file input').removeAttr('multiple');
 				break;
 			case 'link':
-				//hide title, file chooser
-				$('fieldset.title').hide();
-				$('fieldset.file').hide();
-				$('fieldset.title input').prop('required',false);
-				$('fieldset.file input').prop('required',false);
+				//remove title, file chooser
+				$('.upload-form-workspace .title').remove();
+				$('.upload-form-workspace .file').remove();
+				$('.upload-form-workspace .title input').prop('required',false);
+				$('.upload-form-workspace .file input').prop('required',false);
 
 				//Change the description field to 'message'
 
-				$('fieldset.content label').html('Message');
+				$('.upload-form-workspace .content label').html('Message');
 				break;
 			default:
 				//something
 		}
-		
+
 	})(jQuery);
+	console.log(jQuery('.upload-form-workspace').html());
+
+	// Call the callback once the manipulation is done
+	typeof callback === 'function' && callback();
 }
 
 /* jQuery AJAX form hanlding thanks to  https://scotch.io/tutorials/submitting-ajax-forms-with-jquery */
