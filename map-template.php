@@ -57,7 +57,7 @@ get_header();
 
 <div class="toolbox">
 	<div class="actions" style="display:none;"></div>
-	<div class="handle add" tabindex="1"></div>
+	<div class="handle add" tabindex="1" title="<?php _e('Add a pin','yfenni')?>"></div>
 	<div class="box">
 		<a href="#" data-media="link" class="tool add link">Web Link</a>
 		<a href="#" data-media="video" class="tool add video">Video</a>
