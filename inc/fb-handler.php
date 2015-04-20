@@ -52,6 +52,11 @@ function ajax_post_to_facebook(){
 	    die();
 	}
 
+	// echo 'wow';
+	// die();
+
+	// print_r($_POST['body']);
+
 	// We didn't get kicked out, so the user's session is valid. Nice one, create a pin. The function returns the id of the pin that was created
 	$post_id = create_pin($_POST['body']);
 

@@ -83,6 +83,9 @@ var bindAjaxFormHandling = function(){
 	    // process the form
 	    $('.pin-form').submit(function(event) {
 
+	    	// Create a FormData object
+	    	// var formData = new FormData($(this));
+
 	        // get the form data
 	        var body = {
 	            'content' : $('#postContent').val(),
