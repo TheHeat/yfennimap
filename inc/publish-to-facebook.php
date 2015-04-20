@@ -54,20 +54,12 @@ function publish_to_facebook($post_id, $token){
 	}
 
 	$fb_object = fb_post_on_page($token, $edge, $content);
-	// echo $fb_object;
+
 	if($fb_object['fb_object_id']){
 		// The post was successful. Make a record of its object ID
 		add_post_meta( $post_id, 'new_fb_object', $fb_object['fb_object_id']);
 
-		//save url of facebook post
-		// $fb_media = new FB_Media($post_id, $token);
-		// print_r($fb_media->graph_object);
-		// $fb_url = $fb_media->get_url();
-		// add_post_meta( $post_id, 'fb_post_url', $fb_url );
-		
-
 		// Get the url of facebook post
-		//Override media type if it's a video but a link was submitted
 		
 		switch ($media) {
 			
