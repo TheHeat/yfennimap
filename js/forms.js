@@ -16,7 +16,7 @@ function setFormFields(form, newPinMedia, callback){
 		$('.upload-form-workspace.file').show();
 
 		//We usually want the long text to be called 'description'
-		$('.upload-form-workspace.content label').html('Description');
+		$('.upload-form-workspace.content label').html(stringTranslate.fromDescription);
 
 		//conditionally remove some stuff
 		switch(newPinMedia){

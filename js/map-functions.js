@@ -484,7 +484,7 @@ jQuery(document).ready(function($){
 		$('.toolbox .handle').hide('slide', {direction: 'left'});
 
 		// Check whether the user is switching media types or starting from scratch
-		var addingMessage = 'Drag the marker and tick to confirm.';
+		var addingMessage = stringTranslate.markerMessage;
 
 		// Only show the message if the user is opening the 
 		if(!newPinMedia){

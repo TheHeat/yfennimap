@@ -129,7 +129,14 @@ function yfenni_scripts() {
 		
 		wp_enqueue_script( 'facebook',get_template_directory_uri() . '/js/facebook.js', array(), true );
 
+		// Localize the script with new data
+		$translation_array = array(
+			'markerMessage' => __( 'Drag the marker and tick to confirm.', 'yfenni' ),
+			'formDescription' => __('Description', 'yfenni')
+		);
+
 		// some objects and scripts available to the map-functions javascript
+		wp_localize_script( 'map-functions', 'stringTranslate', $translation_array );
 		wp_localize_script( 'map-functions', 'pinsMap', get_pins() );
 		wp_localize_script( 'map-functions', 'activeCategories', get_categories(array( 'taxonomy' => 'pin_category')) );
 		wp_localize_script( 'map-functions', 'the_ajax_script', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );
