@@ -19,6 +19,9 @@ add_action('wp_ajax_nopriv_ajax_post_to_facebook', 'ajax_post_to_facebook');
 
 function ajax_post_to_facebook(){
 
+	print_r($_POST['body']);
+	die();
+	
 	// Check that we've been sent a token. If we have, convert it into a session, otherwise die.
 	if($_POST['token']){
 		$session = new FacebookSession( $_POST['token'] );	
@@ -55,7 +58,7 @@ function ajax_post_to_facebook(){
 	// echo 'wow';
 	// die();
 
-	// print_r($_POST['body']);
+
 
 	// We didn't get kicked out, so the user's session is valid. Nice one, create a pin. The function returns the id of the pin that was created
 	$post_id = create_pin($_POST['body']);

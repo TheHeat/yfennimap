@@ -83,27 +83,47 @@ var bindAjaxFormHandling = function(){
 	    // process the form
 	    $('.pin-form').submit(function(event) {
 
-	    	// Create a FormData object
-	    	// var formData = new FormData($(this));
+	 		// stop the form from submitting the normal way and refreshing the page
+	 		event.preventDefault();
+
+	 		// Create a formData
+	 		var formData = new FormData();
+	    	
+	    	// Add data to it
+	    	formData.append("action", "upload-attachment");
+	    	var fileInputElement = document.getElementById("media_upload");
+	    	formData.append("async-upload", fileInputElement.files[0]);
+	    	formData.append("name", fileInputElement.files[0].name);
+	    	formData.append("_wpnonce", the_ajax_script.mediaNonce);
+
+	    	// Make the request
+	    	var xhr = new XMLHttpRequest();
+			xhr.onreadystatechange=function(){
+				if (xhr.readyState==4 && xhr.status==200){
+				  console.log(xhr.responseText);
+				}
+			}
+			xhr.open("POST", the_ajax_script.asyncUpload ,true);
+			xhr.send(formData);
+
 
 	        // get the form data
-	        var body = {
-	            'content' : $('#postContent').val(),
-	            // 'media' : $('#media_upload').val(),
-	            'link' : $('#link').val(),
-	            'content' : $('#postContent').val(),
-	            'year' : $('#year-created').val(),
-	            // 'category' : $('#pin_category').val(),
-	            'mediaType' : $('#media-hidden').val(),
-	            'lat' : $('#lat-hidden').val(),
-	            'lng' : $('#lng-hidden').val()
-	        };
+	        // var body = {
+	        //     'content' : $('#postContent').val(),
+	        //     // 'media' : $('#media_upload').val(),
+	        //     'link' : $('#link').val(),
+	        //     'content' : $('#postContent').val(),
+	        //     'year' : $('#year-created').val(),
+	        //     // 'category' : $('#pin_category').val(),
+	        //     'mediaType' : $('#media-hidden').val(),
+	        //     'lat' : $('#lat-hidden').val(),
+	        //     'lng' : $('#lng-hidden').val()
+	        // };
 
 	        // Call out fbPost function to ship the data to Facebook
-	        fbPost( FB.getAccessToken(), body );
+	        // fbPost( FB.getAccessToken(), formData );
 
-	        // stop the form from submitting the normal way and refreshing the page
-	        event.preventDefault();
+	        
 	    });
 	})(jQuery);
 };

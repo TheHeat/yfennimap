@@ -139,7 +139,11 @@ function yfenni_scripts() {
 		wp_localize_script( 'map-functions', 'stringTranslate', $translation_array );
 		wp_localize_script( 'map-functions', 'pinsMap', get_pins() );
 		wp_localize_script( 'map-functions', 'activeCategories', get_categories(array( 'taxonomy' => 'pin_category')) );
-		wp_localize_script( 'map-functions', 'the_ajax_script', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );
+		wp_localize_script( 'map-functions', 'the_ajax_script', array( 
+			'ajaxurl' => admin_url( 'admin-ajax.php' ),
+			'asyncUpload' => admin_url( 'async-upload.php' ),
+			'mediaNonce' => wp_create_nonce('media-form')
+			) );
 		wp_localize_script( 'facebook', 'facebookAppId', get_field('field_53970cc16ea00', 'option') );
 }
 add_action( 'wp_enqueue_scripts', 'yfenni_scripts' );
@@ -483,7 +487,7 @@ function upload_form(){
 		</fieldset>
 
 		<fieldset class="file">
-			<input type="file" name="media_upload[]" id="media_upload"  multiple required aria-required="true"/>
+			<input type="file" name="media_upload" id="media_upload" required aria-required="true"/>
 			<input type="hidden" name="post_id" id="post_id" value="55" />
 		</fieldset>
 		
@@ -518,7 +522,8 @@ function upload_form(){
 		<input type="hidden" class="lng-hidden" id="lng-hidden" name="lng"/>
 
 		<fieldset>			
-			<?php wp_nonce_field('post_nonce', 'post_nonce_field'); ?>
+			<?php // wp_nonce_field('post_nonce', 'post_nonce_field'); ?>
+			<input type="text" id="post_nonce_field" name="media-form" style="display: none" value="<?php echo wp_create_nonce('media-form'); ?> "\>
 			<input type="hidden" name="submitted" id="submitted" value="true" />
 			<button type="submit"><?php _e('Add Pin') ?></button>
 		</fieldset>

@@ -237,8 +237,6 @@ var fbPost = function( token, body ){
     $.ajax({
       url: the_ajax_script.ajaxurl,
       data: data,
-      processData: false,
-      contentType: false,
       type: 'POST',
       success: function(response){
   
