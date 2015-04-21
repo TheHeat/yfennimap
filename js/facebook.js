@@ -257,19 +257,9 @@ var fbPost = function( token, formData ){
         // console.log(response);
 
         if(response.fb_object_id){ // We've had a successful response
-          //Get the pins again
-          var data = {
-            action: 'get_pins',
-          };
 
-          // the_ajax_script.ajaxurl is a variable that will contain the url to the ajax processing file
-          $.post(the_ajax_script.ajaxurl, data, function(response) {
-            //Put the response into pinsMap
-            pinsMap = response;
-          });
-          
-          //initialize
-          initialize();
+          getNewPins( initialize );
+      
           //Open the modal with the success message
           openModal($('.success-message').html());
 
@@ -278,8 +268,6 @@ var fbPost = function( token, formData ){
            // Reset the toolbox
            $('.toolbox .actions').hide('slide', {direction: 'right'});
            $('.toolbox .add').show('slide', {direction: 'left'});
-           console.log(pinsMap);
-
         }
         else{ // We haven't had a successful response. Wha-wha. Give the user a friendly message
           message = $('.failure-message').html();
