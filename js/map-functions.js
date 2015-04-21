@@ -514,13 +514,4 @@ jQuery(document).ready(function($){
 
 google.maps.event.addDomListener(window, 'load', initialize);
 
-/**
- * add loading class whilst doing an ajax load
- */
-jQuery( document ).ajaxStart(function() {
-    jQuery( "body" ).addClass('loading');
-});
 
-jQuery( document ).ajaxStop(function() {
-    jQuery( "body" ).removeClass('loading');
-});
