@@ -89,44 +89,26 @@ var bindAjaxFormHandling = function(){
 	 		// Create a formData
 	 		var formData = new FormData();
 	    	
-	    	// Add data to it
-	    	formData.append("action", "yfenni_post_media");
-	    	var fileInputElement = document.getElementById("media_upload");
-	    	formData.append("async-upload", fileInputElement.files[0]);
-	    	formData.append("name", fileInputElement.files[0].name);
+	    	// Add data to it - medial file handling
+	    	if( $('#media-hidden').val() === 'image'){
+		    	var fileInputElement = document.getElementById("media_upload");
+		    	formData.append("async-upload", fileInputElement.files[0]);
+		    	formData.append("name", fileInputElement.files[0].name);
+		    }
+
+		    // Add the nonce
 	    	formData.append("nonce", the_ajax_script.mediaNonce);
 
-	    	// Make the request
-	    	var xhr = new XMLHttpRequest();
-	    	
-			xhr.onreadystatechange = function(){
-				if (xhr.readyState == 4 && xhr.status == 200){
-				  console.log(xhr.responseText);
-				  // console.log(JSON.parse(xhr.responseText));
-				}
-			}
-
-			xhr.open("POST", the_ajax_script.ajaxurl ,true);
-			xhr.send(formData);
-
-
-	        // get the form data
-	        // var body = {
-	        //     'content' : $('#postContent').val(),
-	        //     // 'media' : $('#media_upload').val(),
-	        //     'link' : $('#link').val(),
-	        //     'content' : $('#postContent').val(),
-	        //     'year' : $('#year-created').val(),
-	        //     // 'category' : $('#pin_category').val(),
-	        //     'mediaType' : $('#media-hidden').val(),
-	        //     'lat' : $('#lat-hidden').val(),
-	        //     'lng' : $('#lng-hidden').val()
-	        // };
+	    	// Add other data
+	    	formData.append('content', $('#postContent').val());
+	    	if(typeof $('#link').val() !== 'undefined') formData.append('link', $('#link').val());
+	    	formData.append('year', $('#year-created').val());
+	    	formData.append('mediaType', $('#media-hidden').val());
+	    	formData.append('lat', $('#lat-hidden').val());
+	    	formData.append('lng', $('#lng-hidden').val());
 
 	        // Call out fbPost function to ship the data to Facebook
-	        // fbPost( FB.getAccessToken(), formData );
-
-	        
+	        fbPost( FB.getAccessToken(), formData );
 	    });
 	})(jQuery);
 };

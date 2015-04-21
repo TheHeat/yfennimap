@@ -224,24 +224,33 @@ function fbLogin(){
 
 /* Make an AJAX call to the server with the bits that we want to post and handle the response */
 
-var fbPost = function( token, body ){
+var fbPost = function( token, formData ){
   (function($){
-    var data = {
-      action: 'ajax_post_to_facebook',
-      token: token,
-      body: body
-    };
+    
+    // Based on http://techslides.com/wordpress-upload-files-with-ajax
 
+    formData.append("action", "ajax_post_to_facebook");
+    formData.append('token', token);
 
-    // Post using AJAX
-    $.ajax({
-      url: the_ajax_script.ajaxurl,
-      data: data,
-      type: 'POST',
-      success: function(response){
-  
+    // Make the request
+    var xhr = new XMLHttpRequest();
+      
+    xhr.onreadystatechange = function(){
+      if (xhr.readyState == 4 && xhr.status == 200){
+        // Call was successful
+
+        // Parse the result as JSON, or not if it's not JSON
+        try {
+          // We got JSON back. Good.
+          var response = JSON.parse(xhr.responseText);
+        } 
+        catch (e) {
+          console.log(xhr.responseText);
+        }
+
+        // Echo the output to the console. Can be removed when done testing
         console.log(response);
-        
+
         if(response.fb_object_id){ // We've had a successful response
           //Get the pins again
           var data = {
@@ -271,41 +280,12 @@ var fbPost = function( token, body ){
           jQuery('.toolbox .add').show('slide', {direction: 'left'});
 
         }
-      },
-      error: function(response){
-        console.log(response);
       }
-    });
+    }
 
-    // // Post using AJAX
-    // $.post(the_ajax_script.ajaxurl, data, function(response) {
-    //   // console.log(response);
-      
-    //   if(response.fb_object_id){ // We've had a successful response
-    //     //Get the pins again
-    //     var data = {
-    //       action: 'get_pins',
-    //     };
+    xhr.open("POST", the_ajax_script.ajaxurl ,true);
+    xhr.send(formData);
 
-    //     // the_ajax_script.ajaxurl is a variable that will contain the url to the ajax processing file
-    //     $.post(the_ajax_script.ajaxurl, data, function(response) {
-    //       //Put the response into pinsMap
-    //       pinsMap = response;
-    //     });
-        
-    //     //initialize
-    //     initialize();
-    //     //Open the modal with the success message
-    //     openModal($('.success-message').html());
-    //   }
-    //   else{ // We haven't had a successful response. Wha-wha. Give the user a friendly message
-    //     message = $('.failure-message').html();
-    //     message += '<pre>' + response.error + '</pre>';
-
-    //     //Open the modal with the unsuccessful message
-    //     openModal(message);
-    //   }
-    // });
     return false;
   })(jQuery);
 };  

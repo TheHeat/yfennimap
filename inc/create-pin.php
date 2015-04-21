@@ -1,6 +1,6 @@
 <?php
 	
-function create_pin( $body ){
+function create_pin( $body, $image_id = null ){
 
 	// Creates a new post in WordPress
 
@@ -62,43 +62,12 @@ function create_pin( $body ){
 	$location_field = get_field( 'field_5362ae02910ff', $post_id);
 
 
-	// if user has uploaded an image file or a video
-	if ( $media == 'image' || $media == 'video'):
+	// if user has uploaded an image file
+	if ( $media == 'image' && $image_id ):
 
-		//change media type if multiple images uploaded 
-		if (count($_FILES['media_upload']['name']) > 1) $media = 'gallery'; 
-		update_post_meta( $post_id, "media_type", $media );
-
-		//get the media field to input files to
-		$media_field = get_field('field_5362addb9bf86', $post_id);  //looks like this isn't used...
-
-
-		//$_FILES is the result of the form submit with input type files
-		if ( $_FILES ) {
-			$files = $_FILES['media_upload'];
-
-			foreach ($files['name'] as $key => $value) {
-				if ($files['name'][$key]) {
-					$file = array(
-						'name'     => $files['name'][$key],
-						'type'     => $files['type'][$key],
-						'tmp_name' => $files['tmp_name'][$key],
-						'error'    => $files['error'][$key],
-						'size'     => $files['size'][$key]
-					);
-
-		 
-					$_FILES = array("upload_attachment" => $file);
-		 			
-					foreach ($_FILES as $file => $array) {
-						$new_upload[] = array('file' => insert_attachment($file,$post_id));						
-					}
-				}
-			}
-		}
-
-		//add media to media upload array to acf repeater field
-		update_field( 'field_5362addb9bf86',  $new_upload, $post_id);
+		// Add image as featured image
+		// add_post_meta($post_id, '_thumbnail_id', $attachment_id);
+		set_post_thumbnail( $post_id, $image_id );
 
 	endif;
 

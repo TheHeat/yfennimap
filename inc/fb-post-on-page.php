@@ -63,9 +63,11 @@ function fb_post_on_page($token, $edge, $content){
 
 	// The request was successful
 
-	return array(
-		'fb_object_id' => $response->getProperty('id'), //string with object id
-	); 
+	// return array(
+	// 	'fb_object_id' => $response->getProperty('id'), //string with object id
+	// ); 
+
+	return $response;
 }
 
 

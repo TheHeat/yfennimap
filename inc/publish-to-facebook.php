@@ -41,8 +41,10 @@ function publish_to_facebook($post_id, $token){
 		case ('image'): 
 			if ($media == 'image') $edge = 'photos';
 
-			$attachment = get_field('field_5362addb9bf86', $post_id, true)[0];
-			$attachment_filepath = get_attached_file( $attachment['file']['id'], true );
+			// $attachment = get_field('field_5362addb9bf86', $post_id, true)[0];
+
+			// $attachment_filepath = get_attached_file( $attachment['file']['id'], true );
+			$attachment_filepath = get_attached_file( get_post_thumbnail_id( $post_id ), true );
 
 			$content['source'] = new CURLFile( $attachment_filepath);
 		break;
@@ -53,14 +55,14 @@ function publish_to_facebook($post_id, $token){
 		break;
 	}
 
-	$fb_object = fb_post_on_page($token, $edge, $content);
+	$response = fb_post_on_page($token, $edge, $content);
+	$fb_object['fb_object_id'] = $response->getProperty('id');
 
 	if($fb_object['fb_object_id']){
 		// The post was successful. Make a record of its object ID
 		add_post_meta( $post_id, 'new_fb_object', $fb_object['fb_object_id']);
 
 		// Get the url of facebook post
-		
 		switch ($media) {
 			
 			case 'text':
@@ -73,15 +75,21 @@ function publish_to_facebook($post_id, $token){
 				break;
 			
 			case 'video':
-				$fb_url = $graph_object->getProperty('link');
+				$fb_url = $response->getProperty('link');
 				break;
 			
 			case 'image':
-				$fb_url = $graph_object->getProperty('link');
+				
+				$id = $response->getProperty('post_id');
+				$id_array = explode ( '_' , $id );
+				$fbid = $id_array[1];
+				$userid = $id_array[0];
+
+				$fb_url = 'https://www.facebook.com/permalink.php?story_fbid='.$fbid.'&id='.$userid;
 				break;
 			
 			case 'album':
-				$fb_url = $graph_object->getProperty('link');
+				$fb_url = $response->getProperty('link');
 				break;
 			
 			default:

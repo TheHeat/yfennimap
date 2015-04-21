@@ -53,6 +53,9 @@ function yfenni_setup() {
 	require_once('inc/fb-handler.php');
 	require_once('inc/create-pin.php');
 	require_once('inc/publish-to-facebook.php');
+
+	// Thumbnails
+	add_theme_support( 'post-thumbnails' );
 }
 
 
@@ -298,7 +301,7 @@ function register_cpt_pin() {
         'labels' => $labels,
         'hierarchical' => false,
         
-        'supports' => array( 'title', 'custom-fields', 'taxonomies' ),
+        'supports' => array( 'title', 'custom-fields', 'taxonomies', 'thumbnail' ),
         
         'public' => true,
         'show_ui' => true,
