@@ -90,20 +90,23 @@ var bindAjaxFormHandling = function(){
 	 		var formData = new FormData();
 	    	
 	    	// Add data to it
-	    	formData.append("action", "upload-attachment");
+	    	formData.append("action", "yfenni_post_media");
 	    	var fileInputElement = document.getElementById("media_upload");
 	    	formData.append("async-upload", fileInputElement.files[0]);
 	    	formData.append("name", fileInputElement.files[0].name);
-	    	formData.append("_wpnonce", the_ajax_script.mediaNonce);
+	    	formData.append("nonce", the_ajax_script.mediaNonce);
 
 	    	// Make the request
 	    	var xhr = new XMLHttpRequest();
-			xhr.onreadystatechange=function(){
-				if (xhr.readyState==4 && xhr.status==200){
+	    	
+			xhr.onreadystatechange = function(){
+				if (xhr.readyState == 4 && xhr.status == 200){
 				  console.log(xhr.responseText);
+				  // console.log(JSON.parse(xhr.responseText));
 				}
 			}
-			xhr.open("POST", the_ajax_script.asyncUpload ,true);
+
+			xhr.open("POST", the_ajax_script.ajaxurl ,true);
 			xhr.send(formData);
 
 

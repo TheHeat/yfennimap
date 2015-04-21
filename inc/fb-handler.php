@@ -12,7 +12,7 @@ use Facebook\FacebookClientException;
 use Facebook\FacebookOtherException;
 use Facebook\GraphSessionInfo;
 
-/* AJAX Request Handling */
+/* AJAX Facebook Request Handling */
 
 add_action('wp_ajax_ajax_post_to_facebook', 'ajax_post_to_facebook');
 add_action('wp_ajax_nopriv_ajax_post_to_facebook', 'ajax_post_to_facebook');
@@ -75,5 +75,25 @@ function ajax_post_to_facebook(){
 	// wp_send_json( $_POST['body'] );
 	wp_send_json( $output );
 	// print_r($output);
+	die();
+}
+
+/* AJAX Facebook Request Handling */
+
+add_action('wp_ajax_yfenni_post_media', 'yfenni_post_media');
+add_action('wp_ajax_nopriv_yfenni_post_media', 'yfenni_post_media');
+
+function yfenni_post_media(){
+
+	// Validate nonce
+	check_ajax_referer( 'media-form', 'nonce', true );
+
+	// Post media
+	$id = media_handle_upload( 'async-upload', 0 );
+
+	echo $id;
+	// Return post ID
+	// wp_send_json($id);
+
 	die();
 }
