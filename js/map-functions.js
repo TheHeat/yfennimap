@@ -514,13 +514,22 @@ jQuery(document).ready(function($){
 
 google.maps.event.addDomListener(window, 'load', initialize);
 
-/**
- * add loading class whilst doing an ajax load
- */
-jQuery( document ).ajaxStart(function() {
-    jQuery( "body" ).addClass('loading');
-});
+getNewPins = function(callback) {
 
-jQuery( document ).ajaxStop(function() {
-    jQuery( "body" ).removeClass('loading');
-});
+	//Get the pins again
+	var data = {
+	  action: 'get_pins',
+	};
+
+	// the_ajax_script.ajaxurl is a variable that will contain the url to the ajax processing file
+	jQuery.post(the_ajax_script.ajaxurl, data, function(response) {
+	  //Put the response into pinsMap
+	  pinsMap = response;
+
+	  console.log(pinsMap);
+	  callback();
+	});
+	
+}
+
+
