@@ -267,6 +267,11 @@ var fbPost = function( token, body ){
 
           //Open the modal with the unsuccessful message
           openModal(message);
+
+          // Reset the toolbox
+          jQuery('.toolbox .actions').hide('slide', {direction: 'right'});
+          jQuery('.toolbox .add').show('slide', {direction: 'left'});
+
         }
       },
       error: function(response){
