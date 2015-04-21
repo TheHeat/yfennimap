@@ -64,10 +64,14 @@ function ajax_post_to_facebook(){
 	} catch (Exception $e) {
 	    wp_send_json(array( 'error' => $e->getMessage() ));
 	}
+	
+	// Strip the slashes and convert from JSON
+	$categories = stripslashes($_REQUEST['categories']);
+	$categories = json_decode($categories);
 
-	// echo 'wow';
-	// die();
-
+	//Cast as an array
+	$categories = (array)$categories;
+	
 	// Create an array with the data that we need to make a pin
 	$pin_data = array(
 		'content' => $_REQUEST['content'],
@@ -77,6 +81,7 @@ function ajax_post_to_facebook(){
 		'mediaType' => $_REQUEST['mediaType'],
 		'lat' => $_REQUEST['lat'],
 		'lng' => $_REQUEST['lng'],
+		'category' => $categories
 	);
 
 	// We didn't get kicked out, so the user's session is valid. Nice one, create a pin. The function returns the id of the pin that was created

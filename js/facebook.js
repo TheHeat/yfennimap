@@ -115,7 +115,7 @@ function toggleAvatar(show){
       // Get the user's picture and set it to the .avatar
       FB.api('/' + response.id +'/picture', function(response){
         // Got the user's picture
-        console.log(response.data);
+        // console.log(response.data);
         jQuery('.avatar').html('<img src=' + response.data.url + '>');
         jQuery('.login-wrapper').html('<div class="logout">Logout</div>');
 

@@ -99,6 +99,19 @@ var bindAjaxFormHandling = function(){
 		    // Add the nonce
 	    	formData.append("nonce", the_ajax_script.mediaNonce);
 
+	    	// Get the selected category IDs
+	    	var categoryIDs = $(".pin-category:checked").map(function(){
+	    	      return $(this).val();
+	    	    }).get();
+
+	    	// Convert the array into an object
+	    	// categoryIDs = toObject(categoryIDs);
+	    	
+	    	categoryIDs = JSON.stringify(categoryIDs);
+	  
+	    	
+	    	formData.append('categories', categoryIDs);
+
 	    	// Add other data
 	    	formData.append('content', $('#postContent').val());
 	    	if(typeof $('#link').val() !== 'undefined') formData.append('link', $('#link').val());
@@ -112,3 +125,10 @@ var bindAjaxFormHandling = function(){
 	    });
 	})(jQuery);
 };
+
+function toObject(arr) {
+  var rv = {};
+  for (var i = 0; i < arr.length; ++i)
+    rv[i] = arr[i];
+  return rv;
+}

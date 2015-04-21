@@ -55,4 +55,7 @@
 			<?php if(is_page_template('map-template.php' )): ?>
 				<span class="tool info" title="<?php _e('Information','yfenni')?>"></span>
 			<?php endif; ?>
+
+			<?php //Working div for Facebook ?>
+			<div id="fb-root"></div>
 		</header>

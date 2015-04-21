@@ -505,13 +505,16 @@ function upload_form(){
 					$terms = get_terms('pin_category', array('hide_empty' => false ));
 					
 					foreach ($terms as $term) { 
+						// echo '<pre>';
+						// 	print_r($term);
+						// echo '</pre>';
 						//Get the term ID
-						$term_id = $term->cat_ID;
+						$term_id = $term->term_id;
 
 						//It returns a string. Cast it as an integer
 						$term_id = (integer)$term_id;
 						?>
-						<input type="checkbox" name="pin_category[]" value=<?php echo $term_id;?> />
+						<input type="checkbox" class="pin-category" name="pin_category[]" value=<?php echo $term_id;?> />
 						<?php
 						echo $term->name;
 						echo '<br/>';
