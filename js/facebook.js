@@ -198,7 +198,7 @@ function fbLogout(){
 function fbLogin(){
   FB.login(function(response) {
     // handle the response
-    console.log(response);
+    // console.log(response);
     // Show the user's avatar
     toggleAvatar(true);
 
@@ -254,7 +254,7 @@ var fbPost = function( token, formData ){
         }
 
         // Echo the output to the console. Can be removed when done testing
-        // console.log(response);
+        console.log(response);
 
         if(response.fb_object_id){ // We've had a successful response
 

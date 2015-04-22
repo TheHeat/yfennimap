@@ -55,7 +55,12 @@ function publish_to_facebook($post_id, $token){
 		break;
 	}
 
+
 	$response = fb_post_on_page($token, $edge, $content);
+
+	if(is_array($response) && is_sset($response['error'])){
+		return array('error' => 'Error occurred when posting to Facebook. Please try logging out and logging in again, giving the app permission to post to the public');	
+	}
 	$fb_object['fb_object_id'] = $response->getProperty('id');
 
 	if($fb_object['fb_object_id']){
