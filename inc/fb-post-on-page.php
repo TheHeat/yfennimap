@@ -42,25 +42,33 @@ function fb_post_on_page($token, $edge, $content){
 
 	try{
 		$response = $request->execute()->getGraphObject();
-		// echo '<pre>';
-		// 	print_r($response);
-		// echo '</pre>';
-		return $response->getProperty('id'); //string with object id
 	}
 	catch( FacebookRequestException $ex ) {
 	  // When Facebook returns an error
 		$error = "Facebook Exception occured, code: " . $ex->getCode()
     		. " with message: " . $ex->getMessage();
 
-    	return $error;
+    	return array(
+    		'error' => $error,
+    		'token' => $token
+    	 );
 	} 
 	catch( Exception $ex ) {
 	  // When validation fails or other local issues
 		$error = "Exception occured, code: " . $ex->getCode()
     		. " with message: " . $ex->getMessage();
 
-    	return $error;
+    	return array('error' => $error );
 	}
+
+	// The request was successful
+
+	// return array(
+	// 	'fb_object_id' => $response->getProperty('id'), //string with object id
+	// ); 
+
+	return $response;
 }
+
 
 ?>

@@ -13,15 +13,7 @@ use Facebook\FacebookClientException;
 use Facebook\FacebookOtherException;
 use Facebook\GraphSessionInfo;
 
-//check if this is existing content
-if(get_field('field_537ccb499a819', $post_id, true)):
-
-	// if it is save the url against the fb_post_url wp custom field for display 
-	$existing_content_url = (get_field('field_537ccb9c9a81a', $post_id, true));
-
-	$fb_url = $existing_content_url;
-
-else:
+function publish_to_facebook($post_id, $token){
 
 	// WP Variables
 	$media = get_post_meta($post_id, 'media_type', true);
@@ -29,11 +21,6 @@ else:
 
 	$content['title'] = get_the_title();;
 	$content['description'] = get_field('field_5362ad1d9bf84', $post_id, true);
-
-	//FB variables 
-	$token = get_post_meta($post_id, 'user_fb_token', true);
-
-	if ( $token == null) $token = page_token;
 	
 	//If the user selected video but added a link rather than a file, change the media type to link
 	$link_content = get_post_meta($post_id, 'link', true);
@@ -54,8 +41,10 @@ else:
 		case ('image'): 
 			if ($media == 'image') $edge = 'photos';
 
-			$attachment = get_field('field_5362addb9bf86', $post_id, true)[0];
-			$attachment_filepath = get_attached_file( $attachment['file']['id'], true );
+			// $attachment = get_field('field_5362addb9bf86', $post_id, true)[0];
+
+			// $attachment_filepath = get_attached_file( $attachment['file']['id'], true );
+			$attachment_filepath = get_attached_file( get_post_thumbnail_id( $post_id ), true );
 
 			$content['source'] = new CURLFile( $attachment_filepath);
 		break;
@@ -66,20 +55,50 @@ else:
 		break;
 	}
 
-	$fb_object = fb_post_on_page($token, $edge, $content);
+	$response = fb_post_on_page($token, $edge, $content);
+	$fb_object['fb_object_id'] = $response->getProperty('id');
 
-	// echo '<pre>';
-	// 	print_r($fb_object);
-	// echo '</pre>';
-	//save facebook bject against post
-	add_post_meta( $post_id, 'new_fb_object', $fb_object);
+	if($fb_object['fb_object_id']){
+		// The post was successful. Make a record of its object ID
+		add_post_meta( $post_id, 'new_fb_object', $fb_object['fb_object_id']);
 
-	//save url of facebook post
-	$fb_media = new FB_Media($post->ID);
+		// Get the url of facebook post
+		switch ($media) {
+			
+			case 'text':
+			case 'link':
+				$id_array = explode ( '_' , $fb_object['fb_object_id'] );
+				$fbid = $id_array[1];
+				$userid = $id_array[0];
 
-	$fb_url = $fb_media->get_url();
+				$fb_url = 'https://www.facebook.com/permalink.php?story_fbid='.$fbid.'&id='.$userid;
+				break;
+			
+			case 'video':
+				$fb_url = $response->getProperty('link');
+				break;
+			
+			case 'image':
+				
+				$id = $response->getProperty('post_id');
+				$id_array = explode ( '_' , $id );
+				$fbid = $id_array[1];
+				$userid = $id_array[0];
 
-endif;
-
-	add_post_meta( $post_id, 'fb_post_url', $fb_url );
+				$fb_url = 'https://www.facebook.com/permalink.php?story_fbid='.$fbid.'&id='.$userid;
+				break;
+			
+			case 'album':
+				$fb_url = $response->getProperty('link');
+				break;
+			
+			default:
+				# nothing here...
+		}
+		add_post_meta( $post_id, 'fb_post_url', $fb_url );
+	}
+	
+	// Return either the object id, if successful, or the error or not
+	return $fb_object;
+}
 ?>

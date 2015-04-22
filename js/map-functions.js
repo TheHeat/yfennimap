@@ -218,7 +218,9 @@ function openModal(content, callback){
 
 	jQuery('#modal-window').slideDown(function(){
 
-		jQuery('.modal-content').position({my: 'center top', at: 'center top+32', of: '#modal-window'});
+		jQuery('.modal-content').append()
+
+		jQuery('.modal-content-wrapper').position({my: 'center top', at: 'center top+32', of: '#modal-window'});
 		jQuery('.modal-content').append(content);
 	});
 
@@ -373,8 +375,7 @@ function toolboxLinks(position){
 	var saveQueryMedia = 'media=' + newPinMedia;
 	var saveQueryLat = 'lat=' + position.k;
 	var saveQueryLng = 'lng=' + position.D;
-		
-	// var saveNewPin = '<a class="action save" href="upload-form/?' + saveQueryMedia + '&' + saveQueryLat + '&' + saveQueryLng + '">Add ' + newPinMediaLabel + '</a>';
+
 	var saveNewPin = '<span class="action save">save</span>'
 	var cancelNewPin = '<span class="action cancel">Cancel</span>';
 
@@ -388,26 +389,42 @@ function toolboxLinks(position){
 
 		//Open the upload content form
 		jQuery('.action.save').click(function(){
-			openModal(jQuery('.upload-form').html(),function(){
 
-				//populate the media type form field
-				jQuery('.media-hidden').each(function(){
-					jQuery(this).val(newPinMedia);
-					// console.log(jQuery(this).val());
+			// Set the visible form fields
+			setFormFields(uploadForm, newPinMedia, function(){
+
+				// console.log(jQuery('.upload-form-workspace').html());
+				// Inject the form content and open the modal
+				openModal( jQuery('.upload-form-workspace').html(), function(){
+
+					// Clear the temporary div
+					jQuery('.upload-form-workspace').html('');
+
+					// // Set the visible fields
+					// setFormFields(newPinMedia);
+					
+					//bind form handling
+					bindAjaxFormHandling();
+
+					//populate the media type form field
+					jQuery('.media-hidden').each(function(){
+						jQuery(this).val(newPinMedia);
+						// console.log(jQuery(this).val());
+					});
+
+					//populate the lat form field
+					jQuery('.lat-hidden').each(function(){
+						jQuery(this).val(newPinLatLng.k);
+						// console.log(jQuery(this).val());
+					});
+
+					//populate the lng form field
+					jQuery('.lng-hidden').each(function(){
+						jQuery(this).val(newPinLatLng.D);
+						// console.log(jQuery(this).val());
+					});
+
 				});
-
-				//populate the lat form field
-				jQuery('.lat-hidden').each(function(){
-					jQuery(this).val(newPinLatLng.k);
-					console.log(jQuery(this).val());
-				});
-
-				//populate the lng form field
-				jQuery('.lng-hidden').each(function(){
-					jQuery(this).val(newPinLatLng.D);
-					console.log(jQuery(this).val());
-				});
-
 			});
 			
 		});
@@ -455,29 +472,9 @@ jQuery(document).ready(function($){
 		});
 
 	// Create the .modal-close and .modal-content
-	var modalCloser = '<span class="modal-close">&times;</span>';
-	var modalContent = '<div class="modal-content"></div>';
+	var modalContentWrapper = '<div class="modal-content-wrapper"><span class="modal-close">&times;</span><div class="modal-content"></div></div>';
 
-	$('#modal-window').prepend(modalCloser, modalContent);
-
-	//Open the success-message div if it exists
-	if($('.success-message').length){
-		//Get the pins again
-		var data = {
-			action: 'get_pins',
-            post_var: 'this will be echoed back'
-		};
-		// the_ajax_script.ajaxurl is a variable that will contain the url to the ajax processing file
-	 	$.post(the_ajax_script.ajaxurl, data, function(response) {
-			//Put the response into pinsMap
-			pinsMap = response;
-	 	});
-	 	
-		//initialize
-		initialize();
-		//Open the modal with the success message
-		openModal($('.success-message').html());
-	}
+	$('#modal-window').prepend(modalContentWrapper);
 
 	// Pass media type from the add toolbox link to the newMedia var
 	$('.toolbox .tool').click(function(){
@@ -487,7 +484,7 @@ jQuery(document).ready(function($){
 		$('.toolbox .handle').hide('slide', {direction: 'left'});
 
 		// Check whether the user is switching media types or starting from scratch
-		var addingMessage = 'Drag the marker and tick to confirm.';
+		var addingMessage = stringTranslate.markerMessage;
 
 		// Only show the message if the user is opening the 
 		if(!newPinMedia){
@@ -496,7 +493,6 @@ jQuery(document).ready(function($){
 		}
 
 		newPinMedia = $(this).data('media');
-		setFormFields(newPinMedia);
 
 		// console.log(newPinMedia);
 		newPinMediaLabel = $(this).text();
@@ -517,3 +513,23 @@ jQuery(document).ready(function($){
 });
 
 google.maps.event.addDomListener(window, 'load', initialize);
+
+getNewPins = function(callback) {
+
+	//Get the pins again
+	var data = {
+	  action: 'get_pins',
+	};
+
+	// the_ajax_script.ajaxurl is a variable that will contain the url to the ajax processing file
+	jQuery.post(the_ajax_script.ajaxurl, data, function(response) {
+	  //Put the response into pinsMap
+	  pinsMap = response;
+
+	  console.log(pinsMap);
+	  callback();
+	});
+	
+}
+
+

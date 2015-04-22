@@ -10,7 +10,7 @@
 	display: none;
 }
 
-.modal-content{
+.modal-content-wrapper{
 	box-sizing:content-box;
 	background:rgba(0,0,0,0.75);
 	width:300px !important;
@@ -33,9 +33,11 @@
   z-index:10;
   color: red;
   position: absolute;
-  top:1em;
-  right:1em;
+  top:0.1em;
+  right:0.25em;
   cursor:pointer;
+  font-size: 2em;
+  line-height: 1em;
   // animation: imagebulger 2s infinite;
   // @include media(momma){
   //   top:5em;
@@ -106,4 +108,37 @@
     border-radius:0.25em;
     margin:0.5em;
     cursor: pointer;
+}
+
+.loading .pin-form button {
+  position: relative;
+  overflow: hidden;
+  background-color:  adjust-lightness( $green, 15%);
+  color: adjust-lightness( $green, 15%);
+  &:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 2em;
+    height: 2.5em;
+    background-color:  $green;
+    animation: loading-bar 1.5s linear infinite;
+    animation-delay: 0.5s;
+  }
+}
+
+@keyframes loading-bar {
+  0% {
+    left:0%;
+    width:1em;
+  }
+  50%{
+    left: 25%;
+    width: 50%;
+  }
+  100%{
+    left:100%;
+    width:1em;
+  }
 }

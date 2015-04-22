@@ -653,31 +653,45 @@ th {
 }
 
 .avatar-wrapper {
-  padding: 1em 0;
   margin: 0;
   z-index: 1000;
   position: absolute;
-  right: 3em;
+  right: 11em;
   outline: none;
 }
-.avatar-wrapper a {
+.avatar-wrapper .avatar {
   font-size: 1rem;
   line-height: 1;
   font-weight: normal;
   padding: 1em;
   margin: 0.5em;
   background-color: #D74123;
-}
-.avatar-wrapper .avatar {
-  height: 3em;
-  width: 3em;
-  margin: -1em 0;
+  background: transparent;
+  padding: 0;
+  margin: 0;
   cursor: pointer;
 }
 .avatar-wrapper .avatar img {
   width: 100%;
-  display: block;
   margin: 0;
+}
+.avatar-wrapper .avatar a {
+  padding: 1em 0;
+}
+
+.login-wrapper {
+  font-size: 1rem;
+  line-height: 1;
+  font-weight: normal;
+  padding: 1em;
+  margin: 0.5em;
+  background-color: #D74123;
+  cursor: pointer;
+  margin: 0;
+  z-index: 1000;
+  position: absolute;
+  right: 4em;
+  outline: none;
 }
 
 .avatar-menu {
@@ -714,7 +728,7 @@ Navigation
   display: none;
 }
 
-.modal-content {
+.modal-content-wrapper {
   box-sizing: content-box;
   background: rgba(0, 0, 0, 0.75);
   width: 300px !important;
@@ -727,12 +741,12 @@ Navigation
   -webkit-overflow-scrolling: touch;
 }
 @media (min-width: 640px) {
-  .modal-content {
+  .modal-content-wrapper {
     width: 600px !important;
   }
 }
 @media (min-width: 1200px) {
-  .modal-content {
+  .modal-content-wrapper {
     width: 800px !important;
   }
 }
@@ -741,9 +755,11 @@ Navigation
   z-index: 10;
   color: red;
   position: absolute;
-  top: 1em;
-  right: 1em;
+  top: 0.1em;
+  right: 0.25em;
   cursor: pointer;
+  font-size: 2em;
+  line-height: 1em;
 }
 
 .fb_iframe_widget {
@@ -801,6 +817,55 @@ Navigation
   cursor: pointer;
 }
 
+.loading .pin-form button {
+  position: relative;
+  overflow: hidden;
+  background-color: #4ac870;
+  color: #4ac870;
+}
+.loading .pin-form button:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 2em;
+  height: 2.5em;
+  background-color: #2E984E;
+  -webkit-animation: loading-bar 1.5s linear infinite;
+          animation: loading-bar 1.5s linear infinite;
+  -webkit-animation-delay: 0.5s;
+          animation-delay: 0.5s;
+}
+
+@-webkit-keyframes loading-bar {
+  0% {
+    left: 0%;
+    width: 1em;
+  }
+  50% {
+    left: 25%;
+    width: 50%;
+  }
+  100% {
+    left: 100%;
+    width: 1em;
+  }
+}
+
+@keyframes loading-bar {
+  0% {
+    left: 0%;
+    width: 1em;
+  }
+  50% {
+    left: 25%;
+    width: 50%;
+  }
+  100% {
+    left: 100%;
+    width: 1em;
+  }
+}
 .filters {
   position: absolute;
   right: 0;
@@ -845,7 +910,7 @@ Navigation
 }
 
 /*The slider handles.*/
-a.ui-slider-handle {
+.ui-slider-handle {
   background: #D74123;
   width: 0.5em;
   height: 2em;
@@ -911,6 +976,11 @@ html {
   background-color: #3F3F3F;
   color: #F3F0D2;
   z-index: 20;
+  display: none;
+}
+
+.fb-logged-in .toolbox {
+  display: block;
 }
 
 .handle,
@@ -988,7 +1058,7 @@ a.tool:hover {
   text-indent: 100%;
   white-space: nowrap;
   overflow: hidden;
-  background-image: url('img/tags.svg?1426784114');
+  background-image: url('img/tags.svg?1426773095');
 }
 
 .tool.clear-categories {
@@ -1003,7 +1073,7 @@ a.tool:hover {
   text-indent: 100%;
   white-space: nowrap;
   overflow: hidden;
-  background-image: url('img/refresh.svg?1426784114');
+  background-image: url('img/refresh.svg?1426773095');
 }
 
 .handle.add {
@@ -1018,7 +1088,7 @@ a.tool:hover {
   text-indent: 100%;
   white-space: nowrap;
   overflow: hidden;
-  background-image: url('img/plus.svg?1426784114');
+  background-image: url('img/plus.svg?1426773095');
 }
 
 .tool.link {
@@ -1033,7 +1103,7 @@ a.tool:hover {
   text-indent: 100%;
   white-space: nowrap;
   overflow: hidden;
-  background-image: url('img/chain.svg?1426784114');
+  background-image: url('img/chain.svg?1426773095');
 }
 
 .tool.video {
@@ -1048,7 +1118,7 @@ a.tool:hover {
   text-indent: 100%;
   white-space: nowrap;
   overflow: hidden;
-  background-image: url('img/film.svg?1426784114');
+  background-image: url('img/film.svg?1426773095');
 }
 
 .tool.pictures {
@@ -1063,7 +1133,7 @@ a.tool:hover {
   text-indent: 100%;
   white-space: nowrap;
   overflow: hidden;
-  background-image: url('img/picture.svg?1426784114');
+  background-image: url('img/picture.svg?1426773095');
 }
 
 .tool.words {
@@ -1078,7 +1148,7 @@ a.tool:hover {
   text-indent: 100%;
   white-space: nowrap;
   overflow: hidden;
-  background-image: url('img/pencil.svg?1426784114');
+  background-image: url('img/pencil.svg?1426773095');
 }
 
 .tool.info {
@@ -1099,7 +1169,7 @@ a.tool:hover {
   text-indent: 100%;
   white-space: nowrap;
   overflow: hidden;
-  background-image: url('img/info.svg?1426784114');
+  background-image: url('img/info.svg?1426773095');
 }
 
 .action.cancel {
@@ -1114,7 +1184,7 @@ a.tool:hover {
   text-indent: 100%;
   white-space: nowrap;
   overflow: hidden;
-  background-image: url('img/times.svg?1426784114');
+  background-image: url('img/times.svg?1426773095');
 }
 
 .action.save {
@@ -1129,7 +1199,7 @@ a.tool:hover {
   text-indent: 100%;
   white-space: nowrap;
   overflow: hidden;
-  background-image: url('img/check.svg?1426784114');
+  background-image: url('img/check.svg?1426773095');
 }
 
 .gmnoprint img {
@@ -1165,4 +1235,28 @@ Accessibility
   width: auto;
   z-index: 100000;
   /* Above WP toolbar */
+}
+
+#menu-project-menu {
+  padding: 0;
+  margin: 0 auto;
+  display: inline-block;
+}
+#menu-project-menu li {
+  display: inline-block;
+  padding: 0.25em;
+  overflow: hidden;
+  padding: 0;
+}
+#menu-project-menu li:before {
+  content: "|";
+  padding: 0 0.25em;
+}
+#menu-project-menu li:first-child:before {
+  content: "";
+}
+#menu-project-menu a {
+  color: #F3F0D2;
+  text-decoration: none;
+  cursor: pointer;
 }

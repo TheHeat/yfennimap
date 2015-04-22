@@ -49,6 +49,7 @@ class FB_Media extends FacebookRequest
 	//public $graph_object;
 
 	function __construct($pin_id){
+
 		//Get the FB object ID from the WP post
 		$fb_object_id = get_post_meta( $pin_id, 'new_fb_object', true); 
 
@@ -68,10 +69,29 @@ class FB_Media extends FacebookRequest
 
 		//print_r($_SESSION['fb_session']);
 
-		$response = $request->execute();
-	  	// get response
-	  	$this->graph_object = $response->getGraphObject();
+		
+		  	echo 'wow';
 
+  		try{
+			$response = $request->execute();
+		  	// get response
+		  	$this->graph_object = $response->getGraphObject();
+  			// return $response->getProperty('id'); //string with object id
+  		}
+  		catch( FacebookRequestException $ex ) {
+  		  // When Facebook returns an error
+  			$error = "Facebook Exception occured, code: " . $ex->getCode()
+  	    		. " with message: " . $ex->getMessage();
+  	    	echo $error;
+  	    	return $error;
+  		} 
+  		catch( Exception $ex ) {
+  		  // When validation fails or other local issues
+  			$error = "Exception occured, code: " . $ex->getCode()
+  	    		. " with message: " . $ex->getMessage();
+  	    	echo $error;
+  	    	return $error;
+  		}
 		//Our pin will have a media type = image if the FB object is either photo or album. 
 		//Do a little check to see if we're in an album, and if so set media_type = album
 		// if($graph_object->album_id) //This probably isn't right, but I'm offline now and don't have access to the actual property. Find a field that exists in the album object but not the photo object and test for it

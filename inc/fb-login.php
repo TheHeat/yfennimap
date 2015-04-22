@@ -131,3 +131,47 @@ function fb_login(){
     <?php
 	}
 }
+
+
+
+/* Exchanges tokens from the JS login handler */
+
+function fb_exchange_token_ajax() {
+
+	// Create a session with the old token
+	$session = new FacebookSession( $_POST['token'] );
+
+	$long_lived_session = $session->getLongLivedSession( get_field('field_53970cc16ea00', 'option'), get_field('field_53970cd36ea01', 'option')); 
+	
+	$long_lived_token = $long_lived_session->getToken();
+
+	$_SESSION['fb_session'] = $long_lived_session;
+
+	// $_SESSION['fb_session'] = $session->getToken();	
+	// echo $long_lived_token;
+	echo 'Successfully exchanged token';
+
+	die();
+}
+
+//get_pins ajax hook
+add_action('wp_ajax_fb_exchange_token_ajax', 'fb_exchange_token_ajax');
+add_action('wp_ajax_nopriv_fb_exchange_token_ajax', 'fb_exchange_token_ajax');
+
+/* Exchanges tokens from the JS login handler */
+
+function fb_kill_token() {
+
+	if($_SESSION['fb_session']){
+		unset($_SESSION['fb_session']);
+	}
+	
+	// echo $long_lived_token;
+	echo 'Successfully deleted FB session';
+
+	die();
+}
+
+//get_pins ajax hook
+add_action('wp_ajax_fb_kill_token', 'fb_kill_token');
+add_action('wp_ajax_nopriv_fb_kill_token', 'fb_exchange_token_ajax');
