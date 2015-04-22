@@ -1236,25 +1236,25 @@ Accessibility
   /* Above WP toolbar */
 }
 
-#menu-project-menu {
+.project-nav .menu {
   padding: 0;
   margin: 0 auto;
   display: inline-block;
 }
-#menu-project-menu li {
+.project-nav .menu li {
   display: inline-block;
   padding: 0.25em;
   overflow: hidden;
   padding: 0;
 }
-#menu-project-menu li:before {
+.project-nav .menu li:before {
   content: "|";
   padding: 0 0.25em;
 }
-#menu-project-menu li:first-child:before {
+.project-nav .menu li:first-child:before {
   content: "";
 }
-#menu-project-menu a {
+.project-nav .menu a {
   color: #F3F0D2;
   text-decoration: none;
   cursor: pointer;
