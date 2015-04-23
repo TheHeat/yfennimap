@@ -7,14 +7,6 @@ if(function_exists("register_field_group")){
 		'title' => 'Map Pin',
 		'fields' => array (
 			array (
-				'key' => 'field_537ccb499a819',
-				'label' => 'Existing Content?',
-				'name' => 'existing_content',
-				'type' => 'true_false',
-				'message' => '',
-				'default_value' => 0,
-			),
-			array (
 				'key' => 'field_537ccb9c9a81a',
 				'label' => 'Existing Content URL',
 				'name' => 'existing_content_url',
