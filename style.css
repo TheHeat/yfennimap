@@ -616,9 +616,13 @@ th {
   height: 8em;
 }
 
+/*--------------------------------------------------------------
+Navigation
+--------------------------------------------------------------*/
 #site-branding {
   padding: 1em 0;
   float: left;
+  display: inline-block;
 }
 #site-branding h1 {
   display: inline;
@@ -630,20 +634,20 @@ th {
   background-color: #D74123;
 }
 
-#site-navigation {
+.site-navigation {
   float: left;
   padding: 1em 0;
 }
-#site-navigation ul {
+.site-navigation ul {
   padding: 0;
   margin: 0;
   list-style: none;
 }
-#site-navigation ul li {
-  display: block;
+.site-navigation ul li {
+  display: inline-block;
   float: left;
 }
-#site-navigation ul a {
+.site-navigation ul a {
   font-size: 1rem;
   line-height: 1;
   font-weight: normal;
@@ -692,6 +696,7 @@ th {
   position: absolute;
   right: 4em;
   outline: none;
+  color: white;
 }
 
 .avatar-menu {
@@ -713,9 +718,63 @@ th {
   margin: 0;
 }
 
-/*--------------------------------------------------------------
-Navigation
---------------------------------------------------------------*/
+.menu-toggle {
+  font-size: 1rem;
+  line-height: 1;
+  font-weight: normal;
+  padding: 1em;
+  margin: 0.5em;
+  background-color: #D74123;
+  cursor: pointer;
+  display: none;
+  color: white;
+}
+
+.too-small .menu-toggle {
+  display: inline;
+}
+
+.too-small ul {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  max-height: 0;
+  overflow: hidden;
+  -webkit-transition: 0.5s;
+          transition: 0.5s;
+  padding-top: 1.5em;
+}
+.too-small ul li {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+.too-small ul a {
+  font-size: 1rem;
+  line-height: 1;
+  font-weight: normal;
+  padding: 1em;
+  margin: 0.5em;
+  background-color: #D74123;
+}
+
+.too-small .menu-item {
+  margin: 0;
+}
+
+.too-small.is-open ul {
+  max-height: 60em;
+  -webkit-transition: 1s;
+          transition: 1s;
+}
+
 #modal-window {
   background: rgba(255, 255, 255, 0.6);
   color: white;
@@ -1058,7 +1117,7 @@ a.tool:hover {
   text-indent: 100%;
   white-space: nowrap;
   overflow: hidden;
-  background-image: url('img/tags.svg?1426773095');
+  background-image: url('img/tags.svg?1426784114');
 }
 
 .tool.clear-categories {
@@ -1073,7 +1132,7 @@ a.tool:hover {
   text-indent: 100%;
   white-space: nowrap;
   overflow: hidden;
-  background-image: url('img/refresh.svg?1426773095');
+  background-image: url('img/refresh.svg?1426784114');
 }
 
 .handle.add {
@@ -1088,7 +1147,7 @@ a.tool:hover {
   text-indent: 100%;
   white-space: nowrap;
   overflow: hidden;
-  background-image: url('img/plus.svg?1426773095');
+  background-image: url('img/plus.svg?1426784114');
 }
 
 .tool.link {
@@ -1103,7 +1162,7 @@ a.tool:hover {
   text-indent: 100%;
   white-space: nowrap;
   overflow: hidden;
-  background-image: url('img/chain.svg?1426773095');
+  background-image: url('img/chain.svg?1426784114');
 }
 
 .tool.video {
@@ -1118,7 +1177,7 @@ a.tool:hover {
   text-indent: 100%;
   white-space: nowrap;
   overflow: hidden;
-  background-image: url('img/film.svg?1426773095');
+  background-image: url('img/film.svg?1426784114');
 }
 
 .tool.pictures {
@@ -1133,7 +1192,7 @@ a.tool:hover {
   text-indent: 100%;
   white-space: nowrap;
   overflow: hidden;
-  background-image: url('img/picture.svg?1426773095');
+  background-image: url('img/picture.svg?1426784114');
 }
 
 .tool.words {
@@ -1148,7 +1207,7 @@ a.tool:hover {
   text-indent: 100%;
   white-space: nowrap;
   overflow: hidden;
-  background-image: url('img/pencil.svg?1426773095');
+  background-image: url('img/pencil.svg?1426784114');
 }
 
 .tool.info {
@@ -1169,7 +1228,7 @@ a.tool:hover {
   text-indent: 100%;
   white-space: nowrap;
   overflow: hidden;
-  background-image: url('img/info.svg?1426773095');
+  background-image: url('img/info.svg?1426784114');
 }
 
 .action.cancel {
@@ -1184,7 +1243,7 @@ a.tool:hover {
   text-indent: 100%;
   white-space: nowrap;
   overflow: hidden;
-  background-image: url('img/times.svg?1426773095');
+  background-image: url('img/times.svg?1426784114');
 }
 
 .action.save {
@@ -1199,7 +1258,7 @@ a.tool:hover {
   text-indent: 100%;
   white-space: nowrap;
   overflow: hidden;
-  background-image: url('img/check.svg?1426773095');
+  background-image: url('img/check.svg?1426784114');
 }
 
 .gmnoprint img {

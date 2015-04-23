@@ -129,6 +129,9 @@ function yfenni_scripts() {
 
 		wp_register_script( 'map-functions', get_template_directory_uri() . '/js/map-functions.js', array('jquery'), true );
 		wp_enqueue_script('map-functions');
+
+		wp_register_script( 'squishMenu', get_template_directory_uri() . '/js/squishMenu.js', array('jquery'), true );
+		wp_enqueue_script('squishMenu');
 		
 		wp_enqueue_script( 'facebook',get_template_directory_uri() . '/js/facebook.js', array(), true );
 
