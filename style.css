@@ -82,7 +82,7 @@ html {
   /* 1 */
   -webkit-text-size-adjust: 100%;
   /* 2 */
-  -ms-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%
   /* 2 */
 }
 
@@ -258,7 +258,7 @@ fieldset {
 legend {
   border: 0;
   /* 1 */
-  padding: 0;
+  padding: 0
   /* 2 */
 }
 
@@ -275,7 +275,7 @@ textarea {
   /* 1 */
   font-size: 100%;
   /* 2 */
-  margin: 0;
+  margin: 0
   /* 3 */
 }
 
@@ -312,7 +312,7 @@ input[type="reset"],
 input[type="submit"] {
   -webkit-appearance: button;
   /* 2 */
-  cursor: pointer;
+  cursor: pointer
   /* 3 */
 }
 
@@ -332,7 +332,7 @@ input[type="checkbox"],
 input[type="radio"] {
   box-sizing: border-box;
   /* 1 */
-  padding: 0;
+  padding: 0
   /* 2 */
 }
 
@@ -373,7 +373,7 @@ input::-moz-focus-inner {
 textarea {
   overflow: auto;
   /* 1 */
-  vertical-align: top;
+  vertical-align: top
   /* 2 */
 }
 
@@ -487,8 +487,6 @@ aside img {
 }
 .step img {
   max-width: 100%;
-  border-radius: 50%;
-  border: solid;
 }
 
 .site-footer {
@@ -577,7 +575,7 @@ dd {
 }
 
 img {
-  height: auto;
+  height: auto
   /* Make sure images are scaled correctly. */
 }
 
@@ -1117,7 +1115,7 @@ a.tool:hover {
   text-indent: 100%;
   white-space: nowrap;
   overflow: hidden;
-  background-image: url('img/tags.svg?1426784114');
+  background-image: url('img/tags.svg?1429694017');
 }
 
 .tool.clear-categories {
@@ -1132,7 +1130,7 @@ a.tool:hover {
   text-indent: 100%;
   white-space: nowrap;
   overflow: hidden;
-  background-image: url('img/refresh.svg?1426784114');
+  background-image: url('img/refresh.svg?1429694017');
 }
 
 .handle.add {
@@ -1147,7 +1145,7 @@ a.tool:hover {
   text-indent: 100%;
   white-space: nowrap;
   overflow: hidden;
-  background-image: url('img/plus.svg?1426784114');
+  background-image: url('img/plus.svg?1429694017');
 }
 
 .tool.link {
@@ -1162,7 +1160,7 @@ a.tool:hover {
   text-indent: 100%;
   white-space: nowrap;
   overflow: hidden;
-  background-image: url('img/chain.svg?1426784114');
+  background-image: url('img/chain.svg?1429694017');
 }
 
 .tool.video {
@@ -1177,7 +1175,7 @@ a.tool:hover {
   text-indent: 100%;
   white-space: nowrap;
   overflow: hidden;
-  background-image: url('img/film.svg?1426784114');
+  background-image: url('img/film.svg?1429694017');
 }
 
 .tool.pictures {
@@ -1192,7 +1190,7 @@ a.tool:hover {
   text-indent: 100%;
   white-space: nowrap;
   overflow: hidden;
-  background-image: url('img/picture.svg?1426784114');
+  background-image: url('img/picture.svg?1431684678');
 }
 
 .tool.words {
@@ -1207,7 +1205,7 @@ a.tool:hover {
   text-indent: 100%;
   white-space: nowrap;
   overflow: hidden;
-  background-image: url('img/pencil.svg?1426784114');
+  background-image: url('img/pencil.svg?1429694017');
 }
 
 .tool.info {
@@ -1228,7 +1226,7 @@ a.tool:hover {
   text-indent: 100%;
   white-space: nowrap;
   overflow: hidden;
-  background-image: url('img/info.svg?1426784114');
+  background-image: url('img/info.svg?1429694017');
 }
 
 .action.cancel {
@@ -1243,7 +1241,7 @@ a.tool:hover {
   text-indent: 100%;
   white-space: nowrap;
   overflow: hidden;
-  background-image: url('img/times.svg?1426784114');
+  background-image: url('img/times.svg?1429694017');
 }
 
 .action.save {
@@ -1258,7 +1256,7 @@ a.tool:hover {
   text-indent: 100%;
   white-space: nowrap;
   overflow: hidden;
-  background-image: url('img/check.svg?1426784114');
+  background-image: url('img/check.svg?1429694017');
 }
 
 .gmnoprint img {
@@ -1292,7 +1290,7 @@ Accessibility
   text-decoration: none;
   top: 5px;
   width: auto;
-  z-index: 100000;
+  z-index: 100000
   /* Above WP toolbar */
 }
 
