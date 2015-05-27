@@ -660,7 +660,7 @@ Navigation
   margin: 0;
   z-index: 1000;
   position: absolute;
-  right: 11em;
+  right: 13em;
   outline: none;
 }
 .avatar-wrapper .avatar {
@@ -697,6 +697,14 @@ Navigation
   right: 4em;
   outline: none;
   color: white;
+  background-color: #4c69ba;
+}
+
+.login-text {
+  padding: 0.5em;
+  padding-top: 0;
+  position: relative;
+  top: -0.2em;
 }
 
 .avatar-menu {

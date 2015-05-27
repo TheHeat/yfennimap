@@ -39,7 +39,7 @@ Navigation
 	margin:0;
 	z-index: 1000;
 	position: absolute;
-	right: 11em;
+	right: 13em;
 	// top: 1em;
 	outline: none;
 
@@ -63,17 +63,22 @@ Navigation
 }
 
 .login-wrapper{
-	// float:right;
-	// padding:1em 0;
 	@include header-item;
 	cursor: pointer;
 	margin:0;
 	z-index: 1000;
 	position: absolute;
 	right: 4em;
-	// top: 1em;
 	outline: none;
 	color: white;
+	background-color: #4c69ba;
+}
+
+.login-text{
+	padding: 0.5em;
+	padding-top: 0;
+	position: relative;
+	top: -0.2em;
 }
 
 .avatar-menu {

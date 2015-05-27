@@ -117,7 +117,7 @@ function toggleAvatar(show){
         // Got the user's picture
         // console.log(response.data);
         jQuery('.avatar').html('<img src=' + response.data.url + '>');
-        jQuery('.login-wrapper').html('<div class="logout">Logout</div>');
+        jQuery('.login-text').html('Logout');
 
         // Add the fb-logged-in class to the body
         jQuery('body').addClass('fb-logged-in');
@@ -125,7 +125,7 @@ function toggleAvatar(show){
     });
   }
   else{
-    jQuery('.login-wrapper').html('Login');
+    jQuery('.login-text').html('Log in to post');
     jQuery('.avatar').html('');
 
     // Remove the fb-logged-in class from the body

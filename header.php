@@ -66,8 +66,10 @@
 				<div class="avatar-wrapper facebook" tabindex="2">
 					<div class="avatar facebook"></div>
 				</div>
+
 				<div class="login-wrapper">
-					<?php _e('Login', 'yfenni') ?>
+					<img src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/yE/r/pO2d5bFWS8j.png">
+					<span class="login-text"><?php _e('Log in to post', 'yfenni') ?></span>
 				</div>
 			<?php endif; ?>
 
