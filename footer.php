@@ -16,8 +16,6 @@
 	<footer class="site-footer">
 		<div class="footer-logos">
 			<div class="logo"><img src="<?php echo $logo_root; ?>cardiff.jpg" alt=""></div>
-			<div class="logo"><img src="<?php echo $logo_root; ?>manchester.png" alt=""></div>
-			<div class="logo"><img src="<?php echo $logo_root; ?>southampton.png" alt=""></div>
 			<div class="logo"><img src="<?php echo $logo_root; ?>ahrc.png" alt=""></div>
 		</div>
 
